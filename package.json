@@ -1,0 +1,39 @@
+{
+  "name": "reactjs-films-homework",
+  "version": "1.0.0",
+  "description": "reactjs-films-homework EPAM JSLAB",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "start": "node server.js --config ./config/webpackDev.config.js node watch",
+    "build": "webpack --config ./config/webpackDev.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liOdama/reactjs-films-homework.git"
+  },
+  "author": "Raman_Bychkou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liOdama/reactjs-films-homework/issues"
+  },
+  "homepage": "https://github.com/liOdama/reactjs-films-homework#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack-dev-middleware": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
