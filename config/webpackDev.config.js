@@ -13,17 +13,20 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      { test: /\.js$|jsx$/, exclude: /node_modules/, loader: "babel-loader" },
       { test: /\.scss$/, use: [
-        "style-loader",
-        "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", 
-        "sass-loader" 
-    ]}
+          'style-loader',
+          'css-loader?modules&localIdentName=name__[local]___[hash:base64:5]',
+          'sass-loader'
+      ]
+    }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-  }),
+      filename: 'index.html',
+      template: './src/index.html'
+    }),
   new webpack.HotModuleReplacementPlugin()
 ]
 }
