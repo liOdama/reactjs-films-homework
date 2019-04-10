@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './name.scss';
+
+const styles = require('./name.scss');
 
 const ShowName = props => (<h1 className={styles.name}>{props.name}</h1>);
 
