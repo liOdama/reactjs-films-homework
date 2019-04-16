@@ -1,1 +1,2 @@
-export { default } from './signature.jsx';
+
+export { default } from './signature';

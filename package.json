@@ -19,8 +19,7 @@
     "lint": "eslint ./.eslintrc.json --ext .jsx,.js ./src && stylelint --config ./config/stylelint.config.js ./src/**/*.scss",
     "start": "set NODE_ENV=development && node server.js --config ./config/webpack/webpack.dev.config.js",
     "prod": "set NODE_ENV=production && node server.js",
-    "test": "jest",
-    "watch": "webpack --watch"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
