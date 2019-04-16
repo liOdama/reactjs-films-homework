@@ -5,6 +5,10 @@
         "jest": true
     },
     "extends": "airbnb",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true

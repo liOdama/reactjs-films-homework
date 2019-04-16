@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShowName from './components/name/name.jsx';
+import Signature from './components/signature/index';
 
 ReactDOM.render(
-  <ShowName name="Roman Bychkou" />,
+  <Signature name="Roman Bychkou" />,
   document.querySelector('#root'),
 );
