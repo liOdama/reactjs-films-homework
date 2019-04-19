@@ -17,8 +17,8 @@
   "scripts": {
     "build": "webpack --config ./config/webpack/webpack.prod.config.js",
     "lint": "eslint ./.eslintrc.json --ext .jsx,.js ./src && stylelint --config ./config/stylelint.config.js ./src/**/*.scss",
-    "start": "set NODE_ENV=development && node server.js --config ./config/webpack/webpack.dev.config.js",
-    "prod": "set NODE_ENV=production && node server.js",
+    "start": "set NODE_ENV=development && node server.js",
+    "prod": "npm run build && node server.js",
     "test": "jest"
   },
   "repository": {
