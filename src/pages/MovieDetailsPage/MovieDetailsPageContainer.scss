@@ -1,0 +1,30 @@
+.movieDetailsPageContainer {
+  background-image: url(./img/mainFilmBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  min-height: 34.2rem;
+}
+
+.mainfilmInfoBlock {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.mainfilmInfo {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  width: 100%;
+  padding: 2rem 0.8rem 1.4rem 0;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .mainfilmInfo {
+    justify-content: center;
+  }
+}

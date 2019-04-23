@@ -1,0 +1,44 @@
+.mainFilmTitle {
+  color: #fff;
+  margin: 5.2rem 0 0 4.2rem;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .mainFilmTitle {
+    margin: 0 0 2rem 0;
+  }
+}
+
+.filmTitle {
+  font-size: 1.86rem;
+  letter-spacing: 0.09rem;
+}
+
+.genres {
+  padding: 0.7rem 0 0.3rem 0.1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06rem;
+}
+
+.genres ul {
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+
+  li {
+    margin-right: 1rem;
+    position: relative;
+  }
+
+  li:last-child::before {
+    content: "";
+    border: 1px solid #fff;
+    height: 0.6rem;
+    left: -9px;
+    position: absolute;
+  }
+}
+
+.mainFilmRate {
+  color: #fff;
+}

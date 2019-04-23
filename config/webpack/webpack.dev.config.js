@@ -23,9 +23,21 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader?modules&localIdentName=name__[local]___[hash:base64:5]',
+          'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+
       },
     ],
   },

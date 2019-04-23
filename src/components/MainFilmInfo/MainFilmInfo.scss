@@ -1,0 +1,24 @@
+.mainFilmInfo__info {
+  color: #fff;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.mainFilmInfo__buttons {
+  color: #fff;
+}
+
+.mainFilmInfo__info p {
+  text-overflow: ellipsis;
+  max-height: 6.85rem;
+  font-size: 0.73rem;
+  letter-spacing: 0.2px;
+  width: 13rem;
+  align-self: flex-end;
+  word-break: keep-all;
+  line-height: 1.4rem;
+  background-color: rgba(0, 0, 0, 0.64);
+  padding: 0.7rem 0.5rem 0 0.99rem;
+  overflow: hidden;
+  font-weight: 700;
+}

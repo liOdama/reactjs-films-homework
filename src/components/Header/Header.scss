@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.9rem 3.6rem 0 4rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+}
+
+.h1 {
+  color: #fff;
+  font-size: 1.56rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.header form {
+  position: relative;
+}
+
+.searchField {
+  width: 16.8rem;
+  height: 2rem;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: none;
+  letter-spacing: 1px;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  padding-left: 0.6rem;
+}
+
+.btnSearch {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 1.4rem;
+  transform: rotate(-44deg);
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 200;
+}
+
+@media screen and (max-width: 31.25rem) {
+  .header {
+    justify-content: center;
+  }
+
+  .h1 {
+    margin-bottom: 1rem;
+  }
+}

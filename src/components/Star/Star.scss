@@ -1,0 +1,29 @@
+.starContainer {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.starContainer i {
+  margin-right: 0.27rem;
+  color: #09ade3;
+}
+
+.rate {
+  border: 1px solid #09ade3;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  width: 1.7rem;
+  height: 1.07rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.1rem;
+}
+
+.star {
+  width: 1.3rem;
+  height: 1.3rem;
+  background-image: url(../../pages/MovieDetailsPage/img/star.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
