@@ -10,15 +10,26 @@
 
 .mainFilmInfo__info p {
   text-overflow: ellipsis;
-  max-height: 6.85rem;
-  font-size: 0.73rem;
+  max-height: 6.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.2px;
-  width: 13rem;
+  width: 13.2rem;
   align-self: flex-end;
   word-break: keep-all;
-  line-height: 1.4rem;
+  line-height: 1.438rem;
   background-color: rgba(0, 0, 0, 0.64);
-  padding: 0.7rem 0.5rem 0 0.99rem;
+  padding: 0.2rem 0.5rem 0.5rem 0.8rem;
   overflow: hidden;
-  font-weight: 700;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 82rem) {
+  .mainFilmInfo__info p {
+    font-size: 1rem;
+    width: 20rem;
+    max-height: 10rem;
+    line-height: 1.3rem;
+    padding: 0.4rem 0.8rem 0.8rem 0.8rem;
+    word-break: keep-all;
+  }
 }

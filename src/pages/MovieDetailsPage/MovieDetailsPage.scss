@@ -16,15 +16,26 @@
 }
 
 .mainfilmInfo {
+  padding: 2rem 0.8rem 1.4rem 4.2rem;
+  width: 100%;
+}
+
+.container {
+  max-width: 82rem;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  width: 100%;
-  padding: 2rem 0.8rem 1.4rem 0;
+}
+
+@media screen and (min-width: 82rem) {
+  .container {
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 46.8rem) {
-  .mainfilmInfo {
+  .container {
     justify-content: center;
   }
 }

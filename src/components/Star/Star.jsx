@@ -1,22 +1,27 @@
 import React from 'react';
+import shortid from 'shortid';
 import style from './Star.scss';
 
 class Star extends React.Component {
+  static starQuantity(quantity) {
+    let temp = new Array(Math.ceil(quantity)).fill(quantity);
+    temp = temp.map(() => {
+      const tempEl = (<i className={style.star} key={shortid.generate()} />);
+      return tempEl;
+    });
+    return temp;
+  }
+
   constructor(props) {
     super(props);
     this.state = { rate: 4.8 };
   }
 
   render() {
-    const starQuantity = (quantity) => {
-      const temp = new Array(Math.ceil(quantity));
-      temp.fill(<i className={style.star} />);
-      return temp;
-    };
     const { rate } = this.state;
     return (
       <div className={style.starContainer}>
-        {starQuantity(rate)}
+        {Star.starQuantity(rate)}
         <p className={style.rate}>{rate}</p>
       </div>
     );

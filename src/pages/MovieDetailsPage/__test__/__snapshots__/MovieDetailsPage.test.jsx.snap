@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetailsPage renders correctly 1`] = `
+<section
+  className="movieDetailsPageContainer"
+>
+  <Header />
+  <div
+    className="mainfilmInfo"
+  >
+    <MainFilmTitle />
+    <MainFilmInfo />
+  </div>
+</section>
+`;
