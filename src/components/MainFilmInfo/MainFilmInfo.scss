@@ -1,7 +1,11 @@
 .mainFilmInfo__info {
-  color: #fff;
+  max-height: 6.7rem;
+  width: 13.2rem;
+  background-color: rgba(0, 0, 0, 0.64);
   display: flex;
-  flex-flow: column nowrap;
+  justify-content: flex-end;
+  margin: 0 0 0 auto;
+  padding: 0.4rem 0.7rem 1rem 0.6rem;
 }
 
 .mainFilmInfo__buttons {
@@ -9,27 +13,31 @@
 }
 
 .mainFilmInfo__info p {
+  color: #fff;
   text-overflow: ellipsis;
-  max-height: 6.7rem;
   font-size: 0.8rem;
-  letter-spacing: 0.2px;
-  width: 13.2rem;
-  align-self: flex-end;
+  letter-spacing: 0.26px;
   word-break: keep-all;
-  line-height: 1.438rem;
-  background-color: rgba(0, 0, 0, 0.64);
-  padding: 0.2rem 0.5rem 0.5rem 0.8rem;
+  line-height: 1.4rem;
   overflow: hidden;
   font-weight: 400;
 }
 
+@media screen and (max-width: 46.8rem) {
+  .mainFilmInfo__info {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (min-width: 82rem) {
-  .mainFilmInfo__info p {
-    font-size: 1rem;
+  .mainFilmInfo__info {
     width: 20rem;
     max-height: 10rem;
+  }
+
+  .mainFilmInfo__info p {
+    font-size: 1rem;
     line-height: 1.3rem;
-    padding: 0.4rem 0.8rem 0.8rem 0.8rem;
-    word-break: keep-all;
   }
 }

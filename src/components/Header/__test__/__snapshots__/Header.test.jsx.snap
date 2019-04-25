@@ -4,24 +4,28 @@ exports[`Header renders correctly 1`] = `
 <header
   className="header"
 >
-  <h1
-    className="h1"
+  <div
+    className="container"
   >
-    FILMS
-  </h1>
-  <form
-    action=""
-  >
-    <input
-      className="searchField"
-      type="search"
-    />
-    <button
-      className="btnSearch"
-      type="submit"
+    <h1
+      className="h1"
     >
-      ⚲
-    </button>
-  </form>
+      FILMS
+    </h1>
+    <form
+      action=""
+    >
+      <input
+        className="searchField"
+        type="search"
+      />
+      <button
+        className="btnSearch"
+        type="submit"
+      >
+        ⚲
+      </button>
+    </form>
+  </div>
 </header>
 `;

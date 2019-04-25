@@ -47,10 +47,11 @@
   border: none;
   color: #fff;
   font-weight: 200;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 31.25rem) {
-  .container {
+  .header .container {
     justify-content: center;
   }
 

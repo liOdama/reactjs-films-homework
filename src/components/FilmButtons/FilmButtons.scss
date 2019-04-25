@@ -22,7 +22,15 @@
 }
 
 .btnContainer {
-  margin: 2.2rem 3.5rem 0.2rem 5rem;
+  margin: 1.4rem 3.5rem 0.2rem 5rem;
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .btnContainer {
+    width: 100%;
+    justify-content: center;
+    margin: 1.4rem 0 0.2rem 0;
+  }
 }

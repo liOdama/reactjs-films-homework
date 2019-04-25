@@ -29,13 +29,22 @@
 }
 
 @media screen and (min-width: 82rem) {
+  .mainfilmInfo {
+    padding: 2rem 0 1.4rem 0;
+  }
+
   .container {
     margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 46.8rem) {
-  .container {
-    justify-content: center;
+  .mainfilmInfo {
+    padding: 0 0.8rem 1.4rem 0.8rem;
+    margin: 0 auto;
+
+    .container {
+      justify-content: center;
+    }
   }
 }
