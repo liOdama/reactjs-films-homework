@@ -1,8 +1,9 @@
 .movieDetailsPageContainer {
+  background: linear-gradient(to top, black 0%, transparent 33%);
   background-image: url(./img/mainFilmBG.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0 0;
+  background-position: center;
   display: flex;
   flex-flow: row wrap;
   align-content: space-between;
