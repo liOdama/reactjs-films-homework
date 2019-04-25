@@ -29,6 +29,7 @@
   "homepage": "https://github.com/liOdama/reactjs-films-homework#readme",
   "dependencies": {
     "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.3",
     "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.7.1",
@@ -52,7 +53,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
-    "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
