@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "reactjs-films-homework",
+  "builds": [
+      { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
+  ]
+}

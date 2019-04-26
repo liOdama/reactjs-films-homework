@@ -14,6 +14,7 @@
     "lint": "eslint ./.eslintrc.json --ext .jsx,.js ./src && stylelint --config ./config/stylelint.config.js ./src/**/*.scss",
     "start": "set NODE_ENV=development && node server.js",
     "prod": "npm run build && node server.js",
+    "now-build": "npm run build",
     "test": "jest --config ./config/jest/jest.config.js",
     "fix": "stylelint ./src/**/*.scss --fix"
   },
