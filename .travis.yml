@@ -13,4 +13,4 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: build
   on: 
-    branch: part-1
+    branch: part-2

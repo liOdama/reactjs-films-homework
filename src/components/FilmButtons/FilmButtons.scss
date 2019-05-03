@@ -1,0 +1,36 @@
+.watch {
+  background-color: #09ade3;
+  border: 1px solid #09ade3;
+  margin-right: 1.3rem;
+}
+
+.viewInfo {
+  background: none;
+  border: 1px solid #fff;
+}
+
+.watch,
+.viewInfo {
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  width: 6.2rem;
+  height: 1.6rem;
+}
+
+.btnContainer {
+  margin: 1.4rem 3.5rem 0.2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .btnContainer {
+    width: 100%;
+    justify-content: center;
+    margin: 1.4rem 0 0.2rem 0;
+  }
+}

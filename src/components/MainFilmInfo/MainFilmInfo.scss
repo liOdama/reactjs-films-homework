@@ -1,0 +1,44 @@
+.mainFilmInfo__info {
+  max-height: 6.7rem;
+  width: 13.2rem;
+  background-color: rgba(0, 0, 0, 0.64);
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0 auto;
+  padding: 0.4rem 0.7rem 1rem 0.6rem;
+}
+
+.mainFilmInfo__buttons {
+  color: #fff;
+}
+
+.mainFilmInfo__info p {
+  color: #fff;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  letter-spacing: 0.26px;
+  word-break: keep-all;
+  line-height: 1.4rem;
+  overflow: hidden;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .mainFilmInfo__info {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 82rem) {
+  .mainFilmInfo__info {
+    width: 20rem;
+    max-height: 10rem;
+    padding: 0.7rem 0.9rem 1rem 0.9rem;
+  }
+
+  .mainFilmInfo__info p {
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+}

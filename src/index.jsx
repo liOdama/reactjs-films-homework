@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Signature from './components/signature/index';
+import MovieDetailsPage from './pages/MovieDetailsPage/index';
+import './common.scss';
 
 ReactDOM.render(
-  <Signature name="Roman Bychkou" />,
+  <MovieDetailsPage />,
   document.querySelector('#root'),
 );

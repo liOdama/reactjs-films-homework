@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signature renders correctly 1`] = `
+<div
+  className="btnContainer"
+>
+  <button
+    className="watch"
+    id="watch"
+    type="button"
+  >
+    Watch Now
+  </button>
+  <button
+    className="viewInfo"
+    id="info"
+    type="button"
+  >
+    View Info
+  </button>
+</div>
+`;

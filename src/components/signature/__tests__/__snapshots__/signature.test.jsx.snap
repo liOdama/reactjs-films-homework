@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signature renders correctly 1`] = `
+<h1
+  className="name"
+>
+  Roman Bychkou
+</h1>
+`;

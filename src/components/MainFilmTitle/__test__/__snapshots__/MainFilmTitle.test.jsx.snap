@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainFilmTitle renders correctly 1`] = `
+<div
+  className="mainFilmTitle"
+>
+  <h2
+    className="filmTitle"
+  >
+    THE JUNGLE BOOK
+  </h2>
+  <div
+    className="genres"
+  >
+    <ul>
+      <li>
+        Adventure
+      </li>
+      <li>
+        Drama
+      </li>
+      <li>
+        Family
+      </li>
+      <li>
+        Fantasy
+      </li>
+      <li>
+        1h 46m
+      </li>
+    </ul>
+  </div>
+  <Star />
+</div>
+`;
