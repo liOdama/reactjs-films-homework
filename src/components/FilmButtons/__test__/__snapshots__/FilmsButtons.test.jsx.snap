@@ -14,6 +14,7 @@ exports[`Signature renders correctly 1`] = `
   <button
     className="viewInfo"
     id="info"
+    onClick={[Function]}
     type="button"
   >
     View Info

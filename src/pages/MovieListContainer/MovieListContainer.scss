@@ -1,0 +1,58 @@
+.movieList {
+  background: #f2f2f2;
+  padding-top: 1.5rem;
+}
+
+.container {
+  max-width: 82rem;
+  margin: 0 auto;
+}
+
+.moviesWrapper,
+.moviesSelector ul {
+  display: flex;
+  flex-flow: row wrap;
+
+  li {
+    padding-bottom: 0.6rem;
+
+    &.active {
+      border-bottom: 1px solid #0aaee4;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: #0aaee4;
+    }
+  }
+}
+
+.moviesWrapper {
+  justify-content: space-between;
+}
+
+.moviesSelector ul {
+  justify-content: flex-start;
+
+  li {
+    margin-right: 1rem;
+  }
+
+  li,
+  select {
+    color: #0aaee4;
+  }
+
+  select {
+    background: #f2f2f2;
+    border: none;
+    width: 3.7rem;
+    outline: none;
+
+    option {
+      border: none;
+    }
+  }
+}

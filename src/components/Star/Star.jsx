@@ -13,18 +13,21 @@ class Star extends React.Component {
   }
 
   constructor(props) {
-    super(props);
-    this.state = { rate: 4.8 };
+    super();
+    this.props = props;
   }
 
   render() {
-    const { rate } = this.state;
-    return (
-      <div className={style.starContainer}>
-        {Star.starQuantity(rate)}
-        <p className={style.rate}>{rate}</p>
-      </div>
-    );
+    const { rate } = this.props;
+    if (rate !== undefined) {
+      return (
+        <div className={style.starContainer}>
+          {Star.starQuantity(rate)}
+          <p className={style.rate}>{rate}</p>
+        </div>
+      );
+    }
+    return [];
   }
 }
 

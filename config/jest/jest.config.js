@@ -41,14 +41,14 @@ module.exports = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  coverageThreshold: {
-    './src': {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: -10,
-    },
-  },
+  // coverageThreshold: {
+  //   './src': {
+  //     branches: 100,
+  //     functions: 100,
+  //     lines: 100,
+  //     statements: -10,
+  //   },
+  // },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: null,

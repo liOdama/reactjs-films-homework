@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HoverMovieCard renders correctly 1`] = `
+<div
+  className="hoverMovie"
+>
+  <div
+    className="hoverControl"
+  >
+    <label
+      htmlFor="playTrailer"
+    >
+      <input
+        className="playTrailer"
+        id="playTrailer"
+        name="playTrailer"
+        type="button"
+      />
+      Watch Now
+    </label>
+    <button
+      className="showOverwie"
+      onClick={[Function]}
+      type="button"
+    >
+      View Info
+    </button>
+  </div>
+  <div
+    className="hoverOverwie"
+    onMouseLeave={[Function]}
+  >
+    <button
+      className="hoverClose"
+      onClick={[Function]}
+      type="button"
+    >
+      ╳
+    </button>
+    <div
+      className="hoverOverwieTitle"
+    >
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <h3 />
+        <ul />
+      </div>
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <p />
+      </div>
+    </div>
+    <p />
+    <button
+      type="button"
+    >
+      Watch Now
+    </button>
+  </div>
+</div>
+`;

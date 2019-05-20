@@ -1,19 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieDetailsPage renders correctly 1`] = `
-<section
-  className="movieDetailsPageContainer"
+exports[`MovieDetailsPage renders correctly +++ render the connected(SMART) component 1`] = `
+<Context.Provider
+  value={null}
 >
-  <Header />
-  <div
-    className="mainfilmInfo"
-  >
-    <div
-      className="container"
-    >
-      <MainFilmTitle />
-      <MainFilmInfo />
-    </div>
-  </div>
-</section>
+  <MovieDetailsPage
+    fetchMoviesOnGenre={[Function]}
+    genres={Array []}
+    page={1}
+    results={Array []}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</Context.Provider>
 `;

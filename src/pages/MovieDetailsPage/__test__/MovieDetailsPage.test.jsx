@@ -1,11 +1,18 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import configureStore from 'redux-mock-store';
 import MovieDetailsPage from '../index';
 
 
-test('MovieDetailsPage renders correctly', () => {
+//* ****************************************************************************
+describe('MovieDetailsPage renders correctly', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<MovieDetailsPage />);
-  const result = renderer.render(<MovieDetailsPage />);
-  expect(result).toMatchSnapshot();
+  const initialState = { page: 1, results: [], genres: [] };
+  const mockStore = configureStore();
+  const store = mockStore(initialState);
+  const container = renderer.render(<MovieDetailsPage store={store} />);
+  const result = renderer.getRenderOutput();
+  it('+++ render the connected(SMART) component', () => {
+    expect(container).toMatchSnapshot();
+  });
 });

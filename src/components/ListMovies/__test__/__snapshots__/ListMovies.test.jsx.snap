@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListMovies renders correctly with fill Array results 1`] = `
+Array [
+  <article
+    className="movieContainer"
+  >
+    <figure>
+      <div>
+        <img
+          alt="Avengers: Endgame"
+          src="https://image.tmdb.org/t/p/w300//or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+        />
+      </div>
+      <figcaption>
+        <div
+          className="movieTitle"
+        >
+          <a
+            href="#"
+            id="movieTitle"
+            onClick={[Function]}
+          >
+            Avengers: Endgame
+          </a>
+          <span>
+            8.6
+          </span>
+        </div>
+        <div
+          className="movieGenres"
+        >
+          <ul>
+            <li>
+              <span
+                onClick={[Function]}
+                role="button"
+              >
+                Adventure, 
+              </span>
+            </li>
+            <li>
+              <span
+                onClick={[Function]}
+                role="button"
+              >
+                Science Fiction, 
+              </span>
+            </li>
+            <li>
+              <span
+                onClick={[Function]}
+                role="button"
+              >
+                Action
+              </span>
+            </li>
+          </ul>
+        </div>
+      </figcaption>
+    </figure>
+    <hoverMovieCard
+      genres={
+        Array [
+          <li>
+            <span
+              onClick={[Function]}
+              role="button"
+            >
+              Adventure, 
+            </span>
+          </li>,
+          <li>
+            <span
+              onClick={[Function]}
+              role="button"
+            >
+              Science Fiction, 
+            </span>
+          </li>,
+          <li>
+            <span
+              onClick={[Function]}
+              role="button"
+            >
+              Action
+            </span>
+          </li>,
+        ]
+      }
+      overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
+      rate={8.6}
+      title="Avengers: Endgame"
+    />
+  </article>,
+]
+`;
+
+exports[`MainFilmInfo renders correctly with empty Array results 1`] = `
+<h2>
+  Ooops
+</h2>
+`;

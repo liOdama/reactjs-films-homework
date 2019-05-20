@@ -7,29 +7,38 @@ exports[`MainFilmTitle renders correctly 1`] = `
   <h2
     className="filmTitle"
   >
-    THE JUNGLE BOOK
+    Brightburn
   </h2>
   <div
     className="genres"
   >
-    <ul>
+    <ul
+      onClick={[Function]}
+    >
       <li>
-        Adventure
+        <span>
+          Horror
+        </span>
       </li>
       <li>
-        Drama
+        <span>
+          Science Fiction
+        </span>
       </li>
       <li>
-        Family
+        <span>
+          Drama
+        </span>
       </li>
       <li>
-        Fantasy
-      </li>
-      <li>
-        1h 46m
+        <span>
+          Thriller
+        </span>
       </li>
     </ul>
   </div>
-  <Star />
+  <Star
+    rate={7.5}
+  />
 </div>
 `;
