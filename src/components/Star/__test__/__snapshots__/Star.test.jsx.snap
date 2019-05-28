@@ -1,3 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Star renders correctly 1`] = `Array []`;
+exports[`Star renders correctly 1`] = `
+<div
+  className="starContainer"
+>
+  <p
+    className="rate"
+  >
+    0
+  </p>
+</div>
+`;
+
+exports[`Star renders correctly with rate - undefined 1`] = `
+<div
+  className="starContainer"
+>
+  <p
+    className="rate"
+  >
+    0
+  </p>
+</div>
+`;

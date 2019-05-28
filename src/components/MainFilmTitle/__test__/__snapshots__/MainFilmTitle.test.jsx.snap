@@ -14,28 +14,7 @@ exports[`MainFilmTitle renders correctly 1`] = `
   >
     <ul
       onClick={[Function]}
-    >
-      <li>
-        <span>
-          Horror
-        </span>
-      </li>
-      <li>
-        <span>
-          Science Fiction
-        </span>
-      </li>
-      <li>
-        <span>
-          Drama
-        </span>
-      </li>
-      <li>
-        <span>
-          Thriller
-        </span>
-      </li>
-    </ul>
+    />
   </div>
   <Star
     rate={7.5}

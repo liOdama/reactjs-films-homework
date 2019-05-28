@@ -1,7 +1,7 @@
 const initialState = [];
 
 
-const fetchGenres = (state = initialState, action) => {
+const fetchGenresReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_ID_GENRES':
       return action.payload.genres;
@@ -10,4 +10,4 @@ const fetchGenres = (state = initialState, action) => {
   }
 };
 
-export default fetchGenres;
+export default fetchGenresReducer;

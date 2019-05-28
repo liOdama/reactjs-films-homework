@@ -1,24 +1,390 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieDetailsPage renders correctly +++ render the connected(SMART) component 1`] = `
-<Context.Provider
-  value={null}
->
-  <MovieDetailsPage
-    fetchMoviesOnGenre={[Function]}
-    genres={Array []}
-    page={1}
-    results={Array []}
-    store={
+exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1`] = `
+<main>
+  <section
+    className="movieDetailsPageContainer"
+    style={
       Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
+        "backgroundImage": "url(https://image.tmdb.org/t/p/w1280test",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
       }
     }
-  />
-</Context.Provider>
+  >
+    <header
+      className="header"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="h1"
+        >
+          FILMS
+        </h1>
+        <form
+          action=""
+        >
+          <input
+            className="searchField"
+            type="search"
+          />
+          <button
+            className="btnSearch"
+            type="submit"
+          >
+            ⚲
+          </button>
+        </form>
+      </div>
+    </header>
+    <div
+      className="mainfilmInfo"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="mainFilmTitle"
+        >
+          <h2
+            className="filmTitle"
+          />
+          <div
+            className="genres"
+          >
+            <ul
+              onClick={[Function]}
+            />
+          </div>
+          <div
+            className="starContainer"
+          >
+            <p
+              className="rate"
+            >
+              0
+            </p>
+          </div>
+        </div>
+        <div>
+          <div
+            className="mainFilmInfo__info"
+            id="mainFilmOverwie"
+          >
+            <p>
+              
+            </p>
+          </div>
+          <div
+            className="btnContainer"
+          >
+            <button
+              className="watch"
+              id="watch"
+              onClick={[Function]}
+              type="button"
+            >
+              Watch Now
+            </button>
+            <button
+              className="viewInfo"
+              id="info"
+              onClick={[Function]}
+              type="button"
+            >
+              View Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    className="movieList"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="moviesSelector"
+      >
+        <ul>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Trending
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Top Rated
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Coming Soon
+            </button>
+          </li>
+          <li>
+            <select
+              id=""
+              name="genre"
+              onChange={[Function]}
+            >
+              <option
+                value=""
+              >
+                Genre
+              </option>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="moviesWrapper"
+      >
+        <article
+          className="movieContainer"
+          id={420817}
+          onClick={[Function]}
+        >
+          <figure>
+            <div>
+              <img
+                alt="Aladdin"
+                src="https://image.tmdb.org/t/p/w300//3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg"
+              />
+            </div>
+            <figcaption>
+              <div
+                className="movieTitle"
+              >
+                <a
+                  href="#"
+                  id="movieTitle"
+                  onClick={[Function]}
+                >
+                  Aladdin
+                </a>
+                <span>
+                  7.2
+                </span>
+              </div>
+              <div
+                className="movieGenres"
+              >
+                <ul>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      , 
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      , 
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      , 
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      , 
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      , 
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </figcaption>
+          </figure>
+          <div
+            className="hoverMovie"
+          >
+            <div
+              className="hoverControl"
+            >
+              <label
+                htmlFor="playTrailer"
+                id="playTrailer"
+              >
+                <input
+                  className="playTrailer"
+                  name="playTrailer"
+                  type="button"
+                />
+                Watch Now
+              </label>
+              <button
+                className="showOverwie"
+                id="showOverwie"
+                onClick={[Function]}
+                type="button"
+              >
+                View Info
+              </button>
+            </div>
+            <div
+              className="hoverOverwie"
+              onMouseLeave={[Function]}
+            >
+              <button
+                className="hoverClose"
+                onClick={[Function]}
+                type="button"
+              >
+                ╳
+              </button>
+              <div
+                className="hoverOverwieTitle"
+              >
+                <div
+                  className="hoverOverwieTitleItem"
+                >
+                  <h3>
+                    Aladdin
+                  </h3>
+                  <ul>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        , 
+                      </span>
+                    </li>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        , 
+                      </span>
+                    </li>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        , 
+                      </span>
+                    </li>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        , 
+                      </span>
+                    </li>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        , 
+                      </span>
+                    </li>
+                    <li>
+                      <span
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="hoverOverwieTitleItem"
+                >
+                  <p>
+                    7.2
+                  </p>
+                </div>
+              </div>
+              <p>
+                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.
+              </p>
+              <button
+                id="watch"
+                type="button"
+              >
+                Watch Now
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+`;
+
+exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 2`] = `null`;
+
+exports[`MovieDetailsPage renders correctly MovieDetailsPage: render preloader 1`] = `
+<main>
+  <div
+    className="preloader"
+  >
+    <p>
+      App is loading
+    </p>
+  </div>
+</main>
 `;

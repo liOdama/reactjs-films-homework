@@ -1,7 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+
 import style from './HoverMovieCard.scss';
 import * as stylerate from '../Star/Star.scss';
 import * as styleBtn from '../FilmButtons/FilmButtons.scss';
+
 
 const showOverwie = (e) => {
   let element = e.target.parentElement;
@@ -26,17 +30,17 @@ const returnHover = (e) => {
 };
 
 const hoverMovieCard = (props) => {
-  const { 
-genres, overview, title, rate 
-} = props;
+  const {
+    genres, overview, title, rate,
+  } = props;
   return (
     <div className={style.hoverMovie}>
       <div className={style.hoverControl}>
-        <label htmlFor="playTrailer">
-          <input type="button" className={style.playTrailer} name="playTrailer" id="playTrailer" />
+        <label htmlFor="playTrailer" id="playTrailer">
+          <input type="button" className={style.playTrailer} name="playTrailer" />
                   Watch Now
         </label>
-        <button type="button" className={style.showOverwie} onClick={showOverwie}>View Info</button>
+        <button type="button" className={style.showOverwie} id="showOverwie" onClick={showOverwie}>View Info</button>
       </div>
       <div className={style.hoverOverwie} onMouseLeave={returnHover}>
         <button type="button" className={style.hoverClose} onClick={returnHover}>&#9587;</button>
@@ -52,10 +56,24 @@ genres, overview, title, rate
           </div>
         </div>
         <p>{overview}</p>
-        <button type="button" className={styleBtn.watch}>Watch Now</button>
+        <button type="button" className={styleBtn.watch} id="watch">Watch Now</button>
       </div>
     </div>
   );
+};
+
+hoverMovieCard.defaultProps = {
+  genres: [],
+  title: '',
+  overview: '',
+  rate: 0,
+};
+
+hoverMovieCard.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
+  overview: PropTypes.string,
+  rate: PropTypes.number,
 };
 
 export default hoverMovieCard;

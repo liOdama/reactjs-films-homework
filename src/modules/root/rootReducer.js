@@ -1,39 +1,28 @@
 const initialState = {
   page: 0,
   results: [],
-  mainMovie: {},
+  mainMovie: null,
+  currentVideo: null,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_MOVIES_ON_GENRE':
-      return {
-        page: action.payload.page,
-        results: action.payload.results,
-        mainMovie: action.payload.results[0],
-      };
-    case 'FETCH_COMING_SOON':
-      return {
-        page: action.payload.page,
-        results: action.payload.results,
-        mainMovie: action.payload.results[0],
-      };
-    case 'FETCH_TOP_RATED':
-      return {
-        page: action.payload.page,
-        results: action.payload.results,
-        mainMovie: action.payload.results[0],
-      };
-    case 'FETCH_POPULAR':
-      return {
-        page: action.payload.page,
-        results: action.payload.results,
-        mainMovie: action.payload.results[0],
-      };
-    case 'GET_MAIN_MOVIES_DETAILS':
+    case 'ITEMS_FETCH_DATA_SUCCESS':
       return {
         ...state,
-        mainMovie: action.payload,
+        page: action.payload.page,
+        results: action.payload.results,
+        mainMovie: action.payload.results[0].id,
+      };
+    case 'FETCH_VIDEO_SUCCESS':
+      return {
+        ...state,
+        currentVideo: action.payload,
+      };
+    case 'CLEAR_CURRENT_MOVIE':
+      return {
+        ...state,
+        currentVideo: action.payload,
       };
     default:
       return state;

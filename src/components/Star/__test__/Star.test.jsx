@@ -9,6 +9,13 @@ test('Star renders correctly', () => {
   expect(result).toMatchSnapshot();
 });
 
+test('Star renders correctly with rate - undefined', () => {
+  const renderer = new ShallowRenderer();
+  renderer.render(<Star rate={undefined} />);
+  const result = renderer.render(<Star rate={undefined} />);
+  expect(result).toMatchSnapshot();
+});
+
 test('Star Quantity', () => {
   const starQuantity = 5;
   const starElementsArray = Star.starQuantity(starQuantity);

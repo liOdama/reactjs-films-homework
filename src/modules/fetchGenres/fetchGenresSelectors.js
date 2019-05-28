@@ -3,4 +3,6 @@ import { createSelector } from 'reselect';
 
 
 const genres = state => state.genres;
-export const checkGenres = createSelector(genres, data => data);
+const checkGenres = createSelector(genres, data => data);
+
+export default checkGenres;

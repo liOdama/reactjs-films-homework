@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import MainFilmTitle from '../index';
-import { createMoviesGenreList } from '../MainFilmTitle';
+import { createMoviesGenreList, shooseGenre } from '../MainFilmTitle';
 
 const dataGenres = [
   { id: 28, name: 'Action' },
@@ -48,5 +48,29 @@ test('MainFilmTitle renders correctly', () => {
 
 test('createMoviesGenreList works correctly', () => {
   const testGenresMovies = [53, 10749, 37];
-  expect(createMoviesGenreList(testGenresMovies, dataGenres)).toHaveLength(testGenresMovies.length);
+  const movie = {
+    mainMovie: {
+      runtime: 131,
+    },
+  };
+  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie))
+    .toHaveLength(testGenresMovies.length + 1);
+});
+
+test('createMoviesGenreList works correctly with integer runtime', () => {
+  const testGenresMovies = [53, 10749, 37];
+  const movie = {
+    mainMovie: {
+      runtime: 120,
+    },
+  };
+  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie))
+    .toHaveLength(testGenresMovies.length + 1);
+});
+
+test('shooseGenre works correctly', () => {
+  const elementID = { id: 27 };
+  const movie = 'Horror';
+  const result = shooseGenre(dataGenres, elementID);
+  expect(result).toBe(movie);
 });

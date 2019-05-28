@@ -6,9 +6,11 @@ exports[`MainFilmInfo renders correctly 1`] = `
     className="mainFilmInfo__info"
     id="mainFilmOverwie"
   >
-    <p />
+    <p>
+      
+    </p>
   </div>
-  <FilmButtons
+  <Memo(ConnectFunction)
     className="mainFilmInfo__buttons"
   />
 </div>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HoverMovieCard renders correctly 1`] = `
+exports[`HoverMovieCard hover events render correctly 1`] = `
 <div
   className="hoverMovie"
 >
@@ -9,10 +9,10 @@ exports[`HoverMovieCard renders correctly 1`] = `
   >
     <label
       htmlFor="playTrailer"
+      id="playTrailer"
     >
       <input
         className="playTrailer"
-        id="playTrailer"
         name="playTrailer"
         type="button"
       />
@@ -20,6 +20,7 @@ exports[`HoverMovieCard renders correctly 1`] = `
     </label>
     <button
       className="showOverwie"
+      id="showOverwie"
       onClick={[Function]}
       type="button"
     >
@@ -43,17 +44,94 @@ exports[`HoverMovieCard renders correctly 1`] = `
       <div
         className="hoverOverwieTitleItem"
       >
-        <h3 />
+        <h3>
+          
+        </h3>
         <ul />
       </div>
       <div
         className="hoverOverwieTitleItem"
       >
-        <p />
+        <p>
+          0
+        </p>
       </div>
     </div>
-    <p />
+    <p>
+      
+    </p>
     <button
+      id="watch"
+      type="button"
+    >
+      Watch Now
+    </button>
+  </div>
+</div>
+`;
+
+exports[`HoverMovieCard renders correctly 1`] = `
+<div
+  className="hoverMovie"
+>
+  <div
+    className="hoverControl"
+  >
+    <label
+      htmlFor="playTrailer"
+      id="playTrailer"
+    >
+      <input
+        className="playTrailer"
+        name="playTrailer"
+        type="button"
+      />
+      Watch Now
+    </label>
+    <button
+      className="showOverwie"
+      id="showOverwie"
+      onClick={[Function]}
+      type="button"
+    >
+      View Info
+    </button>
+  </div>
+  <div
+    className="hoverOverwie"
+    onMouseLeave={[Function]}
+  >
+    <button
+      className="hoverClose"
+      onClick={[Function]}
+      type="button"
+    >
+      ╳
+    </button>
+    <div
+      className="hoverOverwieTitle"
+    >
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <h3>
+          
+        </h3>
+        <ul />
+      </div>
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <p>
+          0
+        </p>
+      </div>
+    </div>
+    <p>
+      
+    </p>
+    <button
+      id="watch"
       type="button"
     >
       Watch Now

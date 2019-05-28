@@ -4,6 +4,8 @@ exports[`ListMovies renders correctly with fill Array results 1`] = `
 Array [
   <article
     className="movieContainer"
+    id={299534}
+    onClick={[Function]}
   >
     <figure>
       <div>
@@ -35,6 +37,7 @@ Array [
               <span
                 onClick={[Function]}
                 role="button"
+                tabIndex="0"
               >
                 Adventure, 
               </span>
@@ -43,6 +46,7 @@ Array [
               <span
                 onClick={[Function]}
                 role="button"
+                tabIndex="0"
               >
                 Science Fiction, 
               </span>
@@ -51,6 +55,7 @@ Array [
               <span
                 onClick={[Function]}
                 role="button"
+                tabIndex="0"
               >
                 Action
               </span>
@@ -66,6 +71,7 @@ Array [
             <span
               onClick={[Function]}
               role="button"
+              tabIndex="0"
             >
               Adventure, 
             </span>
@@ -74,6 +80,7 @@ Array [
             <span
               onClick={[Function]}
               role="button"
+              tabIndex="0"
             >
               Science Fiction, 
             </span>
@@ -82,6 +89,7 @@ Array [
             <span
               onClick={[Function]}
               role="button"
+              tabIndex="0"
             >
               Action
             </span>

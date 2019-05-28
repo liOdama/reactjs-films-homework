@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 import style from './Star.scss';
 
 class Star extends React.Component {
@@ -19,7 +20,6 @@ class Star extends React.Component {
 
   render() {
     const { rate } = this.props;
-    if (rate !== undefined) {
       return (
         <div className={style.starContainer}>
           {Star.starQuantity(rate)}
@@ -27,8 +27,14 @@ class Star extends React.Component {
         </div>
       );
     }
-    return [];
-  }
 }
+
+Star.defaultProps = {
+  rate: 0,
+};
+
+Star.propTypes = {
+  rate: PropTypes.number,
+};
 
 export default Star;

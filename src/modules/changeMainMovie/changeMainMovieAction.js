@@ -1,4 +1,4 @@
-const changeMainMovie = movies => dispatch => dispatch({ type: 'GET_MAIN_MOVIES_DETAILS', payload: { ...movies } });
+const changeMainMovie = movies => dispatch => dispatch({ type: 'CHANGE_MAIN_MOVIE', payload: { ...movies } });
 
 
 export default changeMainMovie;
