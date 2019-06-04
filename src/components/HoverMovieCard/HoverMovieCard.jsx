@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { showModal } from '../ModalPlayer/ModalPlayer';
 
 import style from './HoverMovieCard.scss';
 import * as stylerate from '../Star/Star.scss';
 import * as styleBtn from '../FilmButtons/FilmButtons.scss';
 
 
-const showOverwie = (e) => {
+export const showOverwie = (e) => {
   let element = e.target.parentElement;
   element.classList.add(style.hoverControlNone);
   element.nextSibling.classList.add(style.hoverOverwieBlock);
@@ -36,8 +36,17 @@ const hoverMovieCard = (props) => {
   return (
     <div className={style.hoverMovie}>
       <div className={style.hoverControl}>
-        <label htmlFor="playTrailer" id="playTrailer">
-          <input type="button" className={style.playTrailer} name="playTrailer" />
+        <label
+          htmlFor="playTrailer"
+          id="playTrailer"
+          onClick={showModal.bind(null, props)}
+          onKeyDown={showModal.bind(null, props)}
+        >
+          <input
+            type="button"
+            className={style.playTrailer}
+            name="playTrailer"
+          />
                   Watch Now
         </label>
         <button type="button" className={style.showOverwie} id="showOverwie" onClick={showOverwie}>View Info</button>
@@ -56,7 +65,16 @@ const hoverMovieCard = (props) => {
           </div>
         </div>
         <p>{overview}</p>
-        <button type="button" className={styleBtn.watch} id="watch">Watch Now</button>
+        <button
+          type="button"
+          className={styleBtn.watch}
+          id="watch"
+          onClick={showModal.bind(null, props)}
+          onKeyDown={showModal.bind(null, props)}
+        >
+          Watch Now
+
+        </button>
       </div>
     </div>
   );

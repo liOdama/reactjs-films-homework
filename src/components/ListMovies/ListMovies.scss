@@ -15,14 +15,32 @@
     height: 100%;
   }
 
+  .movieGenres ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    color: #47c3f0;
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    li:hover,
+    li:focus {
+      color: #000;
+    }
+  }
+
   figcaption {
     background: #fff;
     height: 20%;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: baseline;
     align-items: inherit;
-    padding: 0.3rem 1rem 0 1rem;
+    padding: 1rem 1rem 0 1rem;
 
     .movieTitle {
       display: flex;
@@ -32,7 +50,7 @@
       text-overflow: ellipsis;
       margin-bottom: 0.5rem;
 
-      a {
+      button {
         text-transform: uppercase;
         text-decoration: none;
         color: #000;
@@ -41,14 +59,16 @@
         text-overflow: ellipsis;
         overflow: hidden;
         margin-right: 0.3rem;
-      }
-    }
+        background: none;
+        border: none;
+        padding: 0;
+        outline: none;
 
-    .movieGenres ul {
-      display: flex;
-      justify-content: flex-start;
-      flex-flow: row wrap;
-      color: #47c3f0;
+        &:hover,
+        &:focus {
+          color: #47c3f0;
+        }
+      }
     }
   }
 

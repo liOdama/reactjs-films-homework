@@ -1,1 +1,1 @@
-export { default } from './hoverMovieCard';
+export { default } from './HoverMovieCard';

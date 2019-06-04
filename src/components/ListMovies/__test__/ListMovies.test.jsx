@@ -1,9 +1,12 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import ReactTestUtils from 'react-dom/test-utils';
-import { configureStore, configureMockStore } from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
 import ListMovies from '../index';
-import { changeMainFilm } from '../ListMovies';
+import selectGenre, { keydonwGenres } from '../../../utils/selectGenre';
+import requestsFilms from '../../../utils/requests';
 
 
 const genres = [
@@ -52,9 +55,92 @@ test('ListMovies renders correctly with fill Array results', () => {
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
-test('MainFilmInfo renders correctly with empty Array results', () => {
+test('ListMovies renders correctly with empty Array results', () => {
   const results = [];
   const renderer = new ShallowRenderer();
   const result = renderer.render(<ListMovies results={results} genres={genres} />);
   expect(result).toMatchSnapshot();
+});
+
+describe('ListMovies: selectGenre', () => {
+  afterEach(() => {
+    fetchMock.reset();
+    fetchMock.restore();
+  });
+
+  it('ListMovies: kewDown on genre, expect props', async () => {
+    const mockStore = configureMockStore([thunk]);
+    const idGenre = 35;
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
+        headers: { 'content-type': 'application/json' },
+        body: { page: 1, results: [1, 2, 3], status: 'ok' },
+      }).catch(err => err);
+    const expectedActions = {
+      type: 'ITEMS_FETCH_DATA_SUCCESS',
+      payload: { page: 1, results: [1, 2, 3] },
+    };
+    const props = {
+      genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+    };
+    const e = {
+      key: 'a',
+      target: {
+        id: 'test',
+        textContent: 'Drama',
+      },
+    };
+    const result = keydonwGenres(props, e);
+    expect(result).toEqual(props);
+  });
+
+  it('ListMovies: kewDown Enter, expect data', async () => {
+    const mockStore = configureMockStore([thunk]);
+    const idGenre = 35;
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
+        headers: { 'content-type': 'application/json' },
+        body: { page: 1, results: [1, 2, 3], status: 'ok' },
+      }).catch(err => err);
+    const expectedActions = {
+      type: 'ITEMS_FETCH_DATA_SUCCESS',
+      payload: { page: 1, results: [1, 2, 3] },
+    };
+    const props = {
+      genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+    };
+    const e = {
+      key: 'Enter',
+      target: {
+        id: 'test',
+        textContent: 'Drama',
+      },
+    };
+    const result = keydonwGenres(props, e);
+    expect(result).toEqual(props);
+  });
+
+  it('ListMovies: kewDown on genre', async () => {
+    const idGenre = 35;
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
+        headers: { 'content-type': 'application/json' },
+        body: { page: 1, results: [1, 2, 3], status: 'ok' },
+      }).catch(err => err);
+    const props = {
+      genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+    };
+    const e = {
+      key: 'a',
+      target: {
+        id: 'test',
+        textContent: 'Drama',
+      },
+    };
+    const result = keydonwGenres(props, e);
+    expect(result).toEqual(props);
+  });
 });

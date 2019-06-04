@@ -12,9 +12,7 @@ exports[`MainFilmTitle renders correctly 1`] = `
   <div
     className="genres"
   >
-    <ul
-      onClick={[Function]}
-    />
+    <ul />
   </div>
   <Star
     rate={7.5}

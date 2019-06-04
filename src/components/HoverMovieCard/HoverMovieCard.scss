@@ -20,13 +20,13 @@
     flex-flow: column nowrap;
     position: relative;
     margin-bottom: 1rem;
+    cursor: pointer;
 
     .playTrailer {
       border-radius: 20rem;
       width: 7rem;
       height: 7rem;
       border: none;
-      cursor: pointer;
       background-color: #3bb3df;
       margin-bottom: 1rem;
     }
@@ -47,6 +47,7 @@
     border: 1px solid #fff;
     color: #fff;
     padding: 0.4rem 1rem;
+    cursor: pointer;
   }
 
   .hoverClose {

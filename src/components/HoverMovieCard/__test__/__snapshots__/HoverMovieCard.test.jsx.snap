@@ -10,6 +10,8 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
     <label
       htmlFor="playTrailer"
       id="playTrailer"
+      onClick={[Function]}
+      onKeyDown={[Function]}
     >
       <input
         className="playTrailer"
@@ -62,6 +64,8 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
     </p>
     <button
       id="watch"
+      onClick={[Function]}
+      onKeyDown={[Function]}
       type="button"
     >
       Watch Now
@@ -80,6 +84,8 @@ exports[`HoverMovieCard renders correctly 1`] = `
     <label
       htmlFor="playTrailer"
       id="playTrailer"
+      onClick={[Function]}
+      onKeyDown={[Function]}
     >
       <input
         className="playTrailer"
@@ -132,6 +138,8 @@ exports[`HoverMovieCard renders correctly 1`] = `
     </p>
     <button
       id="watch"
+      onClick={[Function]}
+      onKeyDown={[Function]}
       type="button"
     >
       Watch Now

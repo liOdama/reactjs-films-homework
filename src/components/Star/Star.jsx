@@ -20,13 +20,13 @@ class Star extends React.Component {
 
   render() {
     const { rate } = this.props;
-      return (
-        <div className={style.starContainer}>
-          {Star.starQuantity(rate)}
-          <p className={style.rate}>{rate}</p>
-        </div>
-      );
-    }
+    return (
+      <div className={style.starContainer}>
+        {Star.starQuantity(rate)}
+        <p className={style.rate}>{rate}</p>
+      </div>
+    );
+  }
 }
 
 Star.defaultProps = {

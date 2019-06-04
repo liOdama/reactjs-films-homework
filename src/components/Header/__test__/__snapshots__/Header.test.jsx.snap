@@ -17,6 +17,7 @@ exports[`Header renders correctly 1`] = `
     >
       <input
         className="searchField"
+        tabIndex="0"
         type="search"
       />
       <button

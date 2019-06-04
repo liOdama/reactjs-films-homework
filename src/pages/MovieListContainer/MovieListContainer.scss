@@ -1,6 +1,6 @@
 .movieList {
   background: #f2f2f2;
-  padding-top: 1.5rem;
+  padding: 1.5rem;
 }
 
 .container {
@@ -54,5 +54,12 @@
     option {
       border: none;
     }
+  }
+}
+
+@media screen and (max-width: 42.5rem) {
+  .moviesWrapper,
+  .moviesSelector ul {
+    justify-content: center;
   }
 }

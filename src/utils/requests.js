@@ -11,6 +11,9 @@ const requestsFilms = {
       .then(resp => resp.json())
       .then((data) => {
         dispatch(itemsIsLoading(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
         return dispatch(itemsFetchDataSuccess({
           page: data.page, results: data.results,
         }));
@@ -22,6 +25,9 @@ const requestsFilms = {
       .then(resp => resp.json())
       .then((data) => {
         dispatch(itemsIsLoading(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
         return dispatch(itemsFetchDataSuccess({
           page: data.page, results: data.results,
         }));
@@ -30,9 +36,16 @@ const requestsFilms = {
   getTopRated: () => (dispatch) => {
     dispatch(itemsIsLoading(true));
     return fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1')
-      .then(resp => resp.json())
+      .then((resp) => {
+        console.log('resp.ok2', resp);
+        return resp.json();
+      })
       .then((data) => {
+        console.log('resp.ok', data);
         dispatch(itemsIsLoading(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
         return dispatch(itemsFetchDataSuccess({
           page: data.page, results: data.results,
         }));
@@ -44,14 +57,24 @@ const requestsFilms = {
       .then(resp => resp.json())
       .then((data) => {
         dispatch(itemsIsLoading(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
         return dispatch(itemsFetchDataSuccess({
           page: data.page, results: data.results,
         }));
       }).catch(err => dispatch(itemsHasErrored(err)));
   },
-  getMainMovieDetails: id => dispatch => fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`)
-    .then(resp => resp.json())
-    .then(data => dispatch(setMainMovieDetails(data))).catch(err => dispatch(itemsHasErrored(err))),
+  getMainMovieDetails: id => (dispatch) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`)
+      .then(resp => resp.json())
+      .then((data) => {
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
+        return dispatch(setMainMovieDetails(data));
+      }).catch(err => dispatch(itemsHasErrored(err)));
+  },
 
   fetchVideo: id => (dispatch) => {
     dispatch(itemsIsLoading(true));
@@ -59,6 +82,9 @@ const requestsFilms = {
       .then(resp => resp.json())
       .then((data) => {
         dispatch(itemsIsLoading(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
         let videoId = '';
         data.results.some((curr) => {
           if (curr.type === 'Trailer') {

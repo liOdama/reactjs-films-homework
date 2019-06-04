@@ -19,7 +19,4 @@ export const reducer = combineReducers({
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk, logger)));
 
-console.log('store', store.getState());
-
-
 export default store;

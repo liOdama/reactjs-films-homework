@@ -135,6 +135,9 @@ module.exports = {
   // The paths to modules that run some code to configure
   // or set up the testing environment before each test
   // setupFiles: [],
+  setupFiles: [
+    '../node_modules/jsdom/lib/api.js',
+  ],
 
   // A list of paths to modules that run some code to configure
   // or set up the testing framework before each test
@@ -144,7 +147,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

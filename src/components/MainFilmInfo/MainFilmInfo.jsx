@@ -5,10 +5,14 @@ import style from './MainFilmInfo.scss';
 
 const MainFilmInfo = (props) => {
   const { overview } = props;
+  const styles = {
+    display: '-webkit-box',
+  };
+
   return (
     <div>
       <div className={style.mainFilmInfo__info} id="mainFilmOverwie">
-        <p>{overview}</p>
+        <p style={styles}>{overview}</p>
       </div>
       <FilmButtons className={style.mainFilmInfo__buttons} />
     </div>

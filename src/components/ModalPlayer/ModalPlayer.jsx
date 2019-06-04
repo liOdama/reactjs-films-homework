@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 import style from './ModalPlayer.scss';
 import requestsFilms from '../../utils/requests';
-import * as fromClearCurrentMovie from '../../modules/clearCurrentMovie/clearCurrentMovieAction';
+import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
 
 
 export const showModal = (props, e) => {
@@ -23,6 +24,12 @@ export const closeModal = (e) => {
   }
 };
 
+export const keyDownEsc = (e) => {
+  if (e.key === 'Esc') {
+    closeModal.call(e);
+  }
+};
+
 class ModalPlayer extends Component {
   static unmount(props) {
     const { clearCurrentMovie } = props;
@@ -34,11 +41,17 @@ class ModalPlayer extends Component {
     this.state = {
       id: 0,
     };
+    this.el = document.createElement('div');
   }
+
+  componentDidMount() {
+    document.querySelector('#modalRoot').appendChild(this.el);
+  }
+
 
   static getDerivedStateFromProps(props) {
     const newState = {
-      id: props.id,
+      id: props.movies.currentVideo,
     };
     return newState;
   }
@@ -53,7 +66,7 @@ class ModalPlayer extends Component {
       origin: 'http://localhost:3000',
     };
     const component = (
-      <div className={`${style.modalWrapper}`} onClick={ModalPlayer.unmount.bind(null, this.props)}>
+      <div role="button" tabIndex="0" className={`${style.modalWrapper}`} onClick={ModalPlayer.unmount.bind(null, this.props)} onKeyDown={keyDownEsc}>
         <button type="button" className={style.modalClose}>&#9587;</button>
         <YouTube
           videoId={id}
@@ -63,13 +76,12 @@ class ModalPlayer extends Component {
         />
       </div>
     );
-    return component;
+    return ReactDOM.createPortal(component, this.el);
   }
 }
 
 
 const mapStateToProps = state => state;
-
 
 const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),

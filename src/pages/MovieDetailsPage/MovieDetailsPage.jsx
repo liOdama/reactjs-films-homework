@@ -6,6 +6,7 @@ import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
 import MovieListContainer from '../MovieListContainer/index';
 import ModalPlayer from '../../components/ModalPlayer/ModalPlayer';
+import Footer from '../../components/Footer/index';
 
 import style from './MovieDetailsPage.scss';
 import requestsFilms from '../../utils/requests';
@@ -13,6 +14,11 @@ import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 
 
 class MovieDetailsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   shouldComponentUpdate(nextProps) {
     const { movies, mainMovie } = this.props;
     if (JSON.stringify(nextProps.movies) === JSON.stringify(movies)
@@ -44,6 +50,7 @@ class MovieDetailsPage extends Component {
     const {
       movies, genres, fetchMoviesOnGenre, mainMovie,
     } = this.props;
+
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
       backgroundRepeat: 'no-repeat',
@@ -70,12 +77,17 @@ class MovieDetailsPage extends Component {
           </div>
         </section>
         <MovieListContainer />
-        {(movies.currentVideo !== null) ? (
-          <div id="modal">
-            <ModalPlayer id={movies.currentVideo} />
-          </div>
-        ) : null
+
+        <div id="modalRoot">
+          {(movies.currentVideo !== null) ? (
+            <div id="modal">
+              <ModalPlayer id={movies.currentVideo} />
+            </div>
+          ) : null
         }
+
+        </div>
+        <Footer />
       </main>
     );
 

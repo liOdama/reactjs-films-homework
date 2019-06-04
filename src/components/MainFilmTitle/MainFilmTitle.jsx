@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import style from './MainFilmTitle.scss';
 import Star from '../Star/index';
-import selectGenre from '../../utils/selectGenre';
+import selectGenre, { keydonwGenres } from '../../utils/selectGenre';
 
 export const shooseGenre = (genres, element) => {
   let current;
@@ -33,7 +33,7 @@ export const createMoviesGenreList = (arr, genres, props) => {
 
   const listItems = arr.map((c) => {
     const currentGenre = shooseGenre(genres, c);
-    return <li key={shortid.generate()}><span>{currentGenre}</span></li>;
+    return <li key={shortid.generate()}><button type="button" onClick={selectGenre.bind(props)} onKeyDown={keydonwGenres.bind(props)}>{currentGenre}</button></li>;
   });
   listItems.push(
     <li key={shortid.generate()}><span id="runtime">{runTime(runtimeMovie)}</span></li>,
@@ -48,7 +48,7 @@ const MainFilmTitle = (props) => {
     <div className={style.mainFilmTitle}>
       <h2 className={style.filmTitle}>{mainMovie.title}</h2>
       <div className={style.genres}>
-        <ul onClick={selectGenre.bind(props)}>
+        <ul>
           {createMoviesGenreList(mainMovie.genres, genres, props)}
         </ul>
       </div>

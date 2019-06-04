@@ -6,7 +6,13 @@ exports[`MainFilmInfo renders correctly 1`] = `
     className="mainFilmInfo__info"
     id="mainFilmOverwie"
   >
-    <p>
+    <p
+      style={
+        Object {
+          "display": "-webkit-box",
+        }
+      }
+    >
       
     </p>
   </div>

@@ -6,7 +6,7 @@ import shortid from 'shortid';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
-import * as fromChangeMainMovie from '../../modules/changeMainMovie/changeMainMovieAction';
+import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
 
 import requestsFilms from '../../utils/requests';
 
@@ -14,7 +14,8 @@ import ListMovies from '../../components/ListMovies/ListMovies';
 import selectGenre from '../../utils/selectGenre';
 import style from './MovieListContainer.scss';
 
-const createGenreList = genres => genres.map(c => <option key={shortid.generate()}>{c.name}</option>);
+const createGenreList = genres => genres
+  .map(c => <option key={shortid.generate()}>{c.name}</option>);
 
 class MovieListContainer extends Component {
   render() {
@@ -82,14 +83,14 @@ const makeMap = () => {
   const page = checkPage;
   const results = checkResults;
   const genres = checkGenres;
-  const mapStateToProps = (state) => ({
-      movies: {
-        page: page(state),
-        results: results(state),
-        currentVideo: state.movies.currentVideo,
-      },
-      genres: genres(state),
-    });
+  const mapStateToProps = state => ({
+    movies: {
+      page: page(state),
+      results: results(state),
+      currentVideo: state.movies.currentVideo,
+    },
+    genres: genres(state),
+  });
 
   return mapStateToProps;
 };

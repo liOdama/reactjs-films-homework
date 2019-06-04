@@ -1,11 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ListMovies renders correctly with empty Array results 1`] = `
+<h2>
+  Ooops
+</h2>
+`;
+
 exports[`ListMovies renders correctly with fill Array results 1`] = `
 Array [
   <article
     className="movieContainer"
     id={299534}
-    onClick={[Function]}
   >
     <figure>
       <div>
@@ -18,13 +23,16 @@ Array [
         <div
           className="movieTitle"
         >
-          <a
+          <button
             href="#"
             id="movieTitle"
             onClick={[Function]}
+            onKeyDown={[Function]}
+            tabIndex="0"
+            type="button"
           >
             Avengers: Endgame
-          </a>
+          </button>
           <span>
             8.6
           </span>
@@ -34,78 +42,74 @@ Array [
         >
           <ul>
             <li>
-              <span
+              <button
                 onClick={[Function]}
-                role="button"
-                tabIndex="0"
+                onKeyDown={[Function]}
+                type="button"
               >
                 Adventure, 
-              </span>
+              </button>
             </li>
             <li>
-              <span
+              <button
                 onClick={[Function]}
-                role="button"
-                tabIndex="0"
+                onKeyDown={[Function]}
+                type="button"
               >
                 Science Fiction, 
-              </span>
+              </button>
             </li>
             <li>
-              <span
+              <button
                 onClick={[Function]}
-                role="button"
-                tabIndex="0"
+                onKeyDown={[Function]}
+                type="button"
               >
                 Action
-              </span>
+              </button>
             </li>
           </ul>
         </div>
       </figcaption>
     </figure>
     <hoverMovieCard
+      fetchVideo={[Function]}
       genres={
         Array [
           <li>
-            <span
+            <button
               onClick={[Function]}
-              role="button"
-              tabIndex="0"
+              onKeyDown={[Function]}
+              type="button"
             >
               Adventure, 
-            </span>
+            </button>
           </li>,
           <li>
-            <span
+            <button
               onClick={[Function]}
-              role="button"
-              tabIndex="0"
+              onKeyDown={[Function]}
+              type="button"
             >
               Science Fiction, 
-            </span>
+            </button>
           </li>,
           <li>
-            <span
+            <button
               onClick={[Function]}
-              role="button"
-              tabIndex="0"
+              onKeyDown={[Function]}
+              type="button"
             >
               Action
-            </span>
+            </button>
           </li>,
         ]
       }
+      movies={Object {}}
       overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
       rate={8.6}
       title="Avengers: Endgame"
     />
   </article>,
 ]
-`;
-
-exports[`MainFilmInfo renders correctly with empty Array results 1`] = `
-<h2>
-  Ooops
-</h2>
 `;

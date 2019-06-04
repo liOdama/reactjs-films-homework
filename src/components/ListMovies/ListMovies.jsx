@@ -2,10 +2,9 @@ import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 
-import selectGenre from '../../utils/selectGenre';
+import selectGenre, { keydonwGenres } from '../../utils/selectGenre';
 
 import HoverMovieCard from '../HoverMovieCard/HoverMovieCard';
-import { showModal } from '../ModalPlayer/ModalPlayer';
 import * as stylerate from '../Star/Star.scss';
 import style from './ListMovies.scss';
 
@@ -28,7 +27,6 @@ const changeMainFilm = (props, e) => {
   return changeMainMovie(newMainFilm);
 };
 
-
 const ListMovies = (props) => {
   const {
     results, genres, fetchVideo, movies,
@@ -46,7 +44,7 @@ const ListMovies = (props) => {
         return currentGenre;
       }).join(', 1').split('1').map(cur => (
         <li key={shortid.generate()}>
-          <span role="button" onClick={selectGenre.bind({ props })} tabIndex="0">{ cur}</span>
+          <button type="button" onClick={selectGenre.bind({ props })} onKeyDown={keydonwGenres.bind(null, { ...props })}>{ cur}</button>
         </li>
       ));
 
@@ -55,7 +53,6 @@ const ListMovies = (props) => {
           className={style.movieContainer}
           key={shortid.generate()}
           id={curr.id}
-          onClick={showModal.bind(null, props)}
         >
           <figure>
             <div>
@@ -63,7 +60,16 @@ const ListMovies = (props) => {
             </div>
             <figcaption>
               <div className={style.movieTitle}>
-                <a href="#" id="movieTitle" onClick={changeMainFilm.bind(null, props)}>{curr.title}</a>
+                <button
+                  type="button"
+                  href="#"
+                  id="movieTitle"
+                  onClick={changeMainFilm.bind(null, props)}
+                  onKeyDown={keydonwGenres.bind(null, props)}
+                  tabIndex="0"
+                >
+                  {curr.title}
+                </button>
                 <span className={stylerate.rate}>{curr.vote_average}</span>
               </div>
               <div className={style.movieGenres}>
@@ -88,12 +94,16 @@ const ListMovies = (props) => {
   }
   return <h2>Ooops</h2>;
 };
+ListMovies.defaultProps = {
+  fetchVideo: alert,
+  movies: {},
+};
 
 ListMovies.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchVideo: PropTypes.func.isRequired,
-  movies: PropTypes.objectOf(PropTypes.any).isRequired,
+  fetchVideo: PropTypes.func,
+  movies: PropTypes.objectOf(PropTypes.any),
 
 };
 
