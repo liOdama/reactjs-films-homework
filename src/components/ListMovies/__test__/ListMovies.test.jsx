@@ -1,11 +1,8 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import ReactTestUtils from 'react-dom/test-utils';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import ListMovies from '../index';
-import selectGenre, { keydonwGenres } from '../../../utils/selectGenre';
+import { keydonwGenres } from '../../../utils/selectGenre';
 import requestsFilms from '../../../utils/requests';
 
 
@@ -69,17 +66,12 @@ describe('ListMovies: selectGenre', () => {
   });
 
   it('ListMovies: kewDown on genre, expect props', async () => {
-    const mockStore = configureMockStore([thunk]);
     const idGenre = 35;
     fetchMock
       .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
         headers: { 'content-type': 'application/json' },
         body: { page: 1, results: [1, 2, 3], status: 'ok' },
       }).catch(err => err);
-    const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
-    };
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
@@ -96,17 +88,12 @@ describe('ListMovies: selectGenre', () => {
   });
 
   it('ListMovies: kewDown Enter, expect data', async () => {
-    const mockStore = configureMockStore([thunk]);
     const idGenre = 35;
     fetchMock
       .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
         headers: { 'content-type': 'application/json' },
         body: { page: 1, results: [1, 2, 3], status: 'ok' },
       }).catch(err => err);
-    const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
-    };
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import requestsFilms from '../../utils/requests';
 import style from './FilmButtons.scss';

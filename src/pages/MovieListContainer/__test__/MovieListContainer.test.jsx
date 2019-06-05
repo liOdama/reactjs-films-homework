@@ -1,13 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactTestRender from 'react-test-renderer';
-import ReactTestUtils from 'react-dom/test-utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import MovieList from '../index';
 import { createGenreList } from '../MovieListContainer';
-import selectGenre from '../../../utils/selectGenre';
 
 
 // import ACTIONS
