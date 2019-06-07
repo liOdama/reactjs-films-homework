@@ -33,7 +33,12 @@ const ListMovies = (props) => {
   } = props;
   if (results.length > 0) {
     return results.map((curr) => {
-      const imageLink = `https://image.tmdb.org/t/p/w300/${curr.poster_path}`;
+      let imageLink;
+      if (curr.poster_path === null) {
+        imageLink = 'https://api.ballotpedia.org/v3/thumbnail/';
+      } else {
+        imageLink = `https://image.tmdb.org/t/p/w300/${curr.poster_path}`;
+      }
       const imgAlt = curr.title;
       const genresRow = curr.genre_ids.map((c) => {
         let currentGenre;

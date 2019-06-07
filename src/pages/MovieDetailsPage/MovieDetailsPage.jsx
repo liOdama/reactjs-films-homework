@@ -14,13 +14,10 @@ import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 
 
 class MovieDetailsPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
   shouldComponentUpdate(nextProps) {
     const { movies, mainMovie } = this.props;
+    
     if (JSON.stringify(nextProps.movies) === JSON.stringify(movies)
      && JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)) {
       return false;
@@ -29,26 +26,28 @@ class MovieDetailsPage extends Component {
   }
 
   static async getDerivedStateFromProps(nextProps) {
-    const { genres } = nextProps;
+    const { genres, results } = nextProps;
     if (genres.length === 0) {
       const { fetchGenres, fetchPopular } = nextProps;
+      localStorage.clear();
       await fetchGenres();
       const state = await fetchPopular();
       return state;
     }
-    return true;
+    return nextProps;
   }
 
   componentDidUpdate(prevProps) {
     const { movies, getMainMovieDetails } = this.props;
     if (movies.mainMovie !== prevProps.movies.mainMovie) {
-      getMainMovieDetails(movies.mainMovie);
+      return getMainMovieDetails(movies.mainMovie);
     }
+    return null;
   }
 
   render() {
     const {
-      movies, genres, fetchMoviesOnGenre, mainMovie,
+      movies, genres, fetchMoviesOnGenre, mainMovie, fetchSearchResults,
     } = this.props;
 
     const styleBG = {
@@ -64,7 +63,7 @@ class MovieDetailsPage extends Component {
           style={styleBG}
           id={mainMovie.id}
         >
-          <Header />
+          <Header fetchSearchResults={fetchSearchResults}/>
           <div className={style.mainfilmInfo}>
             <div className={style.container}>
               <MainfilmTitle
@@ -113,15 +112,17 @@ MovieDetailsPage.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any).isRequired,
   fetchMoviesOnGenre: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
+  fetchSearchResults: PropTypes.func.isRequired,
   mainMovie: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 const mapStateToProps = state => state;
 
 const mapStateToDispatch = dispatch => ({
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
-  fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
+  fetchPopular: requestsFilms.fetchPopular(dispatch),
   fetchGenres: () => dispatch(fromFetchGenres.default()),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
+  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
 });
 export default connect(mapStateToProps, mapStateToDispatch)(MovieDetailsPage);

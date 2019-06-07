@@ -6,13 +6,14 @@ import shortid from 'shortid';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
-import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
+
 
 import requestsFilms from '../../utils/requests';
 
 import ListMovies from '../../components/ListMovies/ListMovies';
 import selectGenre from '../../utils/selectGenre';
 import style from './MovieListContainer.scss';
+
 
 const createGenreList = genres => genres
   .map(c => <option key={shortid.generate()}>{c.name}</option>);

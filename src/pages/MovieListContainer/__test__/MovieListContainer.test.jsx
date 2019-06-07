@@ -4,7 +4,7 @@ import ReactTestRender from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import MovieList from '../index';
+import MovieListContainer from '../index';
 import { createGenreList } from '../MovieListContainer';
 
 
@@ -24,11 +24,12 @@ import fetchGenresReducer from '../../../modules/fetchGenres/fetchGenresReducer'
 import itemsIsLoading from '../../../modules/isLoading/isLoadingReducer';
 import mainMovieReducer from '../../../modules/mainMovie/mainMovieReducer';
 
+
 const KEY = '75331f1a740385460b25b56203149aa8';
 
 // Test Components
 //* ****************************************************************************
-describe('MovieList renders correctly', () => {
+describe('MovieListContainer renders correctly', () => {
   const mockStore = configureMockStore();
   const state = {
     movies: {
@@ -38,8 +39,43 @@ describe('MovieList renders correctly', () => {
       currentVideo: null,
     },
   };
+
+  // const action = {
+  //   type: 'ITEMS_FETCH_DATA_SUCCESS',
+  //   payload: { page: 1, results: [{ id: 1 }, 2, 3] },
+  // };
+
+  const action = () => ({
+
+    action: {
+      type: 'ITEMS_FETCH_DATA_SUCCESS',
+      payload: {
+        page: 2,
+        results: [{
+          adult: false,
+          backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
+          genre_ids: [12, 14, 10749, 35, 10751],
+          id: 420817,
+          original_language: 'en',
+          original_title: 'Aladdin',
+          overview: 'A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.',
+          popularity: 364.955,
+          poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
+          release_date: '2019-05-22',
+          title: 'Aladdin',
+          video: false,
+          vote_average: 7.2,
+          vote_count: 1152,
+        }],
+      },
+    },
+  });
+
   const store = mockStore(state);
-  const container = ReactTestRender.create(<Provider store={store}><MovieList /></Provider>);
+  const container = ReactTestRender.create(<Provider store={store}><MovieListContainer /></Provider>);
+  const { root } = container;
+  rootReducer(undefined, action);
+  container.update(<Provider store={store}><MovieListContainer /></Provider>);
   it('MovieList: renders correctly', () => {
     expect(container).toMatchSnapshot();
   });
