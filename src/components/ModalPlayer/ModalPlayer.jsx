@@ -30,7 +30,9 @@ export const keyDownEsc = (e) => {
   }
 };
 
-class ModalPlayer extends Component {
+
+
+export class ModalPlayer extends Component {
   static unmount(props) {
     const { clearCurrentMovie } = props;
     clearCurrentMovie();
@@ -45,7 +47,8 @@ class ModalPlayer extends Component {
   }
 
   componentDidMount() {
-    document.querySelector('#modalRoot').appendChild(this.el);
+    const modalRoot = document.getElementById('modalRoot');
+    modalRoot.appendChild(this.el);
   }
 
 
@@ -67,7 +70,7 @@ class ModalPlayer extends Component {
     };
     const component = (
       <div role="button" tabIndex="0" className={`${style.modalWrapper}`} onClick={ModalPlayer.unmount.bind(null, this.props)} onKeyDown={keyDownEsc}>
-        <button type="button" className={style.modalClose}>&#9587;</button>
+        <button type="button" tabIndex="1" className={style.modalClose} onKeyDown={keyDownEsc}>&#9587;</button>
         <YouTube
           videoId={id}
           opts={opts}

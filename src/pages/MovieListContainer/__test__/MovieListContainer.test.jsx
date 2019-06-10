@@ -24,6 +24,7 @@ import fetchGenresReducer from '../../../modules/fetchGenres/fetchGenresReducer'
 import itemsIsLoading from '../../../modules/isLoading/isLoadingReducer';
 import mainMovieReducer from '../../../modules/mainMovie/mainMovieReducer';
 
+import * as mapStateToDispatch from '../MovieListContainer';
 
 const KEY = '75331f1a740385460b25b56203149aa8';
 
@@ -503,6 +504,25 @@ describe('Requests tests', () => {
       expect(data).toEqual(expectedActions);
     });
   });
+
+  it('Fetch search', () => {
+    const mockStore = configureMockStore([thunk]);
+    const query = 'Avengers';
+    const answer = {
+      headers: { 'content-type': 'application/json' },
+      body: { page: 1, results: [1, 2, 3], status: 'ok' },
+    };
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, answer).catch(err => err);
+    const expectedActions = {
+      type: 'ITEMS_FETCH_DATA_SUCCESS',
+      payload: { page: 1, results: [1, 2, 3] },
+    };
+    const store = mockStore({});
+    return store.dispatch(requestFilms.fetchSearchResults(query)).then((data) => {
+      expect(data).toEqual(expectedActions);
+    });
+  });
 });
 
 describe('Fail Reqquest', () => {
@@ -615,5 +635,73 @@ describe('Fail Reqquest', () => {
     const store = mockStore({});
     return store.dispatch(requestFilms.getMainMovieDetails(id))
       .then(data => expect(data).toEqual(expectedActions));
+  });
+
+  it('fail: fetchSearchResults', () => {
+    const mockStore = configureMockStore([thunk]);
+    const ERR = new Error('Something wrong');
+    const query = 'Avengers';
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, JSON.stringify({
+        page: 1,
+        results: [1, 2, 3],
+        ok: false,
+      }));
+    const expectedActions = {
+      type: 'ITEMS_HAS_ERRORED',
+      payload: ERR,
+    };
+    const store = mockStore({});
+    return store.dispatch(requestFilms.fetchSearchResults(query))
+      .then(data => expect(data).toEqual(expectedActions));
+  });
+});
+
+describe('test MapDispatchToProps', () => {
+  const state = {
+    fetchPopular: 1,
+    getTopRated: 1,
+    fetchComingSoon: 1,
+    fetchMoviesOnGenre: id => id,
+    fetchVideo: id => id,
+    getMainMovieDetails: id => id,
+    changeMainMovie: id => id,
+  };
+  const id = 35;
+  const query = 'test';
+
+  it('MapDispatchToProps: fetch popular', async () => {
+    const dispatch = jest.fn(() => state.fetchPopular);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchPopular();
+    expect(result).toEqual(1);
+  });
+
+  it('MapDispatchToProps: fetch fetchComingSoon', async () => {
+    const dispatch = jest.fn(() => state.fetchComingSoon);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchComingSoon();
+    expect(result).toEqual(1);
+  });
+
+  it('MapDispatchToProps: fetch getTopRated', async () => {
+    const dispatch = jest.fn(() => state.getTopRated);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).getTopRated();
+    expect(result).toEqual(1);
+  });
+
+  it('MapDispatchToProps: fetchMoviesOnGenre', async () => {
+    const dispatch = jest.fn(() => state.fetchMoviesOnGenre);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchMoviesOnGenre(id);
+    expect(result(id)).toEqual(id);
+  });
+
+  it('MapDispatchToProps: fetchVideo', async () => {
+    const dispatch = jest.fn(() => state.fetchVideo);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
+    expect(result(id)).toEqual(id);
+  });
+  it('MapDispatchToProps: changeMainMovie', async () => {
+    const dispatch = jest.fn(() => state.changeMainMovie);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).changeMainMovie(id);
+    expect(result(id)).toEqual(id);
   });
 });

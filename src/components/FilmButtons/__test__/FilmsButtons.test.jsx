@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import FilmButtons from '../index';
 import style from '../FilmButtons.scss';
+import * as mapStateToDispatch from '../FilmButtons';
 
 
 test('Signature renders correctly', () => {
@@ -43,4 +44,23 @@ test('Signature renders correctly', () => {
   );
   const node = result.root.findByProps({ id: 'info' });
   expect(ReactTestUtils.Simulate.click(node)).toMatchSnapshot();
+});
+
+describe('test MapDispatchToProps', () => {
+  const state = {
+    fetchPopular: 1,
+    getTopRated: 1,
+    fetchComingSoon: 1,
+    fetchMoviesOnGenre: id => id,
+    fetchVideo: id => id,
+    getMainMovieDetails: id => id,
+    changeMainMovie: id => id,
+  };
+  const id = 35;
+
+  it('MapDispatchToProps: fetchVideo', async () => {
+    const dispatch = jest.fn(() => state.fetchVideo);
+    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
+    expect(result(id)).toEqual(id);
+  });
 });

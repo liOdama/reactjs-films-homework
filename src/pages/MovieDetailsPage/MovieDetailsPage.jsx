@@ -117,9 +117,9 @@ MovieDetailsPage.propTypes = {
 };
 const mapStateToProps = state => state;
 
-const mapStateToDispatch = dispatch => ({
+export const mapStateToDispatch = dispatch => ({
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
-  fetchPopular: requestsFilms.fetchPopular(dispatch),
+  fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
   fetchGenres: () => dispatch(fromFetchGenres.default()),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),

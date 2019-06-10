@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import ReactTestUtils from 'react-dom/test-utils';
 import configureStore from 'redux-mock-store';
 import MovieDetailsPage from '../index';
+import * as mapStateToDispatch from '../MovieDetailsPage';
 
 jest.mock('rc-util/lib/Portal');
 
@@ -112,8 +113,7 @@ describe('MovieDetailsPage renders correctly', () => {
     it('getDerivedStateFromProps: other rendering', async () => {
       const fetchGenres = jest.fn(() => 1);
       const fetchPopular = jest.fn(() => 2);
-      const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, { ...initial2, fetchPopular, fetchGenres },
-      );
+      const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, { ...initial2, fetchPopular, fetchGenres },);
 
       expect(action).toEqual({ ...initial2, fetchGenres, fetchPopular });
     });
@@ -137,24 +137,46 @@ describe('MovieDetailsPage renders correctly', () => {
     });
   });
 
-  // it('MovieDetailsPage: render component', () => {
-  //   const store = mockStore(initial);
-  //   const store2 = mockStore(initial2);
-  //   const container = ReactTestRender
-  //     .create(<Provider store={store}><MovieDetailsPage /></Provider>);
-  //   container.update(<Provider store={store2}><MovieDetailsPage /></Provider>);
-  //   container.update(<Provider store={store2}><MovieDetailsPage /></Provider>);
-  //   expect(container).toMatchSnapshot();
-  // });
+  describe('test MapDispatchToProps', () => {
+    const state = {
+      fetchPopular: 1,
+      fetchMoviesOnGenre: id => id,
+      fetchVideo: id => id,
+      getMainMovieDetails: id => id,
+      fetchSearchResults: query => query,
+      ...initial,
+    };
+    const id = 35;
+    const query = 'test';
 
-  // it('MovieDetailsPage: render component with at the same props', () => {
-  //   const store = mockStore(initial);
-  //   const store2 = mockStore(initial2);
-  //   const container = ReactTestRender
-  //     .create(<Provider store={store}><MovieDetailsPage mainMovie={{ backdrop_path: 'test' }} /></Provider>);
-  //   container.update(<Provider store={store}><MovieDetailsPage /></Provider>);
-  //   expect(container).toMatchSnapshot();
-  // });
+    it('MapDispatchToProps: fetch popular', async () => {
+      const dispatch = jest.fn(() => state.fetchPopular);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchPopular();
+      expect(result).toEqual(1);
+    });
 
-//
+    it('MapDispatchToProps: fetchMoviesOnGenre', async () => {
+      const dispatch = jest.fn(() => state.fetchMoviesOnGenre);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchMoviesOnGenre(id);
+      expect(result(id)).toEqual(id);
+    });
+
+    it('MapDispatchToProps: fetchVideo', async () => {
+      const dispatch = jest.fn(() => state.fetchVideo);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
+      expect(result(id)).toEqual(id);
+    });
+
+    it('MapDispatchToProps: getMainMovieDetails', async () => {
+      const dispatch = jest.fn(() => state.getMainMovieDetails);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).getMainMovieDetails(query);
+      expect(result(query)).toEqual(query);
+    });
+
+    it('MapDispatchToProps: fetchSearchResults', async () => {
+      const dispatch = jest.fn(() => state.fetchSearchResults);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchSearchResults(id);
+      expect(result(id)).toEqual(id);
+    });
+  });
 });

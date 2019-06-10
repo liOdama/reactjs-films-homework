@@ -6,6 +6,7 @@ import shortid from 'shortid';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
+import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
 
 
 import requestsFilms from '../../utils/requests';
@@ -96,11 +97,10 @@ const makeMap = () => {
   return mapStateToProps;
 };
 
-const mapStateToDispatch = dispatch => ({
+export const mapStateToDispatch = dispatch => ({
   fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
   getTopRated: () => dispatch(requestsFilms.getTopRated()),
   fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon()),
-  fetchGenres: () => dispatch(fromFetchGenres.default()),
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
   changeMainMovie: movie => dispatch(fromChangeMainMovie.default(movie)),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),

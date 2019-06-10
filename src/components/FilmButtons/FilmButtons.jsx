@@ -40,7 +40,7 @@ View Info
 }
 const mapStateToProps = state => state;
 
-const mapStateToDispatch = dispatch => ({
+export const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
 });
 

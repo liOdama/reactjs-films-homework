@@ -135,9 +135,9 @@ module.exports = {
   // The paths to modules that run some code to configure
   // or set up the testing environment before each test
   // setupFiles: [],
-  setupFiles: [
-    '../node_modules/jsdom/lib/api.js',
-  ],
+  // setupFiles: [
+  //   './__mocks__/client.js',
+  // ],
 
   // A list of paths to modules that run some code to configure
   // or set up the testing framework before each test
