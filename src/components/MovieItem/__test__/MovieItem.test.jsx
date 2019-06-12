@@ -1,10 +1,10 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import fetchMock from 'fetch-mock';
-import ListMovies from '../index';
+import MovieItem from '../index';
 import { keydonwGenres } from '../../../utils/selectGenre';
 import requestsFilms from '../../../utils/requests';
-import { changeMainFilm } from '../ListMovies';
+import { changeMainFilm } from '../MovieItem';
 
 
 const genres = [
@@ -29,8 +29,8 @@ const genres = [
   { id: 37, name: 'Western' },
 ];
 
-test('ListMovies renders correctly with fill Array results', () => {
-  const results = [{
+test('MovieItem renders correctly with fill Array results', () => {
+  const curr = {
     adult: false,
     backdrop_path: null,
     genre_ids: [12, 878, 28],
@@ -45,28 +45,35 @@ test('ListMovies renders correctly with fill Array results', () => {
     video: false,
     vote_average: 8.6,
     vote_count: 4484,
-  }];
+  };
+  const movies = {};
 
 
   const renderer = new ShallowRenderer();
-  renderer.render(<ListMovies results={results} genres={genres} />);
+  renderer.render(
+    <MovieItem
+      curr={curr}
+      genres={genres}
+      movies={movies}
+    />
+    );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
-test('ListMovies renders correctly with empty Array results', () => {
-  const results = [];
-  const renderer = new ShallowRenderer();
-  const result = renderer.render(<ListMovies results={results} genres={genres} />);
-  expect(result).toMatchSnapshot();
-});
+// test('MovieItem renders correctly with empty Array results', () => {
+//   const curr = [];
+//   const renderer = new ShallowRenderer();
+//   const result = renderer.render(<MovieItem results={results} genres={genres} />);
+//   expect(result).toMatchSnapshot();
+// });
 
-describe('ListMovies: selectGenre', () => {
+describe('MovieItem: selectGenre', () => {
   afterEach(() => {
     fetchMock.reset();
     fetchMock.restore();
   });
 
-  it('ListMovies: kewDown on genre, expect props', async () => {
+  it('MovieItem: kewDown on genre, expect props', async () => {
     const idGenre = 35;
     fetchMock
       .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
@@ -88,7 +95,7 @@ describe('ListMovies: selectGenre', () => {
     expect(result).toEqual(props);
   });
 
-  it('ListMovies: kewDown Enter, expect data', async () => {
+  it('MovieItem: kewDown Enter, expect data', async () => {
     const idGenre = 35;
     fetchMock
       .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
@@ -110,7 +117,7 @@ describe('ListMovies: selectGenre', () => {
     expect(result).toEqual(props);
   });
 
-  it('ListMovies: kewDown on genre', async () => {
+  it('MovieItem: kewDown on genre', async () => {
     const idGenre = 35;
     fetchMock
       .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
@@ -136,7 +143,8 @@ describe('ListMovies: selectGenre', () => {
 test('changeMainFilm', () => {
   const changeMainMovie = jest.fn();
   const props = {
-    results: [
+    movies: {
+      results: [
         {
           genre_ids: [12, 14],
           id: 420817,
@@ -148,6 +156,7 @@ test('changeMainFilm', () => {
           title: 'Test movie',
         },
       ],
+    },
     genres: [{id: 12, name: 'Drama'},{id: 12, name: 'Action'}],
     changeMainMovie
   };

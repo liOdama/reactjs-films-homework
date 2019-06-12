@@ -215,7 +215,6 @@ describe('MapDispatchToProps', () => {
     getMainMovieDetails: id => id,
     changeMainMovie: id => id,
   };
-  const id = 35;
 
   it('test all descriptors',  ()=> {
     const keys = Object.keys(state);

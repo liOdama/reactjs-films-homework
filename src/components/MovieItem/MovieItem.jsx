@@ -1,23 +1,22 @@
+
 import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
-
+import HoverMovieCard from '../HoverMovieCard/HoverMovieCard';
 import selectGenre, { keydonwGenres } from '../../utils/selectGenre';
 
-import HoverMovieCard from '../HoverMovieCard/HoverMovieCard';
 import * as stylerate from '../Star/Star.scss';
-import style from './ListMovies.scss';
-
-
+import style from './MovieItem.scss';
+      
 const changeMainFilm = (props, e) => {
   e.preventDefault();
   // Change mainFilmOverwie height
   // document.querySelector('#mainFilmOverwie').style.maxHeight = '10rem';
 
   const name = e.currentTarget.textContent;
-  const { changeMainMovie, results } = props;
+  const { changeMainMovie, movies } = props;
   let newMainFilm;
-  results.some((curr) => {
+  movies.results.some((curr) => {
     if (curr.title === name) {
       newMainFilm = curr;
       return true;
@@ -27,13 +26,9 @@ const changeMainFilm = (props, e) => {
   return changeMainMovie(newMainFilm);
 };
 
-const ListMovies = (props) => {
-  const {
-    results, genres, fetchVideo, movies,
-  } = props;
-  if (results.length > 0) {
-    return results.map((curr) => {
-      let imageLink;
+const MovieItem = (props) => {
+  const { curr, genres, fetchVideo, movies } = props;
+  let imageLink;
       if (curr.poster_path === null) {
         imageLink = 'https://api.ballotpedia.org/v3/thumbnail/';
       } else {
@@ -47,9 +42,11 @@ const ListMovies = (props) => {
           return false;
         });
         return currentGenre;
-      }).join(', 1').split('1').map(cur => (
+      }).join(', 1').split(' 1').map(cur => (
         <li key={shortid.generate()}>
-          <button type="button" onClick={selectGenre.bind({ props })} onKeyDown={keydonwGenres.bind(null, { ...props })}>{ cur}</button>
+          <button type="button" onClick={selectGenre.bind({ props })} onKeyDown={keydonwGenres.bind(null, { ...props })}>
+            {cur} 
+          </button>
         </li>
       ));
 
@@ -95,23 +92,20 @@ const ListMovies = (props) => {
           />
         </article>
       );
-    });
-  }
-  return <h2>Ooops</h2>;
 };
-ListMovies.defaultProps = {
+
+MovieItem.defaultProps = {
   fetchVideo: alert,
   movies: {},
 };
 
-ListMovies.propTypes = {
+MovieItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
-  results: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchVideo: PropTypes.func,
   movies: PropTypes.objectOf(PropTypes.any),
+  curr: PropTypes.objectOf(PropTypes.any).isRequired,
 
 };
 
-export default ListMovies;
-
 export { changeMainFilm };
+export default MovieItem;

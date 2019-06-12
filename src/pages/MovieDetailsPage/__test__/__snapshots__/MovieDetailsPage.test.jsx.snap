@@ -204,7 +204,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                       onKeyDown={[Function]}
                       type="button"
                     >
-                      , 
+                      ,
                     </button>
                   </li>
                   <li>
@@ -213,7 +213,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                       onKeyDown={[Function]}
                       type="button"
                     >
-                      , 
+                      ,
                     </button>
                   </li>
                   <li>
@@ -222,7 +222,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                       onKeyDown={[Function]}
                       type="button"
                     >
-                      , 
+                      ,
                     </button>
                   </li>
                   <li>
@@ -231,7 +231,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                       onKeyDown={[Function]}
                       type="button"
                     >
-                      , 
+                      ,
                     </button>
                   </li>
                   <li>
@@ -240,7 +240,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                       onKeyDown={[Function]}
                       type="button"
                     >
-                      , 
+                      ,
                     </button>
                   </li>
                   <li>
@@ -312,7 +312,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                         onKeyDown={[Function]}
                         type="button"
                       >
-                        , 
+                        ,
                       </button>
                     </li>
                     <li>
@@ -321,7 +321,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                         onKeyDown={[Function]}
                         type="button"
                       >
-                        , 
+                        ,
                       </button>
                     </li>
                     <li>
@@ -330,7 +330,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                         onKeyDown={[Function]}
                         type="button"
                       >
-                        , 
+                        ,
                       </button>
                     </li>
                     <li>
@@ -339,7 +339,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                         onKeyDown={[Function]}
                         type="button"
                       >
-                        , 
+                        ,
                       </button>
                     </li>
                     <li>
@@ -348,7 +348,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
                         onKeyDown={[Function]}
                         type="button"
                       >
-                        , 
+                        ,
                       </button>
                     </li>
                     <li>

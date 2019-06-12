@@ -15,6 +15,11 @@ import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 
 class MovieDetailsPage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   shouldComponentUpdate(nextProps) {
     const { movies, mainMovie } = this.props;
     
@@ -26,7 +31,7 @@ class MovieDetailsPage extends Component {
   }
 
   static async getDerivedStateFromProps(nextProps) {
-    const { genres, results } = nextProps;
+    const { genres } = nextProps;
     if (genres.length === 0) {
       const { fetchGenres, fetchPopular } = nextProps;
       localStorage.clear();

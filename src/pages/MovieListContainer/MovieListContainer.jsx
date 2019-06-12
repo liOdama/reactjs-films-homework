@@ -5,15 +5,14 @@ import shortid from 'shortid';
 
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
-import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
 
 
 import requestsFilms from '../../utils/requests';
 
-import ListMovies from '../../components/ListMovies/ListMovies';
 import selectGenre from '../../utils/selectGenre';
 import style from './MovieListContainer.scss';
+import MovieItem from '../../components/MovieItem';
 
 
 const createGenreList = genres => genres
@@ -31,6 +30,25 @@ class MovieListContainer extends Component {
       changeMainMovie,
       fetchVideo,
     } = this.props;
+    let list;
+    if (movies.results.length > 0) {
+      list =  movies.results.map(curr => {
+         return  (
+           <MovieItem
+             curr={curr}
+             genres={genres}
+             movies={movies}
+             changeMainMovie={changeMainMovie}
+             fetchVideo={fetchVideo}
+             fetchMoviesOnGenre={fetchMoviesOnGenre}
+             key={shortid()}
+           />
+        );
+      });
+    } else {
+      list = <h2>Ooops</h2>;
+    }
+    
     const html = (
       <section className={style.movieList}>
         <div className={style.container}>
@@ -48,14 +66,7 @@ class MovieListContainer extends Component {
             </ul>
           </div>
           <div className={style.moviesWrapper}>
-            <ListMovies
-              results={movies.results}
-              genres={genres}
-              fetchMoviesOnGenre={fetchMoviesOnGenre}
-              changeMainMovie={changeMainMovie}
-              fetchVideo={fetchVideo}
-              movies={movies}
-            />
+            {list}
           </div>
         </div>
       </section>
