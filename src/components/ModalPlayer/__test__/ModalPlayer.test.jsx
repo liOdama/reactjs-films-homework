@@ -10,12 +10,6 @@ import MovieDetailsPage from '../../../pages/MovieDetailsPage';
 import style from '../ModalPlayer.scss';
 import * as Modal from '../ModalPlayer';
 
-
-// const { JSDOM } = require('jsdom');
-// const document = new JSDOM('<html><head></head><body></body></html>').window.document;
-
-// const window = document.createWindow();
-
 describe('Modal Renders correctly', () => {
   const mockStore = configureMockStore();
   const state = {
@@ -35,16 +29,6 @@ describe('Modal Renders correctly', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('Modal: unmount', () => {
-    const clearCurrentMovie = jest.fn();
-    const props = {
-      clearCurrentMovie,
-    };
-    jest.spyOn(ModalPlayer, 'unmount');
-    ModalPlayer.WrappedComponent.unmount(props);
-    expect(clearCurrentMovie).toHaveBeenCalled();
-  });
-
   describe('show and close', () => {
     let container;
     const fetchVideo = jest.fn();
@@ -54,14 +38,34 @@ describe('Modal Renders correctly', () => {
       document.body.appendChild(container);
     });
 
+    
+  it('Modal: unmount with click', () => {
+    const clearCurrentMovie = jest.fn();
+    const props = {
+      clearCurrentMovie,
+    };
+    const click = {
+      type: 'click',
+    };
+    const keyDown = {
+      key: 'Escape',
+    };
+    const wrongTest = {
+      type: 'leave',
+    }
+    jest.spyOn(ModalPlayer, 'unmount');
+    ModalPlayer.WrappedComponent.unmount(props, click);
+    ModalPlayer.WrappedComponent.unmount(props, keyDown);
+    ModalPlayer.WrappedComponent.unmount(props, wrongTest);
+    expect(clearCurrentMovie).toHaveBeenCalledTimes(2);
+  });
 
-    it('show', ()=> {
-      
-
+    it('show with id watch', ()=> {
       const props = {fetchVideo};
       jest.spyOn(props, 'fetchVideo');
       const button = React.createElement('button', {onClick: Modal.showModal.bind(null, props), type:"button", id: 'watch'});
-      const template = React.createElement('article', null, button);
+      const div = React.createElement('div', null, button);
+      const template = React.createElement('section', null, div);
       act(() => {
         ReactDOM.render(template, container);
       });
@@ -70,16 +74,44 @@ describe('Modal Renders correctly', () => {
       expect(fetchVideo).toHaveBeenCalled();
     });
 
-    // it('keyDown', ()=> {
-    //   const showModal = jest.fn();
-    //   const obj = {
-    //     showModal,
-    //   };
-    //   const spy = jest.spyOn(obj, 'showModal');
-    //   const button = <button type="button" id="button" onKeyDown={Modal.keyDownEsc}>test</button>;
-    //   const node = ReactTestUtils.renderIntoDocument(button);
-    //   ReactTestUtils.Simulate.keyDown(node, {key: 'Esc', target: {id:'test'}});
-    //   expect(showModal).toHaveBeenCalled();
-    // });
+    it('show with id playTrailer', ()=> {
+      const props = {fetchVideo};
+      jest.spyOn(props, 'fetchVideo');
+      const button = React.createElement('button', {onClick: Modal.showModal.bind(null, props), type:"button", id: 'playTrailer'});
+      const template = React.createElement('article', null, button);
+      act(() => {
+        ReactDOM.render(template, container);
+      });
+      const node = container.querySelector('#playTrailer');
+      ReactTestUtils.Simulate.click(node);
+      expect(fetchVideo).toHaveBeenCalled();
+    });
+
+      it('show with id test - result to be NULL', ()=> {
+      const props = {fetchVideo};
+      const e = {
+        target: {
+          id: 'test',
+        }
+      }
+      const result = Modal.showModal(props, e);
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('MapDispatchToProps', () => {
+    const state = {
+      fetchVideo: id => id,
+      clearCurrentMovie: () => true,
+    };
+
+    it('test all descriptors',  ()=> {
+      const keys = Object.keys(state);
+      keys.forEach(async (curr) => {
+        const dispatch = jest.fn(() => state[curr]);
+        const result = await Modal.mapStateToDispatch(dispatch)[curr]();
+        expect(result).toEqual(state[curr]);
+      });
+    });
   });
 });

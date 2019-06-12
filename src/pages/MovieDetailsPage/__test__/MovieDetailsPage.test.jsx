@@ -146,37 +146,13 @@ describe('MovieDetailsPage renders correctly', () => {
       fetchSearchResults: query => query,
       ...initial,
     };
-    const id = 35;
-    const query = 'test';
-
-    it('MapDispatchToProps: fetch popular', async () => {
-      const dispatch = jest.fn(() => state.fetchPopular);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchPopular();
-      expect(result).toEqual(1);
-    });
-
-    it('MapDispatchToProps: fetchMoviesOnGenre', async () => {
-      const dispatch = jest.fn(() => state.fetchMoviesOnGenre);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchMoviesOnGenre(id);
-      expect(result(id)).toEqual(id);
-    });
-
-    it('MapDispatchToProps: fetchVideo', async () => {
-      const dispatch = jest.fn(() => state.fetchVideo);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
-      expect(result(id)).toEqual(id);
-    });
-
-    it('MapDispatchToProps: getMainMovieDetails', async () => {
-      const dispatch = jest.fn(() => state.getMainMovieDetails);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).getMainMovieDetails(query);
-      expect(result(query)).toEqual(query);
-    });
-
-    it('MapDispatchToProps: fetchSearchResults', async () => {
-      const dispatch = jest.fn(() => state.fetchSearchResults);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchSearchResults(id);
-      expect(result(id)).toEqual(id);
+    it('test all descriptors',  ()=> {
+      const keys = Object.keys(state);
+      keys.forEach(async (curr) => {
+        const dispatch = jest.fn(() => state[curr]);
+        const result = await mapStateToDispatch.mapStateToDispatch(dispatch)[curr]();
+        expect(result).toEqual(state[curr]);
+      });
     });
   });
 });

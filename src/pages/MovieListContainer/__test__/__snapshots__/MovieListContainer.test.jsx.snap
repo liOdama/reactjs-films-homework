@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieListContainer renders correctly MovieList: renders correctly 1`] = `
+exports[`MovieListContainer - test component MovieList: renders correctly 1`] = `
 <section
   className="movieList"
 >

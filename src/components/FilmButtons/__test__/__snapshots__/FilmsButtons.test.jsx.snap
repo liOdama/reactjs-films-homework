@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Signature renders correctly 1`] = `
+exports[`FulmButtons renders correctly 1`] = `
 <Context.Provider
   value={
     Object {
@@ -38,4 +38,4 @@ exports[`Signature renders correctly 1`] = `
 </Context.Provider>
 `;
 
-exports[`Signature renders correctly 2`] = `undefined`;
+exports[`FulmButtons renders correctly 2`] = `undefined`;

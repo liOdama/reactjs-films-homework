@@ -4,38 +4,14 @@ import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 import style from './ModalPlayer.scss';
 import requestsFilms from '../../utils/requests';
-import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
-
-
-export const showModal = (props, e) => {
-  let element = e.target;
-  if (element.id === 'playTrailer' || element.id === 'watch') {
-    while (element.localName !== 'article' && element.localName !== 'section') {
-      element = element.parentElement;
-    }
-    const { fetchVideo } = props;
-    fetchVideo(element.id);
-  }
-};
-
-export const closeModal = (e) => {
-  if (e.target.id !== 'trailer') {
-    document.querySelector('#modal > div > div').classList.toggle(style.showModal);
-  }
-};
-
-export const keyDownEsc = (e) => {
-  if (e.key === 'Esc') {
-    closeModal.call(e);
-  }
-};
-
-
+import  * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
 
 export class ModalPlayer extends Component {
-  static unmount(props) {
-    const { clearCurrentMovie } = props;
-    clearCurrentMovie();
+  static unmount(props, e) {
+    if(e.type === 'click' || e.key === 'Escape'){
+      const { clearCurrentMovie } = props;
+      clearCurrentMovie();
+    }
   }
 
   constructor(props) {
@@ -60,7 +36,10 @@ export class ModalPlayer extends Component {
   }
 
 
+
+
   render() {
+    document.body.addEventListener('keydown', ModalPlayer.unmount.bind(null, this.props));
     const { id } = this.state;
     const opts = {
       width: '70%',
@@ -69,8 +48,8 @@ export class ModalPlayer extends Component {
       origin: 'http://localhost:3000',
     };
     const component = (
-      <div role="button" tabIndex="0" className={`${style.modalWrapper}`} onClick={ModalPlayer.unmount.bind(null, this.props)} onKeyDown={keyDownEsc}>
-        <button type="button" tabIndex="1" className={style.modalClose} onKeyDown={keyDownEsc}>&#9587;</button>
+      <div role="button" tabIndex="0" className={`${style.modalWrapper}`} onClick={ModalPlayer.unmount.bind(null, this.props)} onKeyDown={ModalPlayer.unmount.bind(null, this.props)}>
+        <button type="button" tabIndex="0" className={style.modalClose}>&#9587;</button>
         <YouTube
           videoId={id}
           opts={opts}
@@ -83,11 +62,22 @@ export class ModalPlayer extends Component {
   }
 }
 
-
 const mapStateToProps = state => state;
 
-const mapStateToDispatch = dispatch => ({
+export const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default()),
 });
 export default connect(mapStateToProps, mapStateToDispatch)(ModalPlayer);
+
+export const showModal = (props, e) => {
+  let element = e.target;
+  if (element.id === 'playTrailer' || element.id === 'watch') {
+    while (element.localName !== 'article' && element.localName !== 'section') {
+      element = element.parentElement;
+    }
+    const { fetchVideo } = props;
+    fetchVideo(element.id);
+  }
+  return null;
+};

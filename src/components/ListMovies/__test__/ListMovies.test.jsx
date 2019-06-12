@@ -4,6 +4,7 @@ import fetchMock from 'fetch-mock';
 import ListMovies from '../index';
 import { keydonwGenres } from '../../../utils/selectGenre';
 import requestsFilms from '../../../utils/requests';
+import { changeMainFilm } from '../ListMovies';
 
 
 const genres = [
@@ -31,14 +32,14 @@ const genres = [
 test('ListMovies renders correctly with fill Array results', () => {
   const results = [{
     adult: false,
-    backdrop_path: '/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg',
+    backdrop_path: null,
     genre_ids: [12, 878, 28],
     id: 299534,
     original_language: 'en',
     original_title: 'Avengers: Endgame',
     overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
     popularity: 323.106,
-    poster_path: '/or06FN3Dka5tukK1e9sl16pB3iy.jpg',
+    poster_path: null,
     release_date: '2019-04-24',
     title: 'Avengers: Endgame',
     video: false,
@@ -130,4 +131,31 @@ describe('ListMovies: selectGenre', () => {
     const result = keydonwGenres(props, e);
     expect(result).toEqual(props);
   });
+});
+
+test('changeMainFilm', () => {
+  const changeMainMovie = jest.fn();
+  const props = {
+    results: [
+        {
+          genre_ids: [12, 14],
+          id: 420817,
+          title: 'Aladdin',
+        },
+        {
+          genre_ids: [12, 14],
+          id: 420817,
+          title: 'Test movie',
+        },
+      ],
+    genres: [{id: 12, name: 'Drama'},{id: 12, name: 'Action'}],
+    changeMainMovie
+  };
+  jest.spyOn(props, 'changeMainMovie');
+  const e = {
+    currentTarget: {textContent: 'Test movie'},
+    preventDefault: jest.fn()
+  };
+  changeMainFilm(props, e);
+  expect(changeMainMovie).toHaveBeenCalled();
 });

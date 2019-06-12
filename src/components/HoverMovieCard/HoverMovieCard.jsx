@@ -18,15 +18,13 @@ export const showOverwie = (e) => {
 };
 
 const returnHover = (e) => {
-  const element = e.currentTarget;
-  if (element.tagName === 'DIV') {
-    element.classList.remove(style.hoverOverwieBlock);
-    element.previousSibling.classList.remove(style.hoverControlNone);
-  } else {
-    element.parentElement.classList.remove(style.hoverOverwieBlock);
-    element.parentElement.previousSibling.classList.remove(style.hoverControlNone);
+  let element = e.currentTarget;
+  while (element.localName !== 'article') {
+    element = element.parentElement;
   }
-  document.querySelector(`.${style.figcaptionNone}`).classList.remove(style.figcaptionNone);
+  element.querySelector(`.${style.hoverOverwieBlock}`).classList.remove(style.hoverOverwieBlock);
+  element.querySelector(`.${style.hoverControlNone}`).classList.remove(style.hoverControlNone);
+  element.querySelector('figure').classList.remove(style.figcaptionNone);
 };
 
 const hoverMovieCard = (props) => {
@@ -52,7 +50,7 @@ const hoverMovieCard = (props) => {
         <button type="button" className={style.showOverwie} id="showOverwie" onClick={showOverwie}>View Info</button>
       </div>
       <div className={style.hoverOverwie} onMouseLeave={returnHover}>
-        <button type="button" className={style.hoverClose} onClick={returnHover}>&#9587;</button>
+        <button type="button" id="closeHover" className={style.hoverClose} onClick={returnHover}>&#9587;</button>
         <div className={style.hoverOverwieTitle}>
           <div className={style.hoverOverwieTitleItem}>
             <h3>{title}</h3>

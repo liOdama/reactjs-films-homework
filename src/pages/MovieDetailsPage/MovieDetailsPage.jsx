@@ -63,7 +63,7 @@ class MovieDetailsPage extends Component {
           style={styleBG}
           id={mainMovie.id}
         >
-          <Header fetchSearchResults={fetchSearchResults}/>
+          <Header fetchSearchResults={fetchSearchResults} />
           <div className={style.mainfilmInfo}>
             <div className={style.container}>
               <MainfilmTitle
@@ -77,15 +77,15 @@ class MovieDetailsPage extends Component {
         </section>
         <MovieListContainer />
 
-        <div id="modalRoot">
-          {(movies.currentVideo !== null) ? (
-            <div id="modal">
+        
+        {(movies.currentVideo !== null) ? (
+            <div id="modalRoot" onKeyDown={alert}>
               <ModalPlayer id={movies.currentVideo} />
             </div>
           ) : null
         }
 
-        </div>
+        
         <Footer />
       </main>
     );

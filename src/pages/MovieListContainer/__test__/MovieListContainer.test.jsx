@@ -6,23 +6,11 @@ import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import MovieListContainer from '../index';
 import { createGenreList } from '../MovieListContainer';
-
-
-// import ACTIONS
-import fetchGenres from '../../../modules/fetchGenres/fetchGenresAction';
-import { itemsHasErrored } from '../../../modules/isLoading/isLoadingAction';
-import clearCurrentMovie from '../../../modules/root/clearCurrentMovieAction';
-import changeMainMovie from '../../../modules/mainMovie/changeMainMovieAction';
-import setMainMovieDetails from '../../../modules/mainMovie/mainMovieAction';
+// import REDUCER
+import rootReducer from '../../../modules/root/rootReducer';
 
 // import Request
 import requestFilms from '../../../utils/requests';
-
-// import REDUCER
-import rootReducer, { initialState } from '../../../modules/root/rootReducer';
-import fetchGenresReducer from '../../../modules/fetchGenres/fetchGenresReducer';
-import itemsIsLoading from '../../../modules/isLoading/isLoadingReducer';
-import mainMovieReducer from '../../../modules/mainMovie/mainMovieReducer';
 
 import * as mapStateToDispatch from '../MovieListContainer';
 
@@ -30,7 +18,7 @@ const KEY = '75331f1a740385460b25b56203149aa8';
 
 // Test Components
 //* ****************************************************************************
-describe('MovieListContainer renders correctly', () => {
+describe('MovieListContainer - test component', () => {
   const mockStore = configureMockStore();
   const state = {
     movies: {
@@ -40,12 +28,6 @@ describe('MovieListContainer renders correctly', () => {
       currentVideo: null,
     },
   };
-
-  // const action = {
-  //   type: 'ITEMS_FETCH_DATA_SUCCESS',
-  //   payload: { page: 1, results: [{ id: 1 }, 2, 3] },
-  // };
-
   const action = () => ({
 
     action: {
@@ -74,7 +56,6 @@ describe('MovieListContainer renders correctly', () => {
 
   const store = mockStore(state);
   const container = ReactTestRender.create(<Provider store={store}><MovieListContainer /></Provider>);
-  const { root } = container;
   rootReducer(undefined, action);
   container.update(<Provider store={store}><MovieListContainer /></Provider>);
   it('MovieList: renders correctly', () => {
@@ -88,303 +69,6 @@ describe('MovieListContainer renders correctly', () => {
   });
 });
 
-// Test for reducers and their actions
-// ############################################################################
-describe('Test for reducers', () => {
-  describe('Reducer tests, Root Reducer', () => {
-    it('Root Reducer: ITEMS_FETCH_DATA_SUCCESS', () => {
-      const action = {
-        type: 'ITEMS_FETCH_DATA_SUCCESS',
-        payload: { page: 1, results: [{ id: 1 }, 2, 3] },
-      };
-
-      expect(rootReducer(initialState, action)).toEqual({
-        ...initialState,
-        page: 1,
-        results: [{ id: 1 }, 2, 3],
-        mainMovie: 1,
-      });
-    });
-
-    it('Root Reducer: CLEAR_CURRENT_MOVIE action', () => {
-      const action = {
-        type: 'CLEAR_CURRENT_MOVIE',
-        payload: null,
-      };
-
-      expect(rootReducer(initialState, action)).toEqual({
-        ...initialState,
-        currentVideo: null,
-      });
-    });
-
-    it('Root reducer: fetch trailer action', () => {
-      const action = {
-        type: 'FETCH_VIDEO_SUCCESS',
-        payload: 'testId',
-      };
-
-      expect(rootReducer(initialState, action)).toEqual({
-        ...initialState,
-        currentVideo: 'testId',
-      });
-    });
-
-    it('Root reducer: check default arguments', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      const state = jest.fn((arg1, arg2) => rootReducer(arg1, arg2));
-      state(undefined, actionDefault);
-      expect(state).toHaveReturnedWith(initialState);
-    });
-
-    it('Root reducer: Default', () => {
-      const action = {
-        type: 'Default',
-        payload: { ...initialState },
-      };
-
-      expect(rootReducer(initialState, action)).toEqual({
-        ...initialState,
-      });
-    });
-
-    it('Root reducer: clearCurrentVideo action', () => {
-      const mockStore = configureMockStore([thunk]);
-      const expectedActions = {
-        type: 'CLEAR_CURRENT_MOVIE',
-        payload: null,
-      };
-      const store = mockStore({
-        currentVideo: 'testId',
-      });
-      const data = store.dispatch(clearCurrentMovie());
-      expect(data).toEqual(expectedActions);
-    });
-  });
-
-  describe('mainMovie Reducer', () => {
-    afterEach(() => {
-      fetchMock.reset();
-      fetchMock.restore();
-    });
-
-    const initial = {};
-    const data = {
-      adult: false,
-      backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
-      belongs_to_collection: null,
-      budget: 183000000,
-      genres: [{ id: 12, name: 'Adventure' },
-        { id: 14, name: 'Fantasy' },
-        { id: 10402, name: 'Music' },
-        { id: 10749, name: 'Romance' },
-        { id: 35, name: 'Comedy' },
-        { id: 10751, name: 'Family' }],
-      homepage: null,
-      id: 420817,
-      imdb_id: 'tt6139732',
-      original_language: 'en',
-      original_title: 'Aladdin',
-      overview: 'A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.',
-      popularity: 559.104,
-      poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
-      release_date: '2019-05-22',
-      revenue: 0,
-      runtime: 128,
-      status: 'Released',
-      tagline: 'Choose Wisely.',
-      title: 'Aladdin',
-      video: false,
-      vote_average: 7.2,
-      vote_count: 461,
-    };
-
-
-    it('CHANGE_MAIN_MOVIE', () => {
-      const action = {
-        type: 'CHANGE_MAIN_MOVIE',
-        payload: { test: 'test' },
-      };
-
-      expect(mainMovieReducer({}, action)).toEqual({
-        test: 'test',
-      });
-    });
-    it('mainMovie: GET_MAIN_MOVIE_DETAILS', () => {
-      const action = {
-        type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data,
-      };
-      expect(mainMovieReducer(initial, action)).toEqual(data);
-    });
-    it('mainMovie: check state arguments', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      const state = jest.fn((arg1, arg2) => mainMovieReducer(arg1, arg2));
-      state(undefined, actionDefault);
-      expect(state).toHaveReturnedWith(initial);
-    });
-
-    it('mainMovie: check state default', () => {
-      const actionDefault = {
-        type: 'ACTION',
-        payload: {},
-      };
-      expect(mainMovieReducer(initial, actionDefault)).toEqual(initial);
-    });
-
-    it('mainMovie: mainMovieAction', () => {
-      const mockStore = configureMockStore([thunk]);
-      const store = mockStore(initial);
-      const action = {
-        type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data,
-      };
-      expect(store.dispatch(setMainMovieDetails(data))).toEqual(action);
-    });
-
-    it('mainMovie: request mainMovieDetails', () => {
-      const mockStore = configureMockStore([thunk]);
-      const id = 458156;
-      const action = {
-        type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data,
-      };
-
-      fetchMock
-        .getOnce(`https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`, {
-          headers: { 'content-type': 'application/json' },
-          body: data,
-          status: 200,
-        }).catch(err => itemsHasErrored(err));
-
-      const store = mockStore({});
-      store.dispatch(requestFilms.getMainMovieDetails(id))
-        .then(dataMovie => expect(dataMovie).toEqual(action));
-    });
-
-    it('mainMovie: Change main movie', () => {
-      const mockStore = configureMockStore([thunk]);
-      const store = mockStore({
-        mainMovie: 'test_1',
-      });
-      const expectedActions = [{
-        type: 'CHANGE_MAIN_MOVIE',
-        payload: { mainMovie: 'test_2' },
-      }];
-
-      store.dispatch(changeMainMovie({ mainMovie: 'test_2' }));
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  describe('isLoading Reducer', () => {
-    const initial = false;
-    const action = bool => ({
-      type: 'ITEMS_IS_LOADING',
-      payload: bool,
-    });
-    it('check Reducer', () => {
-      expect(itemsIsLoading(initial, action(true))).toEqual(true);
-    });
-
-    it('check state arguments', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      const state = jest.fn((arg1, arg2) => itemsIsLoading(arg1, arg2));
-      state(undefined, actionDefault);
-      expect(state).toHaveReturnedWith(initial);
-    });
-
-    it('check state default', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
-    });
-  });
-
-  describe('Fetch Genres Reducer ', () => {
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-    const initial = [];
-    const action = {
-      type: 'FETCH_ID_GENRES',
-      payload: {
-        genres: [{ id: 35, name: 'Drama' }],
-      },
-    };
-
-    it('fetchGenres: check state arguments', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      const state = jest.fn((arg1, arg2) => fetchGenresReducer(arg1, arg2));
-      state(undefined, actionDefault);
-      expect(state).toHaveReturnedWith(initial);
-    });
-
-    it('FETCH_ID_GENRES', () => {
-      expect(fetchGenresReducer(initial, action)).toEqual(
-        [{ id: 35, name: 'Drama' }],
-      );
-    });
-
-
-    it('fetchGenres: check state default', () => {
-      const actionDefault = {
-        type: 'ACTION_DEFAULT',
-        payload: false,
-      };
-      expect(fetchGenresReducer(initial, actionDefault)).toEqual(initial);
-    });
-
-    it('fetchGenres: Action', () => {
-      const mockStore = configureMockStore([thunk]);
-      fetchMock
-        .getOnce('https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US', {
-          headers: { 'content-type': 'application/json' },
-          body: { genres: { id: 35, name: 'Drama' }, status: 'ok' },
-        });
-      const expectedActions = [
-        {
-          type: 'FETCH_ID_GENRES',
-          payload: { genres: { id: 35, name: 'Drama' } },
-        },
-      ];
-      const store = mockStore({});
-      return store.dispatch(fetchGenres()).then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
-      });
-    });
-  });
-});
-
-// Items ErrorLoading
-// ##############################################
-describe('Error loading', () => {
-  it('error', () => {
-    const err = new Error('Some Error');
-    const expectedActions = {
-      payload: err,
-      type: 'ITEMS_HAS_ERRORED',
-    };
-
-    expect(itemsHasErrored(err)).toEqual(expectedActions);
-  });
-});
-
-
 // Tests for requests;
 // ##############################################
 describe('Requests tests', () => {
@@ -393,108 +77,74 @@ describe('Requests tests', () => {
     fetchMock.restore();
   });
 
-  it('Fetch popular movies', async () => {
+  it('all requests, except getmainMovie and fetchTrailer - fetch data successed', () => {
     const mockStore = configureMockStore([thunk]);
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/popular?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      });
-    const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
+    const response = {
+      headers: { 'content-type': 'application/json' },
+      body: { page: 1, results: [1, 2, 3], status: 'ok' },
     };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchPopular()).then((data) => {
-      expect(data).toEqual(expectedActions);
-    });
-  });
-
-
-  it('Fetch coming soon movies', () => {
-    const mockStore = configureMockStore([thunk]);
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/upcoming?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      });
-    const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchComingSoon()).then((data) => {
-      expect(data).toEqual(expectedActions);
-    });
-  });
-
-  it('Fetch Movies On Genre', () => {
-    const mockStore = configureMockStore([thunk]);
     const idGenre = 35;
+    const query = 'Avengers';
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      });
+      .getOnce(`https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${idGenre}`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, response);
+
     const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
-    };
+        type: 'ITEMS_FETCH_DATA_SUCCESS',
+        payload: { page: 1, results: [1, 2, 3] },
+      };
+
     const store = mockStore({});
-    return store.dispatch(requestFilms.fetchMoviesOnGenre(idGenre)).then((data) => {
-      expect(data).toEqual(expectedActions);
+    const popular = requestFilms.fetchPopular();
+    const topRated = requestFilms.getTopRated();
+    const comingSoon = requestFilms.fetchComingSoon();
+    const fetchMoviesOnGenre = requestFilms.fetchMoviesOnGenre(idGenre);
+    const fetchSearchResults = requestFilms.fetchSearchResults(query);
+
+    Promise.all([popular, topRated, comingSoon, fetchMoviesOnGenre, fetchSearchResults]).then((data) => {
+      data.forEach(curr => store.dispatch(curr).then((value => expect(value).toEqual(expectedActions)))
+      );
     });
   });
 
-  it('Fetch Top Rated', () => {
-    const mockStore = configureMockStore([thunk]);
-    const id = 458156;
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/top_rated?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: true,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.getTopRated(id))
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-
-  it('Fetch Trailer', () => {
+  it('Fetch Trailer - fetch data successed', () => {
     const mockStore = configureMockStore([thunk]);
     const id = 280960;
+    const response = {
+      headers: { 'content-type': 'application/json' },
+      body: {
+        id: 280960,
+        results: [{
+          id: '5a200baa925141033608f5f0',
+          iso_639_1: 'en',
+          iso_3166_1: 'US',
+          key: '6ZfuNTqbHE8',
+          name: 'Official Trailer',
+          site: 'YouTube',
+          size: 1080,
+          type: 'Test',
+        }, {
+          id: '5a200baa925141033608f5f0',
+          iso_639_1: 'en',
+          iso_3166_1: 'US',
+          key: '6ZfuNTqbHE8',
+          name: 'Official Trailer',
+          site: 'YouTube',
+          size: 1080,
+          type: 'Trailer',
+        }],
+        status: 'ok',
+      },
+    };
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}&language=en-US`, {
-        headers: { 'content-type': 'application/json' },
-        body: {
-          id: 280960,
-          results: [{
-            id: '5a200baa925141033608f5f0',
-            iso_639_1: 'en',
-            iso_3166_1: 'US',
-            key: '6ZfuNTqbHE8',
-            name: 'Official Trailer',
-            site: 'YouTube',
-            size: 1080,
-            type: 'Test',
-          }, {
-            id: '5a200baa925141033608f5f0',
-            iso_639_1: 'en',
-            iso_3166_1: 'US',
-            key: '6ZfuNTqbHE8',
-            name: 'Official Trailer',
-            site: 'YouTube',
-            size: 1080,
-            type: 'Trailer',
-          }],
-          status: 'ok',
-        },
-      });
+      .getOnce(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}&language=en-US`, response );
     const expectedActions = {
       type: 'FETCH_VIDEO_SUCCESS',
       payload: '6ZfuNTqbHE8',
@@ -505,159 +155,57 @@ describe('Requests tests', () => {
     });
   });
 
-  it('Fetch search', () => {
-    const mockStore = configureMockStore([thunk]);
+  it('fail requests - fetch data unsuccessed', () => {
+    const response = JSON.stringify({
+      page: 1,
+      results: [1, 2, 3],
+      ok: false,
+    });
+    const idGenre = 35;
     const query = 'Avengers';
-    const answer = {
-      headers: { 'content-type': 'application/json' },
-      body: { page: 1, results: [1, 2, 3], status: 'ok' },
-    };
+    const id = 280960;
+
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, answer).catch(err => err);
+      .getOnce(`https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY}&language=en-US&page=1`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${idGenre}`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}&language=en-US`, response);
+    fetchMock
+      .getOnce(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=en-US`, response);
+    
+    const ERR = new Error('Something wrong');
     const expectedActions = {
-      type: 'ITEMS_FETCH_DATA_SUCCESS',
-      payload: { page: 1, results: [1, 2, 3] },
+    type: 'ITEMS_HAS_ERRORED',
+    payload: ERR,
     };
+
+    const popular = requestFilms.fetchPopular();
+    const topRated = requestFilms.getTopRated();
+    const comingSoon = requestFilms.fetchComingSoon();
+    const fetchMoviesOnGenre = requestFilms.fetchMoviesOnGenre(idGenre);
+    const fetchSearchResults = requestFilms.fetchSearchResults(query);
+    const fetchVideo = requestFilms.fetchVideo(id);
+    const getMainMovieDetails = requestFilms.getMainMovieDetails(id);
+
+    const mockStore = configureMockStore([thunk]);
     const store = mockStore({});
-    return store.dispatch(requestFilms.fetchSearchResults(query)).then((data) => {
-      expect(data).toEqual(expectedActions);
+    Promise.all([popular, topRated, comingSoon, fetchMoviesOnGenre, fetchSearchResults, fetchVideo, getMainMovieDetails]).then((data) => {
+      data.forEach(curr => store.dispatch(curr).then((value => expect(value).toEqual(expectedActions)))
+      );
     });
   });
+
+
 });
 
-describe('Fail Reqquest', () => {
-  it('fail: Fetch Top Rated ', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/top_rated?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.getTopRated())
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: Fetch Movies On Genre ', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    const idGenre = 35;
-    fetchMock
-      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchMoviesOnGenre(idGenre))
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: Fetch coming soon', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/upcoming?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchComingSoon())
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: Fetch popular', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    fetchMock
-      .getOnce('https://api.themoviedb.org/3/movie/popular?api_key=75331f1a740385460b25b56203149aa8&language=en-US&page=1', JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchPopular())
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: trailer', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    const id = 280960;
-    fetchMock
-      .getOnce(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}&language=en-US`, JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchVideo(id))
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: fetchMainMovieDetails', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    const id = 280960;
-    fetchMock
-      .getOnce(`https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`, JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.getMainMovieDetails(id))
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-
-  it('fail: fetchSearchResults', () => {
-    const mockStore = configureMockStore([thunk]);
-    const ERR = new Error('Something wrong');
-    const query = 'Avengers';
-    fetchMock
-      .getOnce(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`, JSON.stringify({
-        page: 1,
-        results: [1, 2, 3],
-        ok: false,
-      }));
-    const expectedActions = {
-      type: 'ITEMS_HAS_ERRORED',
-      payload: ERR,
-    };
-    const store = mockStore({});
-    return store.dispatch(requestFilms.fetchSearchResults(query))
-      .then(data => expect(data).toEqual(expectedActions));
-  });
-});
-
-describe('test MapDispatchToProps', () => {
+describe('MapDispatchToProps', () => {
   const state = {
     fetchPopular: 1,
     getTopRated: 1,
@@ -668,40 +216,13 @@ describe('test MapDispatchToProps', () => {
     changeMainMovie: id => id,
   };
   const id = 35;
-  const query = 'test';
 
-  it('MapDispatchToProps: fetch popular', async () => {
-    const dispatch = jest.fn(() => state.fetchPopular);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchPopular();
-    expect(result).toEqual(1);
-  });
-
-  it('MapDispatchToProps: fetch fetchComingSoon', async () => {
-    const dispatch = jest.fn(() => state.fetchComingSoon);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchComingSoon();
-    expect(result).toEqual(1);
-  });
-
-  it('MapDispatchToProps: fetch getTopRated', async () => {
-    const dispatch = jest.fn(() => state.getTopRated);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).getTopRated();
-    expect(result).toEqual(1);
-  });
-
-  it('MapDispatchToProps: fetchMoviesOnGenre', async () => {
-    const dispatch = jest.fn(() => state.fetchMoviesOnGenre);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchMoviesOnGenre(id);
-    expect(result(id)).toEqual(id);
-  });
-
-  it('MapDispatchToProps: fetchVideo', async () => {
-    const dispatch = jest.fn(() => state.fetchVideo);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
-    expect(result(id)).toEqual(id);
-  });
-  it('MapDispatchToProps: changeMainMovie', async () => {
-    const dispatch = jest.fn(() => state.changeMainMovie);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).changeMainMovie(id);
-    expect(result(id)).toEqual(id);
+  it('test all descriptors',  ()=> {
+    const keys = Object.keys(state);
+    keys.forEach(async (curr) => {
+      const dispatch = jest.fn(() => state[curr]);
+      const result = await mapStateToDispatch.mapStateToDispatch(dispatch)[curr]();
+      expect(result).toEqual(state[curr]);
+    });
   });
 });

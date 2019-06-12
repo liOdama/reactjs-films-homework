@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import TestRenderer from 'react-test-renderer';
 import ReactTestUtils from 'react-dom/test-utils';
@@ -7,9 +8,11 @@ import configureStore from 'redux-mock-store';
 import FilmButtons from '../index';
 import style from '../FilmButtons.scss';
 import * as mapStateToDispatch from '../FilmButtons';
+import MainFilmInfo from '../../MainFilmInfo';
 
 
-test('Signature renders correctly', () => {
+
+test('FulmButtons renders correctly', () => {
   const renderer = new ShallowRenderer();
   const initialState = {
     movies: {
@@ -27,7 +30,7 @@ test('Signature renders correctly', () => {
   expect(result).toMatchSnapshot();
 });
 
-test('Signature renders correctly', () => {
+test('FulmButtons renders correctly', () => {
   const renderer = TestRenderer;
   const initialState = {
     movies: {
@@ -46,15 +49,40 @@ test('Signature renders correctly', () => {
   expect(ReactTestUtils.Simulate.click(node)).toMatchSnapshot();
 });
 
+test('FulmButtons, event - change mainoverwie Height', () => {
+  const initialState = {
+    movies: {
+      page: 0,
+      results: [],
+      mainMovie: {},
+      currentVideo: null,
+    },
+  };
+  const mockStore = configureStore();
+  const store = mockStore(initialState);
+  ReactDOM.render(
+    <Provider store={store}>
+      <MainFilmInfo>
+        <FilmButtons className={style.name} />
+      </MainFilmInfo>
+    </Provider>
+      , document.body  
+  );
+  const node = document.querySelector('#info');
+  ReactTestUtils.Simulate.click(node);
+  const option1 = document.querySelector('#mainFilmOverwie').style;
+  const option2 = document.querySelector('#mainFilmOverwie > p').style;
+  let result;
+  if (
+    option1._values['max-height'] === '100%' &&
+    option2._values.display === 'block'
+  ) { result = true; }
+  expect(result).toBeTruthy();
+});
+
 describe('test MapDispatchToProps', () => {
   const state = {
-    fetchPopular: 1,
-    getTopRated: 1,
-    fetchComingSoon: 1,
-    fetchMoviesOnGenre: id => id,
     fetchVideo: id => id,
-    getMainMovieDetails: id => id,
-    changeMainMovie: id => id,
   };
   const id = 35;
 

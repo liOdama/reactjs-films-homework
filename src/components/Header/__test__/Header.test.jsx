@@ -3,7 +3,6 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import ReactTestUtils from 'react-dom/test-utils';
 import Header from '../index';
 import { search } from '../Header';
-import requestsFilms from '../../../utils/requests';
 
 describe('HeaderComponent', () => {
   test('Header renders correctly', () => {

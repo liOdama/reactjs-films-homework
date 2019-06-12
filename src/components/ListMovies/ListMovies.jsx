@@ -12,7 +12,7 @@ import style from './ListMovies.scss';
 const changeMainFilm = (props, e) => {
   e.preventDefault();
   // Change mainFilmOverwie height
-  document.querySelector('#mainFilmOverwie').style.maxHeight = '10rem';
+  // document.querySelector('#mainFilmOverwie').style.maxHeight = '10rem';
 
   const name = e.currentTarget.textContent;
   const { changeMainMovie, results } = props;

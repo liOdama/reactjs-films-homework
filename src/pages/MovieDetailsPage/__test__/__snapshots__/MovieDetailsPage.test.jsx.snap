@@ -290,6 +290,7 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
             >
               <button
                 className="hoverClose"
+                id="closeHover"
                 onClick={[Function]}
                 type="button"
               >
@@ -386,9 +387,6 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
       </div>
     </div>
   </section>
-  <div
-    id="modalRoot"
-  />
   <footer>
     <div
       className="container"
