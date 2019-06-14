@@ -2,12 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
-import TestRenderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
-import ReactTestRender from 'react-test-renderer';
 import ModalPlayer from '../index';
-import MovieDetailsPage from '../../../pages/MovieDetailsPage';
-import style from '../ModalPlayer.scss';
 import * as Modal from '../ModalPlayer';
 
 describe('Modal Renders correctly', () => {
@@ -52,7 +48,7 @@ describe('Modal Renders correctly', () => {
     };
     const wrongTest = {
       type: 'leave',
-    }
+    };
     jest.spyOn(ModalPlayer, 'unmount');
     ModalPlayer.WrappedComponent.unmount(props, click);
     ModalPlayer.WrappedComponent.unmount(props, keyDown);
@@ -93,24 +89,24 @@ describe('Modal Renders correctly', () => {
         target: {
           id: 'test',
         }
-      }
+      };
       const result = Modal.showModal(props, e);
       expect(result).toBeNull();
     });
   });
 
   describe('MapDispatchToProps', () => {
-    const state = {
+    const state1 = {
       fetchVideo: id => id,
       clearCurrentMovie: () => true,
     };
 
     it('test all descriptors',  ()=> {
-      const keys = Object.keys(state);
+      const keys = Object.keys(state1);
       keys.forEach(async (curr) => {
-        const dispatch = jest.fn(() => state[curr]);
+        const dispatch = jest.fn(() => state1[curr]);
         const result = await Modal.mapStateToDispatch(dispatch)[curr]();
-        expect(result).toEqual(state[curr]);
+        expect(result).toEqual(state1[curr]);
       });
     });
   });

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../../components/Header';
 import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
-import MovieListContainer from '../MovieListContainer/index';
 import ModalPlayer from '../../components/ModalPlayer/ModalPlayer';
-import Footer from '../../components/Footer/index';
 
 import style from './MovieDetailsPage.scss';
 import requestsFilms from '../../utils/requests';
@@ -51,7 +48,7 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const { movies, genres, fetchMoviesOnGenre, mainMovie, fetchSearchResults } = this.props;
+    const { movies, genres, fetchMoviesOnGenre, mainMovie } = this.props;
 
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
@@ -74,7 +71,7 @@ class MovieDetailsPage extends Component {
           </div>
         </section>
         {movies.currentVideo !== null ? (
-          <div id="modalRoot" onKeyDown={alert}>
+          <div id="modalRoot">
             <ModalPlayer id={movies.currentVideo} />
           </div>
         ) : null}
