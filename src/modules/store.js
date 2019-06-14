@@ -8,6 +8,8 @@ import rootReducer from './root/rootReducer';
 import fetchGenres from './fetchGenres/fetchGenresReducer';
 import itemsIsLoading from './isLoading/isLoadingReducer';
 import mainMovieReducer from './mainMovie/mainMovieReducer';
+import errorReducer from './Error/errorReducer';
+
 
 
 export const reducer = combineReducers({
@@ -15,6 +17,7 @@ export const reducer = combineReducers({
   genres: fetchGenres,
   itemsIsLoading,
   mainMovie: mainMovieReducer,
+  error: errorReducer
 });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk, logger)));

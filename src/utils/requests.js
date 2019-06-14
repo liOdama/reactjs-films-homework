@@ -1,6 +1,7 @@
-import { itemsHasErrored, itemsIsLoading } from '../modules/isLoading/isLoadingAction';
+import itemsIsLoading from '../modules/isLoading/isLoadingAction';
 import { itemsFetchDataSuccess, fetchVideoSuccess } from '../modules/root/rootAction';
 import setMainMovieDetails from '../modules/mainMovie/mainMovieAction';
+import itemsHasErrored from '../modules/Error/errorAction';
 
 const KEY = '75331f1a740385460b25b56203149aa8';
 

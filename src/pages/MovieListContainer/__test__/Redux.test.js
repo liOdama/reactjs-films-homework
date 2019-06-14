@@ -1,13 +1,10 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import ReactTestRender from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 
 // import ACTIONS
 import fetchGenres from '../../../modules/fetchGenres/fetchGenresAction';
-import { itemsHasErrored } from '../../../modules/isLoading/isLoadingAction';
+import itemsHasErrored from '../../../modules/Error/errorAction';
 import clearCurrentMovie from '../../../modules/root/clearCurrentMovieAction';
 import changeMainMovie from '../../../modules/mainMovie/changeMainMovieAction';
 import setMainMovieDetails from '../../../modules/mainMovie/mainMovieAction';
@@ -17,9 +14,11 @@ import rootReducer, { initialState } from '../../../modules/root/rootReducer';
 import fetchGenresReducer from '../../../modules/fetchGenres/fetchGenresReducer';
 import itemsIsLoading from '../../../modules/isLoading/isLoadingReducer';
 import mainMovieReducer from '../../../modules/mainMovie/mainMovieReducer';
+import errorReducer from '../../../modules/Error/errorReducer';
 
 // import Request
 import requestFilms from '../../../utils/requests';
+
 
 describe('Test for reducers', () => {
   describe('Reducer tests, Root Reducer', () => {
@@ -299,18 +298,34 @@ describe('Test for reducers', () => {
       });
     });
   });
-});
 
-// Items ErrorLoading
-// ##############################################
-describe('Error loading', () => {
-  it('error', () => {
+  describe('Error Reducer', () => {
+    const initial = false;
     const err = new Error('Some Error');
     const expectedActions = {
       payload: err,
       type: 'ITEMS_HAS_ERRORED',
     };
+    it('check Reducer', () => {
+      expect(errorReducer(initial, expectedActions)).toEqual(err);
+    });
 
-    expect(itemsHasErrored(err)).toEqual(expectedActions);
+    it('check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false,
+      };
+      const state = jest.fn((arg1, arg2) => errorReducer(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(initial);
+    });
+
+    it('check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false,
+      };
+      expect(errorReducer(initial, actionDefault)).toEqual(initial);
+    });
   });
 });
