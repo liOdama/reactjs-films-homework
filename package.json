@@ -82,6 +82,8 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-css-modules": "^2.0.0",
     "node-sass": "^4.11.0",
+    "prettier": "^1.18.2",
+    "prettier-eslint": "^8.8.2",
     "rc-util": "^4.6.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

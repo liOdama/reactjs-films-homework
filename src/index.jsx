@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import store from './modules/store';
-import MovieDetailsPage from './pages/MovieDetailsPage/index';
+import AppContainer from './pages/AppContainer';
 
 import './common.scss';
 
-
 ReactDOM.render(
   <Provider store={store}>
-    <MovieDetailsPage />
+    <AppContainer />
   </Provider>,
-  document.querySelector('#root'),
+  document.querySelector('#root')
 );

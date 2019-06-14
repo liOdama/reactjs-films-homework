@@ -6,7 +6,6 @@ import { keydonwGenres } from '../../../utils/selectGenre';
 import requestsFilms from '../../../utils/requests';
 import { changeMainFilm } from '../MovieItem';
 
-
 const genres = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
@@ -26,10 +25,10 @@ const genres = [
   { id: 10770, name: 'TV Movie' },
   { id: 53, name: 'Thriller' },
   { id: 10752, name: 'War' },
-  { id: 37, name: 'Western' },
+  { id: 37, name: 'Western' }
 ];
 
-test('MovieItem renders correctly with fill Array results', () => {
+test('MovieItem renders correctly without poster image', () => {
   const curr = {
     adult: false,
     backdrop_path: null,
@@ -37,35 +36,45 @@ test('MovieItem renders correctly with fill Array results', () => {
     id: 299534,
     original_language: 'en',
     original_title: 'Avengers: Endgame',
-    overview: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+    overview:
+      "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
     popularity: 323.106,
     poster_path: null,
     release_date: '2019-04-24',
     title: 'Avengers: Endgame',
     video: false,
     vote_average: 8.6,
-    vote_count: 4484,
+    vote_count: 4484
   };
   const movies = {};
 
-
   const renderer = new ShallowRenderer();
-  renderer.render(
-    <MovieItem
-      curr={curr}
-      genres={genres}
-      movies={movies}
-    />
-    );
+  renderer.render(<MovieItem curr={curr} genres={genres} movies={movies} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
-// test('MovieItem renders correctly with empty Array results', () => {
-//   const curr = [];
-//   const renderer = new ShallowRenderer();
-//   const result = renderer.render(<MovieItem results={results} genres={genres} />);
-//   expect(result).toMatchSnapshot();
-// });
+test('MovieItem renders correctly with poster image', () => {
+  const curr = {
+    adult: false,
+    genre_ids: [12, 878, 28],
+    id: 299534,
+    original_language: 'en',
+    original_title: 'Avengers: Endgame',
+    overview:
+      "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+    popularity: 323.106,
+    poster_path: 'testImagePath',
+    release_date: '2019-04-24',
+    title: 'Avengers: Endgame',
+    video: false,
+    vote_average: 8.6,
+    vote_count: 4484
+  };
+  const movies = {};
+  const renderer = new ShallowRenderer();
+  const result = renderer.render(<MovieItem curr={curr} genres={genres} movies={movies} />);
+  expect(result).toMatchSnapshot();
+});
 
 describe('MovieItem: selectGenre', () => {
   afterEach(() => {
@@ -76,20 +85,24 @@ describe('MovieItem: selectGenre', () => {
   it('MovieItem: kewDown on genre, expect props', async () => {
     const idGenre = 35;
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      }).catch(err => err);
+      .getOnce(
+        `https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`,
+        {
+          headers: { 'content-type': 'application/json' },
+          body: { page: 1, results: [1, 2, 3], status: 'ok' }
+        }
+      )
+      .catch(err => err);
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
-      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre
     };
     const e = {
       key: 'a',
       target: {
         id: 'test',
-        textContent: 'Drama',
-      },
+        textContent: 'Drama'
+      }
     };
     const result = keydonwGenres(props, e);
     expect(result).toEqual(props);
@@ -98,20 +111,24 @@ describe('MovieItem: selectGenre', () => {
   it('MovieItem: kewDown Enter, expect data', async () => {
     const idGenre = 35;
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      }).catch(err => err);
+      .getOnce(
+        `https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`,
+        {
+          headers: { 'content-type': 'application/json' },
+          body: { page: 1, results: [1, 2, 3], status: 'ok' }
+        }
+      )
+      .catch(err => err);
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
-      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre
     };
     const e = {
       key: 'Enter',
       target: {
         id: 'test',
-        textContent: 'Drama',
-      },
+        textContent: 'Drama'
+      }
     };
     const result = keydonwGenres(props, e);
     expect(result).toEqual(props);
@@ -120,20 +137,24 @@ describe('MovieItem: selectGenre', () => {
   it('MovieItem: kewDown on genre', async () => {
     const idGenre = 35;
     fetchMock
-      .getOnce(`https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`, {
-        headers: { 'content-type': 'application/json' },
-        body: { page: 1, results: [1, 2, 3], status: 'ok' },
-      }).catch(err => err);
+      .getOnce(
+        `https://api.themoviedb.org/3/discover/movie?api_key=75331f1a740385460b25b56203149aa8&with_genres=${idGenre}`,
+        {
+          headers: { 'content-type': 'application/json' },
+          body: { page: 1, results: [1, 2, 3], status: 'ok' }
+        }
+      )
+      .catch(err => err);
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
-      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre
     };
     const e = {
       key: 'a',
       target: {
         id: 'test',
-        textContent: 'Drama',
-      },
+        textContent: 'Drama'
+      }
     };
     const result = keydonwGenres(props, e);
     expect(result).toEqual(props);
@@ -148,21 +169,21 @@ test('changeMainFilm', () => {
         {
           genre_ids: [12, 14],
           id: 420817,
-          title: 'Aladdin',
+          title: 'Aladdin'
         },
         {
           genre_ids: [12, 14],
           id: 420817,
-          title: 'Test movie',
-        },
-      ],
+          title: 'Test movie'
+        }
+      ]
     },
-    genres: [{id: 12, name: 'Drama'},{id: 12, name: 'Action'}],
+    genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
     changeMainMovie
   };
   jest.spyOn(props, 'changeMainMovie');
   const e = {
-    currentTarget: {textContent: 'Test movie'},
+    currentTarget: { textContent: 'Test movie' },
     preventDefault: jest.fn()
   };
   changeMainFilm(props, e);

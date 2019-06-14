@@ -12,9 +12,7 @@ import style from './MovieDetailsPage.scss';
 import requestsFilms from '../../utils/requests';
 import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 
-
 class MovieDetailsPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -22,9 +20,11 @@ class MovieDetailsPage extends Component {
 
   shouldComponentUpdate(nextProps) {
     const { movies, mainMovie } = this.props;
-    
-    if (JSON.stringify(nextProps.movies) === JSON.stringify(movies)
-     && JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)) {
+
+    if (
+      JSON.stringify(nextProps.movies) === JSON.stringify(movies) &&
+      JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)
+    ) {
       return false;
     }
     return true;
@@ -51,24 +51,17 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const {
-      movies, genres, fetchMoviesOnGenre, mainMovie, fetchSearchResults,
-    } = this.props;
+    const { movies, genres, fetchMoviesOnGenre, mainMovie, fetchSearchResults } = this.props;
 
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundPosition: 'center'
     };
     const component = (
       <main>
-        <section
-          className={style.movieDetailsPageContainer}
-          style={styleBG}
-          id={mainMovie.id}
-        >
-          <Header fetchSearchResults={fetchSearchResults} />
+        <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
           <div className={style.mainfilmInfo}>
             <div className={style.container}>
               <MainfilmTitle
@@ -80,25 +73,22 @@ class MovieDetailsPage extends Component {
             </div>
           </div>
         </section>
-        <MovieListContainer />
-
-        
-        {(movies.currentVideo !== null) ? (
-            <div id="modalRoot" onKeyDown={alert}>
-              <ModalPlayer id={movies.currentVideo} />
-            </div>
-          ) : null
-        }
-
-        
-        <Footer />
+        {movies.currentVideo !== null ? (
+          <div id="modalRoot" onKeyDown={alert}>
+            <ModalPlayer id={movies.currentVideo} />
+          </div>
+        ) : null}
       </main>
     );
 
     const preloader = (
-      <main><div className={style.preloader}><p>App is loading</p></div></main>
+      <main>
+        <div className={style.preloader}>
+          <p>App is loading</p>
+        </div>
+      </main>
     );
-      // return component;
+    // return component;
     if (mainMovie.backdrop_path !== undefined) {
       return component;
     }
@@ -106,11 +96,9 @@ class MovieDetailsPage extends Component {
   }
 }
 
-
 MovieDetailsPage.defaultProps = {
-  genres: [],
+  genres: []
 };
-
 
 MovieDetailsPage.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
@@ -118,7 +106,7 @@ MovieDetailsPage.propTypes = {
   fetchMoviesOnGenre: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
   fetchSearchResults: PropTypes.func.isRequired,
-  mainMovie: PropTypes.objectOf(PropTypes.any).isRequired,
+  mainMovie: PropTypes.objectOf(PropTypes.any).isRequired
 };
 const mapStateToProps = state => state;
 
@@ -128,6 +116,9 @@ export const mapStateToDispatch = dispatch => ({
   fetchGenres: () => dispatch(fromFetchGenres.default()),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
+  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query))
 });
-export default connect(mapStateToProps, mapStateToDispatch)(MovieDetailsPage);
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(MovieDetailsPage);
