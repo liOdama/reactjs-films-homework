@@ -9,20 +9,13 @@ import style from './MovieItem.scss';
 
 const changeMainFilm = (props, e) => {
   e.preventDefault();
-  // Change mainFilmOverwie height
-  // document.querySelector('#mainFilmOverwie').style.maxHeight = '10rem';
-
-  const name = e.currentTarget.textContent;
-  const { changeMainMovie, movies } = props;
-  let newMainFilm;
-  movies.results.some(curr => {
-    if (curr.title === name) {
-      newMainFilm = curr;
-      return true;
-    }
-    return false;
-  });
-  return changeMainMovie(newMainFilm);
+  const { getMainMovieDetails } = props;
+  let element = e.currentTarget;
+  while (element.localName !== 'article') {
+    element = element.parentElement;
+  }
+  const { id } = element;
+  return getMainMovieDetails(id);
 };
 
 class MovieItem extends React.Component {

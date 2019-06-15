@@ -6,10 +6,6 @@ const mainMovieReducer = (state = initialState, action) => {
       return {
         ...action.payload
       };
-    case 'CHANGE_MAIN_MOVIE':
-      return {
-        ...action.payload
-      };
     case 'CLEAR_RESULTS':
       return initialState;
     default:

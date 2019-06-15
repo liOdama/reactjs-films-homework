@@ -5,7 +5,6 @@ import shortid from 'shortid';
 
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
-import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
 import * as FromSetTypeView from '../../modules/TypeView/TypeViewAction';
 
 import requestsFilms from '../../utils/requests';
@@ -31,7 +30,7 @@ class MovieListContainer extends Component {
       getTopRated,
       fetchComingSoon,
       fetchMoviesOnGenre,
-      changeMainMovie,
+      getMainMovieDetails,
       fetchVideo,
       typeView,
       setTypeView
@@ -44,9 +43,9 @@ class MovieListContainer extends Component {
             curr={curr}
             genres={genres}
             movies={movies}
-            changeMainMovie={changeMainMovie}
             fetchVideo={fetchVideo}
             fetchMoviesOnGenre={fetchMoviesOnGenre}
+            getMainMovieDetails={getMainMovieDetails}
             typeView={typeView}
             key={shortid()}
           />
@@ -87,8 +86,9 @@ MovieListContainer.propTypes = {
   fetchVideo: PropTypes.func.isRequired,
   fetchComingSoon: PropTypes.func.isRequired,
   fetchMoviesOnGenre: PropTypes.func.isRequired,
-  changeMainMovie: PropTypes.func.isRequired,
-  typeView: PropTypes.string
+  getMainMovieDetails: PropTypes.func.isRequired,
+  typeView: PropTypes.string,
+  setTypeView: PropTypes.func.isRequired
 };
 
 const makeMap = () => {
@@ -114,9 +114,9 @@ export const mapStateToDispatch = dispatch => ({
   getTopRated: () => dispatch(requestsFilms.getTopRated()),
   fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon()),
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
-  changeMainMovie: movie => dispatch(fromChangeMainMovie.default(movie)),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  setTypeView: type => dispatch(FromSetTypeView.default(type))
+  setTypeView: type => dispatch(FromSetTypeView.default(type)),
+  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id))
 });
 
 export default connect(

@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import MovieListContainer from '../index';
-import { createGenreList } from '../MovieListContainer';
+
 // import REDUCER
 import rootReducer from '../../../modules/root/rootReducer';
 

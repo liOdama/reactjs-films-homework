@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactTestUtils, { act } from 'react-dom/test-utils';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import fetchMock from 'fetch-mock';
 import MovieItem from '../index';
@@ -175,31 +177,32 @@ describe('MovieItem: selectGenre', () => {
     expect(result).toEqual(props);
   });
 });
-test('changeMainFilm', () => {
-  const changeMainMovie = jest.fn();
-  const props = {
-    movies: {
-      results: [
-        {
-          genre_ids: [12, 14],
-          id: 420817,
-          title: 'Aladdin'
-        },
-        {
-          genre_ids: [12, 14],
-          id: 420817,
-          title: 'Test movie'
-        }
-      ]
-    },
-    genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
-    changeMainMovie
-  };
-  jest.spyOn(props, 'changeMainMovie');
-  const e = {
-    currentTarget: { textContent: 'Test movie' },
-    preventDefault: jest.fn()
-  };
-  changeMainFilm(props, e);
-  expect(changeMainMovie).toHaveBeenCalled();
+describe('getMainMovieDetails', () => {
+  let container;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    container.id = 'modalRoot';
+    document.body.appendChild(container);
+  });
+  it('getMainMovieDetails - test', () => {
+    const getMainMovieDetails = jest.fn();
+    const props = {
+      genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
+      getMainMovieDetails
+    };
+    const template = (
+      <article className="moviesWrapper" id="1234">
+        <button id="test" type="button" onClick={changeMainFilm.bind(null, props)} />
+      </article>
+    );
+    act(() => {
+      ReactDOM.render(template, container);
+    });
+
+    jest.spyOn(props, 'getMainMovieDetails');
+    const node1 = container.querySelector('#test');
+    ReactTestUtils.Simulate.click(node1);
+    expect(getMainMovieDetails).toHaveBeenCalled();
+  });
 });
