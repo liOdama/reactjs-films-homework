@@ -1,15 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieItem renders correctly with poster image 1`] = `
+exports[`MovieItem renders correctly with lines classes 1`] = `
 <article
-  className="movieContainer"
-  id={299534}
+  className="movieContainer lines"
 >
   <figure>
     <div>
       <img
         alt="Avengers: Endgame"
-        src="https://image.tmdb.org/t/p/w300/testImagePath"
+        src="https://image.tmdb.org/t/p/w1280undefined"
       />
     </div>
     <figcaption>
@@ -26,9 +25,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
         >
           Avengers: Endgame
         </button>
-        <span>
-          8.6
-        </span>
+        <span />
       </div>
       <div
         className="movieGenres"
@@ -100,7 +97,110 @@ exports[`MovieItem renders correctly with poster image 1`] = `
     }
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
-    rate={8.6}
+    rate={0}
+    title="Avengers: Endgame"
+  />
+</article>
+`;
+
+exports[`MovieItem renders correctly with poster image 1`] = `
+<article
+  className="movieContainer cards"
+>
+  <figure>
+    <div>
+      <img
+        alt="Avengers: Endgame"
+        src="https://image.tmdb.org/t/p/w300testImagePath"
+      />
+    </div>
+    <figcaption>
+      <div
+        className="movieTitle"
+      >
+        <button
+          href="#"
+          id="movieTitle"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex="0"
+          type="button"
+        >
+          Avengers: Endgame
+        </button>
+        <span />
+      </div>
+      <div
+        className="movieGenres"
+      >
+        <ul>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              Adventure,
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              Science Fiction,
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              Action
+            </button>
+          </li>
+        </ul>
+      </div>
+    </figcaption>
+  </figure>
+  <hoverMovieCard
+    fetchVideo={[Function]}
+    genres={
+      Array [
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+          >
+            Adventure,
+          </button>
+        </li>,
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+          >
+            Science Fiction,
+          </button>
+        </li>,
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+          >
+            Action
+          </button>
+        </li>,
+      ]
+    }
+    movies={Object {}}
+    overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
+    rate={0}
     title="Avengers: Endgame"
   />
 </article>
@@ -108,7 +208,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
 
 exports[`MovieItem renders correctly without poster image 1`] = `
 <article
-  className="movieContainer"
+  className="movieContainer undefined"
   id={299534}
 >
   <figure>

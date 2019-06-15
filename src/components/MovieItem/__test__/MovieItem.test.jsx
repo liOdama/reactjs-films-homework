@@ -55,24 +55,39 @@ test('MovieItem renders correctly without poster image', () => {
 
 test('MovieItem renders correctly with poster image', () => {
   const curr = {
-    adult: false,
     genre_ids: [12, 878, 28],
-    id: 299534,
-    original_language: 'en',
     original_title: 'Avengers: Endgame',
     overview:
       "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-    popularity: 323.106,
+
     poster_path: 'testImagePath',
-    release_date: '2019-04-24',
-    title: 'Avengers: Endgame',
-    video: false,
-    vote_average: 8.6,
-    vote_count: 4484
+
+    title: 'Avengers: Endgame'
   };
   const movies = {};
   const renderer = new ShallowRenderer();
-  const result = renderer.render(<MovieItem curr={curr} genres={genres} movies={movies} />);
+  const result = renderer.render(
+    <MovieItem curr={curr} genres={genres} movies={movies} typeView="cards" />
+  );
+  expect(result).toMatchSnapshot();
+});
+
+test('MovieItem renders correctly with lines classes', () => {
+  const curr = {
+    genre_ids: [12, 878, 28],
+    original_title: 'Avengers: Endgame',
+    overview:
+      "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+
+    poster_path: 'testImagePath',
+
+    title: 'Avengers: Endgame'
+  };
+  const movies = {};
+  const renderer = new ShallowRenderer();
+  const result = renderer.render(
+    <MovieItem curr={curr} genres={genres} movies={movies} typeView="lines" />
+  );
   expect(result).toMatchSnapshot();
 });
 

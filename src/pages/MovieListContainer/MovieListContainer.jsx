@@ -6,14 +6,23 @@ import shortid from 'shortid';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
+import * as FromSetTypeView from '../../modules/TypeView/TypeViewAction';
 
 import requestsFilms from '../../utils/requests';
 
 import style from './MovieListContainer.scss';
 import MovieItem from '../../components/MovieItem';
 import MovieSelectors from '../../components/MovieSelectors';
+import checkTypeView from '../../modules/TypeView/TypeViewSelectors';
 
 class MovieListContainer extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (JSON.stringify(this.props) !== JSON.stringify(nextProps)) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const {
       movies,
@@ -23,7 +32,9 @@ class MovieListContainer extends Component {
       fetchComingSoon,
       fetchMoviesOnGenre,
       changeMainMovie,
-      fetchVideo
+      fetchVideo,
+      typeView,
+      setTypeView
     } = this.props;
     let list;
     if (movies.results.length > 0) {
@@ -36,6 +47,7 @@ class MovieListContainer extends Component {
             changeMainMovie={changeMainMovie}
             fetchVideo={fetchVideo}
             fetchMoviesOnGenre={fetchMoviesOnGenre}
+            typeView={typeView}
             key={shortid()}
           />
         );
@@ -51,6 +63,7 @@ class MovieListContainer extends Component {
             fetchComingSoon={fetchComingSoon}
             genres={genres}
             fetchMoviesOnGenre={fetchMoviesOnGenre}
+            setTypeView={setTypeView}
           />
           <div className={style.moviesWrapper}>{list}</div>
         </div>
@@ -62,7 +75,8 @@ class MovieListContainer extends Component {
 
 MovieListContainer.defaultProps = {
   movies: {},
-  genres: []
+  genres: [],
+  typeView: 'cards'
 };
 
 MovieListContainer.propTypes = {
@@ -73,20 +87,23 @@ MovieListContainer.propTypes = {
   fetchVideo: PropTypes.func.isRequired,
   fetchComingSoon: PropTypes.func.isRequired,
   fetchMoviesOnGenre: PropTypes.func.isRequired,
-  changeMainMovie: PropTypes.func.isRequired
+  changeMainMovie: PropTypes.func.isRequired,
+  typeView: PropTypes.string
 };
 
 const makeMap = () => {
   const page = checkPage;
   const results = checkResults;
   const genres = checkGenres;
+  const typeView = checkTypeView;
   const mapStateToProps = state => ({
     movies: {
       page: page(state),
       results: results(state),
       currentVideo: state.movies.currentVideo
     },
-    genres: genres(state)
+    genres: genres(state),
+    typeView: typeView(state)
   });
 
   return mapStateToProps;
@@ -98,7 +115,8 @@ export const mapStateToDispatch = dispatch => ({
   fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon()),
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
   changeMainMovie: movie => dispatch(fromChangeMainMovie.default(movie)),
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id))
+  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
+  setTypeView: type => dispatch(FromSetTypeView.default(type))
 });
 
 export default connect(

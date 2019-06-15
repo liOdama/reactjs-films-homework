@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
 import ReactTestRender from 'react-test-renderer';
-import { createGenreList, showTrends } from '../MovieSelectors';
+import { createGenreList, showTrends, shooseTypeView } from '../MovieSelectors';
 import MovieSelectors from '../index';
 
 describe('MovieSelectors', () => {
@@ -37,17 +37,19 @@ describe('MovieSelectors', () => {
     expect(test).toHaveLength(genres.length);
   });
 
-  describe('MovieSelectors: showTrends ', () => {
+  describe('MovieSelectors: events click ', () => {
     const fetchPopular = jest.fn();
     const getTopRated = jest.fn();
     const fetchComingSoon = jest.fn();
     const clearError = jest.fn(() => 1);
+    const test = jest.fn(value => value);
     const props = {
       fetchPopular,
       getTopRated,
       fetchComingSoon,
       error: true,
-      clearError
+      clearError,
+      setTypeView: test
     };
     let container;
 
@@ -57,7 +59,7 @@ describe('MovieSelectors', () => {
       document.body.appendChild(container);
     });
 
-    it('click to Trending', () => {
+    it('showTrends: click to Trending', () => {
       const btn = React.createElement(
         'button',
         {
@@ -76,7 +78,7 @@ describe('MovieSelectors', () => {
       expect(fetchPopular).toHaveBeenCalled();
     });
 
-    it('click to Top Rated', () => {
+    it('showTrends: click to Top Rated', () => {
       const btn = React.createElement(
         'button',
         {
@@ -95,7 +97,7 @@ describe('MovieSelectors', () => {
       expect(getTopRated).toHaveBeenCalled();
     });
 
-    it('click to Coming Soon', () => {
+    it('showTrends: click to Coming Soon', () => {
       const btn = React.createElement(
         'button',
         {
@@ -114,7 +116,7 @@ describe('MovieSelectors', () => {
       expect(fetchComingSoon).toHaveBeenCalled();
     });
 
-    it('clearError', () => {
+    it('showTrends: clearError', () => {
       const btn = React.createElement(
         'button',
         {
@@ -133,7 +135,7 @@ describe('MovieSelectors', () => {
       expect(clearError).toHaveBeenCalled();
     });
 
-    it('click to default', () => {
+    it('showTrends: click to default', () => {
       props.error = false;
       const e = {
         target: { textContent: '' }
@@ -149,6 +151,25 @@ describe('MovieSelectors', () => {
       );
       const result = showTrends(props, e);
       expect(result).toBeNull();
+    });
+
+    it('shooseTypeView: shooseTypeView - call action', () => {
+      const template = (
+        <article className="moviesWrapper">
+          <button id="cards" type="button" onClick={shooseTypeView.bind(null, props.setTypeView)} />
+          <button id="lines" type="button" onClick={shooseTypeView.bind(null, props.setTypeView)} />
+        </article>
+      );
+      act(() => {
+        ReactDOM.render(template, container);
+      });
+
+      jest.spyOn(props, 'setTypeView');
+      const node1 = container.querySelector('#cards');
+      const node2 = container.querySelector('#lines');
+      ReactTestUtils.Simulate.click(node1);
+      ReactTestUtils.Simulate.click(node2);
+      expect(props.setTypeView).toHaveBeenCalledTimes(2);
     });
   });
 });

@@ -10,48 +10,68 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
     <div
       className="moviesSelector"
     >
-      <ul>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Trending
-          </button>
-        </li>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Top Rated
-          </button>
-        </li>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Coming Soon
-          </button>
-        </li>
-        <li>
-          <select
-            id=""
-            name="genre"
-            onChange={[Function]}
-          >
-            <option
-              value=""
+      <nav>
+        <ul>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
             >
-              Genre
-            </option>
-          </select>
-        </li>
-      </ul>
+              Trending
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Top Rated
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Coming Soon
+            </button>
+          </li>
+          <li>
+            <select
+              id=""
+              name="genre"
+              onChange={[Function]}
+            >
+              <option
+                value=""
+              >
+                Genre
+              </option>
+            </select>
+          </li>
+        </ul>
+      </nav>
+      <div
+        className="typeView"
+      >
+        <button
+          id="cards"
+          onClick={[Function]}
+          type="button"
+        >
+          ⚏
+        </button>
+        <button
+          id="lines"
+          onClick={[Function]}
+          type="button"
+        >
+          ⚌
+        </button>
+      </div>
     </div>
     <div
       className="moviesWrapper"
@@ -70,54 +90,74 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
     <div
       className="moviesSelector"
     >
-      <ul>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Trending
-          </button>
-        </li>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Top Rated
-          </button>
-        </li>
-        <li>
-          <button
-            href="#"
-            onClick={[Function]}
-            type="button"
-          >
-            Coming Soon
-          </button>
-        </li>
-        <li>
-          <select
-            id=""
-            name="genre"
-            onChange={[Function]}
-          >
-            <option
-              value=""
+      <nav>
+        <ul>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
             >
-              Genre
-            </option>
-          </select>
-        </li>
-      </ul>
+              Trending
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Top Rated
+            </button>
+          </li>
+          <li>
+            <button
+              href="#"
+              onClick={[Function]}
+              type="button"
+            >
+              Coming Soon
+            </button>
+          </li>
+          <li>
+            <select
+              id=""
+              name="genre"
+              onChange={[Function]}
+            >
+              <option
+                value=""
+              >
+                Genre
+              </option>
+            </select>
+          </li>
+        </ul>
+      </nav>
+      <div
+        className="typeView"
+      >
+        <button
+          id="cards"
+          onClick={[Function]}
+          type="button"
+        >
+          ⚏
+        </button>
+        <button
+          id="lines"
+          onClick={[Function]}
+          type="button"
+        >
+          ⚌
+        </button>
+      </div>
     </div>
     <div
       className="moviesWrapper"
     >
       <article
-        className="movieContainer"
+        className="movieContainer cards"
         id={299534}
       >
         <figure>

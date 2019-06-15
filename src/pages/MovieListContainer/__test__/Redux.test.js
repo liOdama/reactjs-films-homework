@@ -8,6 +8,7 @@ import itemsHasErrored from '../../../modules/Error/errorAction';
 import clearCurrentMovie from '../../../modules/root/clearCurrentMovieAction';
 import changeMainMovie from '../../../modules/mainMovie/changeMainMovieAction';
 import setMainMovieDetails from '../../../modules/mainMovie/mainMovieAction';
+import setTypeView from '../../../modules/TypeView/TypeViewAction';
 
 // import REDUCER
 import rootReducer, { initialState } from '../../../modules/root/rootReducer';
@@ -15,6 +16,7 @@ import fetchGenresReducer from '../../../modules/fetchGenres/fetchGenresReducer'
 import itemsIsLoading from '../../../modules/isLoading/isLoadingReducer';
 import mainMovieReducer from '../../../modules/mainMovie/mainMovieReducer';
 import errorReducer from '../../../modules/Error/errorReducer';
+import typeViewReducer from '../../../modules/TypeView/TypeViewReducer';
 
 // import Request
 import requestFilms from '../../../utils/requests';
@@ -262,6 +264,44 @@ describe('Test for reducers', () => {
         payload: false
       };
       expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
+    });
+  });
+
+  describe('TypeView Reducer', () => {
+    const initial = 'cards';
+    const testValue = 'cards';
+    const action = value => ({
+      type: 'SET_TYPE_VIEW',
+      payload: value
+    });
+    it('check Reducer', () => {
+      expect(typeViewReducer(initial, action(testValue))).toEqual(testValue);
+    });
+
+    it('check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      const state = jest.fn((arg1, arg2) => typeViewReducer(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(testValue);
+    });
+
+    it('check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      expect(typeViewReducer(initial, actionDefault)).toEqual(testValue);
+    });
+
+    it('Action: setTypeView - return action', () => {
+      const expectedActions = {
+        type: 'SET_TYPE_VIEW',
+        payload: testValue
+      };
+      expect(setTypeView(testValue)).toEqual(expectedActions);
     });
   });
 

@@ -1,5 +1,4 @@
 .movieContainer {
-  width: 300px;
   height: 31.9rem;
   position: relative;
   margin: 0.5rem;
@@ -82,4 +81,12 @@
 figure > div {
   height: 80%;
   overflow: hidden;
+}
+
+.cards {
+  width: 300px;
+}
+
+.lines {
+  width: 100%;
 }

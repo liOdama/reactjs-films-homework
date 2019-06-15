@@ -67,9 +67,3 @@ test('descriptors', () => {
     expect(result(test)).toEqual(test);
   });
 });
-
-// it('MapDispatchToProps: fetchVideo', async () => {
-//   const dispatch = jest.fn(() => state.fetchSearchResults);
-//   const result = await mapStateToDispatch(dispatch).fetchSearchResults(test);
-//   expect(result(test)).toEqual(test);
-// });

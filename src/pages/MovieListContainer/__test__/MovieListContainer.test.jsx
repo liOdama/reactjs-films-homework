@@ -115,6 +115,79 @@ describe('MovieListContainer - test component', () => {
   });
 });
 
+describe('shouldComponentUpdate', () => {
+  const initial = {
+    movies: {
+      currentVideo: null,
+      results: [
+        {
+          adult: false,
+          backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
+          genre_ids: [12, 14, 10402, 10749, 35, 10751],
+          id: 420817,
+          original_language: 'en',
+          original_title: 'Aladdin',
+          overview:
+            'A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.',
+          popularity: 630.556,
+          poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
+          release_date: '2019-05-22',
+          title: 'Aladdin',
+          video: false,
+          vote_average: 7.2,
+          vote_count: 538
+        }
+      ]
+    },
+    genres: [],
+    mainMovie: { backdrop_path: 'test' },
+    typeView: 'cards'
+  };
+  const initial2 = {
+    movies: {
+      mainMovie: { backdrop_path: 'test' },
+      currentVideo: 'test',
+      results: [
+        {
+          adult: false,
+          backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
+          genre_ids: [12, 14, 10402, 10749, 35, 10751],
+          original_title: 'Aladdin',
+          overview:
+            'A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.',
+          popularity: 630.556,
+          poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
+          release_date: '2019-05-22',
+          title: 'Aladdin',
+          video: false,
+          vote_average: 7.2,
+          vote_count: 538
+        }
+      ]
+    },
+    genres: [{ id: 35, name: 'Drama' }],
+    mainMovie: { backdrop_path: 'test' },
+    typeView: ''
+  };
+  it('MovieListContainer: check shouldComponentUpdate to BE TRUE', () => {
+    jest.spyOn(MovieListContainer.WrappedComponent.prototype, 'shouldComponentUpdate');
+    const action = MovieListContainer.WrappedComponent.prototype.shouldComponentUpdate.call(
+      { props: { ...initial } },
+      { ...initial2 }
+    );
+    expect(action).toBeTruthy();
+  });
+
+  it('MovieListContainer: check shouldComponentUpdate to BE FALSE', () => {
+    jest.spyOn(MovieListContainer.WrappedComponent.prototype, 'shouldComponentUpdate');
+    const action = MovieListContainer.WrappedComponent.prototype.shouldComponentUpdate.call(
+      { props: { ...initial } },
+      { ...initial }
+    );
+    expect(action).toBeFalsy();
+  });
+});
+
 // Tests for requests;
 // ##############################################
 describe('Requests tests', () => {
@@ -326,7 +399,8 @@ describe('MapDispatchToProps', () => {
     fetchMoviesOnGenre: id => id,
     fetchVideo: id => id,
     getMainMovieDetails: id => id,
-    changeMainMovie: id => id
+    changeMainMovie: id => id,
+    setTypeView: id => id
   };
 
   it('test all descriptors', () => {
