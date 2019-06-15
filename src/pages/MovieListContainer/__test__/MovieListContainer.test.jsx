@@ -113,12 +113,6 @@ describe('MovieListContainer - test component', () => {
     );
     expect(container).toMatchSnapshot();
   });
-
-  it('MovieList: createGenreList renders correctly', () => {
-    const genres = [{ name: 'Drama' }, { name: 'Action' }];
-    const test = createGenreList(genres);
-    expect(test).toHaveLength(genres.length);
-  });
 });
 
 // Tests for requests;
@@ -289,6 +283,34 @@ describe('Requests tests', () => {
       fetchVideo,
       getMainMovieDetails
     ]).then(data => {
+      data.forEach(curr =>
+        store.dispatch(curr).then(value => expect(value).toEqual(expectedActions))
+      );
+    });
+  });
+
+  it('fail requests - search - nothing Found', async () => {
+    const response = JSON.stringify({
+      page: 1,
+      results: [],
+      ok: true
+    });
+    const query = 'Avengers';
+    fetchMock.getOnce(
+      `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
+      response
+    );
+
+    const ERR = new Error('Nothing Found');
+    const expectedActions = {
+      type: 'ITEMS_HAS_ERRORED',
+      payload: ERR
+    };
+    const fetchSearchResults = requestFilms.fetchSearchResults(query);
+
+    const mockStore = configureMockStore([thunk]);
+    const store = mockStore({});
+    Promise.all([fetchSearchResults]).then(data => {
       data.forEach(curr =>
         store.dispatch(curr).then(value => expect(value).toEqual(expectedActions))
       );

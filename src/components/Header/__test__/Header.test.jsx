@@ -8,8 +8,11 @@ import Header from '../index';
 import { search, mapStateToDispatch } from '../Header';
 
 describe('HeaderComponent', () => {
+  const fetchSearchResults = jest.fn(value1 => value1);
+  const clearError = jest.fn();
   const state = {
-    fetchSearchResults: query => query
+    fetchSearchResults,
+    clearError
   };
   test('Header renders correctly', () => {
     const mockStore = configureStore([thunk]);
@@ -24,9 +27,9 @@ describe('HeaderComponent', () => {
 
   test('Header: search test', () => {
     const value = 'test';
-    const fetchSearchResults = jest.fn(value1 => value1);
     const props = {
-      fetchSearchResults
+      fetchSearchResults,
+      error: false
     };
     jest.spyOn(props, 'fetchSearchResults');
     const input = React.createElement('input', { value });
@@ -36,9 +39,37 @@ describe('HeaderComponent', () => {
     expect(fetchSearchResults).toHaveBeenCalled();
   });
 
-  it('test all descriptors', async () => {
-    const dispatch = jest.fn(() => state.fetchSearchResults);
-    const result = await mapStateToDispatch(dispatch).fetchSearchResults();
-    expect(result).toEqual(state.fetchSearchResults);
+  test('Header: search test', () => {
+    const props = {
+      clearError,
+      fetchSearchResults,
+      error: true
+    };
+    jest.spyOn(props, 'clearError');
+    const input = React.createElement('input');
+    const element = React.createElement('form', { onSubmit: search.bind(null, props) }, [input]);
+    const node = ReactTestUtils.renderIntoDocument(element);
+    ReactTestUtils.Simulate.submit(node);
+    expect(clearError).toHaveBeenCalled();
   });
 });
+
+const state = {
+  fetchSearchResults: value => value,
+  clearError: value => value
+};
+test('descriptors', () => {
+  const test = false;
+  const keys = Object.keys(state);
+  keys.forEach(async curr => {
+    const dispatch = jest.fn(() => state[curr]);
+    const result = await mapStateToDispatch(dispatch)[curr](test);
+    expect(result(test)).toEqual(test);
+  });
+});
+
+// it('MapDispatchToProps: fetchVideo', async () => {
+//   const dispatch = jest.fn(() => state.fetchSearchResults);
+//   const result = await mapStateToDispatch(dispatch).fetchSearchResults(test);
+//   expect(result(test)).toEqual(test);
+// });

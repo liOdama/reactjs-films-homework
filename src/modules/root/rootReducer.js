@@ -2,7 +2,7 @@ const initialState = {
   page: 0,
   results: [],
   mainMovie: null,
-  currentVideo: null,
+  currentVideo: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,18 +12,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         page: action.payload.page,
         results: action.payload.results,
-        mainMovie: action.payload.results[0].id,
+        mainMovie: action.payload.results[0].id
       };
     case 'FETCH_VIDEO_SUCCESS':
       return {
         ...state,
-        currentVideo: action.payload,
+        currentVideo: action.payload
       };
     case 'CLEAR_CURRENT_MOVIE':
       return {
         ...state,
-        currentVideo: action.payload,
+        currentVideo: action.payload
       };
+    case 'CLEAR_RESULTS':
+      return initialState;
     default:
       return state;
   }

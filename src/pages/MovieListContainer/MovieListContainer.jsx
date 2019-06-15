@@ -7,16 +7,11 @@ import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as fromChangeMainMovie from '../../modules/mainMovie/changeMainMovieAction';
 
-
 import requestsFilms from '../../utils/requests';
 
-import selectGenre from '../../utils/selectGenre';
 import style from './MovieListContainer.scss';
 import MovieItem from '../../components/MovieItem';
-
-
-const createGenreList = genres => genres
-  .map(c => <option key={shortid.generate()}>{c.name}</option>);
+import MovieSelectors from '../../components/MovieSelectors';
 
 class MovieListContainer extends Component {
   render() {
@@ -28,46 +23,36 @@ class MovieListContainer extends Component {
       fetchComingSoon,
       fetchMoviesOnGenre,
       changeMainMovie,
-      fetchVideo,
+      fetchVideo
     } = this.props;
     let list;
     if (movies.results.length > 0) {
-      list =  movies.results.map(curr => {
-         return  (
-           <MovieItem
-             curr={curr}
-             genres={genres}
-             movies={movies}
-             changeMainMovie={changeMainMovie}
-             fetchVideo={fetchVideo}
-             fetchMoviesOnGenre={fetchMoviesOnGenre}
-             key={shortid()}
-           />
+      list = movies.results.map(curr => {
+        return (
+          <MovieItem
+            curr={curr}
+            genres={genres}
+            movies={movies}
+            changeMainMovie={changeMainMovie}
+            fetchVideo={fetchVideo}
+            fetchMoviesOnGenre={fetchMoviesOnGenre}
+            key={shortid()}
+          />
         );
       });
-    } else {
-      list = <h2>Ooops</h2>;
     }
-    
+
     const html = (
       <section className={style.movieList}>
         <div className={style.container}>
-          <div className={style.moviesSelector}>
-            <ul>
-              <li><button type="button" href="#" onClick={fetchPopular}>Trending</button></li>
-              <li><button type="button" href="#" onClick={getTopRated}>Top Rated</button></li>
-              <li><button type="button" href="#" onClick={fetchComingSoon}>Coming Soon</button></li>
-              <li>
-                <select name="genre" id="" onChange={selectGenre.bind(this)}>
-                  <option value="">Genre</option>
-                  {createGenreList(genres)}
-                </select>
-              </li>
-            </ul>
-          </div>
-          <div className={style.moviesWrapper}>
-            {list}
-          </div>
+          <MovieSelectors
+            fetchPopular={fetchPopular}
+            getTopRated={getTopRated}
+            fetchComingSoon={fetchComingSoon}
+            genres={genres}
+            fetchMoviesOnGenre={fetchMoviesOnGenre}
+          />
+          <div className={style.moviesWrapper}>{list}</div>
         </div>
       </section>
     );
@@ -77,9 +62,8 @@ class MovieListContainer extends Component {
 
 MovieListContainer.defaultProps = {
   movies: {},
-  genres: [],
+  genres: []
 };
-
 
 MovieListContainer.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any),
@@ -89,7 +73,7 @@ MovieListContainer.propTypes = {
   fetchVideo: PropTypes.func.isRequired,
   fetchComingSoon: PropTypes.func.isRequired,
   fetchMoviesOnGenre: PropTypes.func.isRequired,
-  changeMainMovie: PropTypes.func.isRequired,
+  changeMainMovie: PropTypes.func.isRequired
 };
 
 const makeMap = () => {
@@ -100,9 +84,9 @@ const makeMap = () => {
     movies: {
       page: page(state),
       results: results(state),
-      currentVideo: state.movies.currentVideo,
+      currentVideo: state.movies.currentVideo
     },
-    genres: genres(state),
+    genres: genres(state)
   });
 
   return mapStateToProps;
@@ -114,9 +98,10 @@ export const mapStateToDispatch = dispatch => ({
   fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon()),
   fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
   changeMainMovie: movie => dispatch(fromChangeMainMovie.default(movie)),
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
+  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id))
 });
 
-
-export default connect(makeMap, mapStateToDispatch)(MovieListContainer);
-export { createGenreList };
+export default connect(
+  makeMap,
+  mapStateToDispatch
+)(MovieListContainer);

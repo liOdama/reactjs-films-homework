@@ -57,25 +57,23 @@ class MovieDetailsPage extends Component {
       backgroundPosition: 'center'
     };
     const component = (
-      <main>
-        <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
-          <div className={style.mainfilmInfo}>
-            <div className={style.container}>
-              <MainfilmTitle
-                mainMovie={mainMovie}
-                genres={genres}
-                fetchMoviesOnGenre={fetchMoviesOnGenre}
-              />
-              <MainFilmInfo overview={mainMovie.overview} />
-            </div>
+      <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
+        <div className={style.mainfilmInfo}>
+          <div className={style.container}>
+            <MainfilmTitle
+              mainMovie={mainMovie}
+              genres={genres}
+              fetchMoviesOnGenre={fetchMoviesOnGenre}
+            />
+            <MainFilmInfo overview={mainMovie.overview} />
           </div>
-        </section>
+        </div>
         {movies.currentVideo !== null ? (
           <div id="modalRoot">
             <ModalPlayer id={movies.currentVideo} />
           </div>
         ) : null}
-      </main>
+      </section>
     );
 
     const preloader = (

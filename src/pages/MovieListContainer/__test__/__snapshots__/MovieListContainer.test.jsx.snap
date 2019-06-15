@@ -55,11 +55,7 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
     </div>
     <div
       className="moviesWrapper"
-    >
-      <h2>
-        Ooops
-      </h2>
-    </div>
+    />
   </div>
 </section>
 `;

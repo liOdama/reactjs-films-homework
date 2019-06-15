@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requestsFilms from '../../utils/requests';
+import itemsReducer from '../../modules/Error/errorAction';
 import style from './Header.scss';
 
 export const search = (props, e) => {
-  const { fetchSearchResults } = props;
+  const { fetchSearchResults, error, clearError } = props;
   e.preventDefault();
+  if (error !== undefined && error !== false) {
+    clearError(false);
+  }
   const query = e.target.children[0].value;
   return fetchSearchResults(query);
 };
@@ -24,10 +28,14 @@ const Header = props => (
   </header>
 );
 
+const mapStateToProps = state => state;
+
 export const mapStateToDispatch = dispatch => ({
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query))
+  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
+  clearError: boolean => dispatch(itemsReducer(boolean))
 });
+
 export default connect(
-  null,
+  mapStateToProps,
   mapStateToDispatch
 )(Header);

@@ -6,13 +6,18 @@ import Footer from '../../components/Footer/index';
 
 import requestsFilms from '../../utils/requests';
 import MovieDetailsPage from '../MovieDetailsPage/index';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 const AppContainer = () => {
   return (
     <div>
       <Header fetchSearchResults={requestsFilms.fetchSearchResults} />
-      <MovieDetailsPage />
-      <MovieListContainer />
+      <main>
+        <ErrorBoundary>
+          <MovieDetailsPage />
+          <MovieListContainer />
+        </ErrorBoundary>
+      </main>
       <Footer />
     </div>
   );

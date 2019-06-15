@@ -160,7 +160,6 @@ describe('MovieItem: selectGenre', () => {
     expect(result).toEqual(props);
   });
 });
-
 test('changeMainFilm', () => {
   const changeMainMovie = jest.fn();
   const props = {

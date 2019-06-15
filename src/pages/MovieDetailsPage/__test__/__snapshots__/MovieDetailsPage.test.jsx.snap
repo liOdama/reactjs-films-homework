@@ -1,87 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1`] = `
-<main>
-  <section
-    className="movieDetailsPageContainer"
-    style={
-      Object {
-        "backgroundImage": "url(https://image.tmdb.org/t/p/w1280test",
-        "backgroundPosition": "center",
-        "backgroundRepeat": "no-repeat",
-        "backgroundSize": "cover",
-      }
+<section
+  className="movieDetailsPageContainer"
+  style={
+    Object {
+      "backgroundImage": "url(https://image.tmdb.org/t/p/w1280test",
+      "backgroundPosition": "center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "cover",
     }
+  }
+>
+  <div
+    className="mainfilmInfo"
   >
     <div
-      className="mainfilmInfo"
+      className="container"
     >
       <div
-        className="container"
+        className="mainFilmTitle"
       >
+        <h2
+          className="filmTitle"
+        />
         <div
-          className="mainFilmTitle"
+          className="genres"
         >
-          <h2
-            className="filmTitle"
-          />
-          <div
-            className="genres"
-          >
-            <ul />
-          </div>
-          <div
-            className="starContainer"
-          >
-            <p
-              className="rate"
-            >
-              0
-            </p>
-          </div>
+          <ul />
         </div>
-        <div>
-          <div
-            className="mainFilmInfo__info"
-            id="mainFilmOverwie"
+        <div
+          className="starContainer"
+        >
+          <p
+            className="rate"
           >
-            <p
-              style={
-                Object {
-                  "display": "-webkit-box",
-                }
+            0
+          </p>
+        </div>
+      </div>
+      <div>
+        <div
+          className="mainFilmInfo__info"
+          id="mainFilmOverwie"
+        >
+          <p
+            style={
+              Object {
+                "display": "-webkit-box",
               }
-            >
-              
-            </p>
-          </div>
-          <div
-            className="btnContainer"
+            }
           >
-            <button
-              className="watch"
-              id="watch"
-              onClick={[Function]}
-              tabIndex="0"
-              type="button"
-            >
-              Watch Now
-            </button>
-            <button
-              className="viewInfo"
-              id="info"
-              onClick={[Function]}
-              tabIndex="0"
-              type="button"
-            >
-              View Info
-            </button>
-          </div>
+            
+          </p>
+        </div>
+        <div
+          className="btnContainer"
+        >
+          <button
+            className="watch"
+            id="watch"
+            onClick={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            Watch Now
+          </button>
+          <button
+            className="viewInfo"
+            id="info"
+            onClick={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            View Info
+          </button>
         </div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 `;
 
 exports[`MovieDetailsPage renders correctly MovieDetailsPage: render preloader 1`] = `
