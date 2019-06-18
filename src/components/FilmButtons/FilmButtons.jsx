@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import requestsFilms from '../../utils/requests';
 import style from './FilmButtons.scss';
 import { showModal } from '../ModalPlayer/ModalPlayer';
-
 
 export const showMainFilmOverwie = () => {
   document.querySelector('#mainFilmOverwie').style.maxHeight = '100%';
@@ -20,7 +17,10 @@ class FilmButtons extends React.Component {
           className={style.watch}
           onClick={showModal.bind(null, this.props)}
           tabIndex="0"
-          ref={(watch) => { this.watch = watch; return this.viewInfo; }}
+          ref={watch => {
+            this.watch = watch;
+            return this.viewInfo;
+          }}
         >
           Watch Now
         </button>
@@ -30,19 +30,15 @@ class FilmButtons extends React.Component {
           className={style.viewInfo}
           onClick={showMainFilmOverwie}
           tabIndex="0"
-          ref={(viewInfo) => { this.viewInfo = viewInfo; return this.viewInfo; }}
+          ref={viewInfo => {
+            this.viewInfo = viewInfo;
+            return this.viewInfo;
+          }}
         >
-View Info
+          View Info
         </button>
       </div>
     );
   }
 }
-const mapStateToProps = state => state;
-
-export const mapStateToDispatch = dispatch => ({
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-});
-
-
-export default connect(mapStateToProps, mapStateToDispatch)(FilmButtons);
+export default FilmButtons;

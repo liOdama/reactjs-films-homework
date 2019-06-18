@@ -2,10 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
-import TestRenderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
-import ModalPlayer from '../index';
-import * as Modal from '../ModalPlayer';
+import { ModalPlayer, showModal } from '../ModalPlayer';
+import * as Modal from '../ModalPlayerContainer';
 
 describe('Modal Renders correctly', () => {
   const mockStore = configureMockStore();
@@ -21,7 +20,7 @@ describe('Modal Renders correctly', () => {
     act(() => {
       container = ReactDOM.render(
         <Provider store={store}>
-          <ModalPlayer />
+          <Modal.default />
         </Provider>,
         document.querySelector('#modalRoot')
       );
@@ -46,7 +45,7 @@ describe('Modal Renders correctly', () => {
       };
 
       jest.spyOn(props, 'clearCurrentMovie');
-      ModalPlayer.WrappedComponent.prototype.componentWillUnmount.call(props);
+      ModalPlayer.prototype.componentWillUnmount.call(props);
       expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
@@ -54,7 +53,7 @@ describe('Modal Renders correctly', () => {
       const props = { fetchVideo };
       jest.spyOn(props, 'fetchVideo');
       const button = React.createElement('button', {
-        onClick: Modal.showModal.bind(null, props),
+        onClick: showModal.bind(null, props),
         type: 'button',
         id: 'watch'
       });
@@ -72,7 +71,7 @@ describe('Modal Renders correctly', () => {
       const props = { fetchVideo };
       jest.spyOn(props, 'fetchVideo');
       const button = React.createElement('button', {
-        onClick: Modal.showModal.bind(null, props),
+        onClick: showModal.bind(null, props),
         type: 'button',
         id: 'playTrailer'
       });
@@ -92,7 +91,7 @@ describe('Modal Renders correctly', () => {
           id: 'test'
         }
       };
-      const result = Modal.showModal(props, e);
+      const result = showModal(props, e);
       expect(result).toBeNull();
     });
   });

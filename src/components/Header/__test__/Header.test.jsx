@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Header from '../index';
-import { search, mapStateToDispatch } from '../Header';
+import { search } from '../Header';
+import { mapStateToDispatch } from '../HeaderContainer';
 
 describe('HeaderComponent', () => {
   const fetchSearchResults = jest.fn(value1 => value1);

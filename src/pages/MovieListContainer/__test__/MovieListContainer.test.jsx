@@ -12,7 +12,7 @@ import rootReducer from '../../../modules/root/rootReducer';
 // import Request
 import requestFilms from '../../../utils/requests';
 
-import * as mapStateToDispatch from '../MovieListContainer';
+import { mapStateToDispatch } from '../MovieListContainerContainer';
 
 const KEY = '75331f1a740385460b25b56203149aa8';
 
@@ -462,7 +462,7 @@ describe('MapDispatchToProps', () => {
     const keys = Object.keys(state);
     keys.forEach(async curr => {
       const dispatch = jest.fn(() => state[curr]);
-      const result = await mapStateToDispatch.mapStateToDispatch(dispatch)[curr]();
+      const result = await mapStateToDispatch(dispatch)[curr]();
       expect(result).toEqual(state[curr]);
     });
   });

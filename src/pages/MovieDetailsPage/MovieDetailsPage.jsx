@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
 import ModalPlayer from '../../components/ModalPlayer/ModalPlayer';
 
 import style from './MovieDetailsPage.scss';
-import requestsFilms from '../../utils/requests';
-import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
 
 class MovieDetailsPage extends Component {
   constructor(props) {
@@ -102,16 +99,5 @@ MovieDetailsPage.propTypes = {
   fetchSearchResults: PropTypes.func.isRequired,
   mainMovie: PropTypes.objectOf(PropTypes.any).isRequired
 };
-const mapStateToProps = state => state;
 
-export const mapStateToDispatch = dispatch => ({
-  fetchGenres: () => dispatch(fromFetchGenres.default()),
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
-});
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch
-)(MovieDetailsPage);
+export default MovieDetailsPage;

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
+
 import YouTube from 'react-youtube';
 import style from './ModalPlayer.scss';
-import requestsFilms from '../../utils/requests';
-import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
 
 export class ModalPlayer extends Component {
   constructor(props) {
@@ -61,16 +59,7 @@ export class ModalPlayer extends Component {
   }
 }
 
-const mapStateToProps = state => state;
-
-export const mapStateToDispatch = dispatch => ({
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default())
-});
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch
-)(ModalPlayer);
+export default ModalPlayer;
 
 export const showModal = (props, e) => {
   let element = e.target;

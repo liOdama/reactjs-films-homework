@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import ReactTestUtils from 'react-dom/test-utils';
 import configureStore from 'redux-mock-store';
 import MovieDetailsPage from '../index';
-import * as mapStateToDispatch from '../MovieDetailsPage';
+import { mapStateToDispatch } from '../MovieDetailsPageContainer';
 
 jest.mock('rc-util/lib/Portal');
 
@@ -167,7 +167,7 @@ describe('MovieDetailsPage renders correctly', () => {
       const keys = Object.keys(state);
       keys.forEach(async curr => {
         const dispatch = jest.fn(() => state[curr]);
-        const result = await mapStateToDispatch.mapStateToDispatch(dispatch)[curr]();
+        const result = await mapStateToDispatch(dispatch)[curr]();
         expect(result).toEqual(state[curr]);
       });
     });

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FilmButtons from '../FilmButtons';
+import FilmButtons from '../FilmButtons/index';
 import style from './MainFilmInfo.scss';
 
-const MainFilmInfo = (props) => {
+const MainFilmInfo = props => {
   const { overview } = props;
   const styles = {
-    display: '-webkit-box',
+    display: '-webkit-box'
   };
 
   return (
@@ -20,11 +20,11 @@ const MainFilmInfo = (props) => {
 };
 
 MainFilmInfo.defaultProps = {
-  overview: '',
+  overview: ''
 };
 
 MainFilmInfo.propTypes = {
-  overview: PropTypes.string,
+  overview: PropTypes.string
 };
 
 export default MainFilmInfo;
