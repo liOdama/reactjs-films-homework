@@ -26,14 +26,11 @@ class MovieListContainer extends Component {
     const {
       movies,
       genres,
-      fetchPopular,
-      getTopRated,
-      fetchComingSoon,
-      fetchMoviesOnGenre,
       getMainMovieDetails,
       fetchVideo,
       typeView,
-      setTypeView
+      setTypeView,
+      fetchListMovies
     } = this.props;
     let list;
     if (movies.results.length > 0) {
@@ -43,8 +40,8 @@ class MovieListContainer extends Component {
             curr={curr}
             genres={genres}
             movies={movies}
+            fetchListMovies={fetchListMovies}
             fetchVideo={fetchVideo}
-            fetchMoviesOnGenre={fetchMoviesOnGenre}
             getMainMovieDetails={getMainMovieDetails}
             typeView={typeView}
             key={shortid()}
@@ -57,12 +54,9 @@ class MovieListContainer extends Component {
       <section className={style.movieList}>
         <div className={style.container}>
           <MovieSelectors
-            fetchPopular={fetchPopular}
-            getTopRated={getTopRated}
-            fetchComingSoon={fetchComingSoon}
             genres={genres}
-            fetchMoviesOnGenre={fetchMoviesOnGenre}
             setTypeView={setTypeView}
+            fetchListMovies={fetchListMovies}
           />
           <div className={style.moviesWrapper}>{list}</div>
         </div>
@@ -81,11 +75,8 @@ MovieListContainer.defaultProps = {
 MovieListContainer.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any),
   genres: PropTypes.arrayOf(PropTypes.object),
-  getTopRated: PropTypes.func.isRequired,
-  fetchPopular: PropTypes.func.isRequired,
+  fetchListMovies: PropTypes.func.isRequired,
   fetchVideo: PropTypes.func.isRequired,
-  fetchComingSoon: PropTypes.func.isRequired,
-  fetchMoviesOnGenre: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
   typeView: PropTypes.string,
   setTypeView: PropTypes.func.isRequired
@@ -110,13 +101,10 @@ const makeMap = () => {
 };
 
 export const mapStateToDispatch = dispatch => ({
-  fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
-  getTopRated: () => dispatch(requestsFilms.getTopRated()),
-  fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon()),
-  fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   setTypeView: type => dispatch(FromSetTypeView.default(type)),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id))
+  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
+  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
 });
 
 export default connect(

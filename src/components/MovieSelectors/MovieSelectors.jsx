@@ -7,22 +7,19 @@ import style from '../../pages/MovieListContainer/MovieListContainer.scss';
 export const createGenreList = genres =>
   genres.map(c => <option key={shortid.generate()}>{c.name}</option>);
 
+// const getQueryForListMovies = (props, e) => {
+//   const { fetchListMovies } = props;
+//   const query = e.target.textContent;
+//   return fetchListMovies(query);
+// };
+
 export const showTrends = (props, e) => {
-  const action = e.target.textContent;
-  const { fetchPopular, getTopRated, fetchComingSoon, error, clearError } = props;
+  const query = e.target.textContent;
+  const { fetchListMovies, error, clearError } = props;
   if (error !== undefined && error !== false) {
     clearError(false);
   }
-  switch (action) {
-    case 'Trending':
-      return fetchPopular();
-    case 'Top Rated':
-      return getTopRated();
-    case 'Coming Soon':
-      return fetchComingSoon();
-    default:
-      return null;
-  }
+  return fetchListMovies(query);
 };
 
 export const shooseTypeView = (action, e) => {

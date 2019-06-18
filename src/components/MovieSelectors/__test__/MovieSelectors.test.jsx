@@ -38,15 +38,11 @@ describe('MovieSelectors', () => {
   });
 
   describe('MovieSelectors: events click ', () => {
-    const fetchPopular = jest.fn();
-    const getTopRated = jest.fn();
-    const fetchComingSoon = jest.fn();
+    const fetchListMovies = jest.fn();
     const clearError = jest.fn(() => 1);
     const test = jest.fn(value => value);
     const props = {
-      fetchPopular,
-      getTopRated,
-      fetchComingSoon,
+      fetchListMovies,
       error: true,
       clearError,
       setTypeView: test
@@ -59,64 +55,7 @@ describe('MovieSelectors', () => {
       document.body.appendChild(container);
     });
 
-    it('showTrends: click to Trending', () => {
-      const btn = React.createElement(
-        'button',
-        {
-          id: 'test',
-          onClick: showTrends.bind(null, props),
-          type: 'button'
-        },
-        'Trending'
-      );
-      jest.spyOn(props, 'fetchPopular');
-      act(() => {
-        ReactDOM.render(btn, container);
-      });
-      const node = container.querySelector('#test');
-      ReactTestUtils.Simulate.click(node);
-      expect(fetchPopular).toHaveBeenCalled();
-    });
-
-    it('showTrends: click to Top Rated', () => {
-      const btn = React.createElement(
-        'button',
-        {
-          id: 'test',
-          onClick: showTrends.bind(null, props),
-          type: 'button'
-        },
-        'Top Rated'
-      );
-      jest.spyOn(props, 'getTopRated');
-      act(() => {
-        ReactDOM.render(btn, container);
-      });
-      const node = container.querySelector('#test');
-      ReactTestUtils.Simulate.click(node);
-      expect(getTopRated).toHaveBeenCalled();
-    });
-
-    it('showTrends: click to Coming Soon', () => {
-      const btn = React.createElement(
-        'button',
-        {
-          id: 'test',
-          onClick: showTrends.bind(null, props),
-          type: 'button'
-        },
-        'Coming Soon'
-      );
-      jest.spyOn(props, 'fetchComingSoon');
-      act(() => {
-        ReactDOM.render(btn, container);
-      });
-      const node = container.querySelector('#test');
-      ReactTestUtils.Simulate.click(node);
-      expect(fetchComingSoon).toHaveBeenCalled();
-    });
-
-    it('showTrends: clearError', () => {
+    it('showTrends: error true should BE - call clearError', () => {
       const btn = React.createElement(
         'button',
         {
@@ -135,22 +74,14 @@ describe('MovieSelectors', () => {
       expect(clearError).toHaveBeenCalled();
     });
 
-    it('showTrends: click to default', () => {
+    it('showTrends: error false - should BE call fetchListMovies', () => {
       props.error = false;
       const e = {
         target: { textContent: '' }
       };
-      const btn = React.createElement(
-        'button',
-        {
-          id: 'test',
-          onClick: showTrends.bind(null, props),
-          type: 'button'
-        },
-        ''
-      );
-      const result = showTrends(props, e);
-      expect(result).toBeNull();
+      jest.spyOn(props, 'fetchListMovies');
+      showTrends(props, e);
+      expect(fetchListMovies).toHaveBeenCalled();
     });
 
     it('shooseTypeView: shooseTypeView - call action', () => {

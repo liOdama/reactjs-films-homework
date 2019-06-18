@@ -112,10 +112,10 @@ describe('MovieDetailsPage renders correctly', () => {
   describe('getDerivedStateFromProps', () => {
     it('getDerivedStateFromProps: first render', async () => {
       const fetchGenres = jest.fn(() => 1);
-      const fetchPopular = jest.fn(() => 2);
+      const fetchListMovies = jest.fn(() => 2);
       const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
         ...initial,
-        fetchPopular,
+        fetchListMovies,
         fetchGenres
       });
 
@@ -124,14 +124,14 @@ describe('MovieDetailsPage renders correctly', () => {
 
     it('getDerivedStateFromProps: other rendering', async () => {
       const fetchGenres = jest.fn(() => 1);
-      const fetchPopular = jest.fn(() => 2);
+      const fetchListMovies = jest.fn(() => 2);
       const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
         ...initial2,
-        fetchPopular,
+        fetchListMovies,
         fetchGenres
       });
 
-      expect(action).toEqual({ ...initial2, fetchGenres, fetchPopular });
+      expect(action).toEqual({ ...initial2, fetchGenres, fetchListMovies });
     });
   });
 
@@ -157,8 +157,7 @@ describe('MovieDetailsPage renders correctly', () => {
 
   describe('test MapDispatchToProps', () => {
     const state = {
-      fetchPopular: 1,
-      fetchMoviesOnGenre: id => id,
+      fetchListMovies: id => id,
       fetchVideo: id => id,
       getMainMovieDetails: id => id,
       fetchSearchResults: query => query,

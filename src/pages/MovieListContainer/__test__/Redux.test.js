@@ -8,6 +8,11 @@ import itemsHasErrored from '../../../modules/Error/errorAction';
 import clearCurrentMovie from '../../../modules/root/clearCurrentMovieAction';
 import setMainMovieDetails from '../../../modules/mainMovie/mainMovieAction';
 import setTypeView from '../../../modules/TypeView/TypeViewAction';
+import itemsIsLoadingAction from '../../../modules/isLoading/isLoadingAction';
+import itemsFetchDataSuccess, {
+  fetchVideoSuccess,
+  clearResults
+} from '../../../modules/root/rootAction';
 
 // import REDUCER
 import rootReducer, { initialState } from '../../../modules/root/rootReducer';
@@ -100,6 +105,33 @@ describe('Test for reducers', () => {
       });
       const data = store.dispatch(clearCurrentMovie());
       expect(data).toEqual(expectedActions);
+    });
+
+    describe('check actions', () => {
+      it('itemsFetchDataSuccess ', () => {
+        const action = {
+          type: 'ITEMS_FETCH_DATA_SUCCESS',
+          payload: initialState
+        };
+        expect(itemsFetchDataSuccess(initialState)).toEqual(action);
+      });
+
+      it('fetchVideoSuccess  ', () => {
+        const testQuery = 'testID';
+        const action = {
+          type: 'FETCH_VIDEO_SUCCESS',
+          payload: testQuery
+        };
+        expect(fetchVideoSuccess(testQuery)).toEqual(action);
+      });
+
+      it('clearResults   ', () => {
+        const action = {
+          type: 'CLEAR_RESULTS',
+          payload: []
+        };
+        expect(clearResults()).toEqual(action);
+      });
     });
   });
 
@@ -236,6 +268,10 @@ describe('Test for reducers', () => {
           payload: false
         };
         expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
+      });
+
+      it('isLoading - action : check action', () => {
+        expect(itemsIsLoadingAction(true)).toEqual(action(true));
       });
     });
 

@@ -30,10 +30,10 @@ class MovieDetailsPage extends Component {
   static async getDerivedStateFromProps(nextProps) {
     const { genres } = nextProps;
     if (genres.length === 0) {
-      const { fetchGenres, fetchPopular } = nextProps;
+      const { fetchGenres, fetchListMovies } = nextProps;
       localStorage.clear();
       await fetchGenres();
-      const state = await fetchPopular();
+      const state = await fetchListMovies('Trending');
       return state;
     }
     return nextProps;
@@ -48,7 +48,7 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const { movies, genres, fetchMoviesOnGenre, mainMovie } = this.props;
+    const { movies, genres, fetchListMovies, mainMovie } = this.props;
 
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
@@ -63,7 +63,7 @@ class MovieDetailsPage extends Component {
             <MainfilmTitle
               mainMovie={mainMovie}
               genres={genres}
-              fetchMoviesOnGenre={fetchMoviesOnGenre}
+              fetchListMovies={fetchListMovies}
             />
             <MainFilmInfo overview={mainMovie.overview} />
           </div>
@@ -98,7 +98,6 @@ MovieDetailsPage.defaultProps = {
 MovieDetailsPage.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   movies: PropTypes.objectOf(PropTypes.any).isRequired,
-  fetchMoviesOnGenre: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
   fetchSearchResults: PropTypes.func.isRequired,
   mainMovie: PropTypes.objectOf(PropTypes.any).isRequired
@@ -106,12 +105,11 @@ MovieDetailsPage.propTypes = {
 const mapStateToProps = state => state;
 
 export const mapStateToDispatch = dispatch => ({
-  fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
-  fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
   fetchGenres: () => dispatch(fromFetchGenres.default()),
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query))
+  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
+  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
 });
 export default connect(
   mapStateToProps,

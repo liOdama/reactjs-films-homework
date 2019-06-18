@@ -1,5 +1,5 @@
 const selectGenre = function selectGenre(props, e) {
-  const { genres, fetchMoviesOnGenre } = props;
+  const { genres, fetchListMovies } = props;
   const genre = e.target.value || e.target.textContent.replace(/[^A-Za-z\s]/g, '');
   let genreId;
   genres.some(a => {
@@ -9,7 +9,7 @@ const selectGenre = function selectGenre(props, e) {
     }
     return false;
   });
-  return fetchMoviesOnGenre(genreId);
+  return fetchListMovies(genreId);
 };
 
 export const keydonwGenres = (props, e) => {

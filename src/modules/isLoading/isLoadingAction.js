@@ -1,6 +1,6 @@
-const itemsIsLoading = bool => ({
+const itemsIsLoadingAction = bool => ({
   type: 'ITEMS_IS_LOADING',
-  payload: bool,
+  payload: bool
 });
 
-export default itemsIsLoading;
+export default itemsIsLoadingAction;

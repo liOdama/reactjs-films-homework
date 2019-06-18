@@ -138,7 +138,7 @@ describe('MovieItem: selectGenre', () => {
       .catch(err => err);
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
-      fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre
+      fetchListMovies: requestsFilms.fetchListMovies
     };
     const e = {
       key: 'Enter',
