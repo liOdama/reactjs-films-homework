@@ -4,6 +4,7 @@ import ReactTestUtils, { act } from 'react-dom/test-utils';
 import ReactTestRender from 'react-test-renderer';
 import { createGenreList, showTrends, shooseTypeView } from '../MovieSelectors';
 import MovieSelectors from '../index';
+import selectGenre from '../../../utils/selectGenre';
 
 describe('MovieSelectors', () => {
   const genres = [
@@ -27,10 +28,10 @@ describe('MovieSelectors', () => {
     { id: 10752, name: 'War' },
     { id: 37, name: 'Western' }
   ];
-  // it('MovieSelectors: renders correctly', () => {
-  //   const result = ReactTestRender.create(<MovieSelectors genres={genres} />);
-  //   expect(result).toMatchSnapshot();
-  // });
+  it('MovieSelectors: renders correctly', () => {
+    const result = ReactTestRender.create(<MovieSelectors genres={genres} />);
+    expect(result).toMatchSnapshot();
+  });
 
   it('MovieSelectors: createGenreList renders correctly', () => {
     const test = createGenreList(genres);
@@ -54,7 +55,25 @@ describe('MovieSelectors', () => {
       container.id = 'modalRoot';
       document.body.appendChild(container);
     });
-
+    it('selectGenre: error true should BE - Call clearError', () => {
+      props.genres = [{ name: 'Drame', id: 35 }];
+      const btn = React.createElement(
+        'button',
+        {
+          id: 'test',
+          onClick: selectGenre.bind(null, props),
+          type: 'button'
+        },
+        'Drama'
+      );
+      jest.spyOn(props, 'clearError');
+      act(() => {
+        ReactDOM.render(btn, container);
+      });
+      const node = container.querySelector('#test');
+      ReactTestUtils.Simulate.click(node);
+      expect(clearError).toHaveBeenCalled();
+    });
     it('showTrends: error true should BE - call clearError', () => {
       const btn = React.createElement(
         'button',

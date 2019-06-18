@@ -371,8 +371,7 @@ describe('Requests tests', () => {
 
     it('fail requests - fetch data unsuccessed search request - Nothing Found', () => {
       const query = 'Test';
-      const id = 35;
-      const response = JSON.stringify({
+      const failResponse = JSON.stringify({
         page: 1,
         results: []
       });
@@ -382,7 +381,7 @@ describe('Requests tests', () => {
       };
       fetchMock.getOnce(
         `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
-        response
+        failResponse
       );
 
       const fetchSearchResults = requestFilms.fetchSearchResults(query);

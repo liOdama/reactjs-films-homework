@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
-import ModalPlayer from '../../components/ModalPlayer/ModalPlayer';
+import { ModalPlayer } from '../../components/ModalPlayer/ModalPlayer';
 
 import style from './MovieDetailsPage.scss';
 
@@ -96,7 +96,7 @@ MovieDetailsPage.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   movies: PropTypes.objectOf(PropTypes.any).isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
-  fetchSearchResults: PropTypes.func.isRequired,
+  fetchListMovies: PropTypes.func.isRequired,
   mainMovie: PropTypes.objectOf(PropTypes.any).isRequired
 };
 

@@ -75,7 +75,8 @@ test('FulmButtons, event - change mainoverwie Height', () => {
   const option1 = document.querySelector('#mainFilmOverwie').style;
   const option2 = document.querySelector('#mainFilmOverwie > p').style;
   let result;
-  if (option1._values['max-height'] === '100%' && option2._values.display === 'block') {
+  const data = '_values';
+  if (option1[data]['max-height'] === '100%' && option2[data].display === 'block') {
     result = true;
   }
   expect(result).toBeTruthy();

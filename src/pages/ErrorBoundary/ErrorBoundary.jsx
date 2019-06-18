@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MovieSelectors from '../../components/MovieSelectors';
+import PropTypes from 'prop-types';
+import MovieSelectors from '../../components/MovieSelectors/index';
 import style from './ErrorBoundary.scss';
 import itemsReducer from '../../modules/Error/errorAction';
 import requestsFilms from '../../utils/requests';
@@ -25,7 +26,6 @@ class ErrorBoundary extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
     if (prevProps.error !== false) {
       return true;
     }
@@ -34,17 +34,7 @@ class ErrorBoundary extends Component {
 
   render() {
     const { hasError, typeError } = this.state;
-    const {
-      children,
-      movies,
-      genres,
-      fetchPopular,
-      getTopRated,
-      fetchComingSoon,
-      fetchMoviesOnGenre,
-      error,
-      clearError
-    } = this.props;
+    const { children, genres, error, clearError, fetchListMovies } = this.props;
     if (hasError === true) {
       if (typeError !== 'Something Wrong') {
         return (
@@ -53,13 +43,14 @@ class ErrorBoundary extends Component {
               <h1>Nothing found</h1>
             </div>
             <MovieSelectors
-              fetchPopular={fetchPopular}
-              getTopRated={getTopRated}
-              fetchComingSoon={fetchComingSoon}
               genres={genres}
-              fetchMoviesOnGenre={fetchMoviesOnGenre}
               error={error}
               clearError={clearError}
+              fetchListMovies={fetchListMovies}
+            />
+            <img
+              src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
+              alt="404 Not Found"
             />
           </div>
         );
@@ -69,16 +60,26 @@ class ErrorBoundary extends Component {
     return children;
   }
 }
+ErrorBoundary.defaultProps = {
+  error: false,
+  genres: [],
+  children: []
+};
+
+ErrorBoundary.propTypes = {
+  error: PropTypes.bool,
+  genres: PropTypes.arrayOf(PropTypes.object),
+  fetchListMovies: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object)
+};
 
 const mapStateToProps = state => state;
 export const mapStateToDispatch = dispatch => ({
   clearError: boolean => dispatch(itemsReducer(boolean)),
-  fetchMoviesOnGenre: id => dispatch(requestsFilms.fetchMoviesOnGenre(id)),
-  fetchPopular: () => dispatch(requestsFilms.fetchPopular()),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
   fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  getTopRated: () => dispatch(requestsFilms.getTopRated()),
-  fetchComingSoon: () => dispatch(requestsFilms.fetchComingSoon())
+  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
 });
 export default connect(
   mapStateToProps,

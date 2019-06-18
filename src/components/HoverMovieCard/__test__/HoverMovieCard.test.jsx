@@ -5,7 +5,6 @@ import TestRenderer from 'react-test-renderer';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
 import HoverMovieCard from '../index';
 
-
 test('HoverMovieCard renders correctly', () => {
   const renderer = new ShallowRenderer();
   renderer.render(<HoverMovieCard />);
@@ -22,7 +21,7 @@ test('HoverMovieCard hover events render correctly', () => {
 });
 
 describe('hover events', () => {
-  beforeEach (() => {
+  beforeEach(() => {
     const node = (
       <article>
         <figure />
@@ -33,17 +32,19 @@ describe('hover events', () => {
       ReactDOM.render(node, document.body);
     });
   });
-  
+
   test('showOverwieHover', () => {
     const btn = document.querySelector('#showOverwie');
     ReactTestUtils.Simulate.click(btn);
     const option1 = document.querySelector('.hoverControlNone').classList;
     const option2 = document.querySelector('figure').classList;
     let result;
-    if(
+    if (
       option1.contains('hoverControlNone') === true &&
       option2.contains('figcaptionNone') === true
-    ) { result = true; }
+    ) {
+      result = true;
+    }
     expect(result).toBeTruthy();
   });
 
@@ -54,23 +55,22 @@ describe('hover events', () => {
     ReactTestUtils.Simulate.click(btn2);
     const option2 = document.querySelector('figure').classList;
     let result;
-    if(
-      option2.contains('figcaptionNone') === false
-    ) { result = true; }
+    if (option2.contains('figcaptionNone') === false) {
+      result = true;
+    }
     expect(result).toBeTruthy();
   });
-  
+
   test('Return Hover - with mouseLeave', () => {
     const btn = document.querySelector('#showOverwie');
     ReactTestUtils.Simulate.click(btn);
     const btn2 = document.querySelector('.hoverOverwie');
     ReactTestUtils.Simulate.mouseLeave(btn2);
     const option2 = document.querySelector('figure').classList;
-    console.log('aaaaaaaaaaaaaaaa', option2);
     let result;
-    if(
-      option2.contains('figcaptionNone') === false
-    ) { result = true; }
+    if (option2.contains('figcaptionNone') === false) {
+      result = true;
+    }
     expect(result).toBeTruthy();
   });
 });

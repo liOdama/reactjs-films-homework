@@ -49,6 +49,15 @@ describe('Modal Renders correctly', () => {
       expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
+    it('Modal: clearCurrentMovie = undefined', () => {
+      const clearCurrentMovie = jest.fn();
+      const props = {
+        clearCurrentMovie: undefined
+      };
+      ModalPlayer.prototype.componentWillUnmount.call(props);
+      expect(clearCurrentMovie).toHaveBeenCalledTimes(0);
+    });
+
     it('show with id watch', () => {
       const props = { fetchVideo };
       jest.spyOn(props, 'fetchVideo');

@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
+<div
+  className="moviesSelector"
+>
+  <nav>
+    <ul>
+      <li>
+        <button
+          href="#"
+          onClick={[Function]}
+          type="button"
+        >
+          Trending
+        </button>
+      </li>
+      <li>
+        <button
+          href="#"
+          onClick={[Function]}
+          type="button"
+        >
+          Top Rated
+        </button>
+      </li>
+      <li>
+        <button
+          href="#"
+          onClick={[Function]}
+          type="button"
+        >
+          Coming Soon
+        </button>
+      </li>
+      <li>
+        <select
+          id=""
+          name="genre"
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            Genre
+          </option>
+          <option>
+            Action
+          </option>
+          <option>
+            Adventure
+          </option>
+          <option>
+            Animation
+          </option>
+          <option>
+            Comedy
+          </option>
+          <option>
+            Crime
+          </option>
+          <option>
+            Documentary
+          </option>
+          <option>
+            Drama
+          </option>
+          <option>
+            Family
+          </option>
+          <option>
+            Fantasy
+          </option>
+          <option>
+            History
+          </option>
+          <option>
+            Horror
+          </option>
+          <option>
+            Music
+          </option>
+          <option>
+            Mystery
+          </option>
+          <option>
+            Romance
+          </option>
+          <option>
+            Science Fiction
+          </option>
+          <option>
+            TV Movie
+          </option>
+          <option>
+            Thriller
+          </option>
+          <option>
+            War
+          </option>
+          <option>
+            Western
+          </option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="typeView"
+  >
+    <button
+      id="cards"
+      onClick={[Function]}
+      type="button"
+    >
+      ⚏
+    </button>
+    <button
+      id="lines"
+      onClick={[Function]}
+      type="button"
+    >
+      ⚌
+    </button>
+  </div>
+</div>
+`;

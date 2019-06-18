@@ -7,10 +7,11 @@ import Footer from '../../components/Footer/index';
 import requestsFilms from '../../utils/requests';
 import MovieDetailsPage from '../MovieDetailsPage/index';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import style from '../../common.scss';
 
 const AppContainer = () => {
   return (
-    <div>
+    <div className={style.wrapper}>
       <Header fetchSearchResults={requestsFilms.fetchSearchResults} />
       <main>
         <ErrorBoundary>

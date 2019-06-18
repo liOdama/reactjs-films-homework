@@ -59,8 +59,6 @@ export class ModalPlayer extends Component {
   }
 }
 
-export default ModalPlayer;
-
 export const showModal = (props, e) => {
   let element = e.target;
   if (element.id === 'playTrailer' || element.id === 'watch') {
@@ -72,3 +70,5 @@ export const showModal = (props, e) => {
   }
   return null;
 };
+
+export default ModalPlayer;

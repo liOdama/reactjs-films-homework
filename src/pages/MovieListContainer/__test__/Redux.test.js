@@ -9,7 +9,8 @@ import clearCurrentMovie from '../../../modules/root/clearCurrentMovieAction';
 import setMainMovieDetails from '../../../modules/mainMovie/mainMovieAction';
 import setTypeView from '../../../modules/TypeView/TypeViewAction';
 import itemsIsLoadingAction from '../../../modules/isLoading/isLoadingAction';
-import itemsFetchDataSuccess, {
+import {
+  itemsFetchDataSuccess,
   fetchVideoSuccess,
   clearResults
 } from '../../../modules/root/rootAction';
@@ -241,162 +242,161 @@ describe('Test for reducers', () => {
         .dispatch(requestFilms.getMainMovieDetails(id))
         .then(dataMovie => expect(dataMovie).toEqual(action));
     });
-
-    describe('isLoading Reducer', () => {
-      const initial = false;
-      const action = bool => ({
-        type: 'ITEMS_IS_LOADING',
-        payload: bool
-      });
-      it('check Reducer', () => {
-        expect(itemsIsLoading(initial, action(true))).toEqual(true);
-      });
-
-      it('check state arguments', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        const state = jest.fn((arg1, arg2) => itemsIsLoading(arg1, arg2));
-        state(undefined, actionDefault);
-        expect(state).toHaveReturnedWith(initial);
-      });
-
-      it('check state default', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
-      });
-
-      it('isLoading - action : check action', () => {
-        expect(itemsIsLoadingAction(true)).toEqual(action(true));
-      });
+  });
+  describe('isLoading Reducer', () => {
+    const initial = false;
+    const action = bool => ({
+      type: 'ITEMS_IS_LOADING',
+      payload: bool
+    });
+    it('check Reducer', () => {
+      expect(itemsIsLoading(initial, action(true))).toEqual(true);
     });
 
-    describe('TypeView Reducer', () => {
-      const initial = 'cards';
-      const testValue = 'cards';
-      const action = value => ({
-        type: 'SET_TYPE_VIEW',
-        payload: value
-      });
-      it('check Reducer', () => {
-        expect(typeViewReducer(initial, action(testValue))).toEqual(testValue);
-      });
-
-      it('check state arguments', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        const state = jest.fn((arg1, arg2) => typeViewReducer(arg1, arg2));
-        state(undefined, actionDefault);
-        expect(state).toHaveReturnedWith(testValue);
-      });
-
-      it('check state default', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        expect(typeViewReducer(initial, actionDefault)).toEqual(testValue);
-      });
-
-      it('Action: setTypeView - return action', () => {
-        const expectedActions = {
-          type: 'SET_TYPE_VIEW',
-          payload: testValue
-        };
-        expect(setTypeView(testValue)).toEqual(expectedActions);
-      });
-    });
-
-    describe('Fetch Genres Reducer ', () => {
-      afterEach(() => {
-        jest.clearAllMocks();
-      });
-      const initial = [];
-      const action = {
-        type: 'FETCH_ID_GENRES',
-        payload: {
-          genres: [{ id: 35, name: 'Drama' }]
-        }
+    it('check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
       };
-
-      it('fetchGenres: check state arguments', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        const state = jest.fn((arg1, arg2) => fetchGenresReducer(arg1, arg2));
-        state(undefined, actionDefault);
-        expect(state).toHaveReturnedWith(initial);
-      });
-
-      it('FETCH_ID_GENRES', () => {
-        expect(fetchGenresReducer(initial, action)).toEqual([{ id: 35, name: 'Drama' }]);
-      });
-
-      it('fetchGenres: check state default', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        expect(fetchGenresReducer(initial, actionDefault)).toEqual(initial);
-      });
-
-      it('fetchGenres: Action', () => {
-        const mockStore = configureMockStore([thunk]);
-        fetchMock.getOnce(
-          'https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
-          {
-            headers: { 'content-type': 'application/json' },
-            body: { genres: { id: 35, name: 'Drama' }, status: 'ok' }
-          }
-        );
-        const expectedActions = [
-          {
-            type: 'FETCH_ID_GENRES',
-            payload: { genres: { id: 35, name: 'Drama' } }
-          }
-        ];
-        const store = mockStore({});
-        return store.dispatch(fetchGenres()).then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        });
-      });
+      const state = jest.fn((arg1, arg2) => itemsIsLoading(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(initial);
     });
 
-    describe('Error Reducer', () => {
-      const initial = false;
-      const err = new Error('Some Error');
+    it('check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
+    });
+
+    it('isLoading - action : check action', () => {
+      expect(itemsIsLoadingAction(true)).toEqual(action(true));
+    });
+  });
+
+  describe('TypeView Reducer', () => {
+    const initial = 'cards';
+    const testValue = 'cards';
+    const action = value => ({
+      type: 'SET_TYPE_VIEW',
+      payload: value
+    });
+    it('check Reducer', () => {
+      expect(typeViewReducer(initial, action(testValue))).toEqual(testValue);
+    });
+
+    it('check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      const state = jest.fn((arg1, arg2) => typeViewReducer(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(testValue);
+    });
+
+    it('check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      expect(typeViewReducer(initial, actionDefault)).toEqual(testValue);
+    });
+
+    it('Action: setTypeView - return action', () => {
       const expectedActions = {
-        payload: err,
-        type: 'ITEMS_HAS_ERRORED'
+        type: 'SET_TYPE_VIEW',
+        payload: testValue
       };
-      it('check Reducer', () => {
-        expect(errorReducer(initial, expectedActions)).toEqual(err);
-      });
+      expect(setTypeView(testValue)).toEqual(expectedActions);
+    });
+  });
 
-      it('check state arguments', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        const state = jest.fn((arg1, arg2) => errorReducer(arg1, arg2));
-        state(undefined, actionDefault);
-        expect(state).toHaveReturnedWith(initial);
-      });
+  describe('Fetch Genres Reducer ', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+    const initial = [];
+    const action = {
+      type: 'FETCH_ID_GENRES',
+      payload: {
+        genres: [{ id: 35, name: 'Drama' }]
+      }
+    };
 
-      it('check state default', () => {
-        const actionDefault = {
-          type: 'ACTION_DEFAULT',
-          payload: false
-        };
-        expect(errorReducer(initial, actionDefault)).toEqual(initial);
+    it('fetchGenres: check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      const state = jest.fn((arg1, arg2) => fetchGenresReducer(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(initial);
+    });
+
+    it('FETCH_ID_GENRES', () => {
+      expect(fetchGenresReducer(initial, action)).toEqual([{ id: 35, name: 'Drama' }]);
+    });
+
+    it('fetchGenres: check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      expect(fetchGenresReducer(initial, actionDefault)).toEqual(initial);
+    });
+
+    it('fetchGenres: Action', () => {
+      const mockStore = configureMockStore([thunk]);
+      fetchMock.getOnce(
+        'https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
+        {
+          headers: { 'content-type': 'application/json' },
+          body: { genres: { id: 35, name: 'Drama' }, status: 'ok' }
+        }
+      );
+      const expectedActions = [
+        {
+          type: 'FETCH_ID_GENRES',
+          payload: { genres: { id: 35, name: 'Drama' } }
+        }
+      ];
+      const store = mockStore({});
+      return store.dispatch(fetchGenres()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
       });
+    });
+  });
+
+  describe('Error Reducer', () => {
+    const initial = false;
+    const err = new Error('Some Error');
+    const expectedActions = {
+      payload: err,
+      type: 'ITEMS_HAS_ERRORED'
+    };
+    it('check Reducer', () => {
+      expect(errorReducer(initial, expectedActions)).toEqual(err);
+    });
+
+    it('check state arguments', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      const state = jest.fn((arg1, arg2) => errorReducer(arg1, arg2));
+      state(undefined, actionDefault);
+      expect(state).toHaveReturnedWith(initial);
+    });
+
+    it('check state default', () => {
+      const actionDefault = {
+        type: 'ACTION_DEFAULT',
+        payload: false
+      };
+      expect(errorReducer(initial, actionDefault)).toEqual(initial);
     });
   });
 });
