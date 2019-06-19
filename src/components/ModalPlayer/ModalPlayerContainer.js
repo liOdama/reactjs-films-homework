@@ -6,9 +6,9 @@ import { ModalPlayer } from './ModalPlayer';
 const mapStateToProps = state => state;
 export const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default())
+  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default()),
 });
 export default connect(
   mapStateToProps,
-  mapStateToDispatch
+  mapStateToDispatch,
 )(ModalPlayer);

@@ -1,29 +1,43 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import style from './Header.scss';
 
-export const search = (props, e) => {
-  const { fetchSearchResults, error, clearError } = props;
-  e.preventDefault();
-  if (error !== undefined && error !== false) {
-    clearError(false);
+class Header extends React.Component {
+  search = (e) => {
+    const { fetchSearchResults, error, clearError } = this.props;
+    e.preventDefault();
+    if (error !== undefined && error !== false) {
+      clearError(false);
+    }
+    const query = e.target.children[0].value;
+    return fetchSearchResults(query);
+  };
+
+  render() {
+    return (
+      <header className={style.header}>
+        <div className={style.container}>
+          <h1 className={style.h1}>FILMS</h1>
+          <form action="" onSubmit={this.search}>
+            <input type="search" className={style.searchField} tabIndex="0" />
+            <button type="submit" className={style.btnSearch}>
+              &#9906;
+            </button>
+          </form>
+        </div>
+      </header>
+    );
   }
-  const query = e.target.children[0].value;
-  return fetchSearchResults(query);
+}
+
+Header.defaultProps = {
+  error: false,
 };
 
-const Header = props => (
-  <header className={style.header}>
-    <div className={style.container}>
-      <h1 className={style.h1}>FILMS</h1>
-      <form action="" onSubmit={search.bind(null, props)}>
-        <input type="search" className={style.searchField} tabIndex="0" />
-        <button type="submit" className={style.btnSearch}>
-          &#9906;
-        </button>
-      </form>
-    </div>
-  </header>
-);
+Header.propTypes = {
+  clearError: PropTypes.func.isRequired,
+  error: PropTypes.bool,
+  fetchSearchResults: PropTypes.func.isRequired,
+};
 
 export default Header;

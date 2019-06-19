@@ -3,8 +3,11 @@
 exports[`MovieItem renders correctly with lines classes 1`] = `
 <article
   className="movieContainer lines"
+  onMouseLeave={[Function]}
 >
-  <figure>
+  <figure
+    className="figcaptionBlock"
+  >
     <div>
       <img
         alt="Avengers: Endgame"
@@ -17,7 +20,6 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
       >
         <button
           href="#"
-          id="movieTitle"
           onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
@@ -64,6 +66,7 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
   </figure>
   <hoverMovieCard
     fetchVideo={[Function]}
+    fullOverwie={false}
     genres={
       Array [
         <li>
@@ -95,6 +98,8 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
         </li>,
       ]
     }
+    hoverOverwieBlock={[Function]}
+    hoverOverwieNone={[Function]}
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
     rate={0}
@@ -106,8 +111,11 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
 exports[`MovieItem renders correctly with poster image 1`] = `
 <article
   className="movieContainer cards"
+  onMouseLeave={[Function]}
 >
-  <figure>
+  <figure
+    className="figcaptionBlock"
+  >
     <div>
       <img
         alt="Avengers: Endgame"
@@ -120,7 +128,6 @@ exports[`MovieItem renders correctly with poster image 1`] = `
       >
         <button
           href="#"
-          id="movieTitle"
           onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
@@ -167,6 +174,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
   </figure>
   <hoverMovieCard
     fetchVideo={[Function]}
+    fullOverwie={false}
     genres={
       Array [
         <li>
@@ -198,6 +206,8 @@ exports[`MovieItem renders correctly with poster image 1`] = `
         </li>,
       ]
     }
+    hoverOverwieBlock={[Function]}
+    hoverOverwieNone={[Function]}
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
     rate={0}
@@ -209,9 +219,11 @@ exports[`MovieItem renders correctly with poster image 1`] = `
 exports[`MovieItem renders correctly without poster image 1`] = `
 <article
   className="movieContainer undefined"
-  id={299534}
+  onMouseLeave={[Function]}
 >
-  <figure>
+  <figure
+    className="figcaptionBlock"
+  >
     <div>
       <img
         alt="Avengers: Endgame"
@@ -224,7 +236,7 @@ exports[`MovieItem renders correctly without poster image 1`] = `
       >
         <button
           href="#"
-          id="movieTitle"
+          id={299534}
           onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
@@ -273,6 +285,7 @@ exports[`MovieItem renders correctly without poster image 1`] = `
   </figure>
   <hoverMovieCard
     fetchVideo={[Function]}
+    fullOverwie={false}
     genres={
       Array [
         <li>
@@ -304,10 +317,317 @@ exports[`MovieItem renders correctly without poster image 1`] = `
         </li>,
       ]
     }
+    hoverOverwieBlock={[Function]}
+    hoverOverwieNone={[Function]}
+    id={299534}
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
     rate={8.6}
     title="Avengers: Endgame"
   />
 </article>
+`;
+
+exports[`events hoverOverwieBlock 1`] = `
+<div
+  id="wrapper"
+>
+  <article
+    class="movieContainer undefined"
+  >
+    <figure
+      class="figcaptionBlock"
+    >
+      <div>
+        <img
+          alt="Avengers: Endgame"
+          src="https://api.ballotpedia.org/v3/thumbnail/"
+        />
+      </div>
+      <figcaption>
+        <div
+          class="movieTitle"
+        >
+          <button
+            href="#"
+            id="299534"
+            tabindex="0"
+            type="button"
+          >
+            Avengers: Endgame
+          </button>
+          <span>
+            8.6
+          </span>
+        </div>
+        <div
+          class="movieGenres"
+        >
+          <ul>
+            <li>
+              <button
+                type="button"
+              >
+                Adventure,
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+              >
+                Science Fiction,
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+              >
+                Action
+              </button>
+            </li>
+          </ul>
+        </div>
+      </figcaption>
+    </figure>
+    <div
+      class="hoverMovie"
+    >
+      <div
+        class="hoverControlBlock"
+      >
+        <label
+          for="playTrailer"
+          id="299534"
+        >
+          <input
+            class="playTrailer"
+            name="playTrailer"
+            type="button"
+          />
+          Watch Now
+        </label>
+        <button
+          class="showOverwie"
+          id="showOverwie"
+          type="button"
+        >
+          View Info
+        </button>
+      </div>
+      <div
+        class="hoverOverwie hoverOverwieNone"
+      >
+        <button
+          class="hoverClose"
+          id="closeHover"
+          type="button"
+        >
+          ╳
+        </button>
+        <div
+          class="hoverOverwieTitle"
+        >
+          <div
+            class="hoverOverwieTitleItem"
+          >
+            <h3>
+              Avengers: Endgame
+            </h3>
+            <ul>
+              <li>
+                <button
+                  type="button"
+                >
+                  Adventure,
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                >
+                  Science Fiction,
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                >
+                  Action
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="hoverOverwieTitleItem"
+          >
+            <p>
+              8.6
+            </p>
+          </div>
+        </div>
+        <p>
+          After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.
+        </p>
+        <button
+          id="299534"
+          type="button"
+        >
+          Watch Now
+        </button>
+      </div>
+    </div>
+  </article>
+</div>
+`;
+
+exports[`events hoverOverwieBlock 2`] = `
+<div
+  id="wrapper"
+>
+  <article
+    class="movieContainer undefined"
+  >
+    <figure
+      class="figcaptionBlock"
+    >
+      <div>
+        <img
+          alt="Avengers: Endgame"
+          src="https://api.ballotpedia.org/v3/thumbnail/"
+        />
+      </div>
+      <figcaption>
+        <div
+          class="movieTitle"
+        >
+          <button
+            href="#"
+            id="299534"
+            tabindex="0"
+            type="button"
+          >
+            Avengers: Endgame
+          </button>
+          <span>
+            8.6
+          </span>
+        </div>
+        <div
+          class="movieGenres"
+        >
+          <ul>
+            <li>
+              <button
+                type="button"
+              >
+                Adventure,
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+              >
+                Science Fiction,
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+              >
+                Action
+              </button>
+            </li>
+          </ul>
+        </div>
+      </figcaption>
+    </figure>
+    <div
+      class="hoverMovie"
+    >
+      <div
+        class="hoverControlBlock"
+      >
+        <label
+          for="playTrailer"
+          id="299534"
+        >
+          <input
+            class="playTrailer"
+            name="playTrailer"
+            type="button"
+          />
+          Watch Now
+        </label>
+        <button
+          class="showOverwie"
+          id="showOverwie"
+          type="button"
+        >
+          View Info
+        </button>
+      </div>
+      <div
+        class="hoverOverwie hoverOverwieNone"
+      >
+        <button
+          class="hoverClose"
+          id="closeHover"
+          type="button"
+        >
+          ╳
+        </button>
+        <div
+          class="hoverOverwieTitle"
+        >
+          <div
+            class="hoverOverwieTitleItem"
+          >
+            <h3>
+              Avengers: Endgame
+            </h3>
+            <ul>
+              <li>
+                <button
+                  type="button"
+                >
+                  Adventure,
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                >
+                  Science Fiction,
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                >
+                  Action
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="hoverOverwieTitleItem"
+          >
+            <p>
+              8.6
+            </p>
+          </div>
+        </div>
+        <p>
+          After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.
+        </p>
+        <button
+          id="299534"
+          type="button"
+        >
+          Watch Now
+        </button>
+      </div>
+    </div>
+  </article>
+</div>
 `;

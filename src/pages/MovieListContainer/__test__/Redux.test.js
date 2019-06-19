@@ -12,7 +12,7 @@ import itemsIsLoadingAction from '../../../modules/isLoading/isLoadingAction';
 import {
   itemsFetchDataSuccess,
   fetchVideoSuccess,
-  clearResults
+  clearResults,
 } from '../../../modules/root/rootAction';
 
 // import REDUCER
@@ -31,33 +31,33 @@ describe('Test for reducers', () => {
     it('Root Reducer: ITEMS_FETCH_DATA_SUCCESS', () => {
       const action = {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
-        payload: { page: 1, results: [{ id: 1 }, 2, 3] }
+        payload: { page: 1, results: [{ id: 1 }, 2, 3] },
       };
 
       expect(rootReducer(initialState, action)).toEqual({
         ...initialState,
         page: 1,
         results: [{ id: 1 }, 2, 3],
-        mainMovie: 1
+        mainMovie: 1,
       });
     });
 
     it('Root Reducer: CLEAR_CURRENT_MOVIE action', () => {
       const action = {
         type: 'CLEAR_CURRENT_MOVIE',
-        payload: null
+        payload: null,
       };
 
       expect(rootReducer(initialState, action)).toEqual({
         ...initialState,
-        currentVideo: null
+        currentVideo: null,
       });
     });
 
     it('Root Reducer: CLEAR_RESULTS', () => {
       const action = {
         type: 'CLEAR_RESULTS',
-        payload: initialState
+        payload: initialState,
       };
       expect(rootReducer(initialState, action)).toEqual(initialState);
     });
@@ -65,19 +65,19 @@ describe('Test for reducers', () => {
     it('Root reducer: fetch trailer action', () => {
       const action = {
         type: 'FETCH_VIDEO_SUCCESS',
-        payload: 'testId'
+        payload: 'testId',
       };
 
       expect(rootReducer(initialState, action)).toEqual({
         ...initialState,
-        currentVideo: 'testId'
+        currentVideo: 'testId',
       });
     });
 
     it('Root reducer: check default arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => rootReducer(arg1, arg2));
       state(undefined, actionDefault);
@@ -87,11 +87,11 @@ describe('Test for reducers', () => {
     it('Root reducer: Default', () => {
       const action = {
         type: 'Default',
-        payload: { ...initialState }
+        payload: { ...initialState },
       };
 
       expect(rootReducer(initialState, action)).toEqual({
-        ...initialState
+        ...initialState,
       });
     });
 
@@ -99,10 +99,10 @@ describe('Test for reducers', () => {
       const mockStore = configureMockStore([thunk]);
       const expectedActions = {
         type: 'CLEAR_CURRENT_MOVIE',
-        payload: null
+        payload: null,
       };
       const store = mockStore({
-        currentVideo: 'testId'
+        currentVideo: 'testId',
       });
       const data = store.dispatch(clearCurrentMovie());
       expect(data).toEqual(expectedActions);
@@ -112,7 +112,7 @@ describe('Test for reducers', () => {
       it('itemsFetchDataSuccess ', () => {
         const action = {
           type: 'ITEMS_FETCH_DATA_SUCCESS',
-          payload: initialState
+          payload: initialState,
         };
         expect(itemsFetchDataSuccess(initialState)).toEqual(action);
       });
@@ -121,7 +121,7 @@ describe('Test for reducers', () => {
         const testQuery = 'testID';
         const action = {
           type: 'FETCH_VIDEO_SUCCESS',
-          payload: testQuery
+          payload: testQuery,
         };
         expect(fetchVideoSuccess(testQuery)).toEqual(action);
       });
@@ -129,7 +129,7 @@ describe('Test for reducers', () => {
       it('clearResults   ', () => {
         const action = {
           type: 'CLEAR_RESULTS',
-          payload: []
+          payload: [],
         };
         expect(clearResults()).toEqual(action);
       });
@@ -154,7 +154,7 @@ describe('Test for reducers', () => {
         { id: 10402, name: 'Music' },
         { id: 10749, name: 'Romance' },
         { id: 35, name: 'Comedy' },
-        { id: 10751, name: 'Family' }
+        { id: 10751, name: 'Family' },
       ],
       homepage: null,
       id: 420817,
@@ -173,27 +173,27 @@ describe('Test for reducers', () => {
       title: 'Aladdin',
       video: false,
       vote_average: 7.2,
-      vote_count: 461
+      vote_count: 461,
     };
 
     it('mainMovie: GET_MAIN_MOVIE_DETAILS', () => {
       const action = {
         type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data
+        payload: data,
       };
       expect(mainMovieReducer(initial, action)).toEqual(data);
     });
     it('mainMovie: CLEAR_RESULTS', () => {
       const action = {
         type: 'CLEAR_RESULTS',
-        payload: initial
+        payload: initial,
       };
       expect(mainMovieReducer(initial, action)).toEqual(initial);
     });
     it('mainMovie: check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => mainMovieReducer(arg1, arg2));
       state(undefined, actionDefault);
@@ -203,7 +203,7 @@ describe('Test for reducers', () => {
     it('mainMovie: check state default', () => {
       const actionDefault = {
         type: 'ACTION',
-        payload: {}
+        payload: {},
       };
       expect(mainMovieReducer(initial, actionDefault)).toEqual(initial);
     });
@@ -213,7 +213,7 @@ describe('Test for reducers', () => {
       const store = mockStore(initial);
       const action = {
         type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data
+        payload: data,
       };
       expect(store.dispatch(setMainMovieDetails(data))).toEqual(action);
     });
@@ -223,7 +223,7 @@ describe('Test for reducers', () => {
       const id = 458156;
       const action = {
         type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data
+        payload: data,
       };
 
       fetchMock
@@ -232,8 +232,8 @@ describe('Test for reducers', () => {
           {
             headers: { 'content-type': 'application/json' },
             body: data,
-            status: 200
-          }
+            status: 200,
+          },
         )
         .catch(err => itemsHasErrored(err));
 
@@ -247,7 +247,7 @@ describe('Test for reducers', () => {
     const initial = false;
     const action = bool => ({
       type: 'ITEMS_IS_LOADING',
-      payload: bool
+      payload: bool,
     });
     it('check Reducer', () => {
       expect(itemsIsLoading(initial, action(true))).toEqual(true);
@@ -256,7 +256,7 @@ describe('Test for reducers', () => {
     it('check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => itemsIsLoading(arg1, arg2));
       state(undefined, actionDefault);
@@ -266,7 +266,7 @@ describe('Test for reducers', () => {
     it('check state default', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       expect(itemsIsLoading(initial, actionDefault)).toEqual(initial);
     });
@@ -281,7 +281,7 @@ describe('Test for reducers', () => {
     const testValue = 'cards';
     const action = value => ({
       type: 'SET_TYPE_VIEW',
-      payload: value
+      payload: value,
     });
     it('check Reducer', () => {
       expect(typeViewReducer(initial, action(testValue))).toEqual(testValue);
@@ -290,7 +290,7 @@ describe('Test for reducers', () => {
     it('check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => typeViewReducer(arg1, arg2));
       state(undefined, actionDefault);
@@ -300,7 +300,7 @@ describe('Test for reducers', () => {
     it('check state default', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       expect(typeViewReducer(initial, actionDefault)).toEqual(testValue);
     });
@@ -308,7 +308,7 @@ describe('Test for reducers', () => {
     it('Action: setTypeView - return action', () => {
       const expectedActions = {
         type: 'SET_TYPE_VIEW',
-        payload: testValue
+        payload: testValue,
       };
       expect(setTypeView(testValue)).toEqual(expectedActions);
     });
@@ -322,14 +322,14 @@ describe('Test for reducers', () => {
     const action = {
       type: 'FETCH_ID_GENRES',
       payload: {
-        genres: [{ id: 35, name: 'Drama' }]
-      }
+        genres: [{ id: 35, name: 'Drama' }],
+      },
     };
 
     it('fetchGenres: check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => fetchGenresReducer(arg1, arg2));
       state(undefined, actionDefault);
@@ -343,7 +343,7 @@ describe('Test for reducers', () => {
     it('fetchGenres: check state default', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       expect(fetchGenresReducer(initial, actionDefault)).toEqual(initial);
     });
@@ -354,14 +354,14 @@ describe('Test for reducers', () => {
         'https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
         {
           headers: { 'content-type': 'application/json' },
-          body: { genres: { id: 35, name: 'Drama' }, status: 'ok' }
-        }
+          body: { genres: { id: 35, name: 'Drama' }, status: 'ok' },
+        },
       );
       const expectedActions = [
         {
           type: 'FETCH_ID_GENRES',
-          payload: { genres: { id: 35, name: 'Drama' } }
-        }
+          payload: { genres: { id: 35, name: 'Drama' } },
+        },
       ];
       const store = mockStore({});
       return store.dispatch(fetchGenres()).then(() => {
@@ -375,7 +375,7 @@ describe('Test for reducers', () => {
     const err = new Error('Some Error');
     const expectedActions = {
       payload: err,
-      type: 'ITEMS_HAS_ERRORED'
+      type: 'ITEMS_HAS_ERRORED',
     };
     it('check Reducer', () => {
       expect(errorReducer(initial, expectedActions)).toEqual(err);
@@ -384,7 +384,7 @@ describe('Test for reducers', () => {
     it('check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       const state = jest.fn((arg1, arg2) => errorReducer(arg1, arg2));
       state(undefined, actionDefault);
@@ -394,7 +394,7 @@ describe('Test for reducers', () => {
     it('check state default', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false
+        payload: false,
       };
       expect(errorReducer(initial, actionDefault)).toEqual(initial);
     });

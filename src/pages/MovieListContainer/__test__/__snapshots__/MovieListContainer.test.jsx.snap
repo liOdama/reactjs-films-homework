@@ -158,9 +158,11 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
     >
       <article
         className="movieContainer cards"
-        id={299534}
+        onMouseLeave={[Function]}
       >
-        <figure>
+        <figure
+          className="figcaptionBlock"
+        >
           <div>
             <img
               alt="Avengers: Endgame"
@@ -173,7 +175,7 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
             >
               <button
                 href="#"
-                id="movieTitle"
+                id={299534}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 tabIndex="0"
@@ -224,11 +226,11 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
           className="hoverMovie"
         >
           <div
-            className="hoverControl"
+            className="hoverControlBlock"
           >
             <label
               htmlFor="playTrailer"
-              id="playTrailer"
+              id={299534}
               onClick={[Function]}
               onKeyDown={[Function]}
             >
@@ -249,8 +251,7 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
             </button>
           </div>
           <div
-            className="hoverOverwie"
-            onMouseLeave={[Function]}
+            className="hoverOverwie hoverOverwieNone"
           >
             <button
               className="hoverClose"
@@ -311,7 +312,7 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
               After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.
             </p>
             <button
-              id="watch"
+              id={299534}
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"

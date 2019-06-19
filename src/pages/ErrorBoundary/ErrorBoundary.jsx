@@ -16,12 +16,12 @@ class ErrorBoundary extends Component {
     if (nextProps.error !== false) {
       return {
         hasError: true,
-        typeError: nextProps.error
+        typeError: nextProps.error,
       };
     }
     return {
       hasError: false,
-      typeError: null
+      typeError: null,
     };
   }
 
@@ -34,7 +34,9 @@ class ErrorBoundary extends Component {
 
   render() {
     const { hasError, typeError } = this.state;
-    const { children, genres, error, clearError, fetchListMovies } = this.props;
+    const {
+      children, genres, error, clearError, fetchListMovies,
+    } = this.props;
     if (hasError === true) {
       if (typeError !== 'Something Wrong') {
         return (
@@ -63,7 +65,7 @@ class ErrorBoundary extends Component {
 ErrorBoundary.defaultProps = {
   error: false,
   genres: [],
-  children: []
+  children: [],
 };
 
 ErrorBoundary.propTypes = {
@@ -71,7 +73,7 @@ ErrorBoundary.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   fetchListMovies: PropTypes.func.isRequired,
   clearError: PropTypes.func.isRequired,
-  children: PropTypes.arrayOf(PropTypes.object)
+  children: PropTypes.arrayOf(PropTypes.object),
 };
 
 const mapStateToProps = state => state;
@@ -79,9 +81,9 @@ export const mapStateToDispatch = dispatch => ({
   clearError: boolean => dispatch(itemsReducer(boolean)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
   fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
+  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
 });
 export default connect(
   mapStateToProps,
-  mapStateToDispatch
+  mapStateToDispatch,
 )(ErrorBoundary);

@@ -16,7 +16,7 @@ export const reducer = combineReducers({
   itemsIsLoading,
   mainMovie: mainMovieReducer,
   error: errorReducer,
-  typeView: typeViewReducer
+  typeView: typeViewReducer,
 });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk, logger)));

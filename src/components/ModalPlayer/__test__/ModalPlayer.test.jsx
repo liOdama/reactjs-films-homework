@@ -11,7 +11,7 @@ describe('Modal Renders correctly', () => {
   const state = {
     fetchVideo: jest.fn(id => ({ test: id })),
     clearCurrentMovie: jest.fn(),
-    movies: { currentVideo: 222 }
+    movies: { currentVideo: 222 },
   };
   const store = mockStore(state);
   it('modal renders correctly', () => {
@@ -22,7 +22,7 @@ describe('Modal Renders correctly', () => {
         <Provider store={store}>
           <Modal.default />
         </Provider>,
-        document.querySelector('#modalRoot')
+        document.querySelector('#modalRoot'),
       );
     });
 
@@ -38,24 +38,58 @@ describe('Modal Renders correctly', () => {
       document.body.appendChild(container);
     });
 
-    it('Modal: unmount with click', () => {
+    it('Modal: has a error', () => {
       const clearCurrentMovie = jest.fn();
       const props = {
-        clearCurrentMovie
+        movies: { currentVideo: 'test' },
+        error: true,
+        clearCurrentMovie,
       };
 
       jest.spyOn(props, 'clearCurrentMovie');
-      ModalPlayer.prototype.componentWillUnmount.call(props);
+      act(() => {
+        ReactDOM.render(<ModalPlayer id="test" {...props} />, document.querySelector('#modalRoot'));
+      });
+
+      const node = document.querySelector('button');
+      ReactTestUtils.Simulate.keyDown(node, { key: 'Escape' });
       expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
-    it('Modal: clearCurrentMovie = undefined', () => {
+    it('Modal: has a error', () => {
       const clearCurrentMovie = jest.fn();
       const props = {
-        clearCurrentMovie: undefined
+        movies: { currentVideo: 'test' },
+        error: true,
+        clearCurrentMovie,
       };
-      ModalPlayer.prototype.componentWillUnmount.call(props);
+
+      jest.spyOn(props, 'clearCurrentMovie');
+      act(() => {
+        ReactDOM.render(<ModalPlayer id="test" {...props} />, document.querySelector('#modalRoot'));
+      });
+
+      const node = document.querySelector('button');
+      ReactTestUtils.Simulate.keyDown(node, { key: 'Enter' });
       expect(clearCurrentMovie).toHaveBeenCalledTimes(0);
+    });
+
+    it('Modal: has a error', () => {
+      const clearCurrentMovie = jest.fn();
+      const props = {
+        movies: { currentVideo: 'test' },
+        error: false,
+        clearCurrentMovie,
+      };
+
+      jest.spyOn(props, 'clearCurrentMovie');
+      act(() => {
+        ReactDOM.render(<ModalPlayer id="test" {...props} />, document.querySelector('#modalRoot'));
+      });
+
+      const node = document.querySelector('#trailer');
+      ReactTestUtils.Simulate.click(node);
+      expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
     it('show with id watch', () => {
@@ -64,7 +98,7 @@ describe('Modal Renders correctly', () => {
       const button = React.createElement('button', {
         onClick: showModal.bind(null, props),
         type: 'button',
-        id: 'watch'
+        id: 'watch',
       });
       const div = React.createElement('div', null, button);
       const template = React.createElement('section', null, div);
@@ -82,7 +116,7 @@ describe('Modal Renders correctly', () => {
       const button = React.createElement('button', {
         onClick: showModal.bind(null, props),
         type: 'button',
-        id: 'playTrailer'
+        id: 'playTrailer',
       });
       const template = React.createElement('article', null, button);
       act(() => {
@@ -93,27 +127,27 @@ describe('Modal Renders correctly', () => {
       expect(fetchVideo).toHaveBeenCalled();
     });
 
-    it('show with id test - result to be NULL', () => {
-      const props = { fetchVideo };
-      const e = {
-        target: {
-          id: 'test'
-        }
-      };
-      const result = showModal(props, e);
-      expect(result).toBeNull();
-    });
+    // it('show with id test - result to be NULL', () => {
+    //   const props = { fetchVideo };
+    //   const e = {
+    //     target: {
+    //       id: 'test',
+    //     },
+    //   };
+    //   const result = showModal(props, e);
+    //   expect(result).toBeNull();
+    // });
   });
 
   describe('MapDispatchToProps', () => {
     const state1 = {
       fetchVideo: id => id,
-      clearCurrentMovie: () => true
+      clearCurrentMovie: () => true,
     };
 
     it('test all descriptors', () => {
       const keys = Object.keys(state1);
-      keys.forEach(async curr => {
+      keys.forEach(async (curr) => {
         const dispatch = jest.fn(() => state1[curr]);
         const result = await Modal.mapStateToDispatch(dispatch)[curr]();
         expect(result).toEqual(state1[curr]);

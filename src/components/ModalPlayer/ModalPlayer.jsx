@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import YouTube from 'react-youtube';
@@ -8,7 +9,7 @@ export class ModalPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0
+      id: 0,
     };
     this.el = document.createElement('div');
   }
@@ -18,36 +19,36 @@ export class ModalPlayer extends Component {
     modalRoot.appendChild(this.el);
   }
 
-  componentWillUnmount() {
-    const { clearCurrentMovie } = this;
-    if (clearCurrentMovie !== undefined) {
-      clearCurrentMovie();
-    }
-  }
-
   static getDerivedStateFromProps(props) {
     const newState = {
-      id: props.movies.currentVideo
+      id: props.movies.currentVideo,
     };
     return newState;
   }
 
+  unmount = (e) => {
+    if (e.type === 'click' || e.key === 'Escape') {
+      const { clearCurrentMovie } = this.props;
+      clearCurrentMovie();
+    }
+  };
+
   render() {
-    document.body.addEventListener('keydown', this.componentWillUnmount.bind(this.props));
+    document.body.addEventListener('keydown', this.unmount);
     const { id } = this.state;
     const opts = {
       width: '70%',
       height: '80%',
       title: 'Trailer',
-      origin: 'http://localhost:3000'
+      origin: 'http://localhost:3000',
     };
     const component = (
       <div
         role="button"
         tabIndex="0"
         className={`${style.modalWrapper}`}
-        onClick={this.componentWillUnmount.bind(this.props)}
-        onKeyDown={this.componentWillUnmount.bind(this.props)}
+        onClick={this.unmount}
+        onKeyDown={this.unmount}
       >
         <button type="button" tabIndex="0" className={style.modalClose}>
           &#9587;
@@ -59,16 +60,14 @@ export class ModalPlayer extends Component {
   }
 }
 
+ModalPlayer.propTypes = {
+  clearCurrentMovie: PropTypes.func.isRequired,
+};
+
 export const showModal = (props, e) => {
-  let element = e.target;
-  if (element.id === 'playTrailer' || element.id === 'watch') {
-    while (element.localName !== 'article' && element.localName !== 'section') {
-      element = element.parentElement;
-    }
-    const { fetchVideo } = props;
-    fetchVideo(element.id);
-  }
-  return null;
+  const element = e.target;
+  const { fetchVideo } = props;
+  fetchVideo(element.id);
 };
 
 export default ModalPlayer;

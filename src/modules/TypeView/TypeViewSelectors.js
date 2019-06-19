@@ -4,7 +4,7 @@ const typeView = state => state.typeView;
 
 const checkTypeView = createSelector(
   typeView,
-  data => data
+  data => data,
 );
 
 export default checkTypeView;

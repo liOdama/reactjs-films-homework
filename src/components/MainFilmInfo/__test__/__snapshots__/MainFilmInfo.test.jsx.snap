@@ -1,23 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainFilmInfo renders correctly 1`] = `
-<div>
+<div
+  className="hideInfo"
+  id="mainFilmOverwie"
+>
   <div
     className="mainFilmInfo__info"
-    id="mainFilmOverwie"
   >
-    <p
-      style={
-        Object {
-          "display": "-webkit-box",
-        }
-      }
-    >
+    <p>
       
     </p>
   </div>
   <Memo(ConnectFunction)
     className="mainFilmInfo__buttons"
+    setTypeOverwie={[Function]}
   />
+</div>
+`;
+
+exports[`MainFilmInfo: check state 1`] = `
+<div
+  id="wrapper"
+>
+  <div
+    class="showInfo"
+    id="mainFilmOverwie"
+  >
+    <div
+      class="mainFilmInfo__info"
+    >
+      <p />
+    </div>
+    <div
+      class="btnContainer"
+    >
+      <button
+        class="watch"
+        id="test"
+        tabindex="0"
+        type="button"
+      >
+        Watch Now
+      </button>
+      <button
+        class="viewInfo"
+        id="info"
+        tabindex="0"
+        type="button"
+      >
+        View Info
+      </button>
+    </div>
+  </div>
 </div>
 `;

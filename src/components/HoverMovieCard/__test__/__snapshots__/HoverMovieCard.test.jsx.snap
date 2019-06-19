@@ -5,11 +5,10 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
   className="hoverMovie"
 >
   <div
-    className="hoverControl"
+    className="hoverControlNone"
   >
     <label
       htmlFor="playTrailer"
-      id="playTrailer"
       onClick={[Function]}
       onKeyDown={[Function]}
     >
@@ -23,20 +22,17 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
     <button
       className="showOverwie"
       id="showOverwie"
-      onClick={[Function]}
       type="button"
     >
       View Info
     </button>
   </div>
   <div
-    className="hoverOverwie"
-    onMouseLeave={[Function]}
+    className="hoverOverwie hoverOverwieBlock"
   >
     <button
       className="hoverClose"
       id="closeHover"
-      onClick={[Function]}
       type="button"
     >
       ╳
@@ -64,7 +60,6 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
       
     </p>
     <button
-      id="watch"
       onClick={[Function]}
       onKeyDown={[Function]}
       type="button"
@@ -80,11 +75,10 @@ exports[`HoverMovieCard renders correctly 1`] = `
   className="hoverMovie"
 >
   <div
-    className="hoverControl"
+    className="hoverControlBlock"
   >
     <label
       htmlFor="playTrailer"
-      id="playTrailer"
       onClick={[Function]}
       onKeyDown={[Function]}
     >
@@ -98,20 +92,17 @@ exports[`HoverMovieCard renders correctly 1`] = `
     <button
       className="showOverwie"
       id="showOverwie"
-      onClick={[Function]}
       type="button"
     >
       View Info
     </button>
   </div>
   <div
-    className="hoverOverwie"
-    onMouseLeave={[Function]}
+    className="hoverOverwie hoverOverwieNone"
   >
     <button
       className="hoverClose"
       id="closeHover"
-      onClick={[Function]}
       type="button"
     >
       ╳
@@ -139,7 +130,6 @@ exports[`HoverMovieCard renders correctly 1`] = `
       
     </p>
     <button
-      id="watch"
       onClick={[Function]}
       onKeyDown={[Function]}
       type="button"

@@ -7,10 +7,10 @@ const mapStateToProps = state => state;
 
 export const mapStateToDispatch = dispatch => ({
   fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  clearError: boolean => dispatch(itemsReducer(boolean))
+  clearError: boolean => dispatch(itemsReducer(boolean)),
 });
 
 export default connect(
   mapStateToProps,
-  mapStateToDispatch
+  mapStateToDispatch,
 )(Header);

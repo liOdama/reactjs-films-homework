@@ -10,9 +10,9 @@ export const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
   fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query))
+  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
 });
 export default connect(
   mapStateToProps,
-  mapStateToDispatch
+  mapStateToDispatch,
 )(MovieDetailsPage);

@@ -7,22 +7,12 @@ import selectGenre, { keydonwGenres } from '../../utils/selectGenre';
 import * as stylerate from '../Star/Star.scss';
 import style from './MovieItem.scss';
 
-const changeMainFilm = (props, e) => {
-  e.preventDefault();
-  const { getMainMovieDetails } = props;
-  let element = e.currentTarget;
-  while (element.localName !== 'article') {
-    element = element.parentElement;
-  }
-  const { id } = element;
-  return getMainMovieDetails(id);
-};
-
 class MovieItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      typeView: 'cards'
+      typeView: 'cards',
+      fullOverwie: false,
     };
   }
 
@@ -30,9 +20,36 @@ class MovieItem extends React.Component {
     return { typeView: nextProps.typeView };
   }
 
-  render() {
-    const { curr, genres, fetchVideo, movies } = this.props;
+  shouldComponentUpdate(nextProps, nextState) {
+    const prev = this.state;
+    if (JSON.stringify(prev) !== JSON.stringify(nextState)) {
+      return true;
+    }
+    return false;
+  }
+
+  hoverOverwieBlock = () => {
     const { typeView } = this.state;
+    this.setState({ typeView, fullOverwie: true });
+  };
+
+  hoverOverwieNone = () => {
+    const { typeView } = this.state;
+    this.setState({ typeView, fullOverwie: false });
+  };
+
+  changeMainFilm = (e) => {
+    e.preventDefault();
+    const { getMainMovieDetails } = this.props;
+    const element = e.target;
+    return getMainMovieDetails(element.id);
+  };
+
+  render() {
+    const {
+      curr, genres, fetchVideo, movies,
+    } = this.props;
+    const { typeView, fullOverwie } = this.state;
     let imageLink;
     if (curr.poster_path === null) {
       imageLink = 'https://api.ballotpedia.org/v3/thumbnail/';
@@ -41,11 +58,17 @@ class MovieItem extends React.Component {
     } else {
       imageLink = `https://image.tmdb.org/t/p/w1280${curr.backdrop_path}`;
     }
+    let classNamesfigcaption;
+    if (fullOverwie === true) {
+      classNamesfigcaption = style.figcaptionNone;
+    } else {
+      classNamesfigcaption = style.figcaptionBlock;
+    }
     const imgAlt = curr.title;
     const genresRow = curr.genre_ids
-      .map(c => {
+      .map((c) => {
         let currentGenre;
-        genres.some(a => {
+        genres.some((a) => {
           if (c === a.id) {
             currentGenre = a.name;
             return true;
@@ -72,9 +95,9 @@ class MovieItem extends React.Component {
       <article
         className={`${style.movieContainer} ${style[typeView]}`}
         key={shortid.generate()}
-        id={curr.id}
+        onMouseLeave={this.hoverOverwieNone}
       >
-        <figure>
+        <figure className={classNamesfigcaption}>
           <div>
             <img src={imageLink} alt={imgAlt} />
           </div>
@@ -83,10 +106,10 @@ class MovieItem extends React.Component {
               <button
                 type="button"
                 href="#"
-                id="movieTitle"
-                onClick={changeMainFilm.bind(null, this.props)}
+                onClick={this.changeMainFilm}
                 onKeyDown={keydonwGenres.bind(null, this.props)}
                 tabIndex="0"
+                id={curr.id}
               >
                 {curr.title}
               </button>
@@ -104,6 +127,10 @@ class MovieItem extends React.Component {
           rate={curr.vote_average}
           fetchVideo={fetchVideo}
           movies={movies}
+          id={curr.id}
+          fullOverwie={fullOverwie}
+          hoverOverwieBlock={this.hoverOverwieBlock}
+          hoverOverwieNone={this.hoverOverwieNone}
         />
       </article>
     );
@@ -112,15 +139,16 @@ class MovieItem extends React.Component {
 
 MovieItem.defaultProps = {
   fetchVideo: alert,
-  movies: {}
+  movies: {},
 };
 
 MovieItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchVideo: PropTypes.func,
   movies: PropTypes.objectOf(PropTypes.any),
-  curr: PropTypes.objectOf(PropTypes.any).isRequired
+  curr: PropTypes.objectOf(PropTypes.any).isRequired,
+  getMainMovieDetails: PropTypes.func.isRequired,
 };
 
-export { changeMainFilm };
+// export { changeMainFilm };
 export default MovieItem;

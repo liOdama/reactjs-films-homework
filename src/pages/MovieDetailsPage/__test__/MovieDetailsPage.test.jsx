@@ -14,7 +14,7 @@ describe('MovieDetailsPage renders correctly', () => {
   const initialState = {
     movies: {},
     genres: [],
-    mainMovie: {}
+    mainMovie: {},
   };
   const mockStore = configureStore([thunk]);
   const initial = {
@@ -36,12 +36,12 @@ describe('MovieDetailsPage renders correctly', () => {
           title: 'Aladdin',
           video: false,
           vote_average: 7.2,
-          vote_count: 538
-        }
-      ]
+          vote_count: 538,
+        },
+      ],
     },
     genres: [],
-    mainMovie: { backdrop_path: 'test' }
+    mainMovie: { backdrop_path: 'test' },
   };
   const initial2 = {
     movies: {
@@ -61,19 +61,19 @@ describe('MovieDetailsPage renders correctly', () => {
           title: 'Aladdin',
           video: false,
           vote_average: 7.2,
-          vote_count: 538
-        }
-      ]
+          vote_count: 538,
+        },
+      ],
     },
     genres: [{ id: 35, name: 'Drama' }],
-    mainMovie: { backdrop_path: 'test' }
+    mainMovie: { backdrop_path: 'test' },
   };
   it('MovieDetailsPage: render preloader', () => {
     const store = mockStore(initialState);
     const container = ReactTestUtils.renderIntoDocument(
       <Provider store={store}>
         <MovieDetailsPage />
-      </Provider>
+      </Provider>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -83,7 +83,7 @@ describe('MovieDetailsPage renders correctly', () => {
     const container = ReactTestRender.create(
       <Provider store={store}>
         <MovieDetailsPage />
-      </Provider>
+      </Provider>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -94,7 +94,7 @@ describe('MovieDetailsPage renders correctly', () => {
       jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'componentDidUpdate');
       MovieDetailsPage.WrappedComponent.prototype.componentDidUpdate.call(
         { props: { ...initial, getMainMovieDetails } },
-        { ...initial2 }
+        { ...initial2 },
       );
       expect(getMainMovieDetails).toHaveBeenCalled();
     });
@@ -103,7 +103,7 @@ describe('MovieDetailsPage renders correctly', () => {
       jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'componentDidUpdate');
       const method = MovieDetailsPage.WrappedComponent.prototype.componentDidUpdate.call(
         { props: { ...initial, getMainMovieDetails } },
-        { ...initial }
+        { ...initial },
       );
       expect(method).toBeNull();
     });
@@ -116,7 +116,7 @@ describe('MovieDetailsPage renders correctly', () => {
       const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
         ...initial,
         fetchListMovies,
-        fetchGenres
+        fetchGenres,
       });
 
       expect(action).toBe(2);
@@ -128,7 +128,7 @@ describe('MovieDetailsPage renders correctly', () => {
       const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
         ...initial2,
         fetchListMovies,
-        fetchGenres
+        fetchGenres,
       });
 
       expect(action).toEqual({ ...initial2, fetchGenres, fetchListMovies });
@@ -140,7 +140,7 @@ describe('MovieDetailsPage renders correctly', () => {
       jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'shouldComponentUpdate');
       const action = MovieDetailsPage.WrappedComponent.prototype.shouldComponentUpdate.call(
         { props: { ...initial } },
-        { ...initial2 }
+        { ...initial2 },
       );
       expect(action).toBeTruthy();
     });
@@ -149,7 +149,7 @@ describe('MovieDetailsPage renders correctly', () => {
       jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'shouldComponentUpdate');
       const action = MovieDetailsPage.WrappedComponent.prototype.shouldComponentUpdate.call(
         { props: { ...initial } },
-        { ...initial }
+        { ...initial },
       );
       expect(action).toBeFalsy();
     });
@@ -161,11 +161,11 @@ describe('MovieDetailsPage renders correctly', () => {
       fetchVideo: id => id,
       getMainMovieDetails: id => id,
       fetchSearchResults: query => query,
-      ...initial
+      ...initial,
     };
     it('test all descriptors', () => {
       const keys = Object.keys(state);
-      keys.forEach(async curr => {
+      keys.forEach(async (curr) => {
         const dispatch = jest.fn(() => state[curr]);
         const result = await mapStateToDispatch(dispatch)[curr]();
         expect(result).toEqual(state[curr]);

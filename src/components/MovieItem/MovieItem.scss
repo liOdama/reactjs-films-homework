@@ -90,3 +90,19 @@ figure > div {
 .lines {
   width: 100%;
 }
+
+.figcaptionNone figcaption {
+  display: none !important;
+}
+
+.figcaptionNone > div {
+  height: 100%;
+}
+
+.figcaptionBlock figcaption {
+  display: block;
+}
+
+.figcaptionNone + div {
+  height: 100%;
+}

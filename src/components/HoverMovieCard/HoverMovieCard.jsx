@@ -6,57 +6,61 @@ import style from './HoverMovieCard.scss';
 import * as stylerate from '../Star/Star.scss';
 import * as styleBtn from '../FilmButtons/FilmButtons.scss';
 
-
-export const showOverwie = (e) => {
-  let element = e.target.parentElement;
-  element.classList.add(style.hoverControlNone);
-  element.nextSibling.classList.add(style.hoverOverwieBlock);
-  while (element.localName !== 'article') {
-    element = element.parentElement;
-  }
-  element.querySelector('figure').classList.add(style.figcaptionNone);
-};
-
-const returnHover = (e) => {
-  let element = e.currentTarget;
-  while (element.localName !== 'article') {
-    element = element.parentElement;
-  }
-  element.querySelector(`.${style.hoverOverwieBlock}`).classList.remove(style.hoverOverwieBlock);
-  element.querySelector(`.${style.hoverControlNone}`).classList.remove(style.hoverControlNone);
-  element.querySelector('figure').classList.remove(style.figcaptionNone);
-};
-
 const hoverMovieCard = (props) => {
   const {
-    genres, overview, title, rate,
+    genres,
+    overview,
+    title,
+    rate,
+    id,
+    hoverOverwieBlock,
+    fullOverwie,
+    hoverOverwieNone,
   } = props;
+  let classNamesHover;
+  let classNameControl;
+
+  if (fullOverwie === true) {
+    classNamesHover = style.hoverOverwieBlock;
+    classNameControl = style.hoverControlNone;
+  } else {
+    classNamesHover = style.hoverOverwieNone;
+    classNameControl = style.hoverControlBlock;
+  }
   return (
     <div className={style.hoverMovie}>
-      <div className={style.hoverControl}>
+      <div className={classNameControl}>
         <label
           htmlFor="playTrailer"
-          id="playTrailer"
+          id={id}
           onClick={showModal.bind(null, props)}
           onKeyDown={showModal.bind(null, props)}
         >
-          <input
-            type="button"
-            className={style.playTrailer}
-            name="playTrailer"
-          />
-                  Watch Now
+          <input type="button" className={style.playTrailer} name="playTrailer" />
+          Watch Now
         </label>
-        <button type="button" className={style.showOverwie} id="showOverwie" onClick={showOverwie}>View Info</button>
+        <button
+          type="button"
+          className={style.showOverwie}
+          id="showOverwie"
+          onClick={hoverOverwieBlock}
+        >
+          View Info
+        </button>
       </div>
-      <div className={style.hoverOverwie} onMouseLeave={returnHover}>
-        <button type="button" id="closeHover" className={style.hoverClose} onClick={returnHover}>&#9587;</button>
+      <div className={`${style.hoverOverwie} ${classNamesHover}`}>
+        <button
+          type="button"
+          id="closeHover"
+          className={style.hoverClose}
+          onClick={hoverOverwieNone}
+        >
+          &#9587;
+        </button>
         <div className={style.hoverOverwieTitle}>
           <div className={style.hoverOverwieTitleItem}>
             <h3>{title}</h3>
-            <ul>
-              {genres}
-            </ul>
+            <ul>{genres}</ul>
           </div>
           <div className={style.hoverOverwieTitleItem}>
             <p className={stylerate.rate}>{rate}</p>
@@ -66,12 +70,11 @@ const hoverMovieCard = (props) => {
         <button
           type="button"
           className={styleBtn.watch}
-          id="watch"
+          id={id}
           onClick={showModal.bind(null, props)}
           onKeyDown={showModal.bind(null, props)}
         >
           Watch Now
-
         </button>
       </div>
     </div>
@@ -83,6 +86,7 @@ hoverMovieCard.defaultProps = {
   title: '',
   overview: '',
   rate: 0,
+  fullOverwie: false,
 };
 
 hoverMovieCard.propTypes = {
@@ -90,6 +94,10 @@ hoverMovieCard.propTypes = {
   title: PropTypes.string,
   overview: PropTypes.string,
   rate: PropTypes.number,
+  id: PropTypes.number.isRequired,
+  hoverOverwieBlock: PropTypes.func.isRequired,
+  fullOverwie: PropTypes.bool,
+  hoverOverwieNone: PropTypes.func.isRequired,
 };
 
 export default hoverMovieCard;

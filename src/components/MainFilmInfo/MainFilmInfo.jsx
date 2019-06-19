@@ -3,28 +3,44 @@ import PropTypes from 'prop-types';
 import FilmButtons from '../FilmButtons/index';
 import style from './MainFilmInfo.scss';
 
-const MainFilmInfo = props => {
-  const { overview } = props;
-  const styles = {
-    display: '-webkit-box'
+class MainFilmInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      typeOverwie: 'unfull',
+    };
+  }
+
+  setTypeOverwie = () => {
+    this.setState({ typeOverwie: 'full' });
   };
 
-  return (
-    <div>
-      <div className={style.mainFilmInfo__info} id="mainFilmOverwie">
-        <p style={styles}>{overview}</p>
+  render() {
+    const { overview } = this.props;
+    const { typeOverwie } = this.state;
+    let classNames;
+    if (typeOverwie === 'unfull') {
+      classNames = style.hideInfo;
+    } else {
+      classNames = style.showInfo;
+    }
+    return (
+      <div className={classNames} id="mainFilmOverwie">
+        <div className={style.mainFilmInfo__info}>
+          <p>{overview}</p>
+        </div>
+        <FilmButtons className={style.mainFilmInfo__buttons} setTypeOverwie={this.setTypeOverwie} />
       </div>
-      <FilmButtons className={style.mainFilmInfo__buttons} />
-    </div>
-  );
-};
+    );
+  }
+}
 
 MainFilmInfo.defaultProps = {
-  overview: ''
+  overview: '',
 };
 
 MainFilmInfo.propTypes = {
-  overview: PropTypes.string
+  overview: PropTypes.string,
 };
 
 export default MainFilmInfo;

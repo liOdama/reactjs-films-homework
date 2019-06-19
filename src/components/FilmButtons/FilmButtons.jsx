@@ -1,23 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './FilmButtons.scss';
 import { showModal } from '../ModalPlayer/ModalPlayer';
 
-export const showMainFilmOverwie = () => {
-  document.querySelector('#mainFilmOverwie').style.maxHeight = '100%';
-  document.querySelector('#mainFilmOverwie > p').style.display = 'block';
-};
-
 class FilmButtons extends React.Component {
   render() {
+    const { mainMovie, setTypeOverwie } = this.props;
     return (
       <div className={style.btnContainer}>
         <button
-          id="watch"
+          id={mainMovie.id}
           type="button"
           className={style.watch}
           onClick={showModal.bind(null, this.props)}
           tabIndex="0"
-          ref={watch => {
+          ref={(watch) => {
             this.watch = watch;
             return this.viewInfo;
           }}
@@ -28,9 +25,9 @@ class FilmButtons extends React.Component {
           id="info"
           type="button"
           className={style.viewInfo}
-          onClick={showMainFilmOverwie}
+          onClick={setTypeOverwie}
           tabIndex="0"
-          ref={viewInfo => {
+          ref={(viewInfo) => {
             this.viewInfo = viewInfo;
             return this.viewInfo;
           }}
@@ -41,4 +38,13 @@ class FilmButtons extends React.Component {
     );
   }
 }
+
+FilmButtons.defaultProps = {
+  mainMovie: {},
+};
+
+FilmButtons.propTypes = {
+  mainMovie: PropTypes.objectOf(PropTypes.any),
+  setTypeOverwie: PropTypes.func.isRequired,
+};
 export default FilmButtons;

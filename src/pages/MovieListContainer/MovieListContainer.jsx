@@ -23,24 +23,24 @@ class MovieListContainer extends Component {
       fetchVideo,
       typeView,
       setTypeView,
-      fetchListMovies
+      fetchListMovies,
+      clearError,
     } = this.props;
     let list;
     if (movies.results.length > 0) {
-      list = movies.results.map(curr => {
-        return (
-          <MovieItem
-            curr={curr}
-            genres={genres}
-            movies={movies}
-            fetchListMovies={fetchListMovies}
-            fetchVideo={fetchVideo}
-            getMainMovieDetails={getMainMovieDetails}
-            typeView={typeView}
-            key={shortid()}
-          />
-        );
-      });
+      list = movies.results.map(curr => (
+        <MovieItem
+          curr={curr}
+          genres={genres}
+          movies={movies}
+          fetchListMovies={fetchListMovies}
+          fetchVideo={fetchVideo}
+          getMainMovieDetails={getMainMovieDetails}
+          typeView={typeView}
+          key={shortid()}
+          clearError={clearError}
+        />
+      ));
     }
 
     const html = (
@@ -50,6 +50,7 @@ class MovieListContainer extends Component {
             genres={genres}
             setTypeView={setTypeView}
             fetchListMovies={fetchListMovies}
+            clearError={clearError}
           />
           <div className={style.moviesWrapper}>{list}</div>
         </div>
@@ -62,7 +63,7 @@ class MovieListContainer extends Component {
 MovieListContainer.defaultProps = {
   movies: {},
   genres: [],
-  typeView: 'cards'
+  typeView: 'cards',
 };
 
 MovieListContainer.propTypes = {
@@ -72,7 +73,8 @@ MovieListContainer.propTypes = {
   fetchVideo: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
   typeView: PropTypes.string,
-  setTypeView: PropTypes.func.isRequired
+  setTypeView: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
 };
 
 export default MovieListContainer;

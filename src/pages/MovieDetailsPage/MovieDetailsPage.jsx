@@ -16,8 +16,8 @@ class MovieDetailsPage extends Component {
     const { movies, mainMovie } = this.props;
 
     if (
-      JSON.stringify(nextProps.movies) === JSON.stringify(movies) &&
-      JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)
+      JSON.stringify(nextProps.movies) === JSON.stringify(movies)
+      && JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)
     ) {
       return false;
     }
@@ -45,13 +45,15 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const { movies, genres, fetchListMovies, mainMovie } = this.props;
+    const {
+      movies, genres, fetchListMovies, mainMovie,
+    } = this.props;
 
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      backgroundPosition: 'center'
+      backgroundPosition: 'center',
     };
     const component = (
       <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
@@ -89,7 +91,7 @@ class MovieDetailsPage extends Component {
 }
 
 MovieDetailsPage.defaultProps = {
-  genres: []
+  genres: [],
 };
 
 MovieDetailsPage.propTypes = {
@@ -97,7 +99,7 @@ MovieDetailsPage.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any).isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
   fetchListMovies: PropTypes.func.isRequired,
-  mainMovie: PropTypes.objectOf(PropTypes.any).isRequired
+  mainMovie: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default MovieDetailsPage;

@@ -39,18 +39,14 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
           </p>
         </div>
       </div>
-      <div>
+      <div
+        className="hideInfo"
+        id="mainFilmOverwie"
+      >
         <div
           className="mainFilmInfo__info"
-          id="mainFilmOverwie"
         >
-          <p
-            style={
-              Object {
-                "display": "-webkit-box",
-              }
-            }
-          >
+          <p>
             
           </p>
         </div>
@@ -59,7 +55,6 @@ exports[`MovieDetailsPage renders correctly MovieDetailsPage: render component 1
         >
           <button
             className="watch"
-            id="watch"
             onClick={[Function]}
             tabIndex="0"
             type="button"

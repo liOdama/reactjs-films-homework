@@ -91,10 +91,6 @@
   }
 }
 
-.figcaptionNone + .hoverMovie {
-  height: 100%;
-}
-
 article:hover .hoverMovie {
   display: flex;
   justify-content: center;
@@ -136,14 +132,6 @@ article:hover .hoverMovie {
   }
 }
 
-.hoverControl {
+.hoverControlBlock {
   text-align: center;
-}
-
-.figcaptionNone figcaption {
-  display: none !important;
-}
-
-.figcaptionNone > div {
-  height: 100%;
 }

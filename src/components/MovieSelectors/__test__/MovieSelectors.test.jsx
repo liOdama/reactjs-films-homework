@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
 import ReactTestRender from 'react-test-renderer';
-import { createGenreList, showTrends, shooseTypeView } from '../MovieSelectors';
+import { createGenreList } from '../MovieSelectors';
 import MovieSelectors from '../index';
 import selectGenre from '../../../utils/selectGenre';
 
@@ -26,7 +26,7 @@ describe('MovieSelectors', () => {
     { id: 10770, name: 'TV Movie' },
     { id: 53, name: 'Thriller' },
     { id: 10752, name: 'War' },
-    { id: 37, name: 'Western' }
+    { id: 37, name: 'Western' },
   ];
   it('MovieSelectors: renders correctly', () => {
     const result = ReactTestRender.create(<MovieSelectors genres={genres} />);
@@ -46,7 +46,7 @@ describe('MovieSelectors', () => {
       fetchListMovies,
       error: true,
       clearError,
-      setTypeView: test
+      setTypeView: test,
     };
     let container;
 
@@ -54,7 +54,11 @@ describe('MovieSelectors', () => {
       container = document.createElement('div');
       container.id = 'modalRoot';
       document.body.appendChild(container);
+      act(() => {
+        ReactDOM.render(<MovieSelectors {...props} />, document.querySelector('#modalRoot'));
+      });
     });
+
     it('selectGenre: error true should BE - Call clearError', () => {
       props.genres = [{ name: 'Drame', id: 35 }];
       const btn = React.createElement(
@@ -62,9 +66,9 @@ describe('MovieSelectors', () => {
         {
           id: 'test',
           onClick: selectGenre.bind(null, props),
-          type: 'button'
+          type: 'button',
         },
-        'Drama'
+        'Drama',
       );
       jest.spyOn(props, 'clearError');
       act(() => {
@@ -75,48 +79,32 @@ describe('MovieSelectors', () => {
       expect(clearError).toHaveBeenCalled();
     });
     it('showTrends: error true should BE - call clearError', () => {
-      const btn = React.createElement(
-        'button',
-        {
-          id: 'test',
-          onClick: showTrends.bind(null, props),
-          type: 'button'
-        },
-        'Coming Soon'
-      );
       jest.spyOn(props, 'clearError');
-      act(() => {
-        ReactDOM.render(btn, container);
-      });
-      const node = container.querySelector('#test');
-      ReactTestUtils.Simulate.click(node);
+      const node = document.querySelector('button');
+      ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });
       expect(clearError).toHaveBeenCalled();
     });
 
-    it('showTrends: error false - should BE call fetchListMovies', () => {
+    it('showTrends: error true should BE - call fetchListMovies', () => {
       props.error = false;
-      const e = {
-        target: { textContent: '' }
-      };
       jest.spyOn(props, 'fetchListMovies');
-      showTrends(props, e);
+      const node = document.querySelector('button');
+      ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });
+      expect(fetchListMovies).toHaveBeenCalled();
+    });
+
+    it('showTrends: error true should BE - call fetchListMovies undefined', () => {
+      props.error = undefined;
+      jest.spyOn(props, 'fetchListMovies');
+      const node = document.querySelector('button');
+      ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });
       expect(fetchListMovies).toHaveBeenCalled();
     });
 
     it('shooseTypeView: shooseTypeView - call action', () => {
-      const template = (
-        <article className="moviesWrapper">
-          <button id="cards" type="button" onClick={shooseTypeView.bind(null, props.setTypeView)} />
-          <button id="lines" type="button" onClick={shooseTypeView.bind(null, props.setTypeView)} />
-        </article>
-      );
-      act(() => {
-        ReactDOM.render(template, container);
-      });
-
       jest.spyOn(props, 'setTypeView');
-      const node1 = container.querySelector('#cards');
-      const node2 = container.querySelector('#lines');
+      const node1 = document.querySelector('#cards');
+      const node2 = document.querySelector('#lines');
       ReactTestUtils.Simulate.click(node1);
       ReactTestUtils.Simulate.click(node2);
       expect(props.setTypeView).toHaveBeenCalledTimes(2);
