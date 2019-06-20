@@ -22,8 +22,8 @@ class MovieSelectors extends React.Component {
   showTrends = (e) => {
     const query = e.target.textContent;
     const { fetchListMovies, error, clearError } = this.props;
-    if (error !== undefined && error !== false) {
-      clearError(false);
+    if (error !== undefined && error !== '') {
+      clearError('');
     }
     return fetchListMovies(query);
   };
@@ -72,7 +72,7 @@ class MovieSelectors extends React.Component {
 
 MovieSelectors.defaultProps = {
   genres: [],
-  error: false,
+  error: '',
 };
 
 MovieSelectors.propTypes = {
@@ -80,7 +80,7 @@ MovieSelectors.propTypes = {
   setTypeView: PropTypes.func.isRequired,
   fetchListMovies: PropTypes.func.isRequired,
   clearError: PropTypes.func.isRequired,
-  error: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 export default MovieSelectors;

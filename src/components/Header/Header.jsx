@@ -6,8 +6,8 @@ class Header extends React.Component {
   search = (e) => {
     const { fetchSearchResults, error, clearError } = this.props;
     e.preventDefault();
-    if (error !== undefined && error !== false) {
-      clearError(false);
+    if (error !== undefined && error !== '') {
+      clearError('');
     }
     const query = e.target.children[0].value;
     return fetchSearchResults(query);
@@ -31,12 +31,12 @@ class Header extends React.Component {
 }
 
 Header.defaultProps = {
-  error: false,
+  error: '',
 };
 
 Header.propTypes = {
   clearError: PropTypes.func.isRequired,
-  error: PropTypes.bool,
+  error: PropTypes.string,
   fetchSearchResults: PropTypes.func.isRequired,
 };
 

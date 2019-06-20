@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
-import ModalPlayer from '../../components/ModalPlayer/ModalPlayerContainer';
 
 import style from './MovieDetailsPage.scss';
 
@@ -24,18 +23,6 @@ class MovieDetailsPage extends Component {
     return true;
   }
 
-  static async getDerivedStateFromProps(nextProps) {
-    const { genres } = nextProps;
-    if (genres.length === 0) {
-      const { fetchGenres, fetchListMovies } = nextProps;
-      localStorage.clear();
-      await fetchGenres();
-      const state = await fetchListMovies('Trending');
-      return state;
-    }
-    return nextProps;
-  }
-
   componentDidUpdate(prevProps) {
     const { movies, getMainMovieDetails } = this.props;
     if (movies.mainMovie !== prevProps.movies.mainMovie) {
@@ -45,9 +32,7 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const {
-      movies, genres, fetchListMovies, mainMovie,
-    } = this.props;
+    const { genres, fetchListMovies, mainMovie } = this.props;
 
     const styleBG = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
@@ -67,11 +52,6 @@ class MovieDetailsPage extends Component {
             <MainFilmInfo overview={mainMovie.overview} />
           </div>
         </div>
-        {movies.currentVideo !== null ? (
-          <div id="modalRoot">
-            <ModalPlayer id={movies.currentVideo} />
-          </div>
-        ) : null}
       </section>
     );
 

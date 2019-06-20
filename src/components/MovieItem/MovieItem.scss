@@ -89,6 +89,10 @@ figure > div {
 
 .lines {
   width: 100%;
+
+  & > div {
+    width: 100%;
+  }
 }
 
 .figcaptionNone figcaption {

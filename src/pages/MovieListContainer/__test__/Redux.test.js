@@ -371,7 +371,7 @@ describe('Test for reducers', () => {
   });
 
   describe('Error Reducer', () => {
-    const initial = false;
+    const initial = '';
     const err = new Error('Some Error');
     const expectedActions = {
       payload: err,
@@ -384,7 +384,7 @@ describe('Test for reducers', () => {
     it('check state arguments', () => {
       const actionDefault = {
         type: 'ACTION_DEFAULT',
-        payload: false,
+        payload: '',
       };
       const state = jest.fn((arg1, arg2) => errorReducer(arg1, arg2));
       state(undefined, actionDefault);

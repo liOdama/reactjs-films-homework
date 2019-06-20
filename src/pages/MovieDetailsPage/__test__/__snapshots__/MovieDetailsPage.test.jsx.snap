@@ -298,9 +298,7 @@ Provider {
             "key": null,
             "lastEffect": null,
             "memoizedProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -311,9 +309,7 @@ Provider {
             "mode": 0,
             "nextEffect": null,
             "pendingProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -329,9 +325,7 @@ Provider {
               "_reactInternalInstance": Object {},
               "context": Object {},
               "props": Object {
-                "fetchGenres": [Function],
                 "fetchListMovies": [Function],
-                "fetchSearchResults": [Function],
                 "fetchVideo": [Function],
                 "genres": Array [],
                 "getMainMovieDetails": [Function],
@@ -380,9 +374,7 @@ Provider {
           "lastEffect": null,
           "memoizedProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -444,9 +436,7 @@ Provider {
           "nextEffect": null,
           "pendingProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -872,9 +862,7 @@ Provider {
                       "baseUpdate": null,
                       "memoizedState": Object {
                         "current": Object {
-                          "fetchGenres": [Function],
                           "fetchListMovies": [Function],
-                          "fetchSearchResults": [Function],
                           "fetchVideo": [Function],
                           "genres": Array [],
                           "getMainMovieDetails": [Function],
@@ -905,9 +893,7 @@ Provider {
                               "baseUpdate": null,
                               "memoizedState": Array [
                                 Object {
-                                  "fetchGenres": [Function],
                                   "fetchListMovies": [Function],
-                                  "fetchSearchResults": [Function],
                                   "fetchVideo": [Function],
                                   "genres": Array [],
                                   "getMainMovieDetails": [Function],
@@ -1062,9 +1048,7 @@ Provider {
                                     "baseUpdate": null,
                                     "memoizedState": Array [
                                       <MovieDetailsPage
-                                        fetchGenres={[Function]}
                                         fetchListMovies={[Function]}
-                                        fetchSearchResults={[Function]}
                                         fetchVideo={[Function]}
                                         genres={Array []}
                                         getMainMovieDetails={[Function]}
@@ -1075,9 +1059,7 @@ Provider {
                                         undefined,
                                         [Function],
                                         Object {
-                                          "fetchGenres": [Function],
                                           "fetchListMovies": [Function],
-                                          "fetchSearchResults": [Function],
                                           "fetchVideo": [Function],
                                           "genres": Array [],
                                           "getMainMovieDetails": [Function],
@@ -1144,9 +1126,7 @@ Provider {
                                           }
                                         >
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -1174,9 +1154,7 @@ Provider {
                                             "_threadCount": 0,
                                           },
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -1571,9 +1549,7 @@ Provider {
             "key": null,
             "lastEffect": null,
             "memoizedProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -1584,9 +1560,7 @@ Provider {
             "mode": 0,
             "nextEffect": null,
             "pendingProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -1602,9 +1576,7 @@ Provider {
               "_reactInternalInstance": Object {},
               "context": Object {},
               "props": Object {
-                "fetchGenres": [Function],
                 "fetchListMovies": [Function],
-                "fetchSearchResults": [Function],
                 "fetchVideo": [Function],
                 "genres": Array [],
                 "getMainMovieDetails": [Function],
@@ -1653,9 +1625,7 @@ Provider {
           "lastEffect": null,
           "memoizedProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -1717,9 +1687,7 @@ Provider {
           "nextEffect": null,
           "pendingProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -2145,9 +2113,7 @@ Provider {
                       "baseUpdate": null,
                       "memoizedState": Object {
                         "current": Object {
-                          "fetchGenres": [Function],
                           "fetchListMovies": [Function],
-                          "fetchSearchResults": [Function],
                           "fetchVideo": [Function],
                           "genres": Array [],
                           "getMainMovieDetails": [Function],
@@ -2178,9 +2144,7 @@ Provider {
                               "baseUpdate": null,
                               "memoizedState": Array [
                                 Object {
-                                  "fetchGenres": [Function],
                                   "fetchListMovies": [Function],
-                                  "fetchSearchResults": [Function],
                                   "fetchVideo": [Function],
                                   "genres": Array [],
                                   "getMainMovieDetails": [Function],
@@ -2335,9 +2299,7 @@ Provider {
                                     "baseUpdate": null,
                                     "memoizedState": Array [
                                       <MovieDetailsPage
-                                        fetchGenres={[Function]}
                                         fetchListMovies={[Function]}
-                                        fetchSearchResults={[Function]}
                                         fetchVideo={[Function]}
                                         genres={Array []}
                                         getMainMovieDetails={[Function]}
@@ -2348,9 +2310,7 @@ Provider {
                                         undefined,
                                         [Function],
                                         Object {
-                                          "fetchGenres": [Function],
                                           "fetchListMovies": [Function],
-                                          "fetchSearchResults": [Function],
                                           "fetchVideo": [Function],
                                           "genres": Array [],
                                           "getMainMovieDetails": [Function],
@@ -2417,9 +2377,7 @@ Provider {
                                           }
                                         >
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -2447,9 +2405,7 @@ Provider {
                                             "_threadCount": 0,
                                           },
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -2824,9 +2780,7 @@ Provider {
             "key": null,
             "lastEffect": null,
             "memoizedProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -2837,9 +2791,7 @@ Provider {
             "mode": 0,
             "nextEffect": null,
             "pendingProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -2855,9 +2807,7 @@ Provider {
               "_reactInternalInstance": Object {},
               "context": Object {},
               "props": Object {
-                "fetchGenres": [Function],
                 "fetchListMovies": [Function],
-                "fetchSearchResults": [Function],
                 "fetchVideo": [Function],
                 "genres": Array [],
                 "getMainMovieDetails": [Function],
@@ -2906,9 +2856,7 @@ Provider {
           "lastEffect": null,
           "memoizedProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -2970,9 +2918,7 @@ Provider {
           "nextEffect": null,
           "pendingProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -3398,9 +3344,7 @@ Provider {
                       "baseUpdate": null,
                       "memoizedState": Object {
                         "current": Object {
-                          "fetchGenres": [Function],
                           "fetchListMovies": [Function],
-                          "fetchSearchResults": [Function],
                           "fetchVideo": [Function],
                           "genres": Array [],
                           "getMainMovieDetails": [Function],
@@ -3431,9 +3375,7 @@ Provider {
                               "baseUpdate": null,
                               "memoizedState": Array [
                                 Object {
-                                  "fetchGenres": [Function],
                                   "fetchListMovies": [Function],
-                                  "fetchSearchResults": [Function],
                                   "fetchVideo": [Function],
                                   "genres": Array [],
                                   "getMainMovieDetails": [Function],
@@ -3588,9 +3530,7 @@ Provider {
                                     "baseUpdate": null,
                                     "memoizedState": Array [
                                       <MovieDetailsPage
-                                        fetchGenres={[Function]}
                                         fetchListMovies={[Function]}
-                                        fetchSearchResults={[Function]}
                                         fetchVideo={[Function]}
                                         genres={Array []}
                                         getMainMovieDetails={[Function]}
@@ -3601,9 +3541,7 @@ Provider {
                                         undefined,
                                         [Function],
                                         Object {
-                                          "fetchGenres": [Function],
                                           "fetchListMovies": [Function],
-                                          "fetchSearchResults": [Function],
                                           "fetchVideo": [Function],
                                           "genres": Array [],
                                           "getMainMovieDetails": [Function],
@@ -3670,9 +3608,7 @@ Provider {
                                           }
                                         >
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -3700,9 +3636,7 @@ Provider {
                                             "_threadCount": 0,
                                           },
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -4176,9 +4110,7 @@ Provider {
           "key": null,
           "lastEffect": null,
           "memoizedProps": Object {
-            "fetchGenres": [Function],
             "fetchListMovies": [Function],
-            "fetchSearchResults": [Function],
             "fetchVideo": [Function],
             "genres": Array [],
             "getMainMovieDetails": [Function],
@@ -4189,9 +4121,7 @@ Provider {
           "mode": 0,
           "nextEffect": null,
           "pendingProps": Object {
-            "fetchGenres": [Function],
             "fetchListMovies": [Function],
-            "fetchSearchResults": [Function],
             "fetchVideo": [Function],
             "genres": Array [],
             "getMainMovieDetails": [Function],
@@ -4207,9 +4137,7 @@ Provider {
             "_reactInternalInstance": Object {},
             "context": Object {},
             "props": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -4258,9 +4186,7 @@ Provider {
         "lastEffect": null,
         "memoizedProps": Object {
           "children": <MovieDetailsPage
-            fetchGenres={[Function]}
             fetchListMovies={[Function]}
-            fetchSearchResults={[Function]}
             fetchVideo={[Function]}
             genres={Array []}
             getMainMovieDetails={[Function]}
@@ -4322,9 +4248,7 @@ Provider {
         "nextEffect": null,
         "pendingProps": Object {
           "children": <MovieDetailsPage
-            fetchGenres={[Function]}
             fetchListMovies={[Function]}
-            fetchSearchResults={[Function]}
             fetchVideo={[Function]}
             genres={Array []}
             getMainMovieDetails={[Function]}
@@ -4750,9 +4674,7 @@ Provider {
                     "baseUpdate": null,
                     "memoizedState": Object {
                       "current": Object {
-                        "fetchGenres": [Function],
                         "fetchListMovies": [Function],
-                        "fetchSearchResults": [Function],
                         "fetchVideo": [Function],
                         "genres": Array [],
                         "getMainMovieDetails": [Function],
@@ -4783,9 +4705,7 @@ Provider {
                             "baseUpdate": null,
                             "memoizedState": Array [
                               Object {
-                                "fetchGenres": [Function],
                                 "fetchListMovies": [Function],
-                                "fetchSearchResults": [Function],
                                 "fetchVideo": [Function],
                                 "genres": Array [],
                                 "getMainMovieDetails": [Function],
@@ -4940,9 +4860,7 @@ Provider {
                                   "baseUpdate": null,
                                   "memoizedState": Array [
                                     <MovieDetailsPage
-                                      fetchGenres={[Function]}
                                       fetchListMovies={[Function]}
-                                      fetchSearchResults={[Function]}
                                       fetchVideo={[Function]}
                                       genres={Array []}
                                       getMainMovieDetails={[Function]}
@@ -4953,9 +4871,7 @@ Provider {
                                       undefined,
                                       [Function],
                                       Object {
-                                        "fetchGenres": [Function],
                                         "fetchListMovies": [Function],
-                                        "fetchSearchResults": [Function],
                                         "fetchVideo": [Function],
                                         "genres": Array [],
                                         "getMainMovieDetails": [Function],
@@ -5022,9 +4938,7 @@ Provider {
                                         }
                                       >
                                         <MovieDetailsPage
-                                          fetchGenres={[Function]}
                                           fetchListMovies={[Function]}
-                                          fetchSearchResults={[Function]}
                                           fetchVideo={[Function]}
                                           genres={Array []}
                                           getMainMovieDetails={[Function]}
@@ -5052,9 +4966,7 @@ Provider {
                                           "_threadCount": 0,
                                         },
                                         <MovieDetailsPage
-                                          fetchGenres={[Function]}
                                           fetchListMovies={[Function]}
-                                          fetchSearchResults={[Function]}
                                           fetchVideo={[Function]}
                                           genres={Array []}
                                           getMainMovieDetails={[Function]}
@@ -5560,9 +5472,7 @@ Provider {
           "key": null,
           "lastEffect": null,
           "memoizedProps": Object {
-            "fetchGenres": [Function],
             "fetchListMovies": [Function],
-            "fetchSearchResults": [Function],
             "fetchVideo": [Function],
             "genres": Array [],
             "getMainMovieDetails": [Function],
@@ -5573,9 +5483,7 @@ Provider {
           "mode": 0,
           "nextEffect": null,
           "pendingProps": Object {
-            "fetchGenres": [Function],
             "fetchListMovies": [Function],
-            "fetchSearchResults": [Function],
             "fetchVideo": [Function],
             "genres": Array [],
             "getMainMovieDetails": [Function],
@@ -5591,9 +5499,7 @@ Provider {
             "_reactInternalInstance": Object {},
             "context": Object {},
             "props": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -5642,9 +5548,7 @@ Provider {
         "lastEffect": null,
         "memoizedProps": Object {
           "children": <MovieDetailsPage
-            fetchGenres={[Function]}
             fetchListMovies={[Function]}
-            fetchSearchResults={[Function]}
             fetchVideo={[Function]}
             genres={Array []}
             getMainMovieDetails={[Function]}
@@ -5706,9 +5610,7 @@ Provider {
         "nextEffect": null,
         "pendingProps": Object {
           "children": <MovieDetailsPage
-            fetchGenres={[Function]}
             fetchListMovies={[Function]}
-            fetchSearchResults={[Function]}
             fetchVideo={[Function]}
             genres={Array []}
             getMainMovieDetails={[Function]}
@@ -6134,9 +6036,7 @@ Provider {
                     "baseUpdate": null,
                     "memoizedState": Object {
                       "current": Object {
-                        "fetchGenres": [Function],
                         "fetchListMovies": [Function],
-                        "fetchSearchResults": [Function],
                         "fetchVideo": [Function],
                         "genres": Array [],
                         "getMainMovieDetails": [Function],
@@ -6167,9 +6067,7 @@ Provider {
                             "baseUpdate": null,
                             "memoizedState": Array [
                               Object {
-                                "fetchGenres": [Function],
                                 "fetchListMovies": [Function],
-                                "fetchSearchResults": [Function],
                                 "fetchVideo": [Function],
                                 "genres": Array [],
                                 "getMainMovieDetails": [Function],
@@ -6324,9 +6222,7 @@ Provider {
                                   "baseUpdate": null,
                                   "memoizedState": Array [
                                     <MovieDetailsPage
-                                      fetchGenres={[Function]}
                                       fetchListMovies={[Function]}
-                                      fetchSearchResults={[Function]}
                                       fetchVideo={[Function]}
                                       genres={Array []}
                                       getMainMovieDetails={[Function]}
@@ -6337,9 +6233,7 @@ Provider {
                                       undefined,
                                       [Function],
                                       Object {
-                                        "fetchGenres": [Function],
                                         "fetchListMovies": [Function],
-                                        "fetchSearchResults": [Function],
                                         "fetchVideo": [Function],
                                         "genres": Array [],
                                         "getMainMovieDetails": [Function],
@@ -6406,9 +6300,7 @@ Provider {
                                         }
                                       >
                                         <MovieDetailsPage
-                                          fetchGenres={[Function]}
                                           fetchListMovies={[Function]}
-                                          fetchSearchResults={[Function]}
                                           fetchVideo={[Function]}
                                           genres={Array []}
                                           getMainMovieDetails={[Function]}
@@ -6436,9 +6328,7 @@ Provider {
                                           "_threadCount": 0,
                                         },
                                         <MovieDetailsPage
-                                          fetchGenres={[Function]}
                                           fetchListMovies={[Function]}
-                                          fetchSearchResults={[Function]}
                                           fetchVideo={[Function]}
                                           genres={Array []}
                                           getMainMovieDetails={[Function]}
@@ -7120,9 +7010,7 @@ Provider {
             "key": null,
             "lastEffect": null,
             "memoizedProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -7133,9 +7021,7 @@ Provider {
             "mode": 0,
             "nextEffect": null,
             "pendingProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -7151,9 +7037,7 @@ Provider {
               "_reactInternalInstance": Object {},
               "context": Object {},
               "props": Object {
-                "fetchGenres": [Function],
                 "fetchListMovies": [Function],
-                "fetchSearchResults": [Function],
                 "fetchVideo": [Function],
                 "genres": Array [],
                 "getMainMovieDetails": [Function],
@@ -7202,9 +7086,7 @@ Provider {
           "lastEffect": null,
           "memoizedProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -7266,9 +7148,7 @@ Provider {
           "nextEffect": null,
           "pendingProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -7694,9 +7574,7 @@ Provider {
                       "baseUpdate": null,
                       "memoizedState": Object {
                         "current": Object {
-                          "fetchGenres": [Function],
                           "fetchListMovies": [Function],
-                          "fetchSearchResults": [Function],
                           "fetchVideo": [Function],
                           "genres": Array [],
                           "getMainMovieDetails": [Function],
@@ -7727,9 +7605,7 @@ Provider {
                               "baseUpdate": null,
                               "memoizedState": Array [
                                 Object {
-                                  "fetchGenres": [Function],
                                   "fetchListMovies": [Function],
-                                  "fetchSearchResults": [Function],
                                   "fetchVideo": [Function],
                                   "genres": Array [],
                                   "getMainMovieDetails": [Function],
@@ -7884,9 +7760,7 @@ Provider {
                                     "baseUpdate": null,
                                     "memoizedState": Array [
                                       <MovieDetailsPage
-                                        fetchGenres={[Function]}
                                         fetchListMovies={[Function]}
-                                        fetchSearchResults={[Function]}
                                         fetchVideo={[Function]}
                                         genres={Array []}
                                         getMainMovieDetails={[Function]}
@@ -7897,9 +7771,7 @@ Provider {
                                         undefined,
                                         [Function],
                                         Object {
-                                          "fetchGenres": [Function],
                                           "fetchListMovies": [Function],
-                                          "fetchSearchResults": [Function],
                                           "fetchVideo": [Function],
                                           "genres": Array [],
                                           "getMainMovieDetails": [Function],
@@ -7966,9 +7838,7 @@ Provider {
                                           }
                                         >
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -7996,9 +7866,7 @@ Provider {
                                             "_threadCount": 0,
                                           },
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -8742,9 +8610,7 @@ Provider {
             "key": null,
             "lastEffect": null,
             "memoizedProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -8755,9 +8621,7 @@ Provider {
             "mode": 0,
             "nextEffect": null,
             "pendingProps": Object {
-              "fetchGenres": [Function],
               "fetchListMovies": [Function],
-              "fetchSearchResults": [Function],
               "fetchVideo": [Function],
               "genres": Array [],
               "getMainMovieDetails": [Function],
@@ -8773,9 +8637,7 @@ Provider {
               "_reactInternalInstance": Object {},
               "context": Object {},
               "props": Object {
-                "fetchGenres": [Function],
                 "fetchListMovies": [Function],
-                "fetchSearchResults": [Function],
                 "fetchVideo": [Function],
                 "genres": Array [],
                 "getMainMovieDetails": [Function],
@@ -8824,9 +8686,7 @@ Provider {
           "lastEffect": null,
           "memoizedProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -8888,9 +8748,7 @@ Provider {
           "nextEffect": null,
           "pendingProps": Object {
             "children": <MovieDetailsPage
-              fetchGenres={[Function]}
               fetchListMovies={[Function]}
-              fetchSearchResults={[Function]}
               fetchVideo={[Function]}
               genres={Array []}
               getMainMovieDetails={[Function]}
@@ -9316,9 +9174,7 @@ Provider {
                       "baseUpdate": null,
                       "memoizedState": Object {
                         "current": Object {
-                          "fetchGenres": [Function],
                           "fetchListMovies": [Function],
-                          "fetchSearchResults": [Function],
                           "fetchVideo": [Function],
                           "genres": Array [],
                           "getMainMovieDetails": [Function],
@@ -9349,9 +9205,7 @@ Provider {
                               "baseUpdate": null,
                               "memoizedState": Array [
                                 Object {
-                                  "fetchGenres": [Function],
                                   "fetchListMovies": [Function],
-                                  "fetchSearchResults": [Function],
                                   "fetchVideo": [Function],
                                   "genres": Array [],
                                   "getMainMovieDetails": [Function],
@@ -9506,9 +9360,7 @@ Provider {
                                     "baseUpdate": null,
                                     "memoizedState": Array [
                                       <MovieDetailsPage
-                                        fetchGenres={[Function]}
                                         fetchListMovies={[Function]}
-                                        fetchSearchResults={[Function]}
                                         fetchVideo={[Function]}
                                         genres={Array []}
                                         getMainMovieDetails={[Function]}
@@ -9519,9 +9371,7 @@ Provider {
                                         undefined,
                                         [Function],
                                         Object {
-                                          "fetchGenres": [Function],
                                           "fetchListMovies": [Function],
-                                          "fetchSearchResults": [Function],
                                           "fetchVideo": [Function],
                                           "genres": Array [],
                                           "getMainMovieDetails": [Function],
@@ -9588,9 +9438,7 @@ Provider {
                                           }
                                         >
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}
@@ -9618,9 +9466,7 @@ Provider {
                                             "_threadCount": 0,
                                           },
                                           <MovieDetailsPage
-                                            fetchGenres={[Function]}
                                             fetchListMovies={[Function]}
-                                            fetchSearchResults={[Function]}
                                             fetchVideo={[Function]}
                                             genres={Array []}
                                             getMainMovieDetails={[Function]}

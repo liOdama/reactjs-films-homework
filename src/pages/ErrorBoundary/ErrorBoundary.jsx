@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MovieSelectors from '../../components/MovieSelectors/index';
+import Header from '../../components/Header/index';
 import style from './ErrorBoundary.scss';
-import itemsReducer from '../../modules/Error/errorAction';
-import requestsFilms from '../../utils/requests';
 
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: '' };
   }
 
   static getDerivedStateFromProps(nextProps) {
-    if (nextProps.error !== false) {
+    if (nextProps.error !== '') {
       return {
         hasError: true,
         typeError: nextProps.error,
@@ -26,7 +24,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.error !== false) {
+    if (prevProps.error !== '') {
       return true;
     }
     return false;
@@ -35,25 +33,28 @@ class ErrorBoundary extends Component {
   render() {
     const { hasError, typeError } = this.state;
     const {
-      children, genres, error, clearError, fetchListMovies,
+      children, genres, error, clearError, fetchListMovies, fetchSearchResults,
     } = this.props;
     if (hasError === true) {
       if (typeError !== 'Something Wrong') {
         return (
-          <div className={style.container}>
-            <div className="title">
-              <h1>Nothing found</h1>
+          <div>
+            <Header fetchSearchResults={fetchSearchResults} error={error} clearError={clearError} />
+            <div className={style.container}>
+              <div className="title">
+                <h1>Nothing found</h1>
+              </div>
+              <MovieSelectors
+                genres={genres}
+                error={error}
+                clearError={clearError}
+                fetchListMovies={fetchListMovies}
+              />
+              <img
+                src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
+                alt="404 Not Found"
+              />
             </div>
-            <MovieSelectors
-              genres={genres}
-              error={error}
-              clearError={clearError}
-              fetchListMovies={fetchListMovies}
-            />
-            <img
-              src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-              alt="404 Not Found"
-            />
           </div>
         );
       }
@@ -63,27 +64,17 @@ class ErrorBoundary extends Component {
   }
 }
 ErrorBoundary.defaultProps = {
-  error: false,
+  error: '',
   genres: [],
   children: [],
 };
 
 ErrorBoundary.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.object),
   fetchListMovies: PropTypes.func.isRequired,
   clearError: PropTypes.func.isRequired,
-  children: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.objectOf(PropTypes.any),
+  fetchSearchResults: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = state => state;
-export const mapStateToDispatch = dispatch => ({
-  clearError: boolean => dispatch(itemsReducer(boolean)),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
-});
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch,
-)(ErrorBoundary);
+export default ErrorBoundary;

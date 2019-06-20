@@ -86,7 +86,7 @@ describe('MovieSelectors', () => {
     });
 
     it('showTrends: error true should BE - call fetchListMovies', () => {
-      props.error = false;
+      props.error = '';
       jest.spyOn(props, 'fetchListMovies');
       const node = document.querySelector('button');
       ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });

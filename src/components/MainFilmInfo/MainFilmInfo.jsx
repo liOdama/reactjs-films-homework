@@ -18,12 +18,12 @@ class MainFilmInfo extends React.Component {
   render() {
     const { overview } = this.props;
     const { typeOverwie } = this.state;
-    let classNames;
-    if (typeOverwie === 'unfull') {
-      classNames = style.hideInfo;
-    } else {
-      classNames = style.showInfo;
-    }
+    const classNames = typeOverwie === 'unfull' ? style.hideInfo : style.showInfo;
+    // if (typeOverwie === 'unfull') {
+    //   classNames = style.hideInfo;
+    // } else {
+    //   classNames = style.showInfo;
+    // }
     return (
       <div className={classNames} id="mainFilmOverwie">
         <div className={style.mainFilmInfo__info}>

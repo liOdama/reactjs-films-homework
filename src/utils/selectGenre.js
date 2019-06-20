@@ -11,7 +11,7 @@ const selectGenre = function selectGenre(props, e) {
     }
     return false;
   });
-  if (error !== undefined && error !== false) {
+  if (error !== undefined && error !== '') {
     clearError(false);
   }
   return fetchListMovies(genreId);

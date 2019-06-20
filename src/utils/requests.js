@@ -95,7 +95,7 @@ const requestsFilms = {
           }),
         );
       })
-      .catch(err => dispatch(itemsHasErrored(err)));
+      .catch(err => dispatch(itemsHasErrored(err.message)));
   },
 };
 

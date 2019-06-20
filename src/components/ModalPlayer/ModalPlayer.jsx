@@ -15,26 +15,27 @@ export class ModalPlayer extends Component {
   }
 
   componentDidMount() {
-    const modalRoot = document.getElementById('modalRoot');
+    const modalRoot = document.querySelector('#root');
     modalRoot.appendChild(this.el);
   }
 
   static getDerivedStateFromProps(props) {
     const newState = {
-      id: props.movies.currentVideo,
+      id: props.id,
     };
     return newState;
   }
 
-  unmount = (e) => {
-    if (e.type === 'click' || e.key === 'Escape') {
-      const { clearCurrentMovie } = this.props;
-      clearCurrentMovie();
-    }
-  };
+  // unmount = (e) => {
+  //   if (e.type === 'click' || e.key === 'Escape') {
+  //     const { clearCurrentMovie } = this.props;
+  //     clearCurrentMovie();
+  //   }
+  // };
 
   render() {
-    document.body.addEventListener('keydown', this.unmount);
+    const { unmount } = this.props;
+    document.body.addEventListener('keydown', unmount);
     const { id } = this.state;
     const opts = {
       width: '70%',
@@ -47,10 +48,10 @@ export class ModalPlayer extends Component {
         role="button"
         tabIndex="0"
         className={`${style.modalWrapper}`}
-        onClick={this.unmount}
-        onKeyDown={this.unmount}
+        onClick={unmount}
+        onKeyDown={unmount}
       >
-        <button type="button" tabIndex="0" className={style.modalClose}>
+        <button type="button" tabIndex="0" className={style.modalClose} id="closeModal">
           &#9587;
         </button>
         <YouTube videoId={id} opts={opts} id="trailer" onReady={this.onReady} />
@@ -61,7 +62,7 @@ export class ModalPlayer extends Component {
 }
 
 ModalPlayer.propTypes = {
-  clearCurrentMovie: PropTypes.func.isRequired,
+  unmount: PropTypes.func.isRequired,
 };
 
 export const showModal = (props, e) => {

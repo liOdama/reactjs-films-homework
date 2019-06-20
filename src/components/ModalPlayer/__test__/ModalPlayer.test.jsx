@@ -1,59 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
-import configureMockStore from 'redux-mock-store';
 import { ModalPlayer, showModal } from '../ModalPlayer';
-import * as Modal from '../ModalPlayerContainer';
 
 describe('Modal Renders correctly', () => {
-  const mockStore = configureMockStore();
-  const state = {
-    fetchVideo: jest.fn(id => ({ test: id })),
-    clearCurrentMovie: jest.fn(),
-    movies: { currentVideo: 222 },
-  };
-  const store = mockStore(state);
-  it('modal renders correctly', () => {
-    let container;
-    ReactDOM.render(<div id="modalRoot" />, document.body);
-    act(() => {
-      container = ReactDOM.render(
-        <Provider store={store}>
-          <Modal.default />
-        </Provider>,
-        document.querySelector('#modalRoot'),
-      );
-    });
-
-    expect(container).toMatchSnapshot();
-  });
+  ReactDOM.render(<div id="modalRoot" />, document.body);
 
   describe('show and close', () => {
     let container;
     const fetchVideo = jest.fn();
     beforeEach(() => {
       container = document.createElement('div');
-      container.id = 'modalRoot';
+      container.id = 'root';
       document.body.appendChild(container);
-    });
-
-    it('Modal: has a error', () => {
-      const clearCurrentMovie = jest.fn();
-      const props = {
-        movies: { currentVideo: 'test' },
-        error: true,
-        clearCurrentMovie,
-      };
-
-      jest.spyOn(props, 'clearCurrentMovie');
-      act(() => {
-        ReactDOM.render(<ModalPlayer id="test" {...props} />, document.querySelector('#modalRoot'));
-      });
-
-      const node = document.querySelector('button');
-      ReactTestUtils.Simulate.keyDown(node, { key: 'Escape' });
-      expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
     it('Modal: has a error', () => {
@@ -72,24 +31,6 @@ describe('Modal Renders correctly', () => {
       const node = document.querySelector('button');
       ReactTestUtils.Simulate.keyDown(node, { key: 'Enter' });
       expect(clearCurrentMovie).toHaveBeenCalledTimes(0);
-    });
-
-    it('Modal: has a error', () => {
-      const clearCurrentMovie = jest.fn();
-      const props = {
-        movies: { currentVideo: 'test' },
-        error: false,
-        clearCurrentMovie,
-      };
-
-      jest.spyOn(props, 'clearCurrentMovie');
-      act(() => {
-        ReactDOM.render(<ModalPlayer id="test" {...props} />, document.querySelector('#modalRoot'));
-      });
-
-      const node = document.querySelector('#trailer');
-      ReactTestUtils.Simulate.click(node);
-      expect(clearCurrentMovie).toHaveBeenCalled();
     });
 
     it('show with id watch', () => {
@@ -125,33 +66,6 @@ describe('Modal Renders correctly', () => {
       const node = container.querySelector('#playTrailer');
       ReactTestUtils.Simulate.click(node);
       expect(fetchVideo).toHaveBeenCalled();
-    });
-
-    // it('show with id test - result to be NULL', () => {
-    //   const props = { fetchVideo };
-    //   const e = {
-    //     target: {
-    //       id: 'test',
-    //     },
-    //   };
-    //   const result = showModal(props, e);
-    //   expect(result).toBeNull();
-    // });
-  });
-
-  describe('MapDispatchToProps', () => {
-    const state1 = {
-      fetchVideo: id => id,
-      clearCurrentMovie: () => true,
-    };
-
-    it('test all descriptors', () => {
-      const keys = Object.keys(state1);
-      keys.forEach(async (curr) => {
-        const dispatch = jest.fn(() => state1[curr]);
-        const result = await Modal.mapStateToDispatch(dispatch)[curr]();
-        expect(result).toEqual(state1[curr]);
-      });
     });
   });
 });

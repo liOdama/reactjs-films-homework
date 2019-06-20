@@ -1,1 +1,1 @@
-export { default } from './ModalPlayerContainer';
+export { default } from './ModalPlayer';

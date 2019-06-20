@@ -58,12 +58,13 @@ class MovieItem extends React.Component {
     } else {
       imageLink = `https://image.tmdb.org/t/p/w1280${curr.backdrop_path}`;
     }
-    let classNamesfigcaption;
-    if (fullOverwie === true) {
-      classNamesfigcaption = style.figcaptionNone;
-    } else {
-      classNamesfigcaption = style.figcaptionBlock;
-    }
+    const classNamefigcaption = fullOverwie === true ? style.figcaptionNone : style.figcaptionBlock;
+
+    // if (fullOverwie === true) {
+    //   classNamefigcaption = style.figcaptionNone;
+    // } else {
+    //   classNamefigcaption = style.figcaptionBlock;
+    // }
     const imgAlt = curr.title;
     const genresRow = curr.genre_ids
       .map((c) => {
@@ -97,7 +98,7 @@ class MovieItem extends React.Component {
         key={shortid.generate()}
         onMouseLeave={this.hoverOverwieNone}
       >
-        <figure className={classNamesfigcaption}>
+        <figure className={classNamefigcaption}>
           <div>
             <img src={imageLink} alt={imgAlt} />
           </div>

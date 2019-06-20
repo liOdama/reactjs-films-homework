@@ -17,16 +17,16 @@ const hoverMovieCard = (props) => {
     fullOverwie,
     hoverOverwieNone,
   } = props;
-  let classNamesHover;
-  let classNameControl;
+  const classNamesHover = fullOverwie === true ? style.hoverOverwieBlock : style.hoverOverwieNone;
+  const classNameControl = fullOverwie === true ? style.hoverControlNone : style.hoverControlBlock;
 
-  if (fullOverwie === true) {
-    classNamesHover = style.hoverOverwieBlock;
-    classNameControl = style.hoverControlNone;
-  } else {
-    classNamesHover = style.hoverOverwieNone;
-    classNameControl = style.hoverControlBlock;
-  }
+  // if (fullOverwie === true) {
+  //   classNamesHover = style.hoverOverwieBlock;
+  //   classNameControl = style.hoverControlNone;
+  // } else {
+  //   classNamesHover = style.hoverOverwieNone;
+  //   classNameControl = style.hoverControlBlock;
+  // }
   return (
     <div className={style.hoverMovie}>
       <div className={classNameControl}>

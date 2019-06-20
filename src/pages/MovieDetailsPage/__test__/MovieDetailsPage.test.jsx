@@ -109,32 +109,6 @@ describe('MovieDetailsPage renders correctly', () => {
     });
   });
 
-  describe('getDerivedStateFromProps', () => {
-    it('getDerivedStateFromProps: first render', async () => {
-      const fetchGenres = jest.fn(() => 1);
-      const fetchListMovies = jest.fn(() => 2);
-      const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
-        ...initial,
-        fetchListMovies,
-        fetchGenres,
-      });
-
-      expect(action).toBe(2);
-    });
-
-    it('getDerivedStateFromProps: other rendering', async () => {
-      const fetchGenres = jest.fn(() => 1);
-      const fetchListMovies = jest.fn(() => 2);
-      const action = await MovieDetailsPage.WrappedComponent.getDerivedStateFromProps.call(null, {
-        ...initial2,
-        fetchListMovies,
-        fetchGenres,
-      });
-
-      expect(action).toEqual({ ...initial2, fetchGenres, fetchListMovies });
-    });
-  });
-
   describe('shouldComponentUpdate', () => {
     it('MovieDetailsPage: check shouldComponentUpdate to BE TRUE', () => {
       jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'shouldComponentUpdate');

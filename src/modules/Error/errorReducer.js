@@ -1,4 +1,4 @@
-const errorReducer = (state = false, action) => {
+const errorReducer = (state = '', action) => {
   switch (action.type) {
     case 'ITEMS_HAS_ERRORED':
       return action.payload;
