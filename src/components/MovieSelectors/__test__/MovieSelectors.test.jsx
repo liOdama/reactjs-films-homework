@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { MemoryRouter as Router } from 'react-router-dom';
 import ReactTestRender from 'react-test-renderer';
 import { createGenreList } from '../MovieSelectors';
 import MovieSelectors from '../index';
@@ -29,7 +30,11 @@ describe('MovieSelectors', () => {
     { id: 37, name: 'Western' },
   ];
   it('MovieSelectors: renders correctly', () => {
-    const result = ReactTestRender.create(<MovieSelectors genres={genres} />);
+    const result = ReactTestRender.create(
+      <Router>
+        <MovieSelectors genres={genres} />
+      </Router>,
+    );
     expect(result).toMatchSnapshot();
   });
 
@@ -47,6 +52,7 @@ describe('MovieSelectors', () => {
       error: true,
       clearError,
       setTypeView: test,
+      history: { push: jest.fn() },
     };
     let container;
 
@@ -55,7 +61,12 @@ describe('MovieSelectors', () => {
       container.id = 'modalRoot';
       document.body.appendChild(container);
       act(() => {
-        ReactDOM.render(<MovieSelectors {...props} />, document.querySelector('#modalRoot'));
+        ReactDOM.render(
+          <Router>
+            <MovieSelectors {...props} />
+          </Router>,
+          document.querySelector('#modalRoot'),
+        );
       });
     });
 
@@ -85,22 +96,6 @@ describe('MovieSelectors', () => {
       expect(clearError).toHaveBeenCalled();
     });
 
-    it('showTrends: error true should BE - call fetchListMovies', () => {
-      props.error = '';
-      jest.spyOn(props, 'fetchListMovies');
-      const node = document.querySelector('button');
-      ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });
-      expect(fetchListMovies).toHaveBeenCalled();
-    });
-
-    it('showTrends: error true should BE - call fetchListMovies undefined', () => {
-      props.error = undefined;
-      jest.spyOn(props, 'fetchListMovies');
-      const node = document.querySelector('button');
-      ReactTestUtils.Simulate.click(node, { target: { textContent: 'Coming Soon' } });
-      expect(fetchListMovies).toHaveBeenCalled();
-    });
-
     it('shooseTypeView: shooseTypeView - call action', () => {
       jest.spyOn(props, 'setTypeView');
       const node1 = document.querySelector('#cards');
@@ -108,6 +103,59 @@ describe('MovieSelectors', () => {
       ReactTestUtils.Simulate.click(node1);
       ReactTestUtils.Simulate.click(node2);
       expect(props.setTypeView).toHaveBeenCalledTimes(2);
+    });
+  });
+  describe('showTrends: without error', () => {
+    const clearError = jest.fn(() => 1);
+    test('showTrends: without error - clearError not called with undefined', () => {
+      let container;
+
+      beforeEach(() => {
+        const props = {
+          history: { push: jest.fn() },
+          clearError,
+        };
+        container = document.createElement('div');
+        container.id = 'modalRoot';
+        document.body.appendChild(container);
+        act(() => {
+          ReactDOM.render(
+            <Router>
+              <MovieSelectors {...props} />
+            </Router>,
+            document.querySelector('#modalRoot'),
+          );
+        });
+        jest.spyOn(props, 'clearError');
+        const node = document.querySelector('button');
+        ReactTestUtils.Simulate.click(node);
+        expect(clearError).toHaveBeenCalledTimes(0);
+      });
+    });
+    test('showTrends: without error - clearError not called with ""', () => {
+      let container;
+
+      beforeEach(() => {
+        const props = {
+          error: 'errror',
+          clearError,
+        };
+        container = document.createElement('div');
+        container.id = 'modalRoot';
+        document.body.appendChild(container);
+        act(() => {
+          ReactDOM.render(
+            <Router>
+              <MovieSelectors {...props} />
+            </Router>,
+            document.querySelector('#modalRoot'),
+          );
+        });
+        jest.spyOn(props, 'clearError');
+        const node = document.querySelector('button');
+        ReactTestUtils.Simulate.click(node);
+        expect(clearError).toHaveBeenCalledTimes(0);
+      });
     });
   });
 });

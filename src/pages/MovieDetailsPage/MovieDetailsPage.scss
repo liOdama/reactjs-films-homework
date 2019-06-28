@@ -45,25 +45,3 @@
     }
   }
 }
-
-.preloader {
-  width: 100%;
-  height: 100vh;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  &::before {
-    content: '';
-    background-image: url('https://static.thenounproject.com/png/392126-200.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-}

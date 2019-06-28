@@ -41,12 +41,12 @@ module.exports = {
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
-    './src': {
+    './src/': {
       branches: 100,
       functions: 100,
       lines: 100,
-      statements: -10
-    }
+      statements: -10,
+    },
   },
 
   // A path to a custom dependency extractor
@@ -81,7 +81,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       './fileMock.js',
-    '\\.(css|scss)$': 'identity-obj-proxy'
+    '\\.(css|scss)$': 'identity-obj-proxy',
   },
 
   // An array of regexp pattern strings, matched against
@@ -188,7 +188,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  verbose: true
+  verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths
   // before re-running tests in watch mode

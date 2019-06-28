@@ -4,13 +4,15 @@ import style from './Header.scss';
 
 class Header extends React.Component {
   search = (e) => {
-    const { fetchSearchResults, error, clearError } = this.props;
+    const { error, clearError, history } = this.props;
     e.preventDefault();
     if (error !== undefined && error !== '') {
       clearError('');
     }
     const query = e.target.children[0].value;
-    return fetchSearchResults(query);
+    history.location.pathname = '';
+    history.push(`/search/${query}`);
+    // return fetchSearchResults(query);
   };
 
   render() {
@@ -32,12 +34,13 @@ class Header extends React.Component {
 
 Header.defaultProps = {
   error: '',
+  history: {},
 };
 
 Header.propTypes = {
   clearError: PropTypes.func.isRequired,
   error: PropTypes.string,
-  fetchSearchResults: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any),
 };
 
 export default Header;

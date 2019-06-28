@@ -23,8 +23,9 @@ class ErrorBoundary extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.error !== '') {
+  shouldComponentUpdate(prevProps) {
+    const { error } = this.props;
+    if (prevProps.error !== error) {
       return true;
     }
     return false;
@@ -74,7 +75,7 @@ ErrorBoundary.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   fetchListMovies: PropTypes.func.isRequired,
   clearError: PropTypes.func.isRequired,
-  children: PropTypes.objectOf(PropTypes.any),
+  children: PropTypes.arrayOf(PropTypes.any),
   fetchSearchResults: PropTypes.func.isRequired,
 };
 export default ErrorBoundary;

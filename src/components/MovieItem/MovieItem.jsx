@@ -1,6 +1,7 @@
 import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import HoverMovieCard from '../HoverMovieCard/HoverMovieCard';
 import selectGenre, { keydonwGenres } from '../../utils/selectGenre';
 
@@ -59,12 +60,6 @@ class MovieItem extends React.Component {
       imageLink = `https://image.tmdb.org/t/p/w1280${curr.backdrop_path}`;
     }
     const classNamefigcaption = fullOverwie === true ? style.figcaptionNone : style.figcaptionBlock;
-
-    // if (fullOverwie === true) {
-    //   classNamefigcaption = style.figcaptionNone;
-    // } else {
-    //   classNamefigcaption = style.figcaptionBlock;
-    // }
     const imgAlt = curr.title;
     const genresRow = curr.genre_ids
       .map((c) => {
@@ -110,12 +105,20 @@ class MovieItem extends React.Component {
                 onClick={this.changeMainFilm}
                 onKeyDown={keydonwGenres.bind(null, this.props)}
                 tabIndex="0"
-                id={curr.id}
               >
-                {curr.title}
+                <Link
+                  to={{
+                    pathname: `/films/${curr.id}`,
+                  }}
+                  id={curr.id}
+                >
+                  {curr.title}
+                </Link>
               </button>
+
               <span className={stylerate.rate}>{curr.vote_average}</span>
             </div>
+
             <div className={style.movieGenres}>
               <ul>{genresRow}</ul>
             </div>
@@ -144,11 +147,11 @@ MovieItem.defaultProps = {
 };
 
 MovieItem.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchVideo: PropTypes.func,
   movies: PropTypes.objectOf(PropTypes.any),
   curr: PropTypes.objectOf(PropTypes.any).isRequired,
-  getMainMovieDetails: PropTypes.func.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchVideo: PropTypes.func,
+  getMainMovieDetails: PropTypes.func,
 };
 
 // export { changeMainFilm };

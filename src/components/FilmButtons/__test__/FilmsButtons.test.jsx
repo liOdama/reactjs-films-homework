@@ -56,9 +56,9 @@ describe('test MapDispatchToProps', () => {
   };
   const id = 35;
 
-  it('MapDispatchToProps: fetchVideo', async () => {
+  it('MapDispatchToProps: fetchVideo', () => {
     const dispatch = jest.fn(() => state.fetchVideo);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
+    const result = mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
     expect(result(id)).toEqual(id);
   });
 });

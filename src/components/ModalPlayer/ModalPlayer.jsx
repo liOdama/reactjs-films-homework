@@ -62,7 +62,7 @@ export class ModalPlayer extends Component {
 }
 
 ModalPlayer.propTypes = {
-  unmount: PropTypes.func.isRequired,
+  unmount: PropTypes.func,
 };
 
 export const showModal = (props, e) => {

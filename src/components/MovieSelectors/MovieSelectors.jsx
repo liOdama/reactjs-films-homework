@@ -1,13 +1,18 @@
 import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import selectGenre from '../../utils/selectGenre';
 import style from '../../pages/MovieListContainer/MovieListContainer.scss';
 
-export const createGenreList = genres => genres.map((c) => {
-  const key = shortid.generate();
-  return <option key={key}>{c.name}</option>;
-});
+export const createGenreList = (genres) => {
+  const elements = genres.map((c) => {
+    const key = shortid.generate();
+    const { name } = c;
+    return <option key={key}>{name}</option>;
+  });
+  return elements;
+};
 
 class MovieSelectors extends React.Component {
   shooseTypeView = (e) => {
@@ -19,13 +24,11 @@ class MovieSelectors extends React.Component {
     return setTypeView('lines');
   };
 
-  showTrends = (e) => {
-    const query = e.target.textContent;
-    const { fetchListMovies, error, clearError } = this.props;
+  showTrends = () => {
+    const { error, clearError } = this.props;
     if (error !== undefined && error !== '') {
       clearError('');
     }
-    return fetchListMovies(query);
   };
 
   render() {
@@ -35,19 +38,25 @@ class MovieSelectors extends React.Component {
         <nav>
           <ul>
             <li>
-              <button type="button" href="#" onClick={this.showTrends}>
-                Trending
-              </button>
+              <Link to={{ pathname: '/trending', replace: true }}>
+                <button type="button" href="#" onClick={this.showTrends}>
+                  Trending
+                </button>
+              </Link>
             </li>
             <li>
-              <button type="button" href="#" onClick={this.showTrends}>
-                Top Rated
-              </button>
+              <Link to={{ pathname: '/top_rated', replace: true }}>
+                <button type="button" href="#" onClick={this.showTrends}>
+                  Top Rated
+                </button>
+              </Link>
             </li>
             <li>
-              <button type="button" href="#" onClick={this.showTrends}>
-                Coming Soon
-              </button>
+              <Link replace to={{ pathname: '/coming_soon', replace: true }}>
+                <button type="button" href="#" onClick={this.showTrends}>
+                  Coming Soon
+                </button>
+              </Link>
             </li>
             <li>
               <select name="genre" id="" onChange={selectGenre.bind(this, this.props)}>
@@ -78,9 +87,8 @@ MovieSelectors.defaultProps = {
 MovieSelectors.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.any),
   setTypeView: PropTypes.func.isRequired,
-  fetchListMovies: PropTypes.func.isRequired,
   clearError: PropTypes.func.isRequired,
   error: PropTypes.string,
 };
 
-export default MovieSelectors;
+export default withRouter(MovieSelectors);

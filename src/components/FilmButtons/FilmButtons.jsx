@@ -45,6 +45,6 @@ FilmButtons.defaultProps = {
 
 FilmButtons.propTypes = {
   mainMovie: PropTypes.objectOf(PropTypes.any),
-  setTypeOverwie: PropTypes.func.isRequired,
+  setTypeOverwie: PropTypes.func,
 };
 export default FilmButtons;

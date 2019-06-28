@@ -47,31 +47,46 @@ exports[`render render correctly: Nothing Found error 1`] = `
       <nav>
         <ul>
           <li>
-            <button
-              href="#"
+            <a
+              href="/trending"
               onClick={[Function]}
-              type="button"
             >
-              Trending
-            </button>
+              <button
+                href="#"
+                onClick={[Function]}
+                type="button"
+              >
+                Trending
+              </button>
+            </a>
           </li>
           <li>
-            <button
-              href="#"
+            <a
+              href="/top_rated"
               onClick={[Function]}
-              type="button"
             >
-              Top Rated
-            </button>
+              <button
+                href="#"
+                onClick={[Function]}
+                type="button"
+              >
+                Top Rated
+              </button>
+            </a>
           </li>
           <li>
-            <button
-              href="#"
+            <a
+              href="/coming_soon"
               onClick={[Function]}
-              type="button"
             >
-              Coming Soon
-            </button>
+              <button
+                href="#"
+                onClick={[Function]}
+                type="button"
+              >
+                Coming Soon
+              </button>
+            </a>
           </li>
           <li>
             <select

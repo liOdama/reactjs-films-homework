@@ -6,6 +6,8 @@ import checkTypeView from '../../modules/TypeView/TypeViewSelectors';
 import requestsFilms from '../../utils/requests';
 import clearError from '../../modules/Error/errorAction';
 import MovieListContainer from './MovieListContainer';
+import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
+import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
 
 const makeMap = () => {
   const page = checkPage;
@@ -29,8 +31,11 @@ export const mapStateToDispatch = dispatch => ({
   fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
   setTypeView: type => dispatch(FromSetTypeView.default(type)),
   getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
+  fetchListMovies: (query, id) => dispatch(requestsFilms.fetchListMovies(query, id)),
   clearError: bool => dispatch(clearError(bool)),
+  fetchGenres: () => dispatch(fromFetchGenres.default()),
+  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default()),
+  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
 });
 
 export default connect(

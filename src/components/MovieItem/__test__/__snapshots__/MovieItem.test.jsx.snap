@@ -25,7 +25,15 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
           tabIndex="0"
           type="button"
         >
-          Avengers: Endgame
+          <Link
+            to={
+              Object {
+                "pathname": "/films/undefined",
+              }
+            }
+          >
+            Avengers: Endgame
+          </Link>
         </button>
         <span />
       </div>
@@ -133,7 +141,15 @@ exports[`MovieItem renders correctly with poster image 1`] = `
           tabIndex="0"
           type="button"
         >
-          Avengers: Endgame
+          <Link
+            to={
+              Object {
+                "pathname": "/films/undefined",
+              }
+            }
+          >
+            Avengers: Endgame
+          </Link>
         </button>
         <span />
       </div>
@@ -236,13 +252,21 @@ exports[`MovieItem renders correctly without poster image 1`] = `
       >
         <button
           href="#"
-          id={299534}
           onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
           type="button"
         >
-          Avengers: Endgame
+          <Link
+            id={299534}
+            to={
+              Object {
+                "pathname": "/films/299534",
+              }
+            }
+          >
+            Avengers: Endgame
+          </Link>
         </button>
         <span>
           8.6
@@ -350,11 +374,15 @@ exports[`events hoverOverwieBlock 1`] = `
         >
           <button
             href="#"
-            id="299534"
             tabindex="0"
             type="button"
           >
-            Avengers: Endgame
+            <a
+              href="/films/299534"
+              id="299534"
+            >
+              Avengers: Endgame
+            </a>
           </button>
           <span>
             8.6
@@ -502,11 +530,15 @@ exports[`events hoverOverwieBlock 2`] = `
         >
           <button
             href="#"
-            id="299534"
             tabindex="0"
             type="button"
           >
-            Avengers: Endgame
+            <a
+              href="/films/299534"
+              id="299534"
+            >
+              Avengers: Endgame
+            </a>
           </button>
           <span>
             8.6

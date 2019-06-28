@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { MemoryRouter as Router } from 'react-router-dom';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import fetchMock from 'fetch-mock';
 import MovieItem from '../index';
@@ -112,6 +113,7 @@ describe('MovieItem: selectGenre', () => {
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+      history: { push: jest.fn() },
     };
     const e = {
       key: 'a',
@@ -138,6 +140,7 @@ describe('MovieItem: selectGenre', () => {
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchListMovies: requestsFilms.fetchListMovies,
+      history: { push: jest.fn() },
     };
     const e = {
       key: 'Enter',
@@ -201,7 +204,12 @@ describe('getMainMovieDetails', () => {
       },
     };
     act(() => {
-      ReactDOM.render(<MovieItem {...props} />, container);
+      ReactDOM.render(
+        <Router>
+          <MovieItem {...props} />
+        </Router>,
+        container,
+      );
     });
 
     jest.spyOn(props, 'getMainMovieDetails');
@@ -265,7 +273,12 @@ describe('events', () => {
   beforeEach(() => {
     document.body.appendChild(container);
     act(() => {
-      ReactDOM.render(<MovieItem {...props} />, container);
+      ReactDOM.render(
+        <Router>
+          <MovieItem {...props} />
+        </Router>,
+        container,
+      );
     });
   });
 

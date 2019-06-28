@@ -8,18 +8,25 @@ const KEY = '75331f1a740385460b25b56203149aa8';
 const requestsFilms = {
   fetchListMovies: query => (dispatch) => {
     let url;
+    // const id = query.replace(/\/[genre]/g);
     switch (query) {
-      case 'Coming Soon':
+      case '/coming_soon':
         url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`;
         break;
-      case 'Trending':
+      case '/trending':
         url = `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`;
         break;
-      case 'Top Rated':
+      case '/':
+        url = `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`;
+        break;
+      case '/top_rated':
         url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY}&language=en-US&page=1`;
         break;
       default:
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${query}`;
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${query.replace(
+          '/genre/',
+          '',
+        )}`;
     }
     dispatch(itemsIsLoadingAction(true));
     return fetch(url)
@@ -75,7 +82,10 @@ const requestsFilms = {
   fetchSearchResults: query => (dispatch) => {
     dispatch(itemsIsLoadingAction(true));
     return fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
+      `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query.replace(
+        '%20',
+        '',
+      )}&page=1&include_adult=false`,
     )
       .then(resp => resp.json())
       .then((data) => {

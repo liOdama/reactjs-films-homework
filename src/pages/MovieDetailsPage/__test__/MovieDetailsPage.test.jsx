@@ -1,22 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import ReactTestRender from 'react-test-renderer';
+import ReactDOM from 'react-dom';
+import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { MemoryRouter as Router, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import ReactTestUtils from 'react-dom/test-utils';
+import fetchMock from 'fetch-mock';
 import configureStore from 'redux-mock-store';
-import MovieDetailsPage from '../index';
+import { JestEnvironment } from '@jest/environment';
+import MovieDetailsPage from '../MovieDetailsPage';
+import * as MovieDetailsPageWithContainer from '../index';
 import { mapStateToDispatch } from '../MovieDetailsPageContainer';
 
 jest.mock('rc-util/lib/Portal');
 
 //* ****************************************************************************
-describe('MovieDetailsPage renders correctly', () => {
-  const initialState = {
-    movies: {},
-    genres: [],
-    mainMovie: {},
-  };
+describe('MovieDetailsPage - all tests', () => {
   const mockStore = configureStore([thunk]);
+  // without genres (genres = [])
   const initial = {
     movies: {
       currentVideo: null,
@@ -39,10 +39,16 @@ describe('MovieDetailsPage renders correctly', () => {
           vote_count: 538,
         },
       ],
+      fetchGenres: jest.fn(() => ({})),
+      fetchSearchResults: jest.fn(() => ({})),
+      getMainMovieDetails: jest.fn(() => ({})),
+      fetchListMovies: jest.fn(() => ({})),
     },
     genres: [],
     mainMovie: { backdrop_path: 'test' },
+    match: { url: '/' },
   };
+  // with genres and trailer(currentVideo)
   const initial2 = {
     movies: {
       mainMovie: { backdrop_path: 'test' },
@@ -67,52 +73,167 @@ describe('MovieDetailsPage renders correctly', () => {
     },
     genres: [{ id: 35, name: 'Drama' }],
     mainMovie: { backdrop_path: 'test' },
+    fetchGenres: jest.fn(() => ({})),
+    fetchSearchResults: jest.fn(() => ({})),
+    getMainMovieDetails: jest.fn(() => ({})),
+    fetchListMovies: jest.fn(() => ({})),
+    clearCurrentMovie: jest.fn(() => ({})),
+    match: { url: '' },
   };
-  it('MovieDetailsPage: render preloader', () => {
-    const store = mockStore(initialState);
-    const container = ReactTestUtils.renderIntoDocument(
-      <Provider store={store}>
-        <MovieDetailsPage />
-      </Provider>,
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  it('MovieDetailsPage: render component', () => {
-    const store = mockStore(initial);
-    const container = ReactTestRender.create(
-      <Provider store={store}>
-        <MovieDetailsPage />
-      </Provider>,
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  describe('componentDidUpdate', () => {
-    const getMainMovieDetails = jest.fn();
-    it('MovieDetailsPage: check componentDidUpdate - should return state', () => {
-      jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'componentDidUpdate');
-      MovieDetailsPage.WrappedComponent.prototype.componentDidUpdate.call(
-        { props: { ...initial, getMainMovieDetails } },
-        { ...initial2 },
-      );
-      expect(getMainMovieDetails).toHaveBeenCalled();
+  // with genres and match, without trailer
+  const initial3 = {
+    movies: {
+      mainMovie: { backdrop_path: 'test' },
+      currentVideo: null,
+      results: [],
+    },
+    genres: [{ id: 35, name: 'Drama' }],
+    mainMovie: { backdrop_path: 'test' },
+    fetchGenres: jest.fn(() => ({})),
+    fetchSearchResults: jest.fn(() => ({})),
+    getMainMovieDetails: jest.fn(() => ({})),
+    fetchListMovies: jest.fn(() => ({})),
+    clearCurrentMovie: jest.fn(() => ({})),
+    match: { url: '/terst' },
+  };
+  describe('MovieDetailsPage, render component correctly', () => {
+    let container;
+    beforeEach(() => {
+      container = document.createElement('button');
+      container.id = 'root';
+      document.body.appendChild(container);
     });
 
-    it('MovieDetailsPage: check componentDidUpdate - should return null', () => {
-      jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'componentDidUpdate');
-      const method = MovieDetailsPage.WrappedComponent.prototype.componentDidUpdate.call(
-        { props: { ...initial, getMainMovieDetails } },
-        { ...initial },
-      );
-      expect(method).toBeNull();
+    it('MovieDetailsPage: render Modal with component', () => {
+      const store = mockStore(initial2);
+      fetchMock
+        .getOnce(
+          'https://api.themoviedb.org/3/movie/?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
+          initial2,
+        )
+        .catch(err => err);
+      act(() => {
+        ReactDOM.render(
+          <Provider store={store}>
+            <Router initialEntries={['/films/123']} initialIndex={0}>
+              <Route
+                path="/films/123"
+                render={props => <MovieDetailsPageWithContainer.default {...props} />}
+              />
+            </Router>
+          </Provider>,
+          document.querySelector('#root'),
+        );
+      });
+      const node = document.querySelector('#closeModal');
+      ReactTestUtils.Simulate.click(node);
+      jest.spyOn(initial2, 'clearCurrentMovie');
+      const node2 = document.querySelector('#closeModal');
+      ReactTestUtils.Simulate.keyDown(node2, { key: 'Escape' });
+      const node3 = document.querySelector('#closeModal');
+      ReactTestUtils.Simulate.keyDown(node3, { key: 'Enter' });
+      expect(document.querySelector('#root')).toMatchSnapshot();
+    });
+
+    it('MovieDetailsPage - render preloader', () => {
+      const store = mockStore(initial3);
+      act(() => {
+        ReactDOM.render(
+          <Router>
+            <Provider store={store}>
+              <MovieDetailsPage {...initial3} />
+            </Provider>
+          </Router>,
+          document.querySelector('#root'),
+        );
+      });
+      expect(document.querySelector('#root')).toMatchSnapshot();
+    });
+  });
+
+  describe('componentDidMout an ComponentDidUpdate', () => {
+    const getMainMovieDetails = jest.fn();
+    const fetchGenres = jest.fn();
+    const fetchListMovies = jest.fn();
+    const context = {
+      state: {
+        loading: true,
+        path: '/',
+      },
+      props: {
+        getMainMovieDetails,
+        fetchGenres,
+        fetchListMovies,
+        match: { url: '/films/test', params: { id: 'trending' } },
+        genres: [{ id: 1, name: 'test' }],
+      },
+    };
+
+    it('componentDidMout - getMainMovieDetails called', () => {
+      jest.spyOn(context.props, 'getMainMovieDetails');
+      MovieDetailsPage.prototype.componentDidMount.call(context);
+      MovieDetailsPage.prototype.componentDidUpdate.call(context, null, { path: '' });
+      expect(getMainMovieDetails).toHaveBeenCalledTimes(2);
+    });
+
+    it('componentDidMout - fetchGenres called', () => {
+      context.props.genres = [];
+      jest.spyOn(context.props, 'fetchGenres');
+      MovieDetailsPage.prototype.componentDidMount.call(context);
+      expect(fetchGenres).toHaveBeenCalledTimes(1);
+    });
+
+    it('componentDidUpdate - to be False', () => {
+      const action = MovieDetailsPage.prototype.componentDidUpdate.call(context, null, {
+        path: '/films/test',
+      });
+      expect(action).toBeFalsy();
+    });
+
+    it('componentDidMout - getMainMovieDetails not called', () => {
+      context.state.loading = false;
+      jest.spyOn(context.props, 'getMainMovieDetails');
+      MovieDetailsPage.prototype.componentDidUpdate.call(context, null, { path: '' });
+      expect(getMainMovieDetails).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('getDerivedStateFromProps', () => {
+    it('getDerivedStateFromProps: first render', () => {
+      const nextState = {
+        path: '/',
+        match: { url: '/' },
+      };
+      const test = {
+        loading: false,
+        path: '/',
+      };
+      const action = MovieDetailsPage.getDerivedStateFromProps.call(null, nextState, nextState);
+
+      expect(action).toEqual(test);
+    });
+
+    it('getDerivedStateFromProps: other rendering', () => {
+      const nextProps = {
+        match: { url: '/trending' },
+      };
+      const nextState = {
+        path: '/',
+      };
+      const test = {
+        loading: true,
+        path: '/trending',
+      };
+      const action = MovieDetailsPage.getDerivedStateFromProps.call(null, nextProps, nextState);
+
+      expect(action).toEqual(test);
     });
   });
 
   describe('shouldComponentUpdate', () => {
     it('MovieDetailsPage: check shouldComponentUpdate to BE TRUE', () => {
-      jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'shouldComponentUpdate');
-      const action = MovieDetailsPage.WrappedComponent.prototype.shouldComponentUpdate.call(
+      jest.spyOn(MovieDetailsPage.prototype, 'shouldComponentUpdate');
+      const action = MovieDetailsPage.prototype.shouldComponentUpdate.call(
         { props: { ...initial } },
         { ...initial2 },
       );
@@ -120,8 +241,8 @@ describe('MovieDetailsPage renders correctly', () => {
     });
 
     it('MovieDetailsPage: check shouldComponentUpdate to BE FALSE', () => {
-      jest.spyOn(MovieDetailsPage.WrappedComponent.prototype, 'shouldComponentUpdate');
-      const action = MovieDetailsPage.WrappedComponent.prototype.shouldComponentUpdate.call(
+      jest.spyOn(MovieDetailsPage.prototype, 'shouldComponentUpdate');
+      const action = MovieDetailsPage.prototype.shouldComponentUpdate.call(
         { props: { ...initial } },
         { ...initial },
       );
@@ -135,14 +256,17 @@ describe('MovieDetailsPage renders correctly', () => {
       fetchVideo: id => id,
       getMainMovieDetails: id => id,
       fetchSearchResults: query => query,
-      ...initial,
+      fetchGenres: query => query,
+      clearCurrentMovie: query => query,
     };
+
     it('test all descriptors', () => {
       const keys = Object.keys(state);
-      keys.forEach(async (curr) => {
+      const id = 'test';
+      keys.forEach((curr) => {
         const dispatch = jest.fn(() => state[curr]);
-        const result = await mapStateToDispatch(dispatch)[curr]();
-        expect(result).toEqual(state[curr]);
+        const result = mapStateToDispatch(dispatch)[curr]();
+        expect(result(id)).toEqual(id);
       });
     });
   });

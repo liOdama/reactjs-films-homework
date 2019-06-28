@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test routes Routes - 404 Routes 1`] = `","`;
+
+exports[`Test routes Routes - base Routes 1`] = `
+<main>
+  <div
+    className="preloader"
+  >
+    <p>
+      App is loading
+    </p>
+  </div>
+</main>
+`;
+
+exports[`Test routes Routes - coming_soon Routes 1`] = `
+Array [
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>,
+  ",",
+]
+`;
+
+exports[`Test routes Routes - films Routes 1`] = `
+Array [
+  <div
+    className="wrapper"
+  >
+    <header
+      className="header"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="h1"
+        >
+          FILMS
+        </h1>
+        <form
+          action=""
+          onSubmit={[Function]}
+        >
+          <input
+            className="searchField"
+            tabIndex="0"
+            type="search"
+          />
+          <button
+            className="btnSearch"
+            type="submit"
+          >
+            ⚲
+          </button>
+        </form>
+      </div>
+    </header>
+    <main>
+      <section
+        className="movieDetailsPageContainer"
+        style={
+          Object {
+            "backgroundImage": "url(https://image.tmdb.org/t/p/w1280test",
+            "backgroundPosition": "center",
+            "backgroundRepeat": "no-repeat",
+            "backgroundSize": "cover",
+          }
+        }
+      >
+        <div
+          className="mainfilmInfo"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="mainFilmTitle"
+            >
+              <h2
+                className="filmTitle"
+              />
+              <div
+                className="genres"
+              >
+                <ul />
+              </div>
+              <div
+                className="starContainer"
+              >
+                <p
+                  className="rate"
+                >
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="hideInfo"
+              id="mainFilmOverwie"
+            >
+              <div
+                className="mainFilmInfo__info"
+              >
+                <p>
+                  
+                </p>
+              </div>
+              <div
+                className="btnContainer"
+              >
+                <button
+                  className="watch"
+                  onClick={[Function]}
+                  tabIndex="0"
+                  type="button"
+                >
+                  Watch Now
+                </button>
+                <button
+                  className="viewInfo"
+                  id="info"
+                  onClick={[Function]}
+                  tabIndex="0"
+                  type="button"
+                >
+                  View Info
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>,
+  ",",
+]
+`;
+
+exports[`Test routes Routes - genre Routes 1`] = `
+Array [
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>,
+  ",",
+]
+`;
+
+exports[`Test routes Routes - index.html Routes 1`] = `
+Array [
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>,
+  ",",
+]
+`;
+
+exports[`Test routes Routes - search Routes 1`] = `","`;
+
+exports[`Test routes Routes - trending Routes 1`] = `
+Array [
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>,
+  ",",
+]
+`;
+
+exports[`Test routes Routes - trending Routes 2`] = `
+Array [
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>,
+  ",",
+]
+`;
