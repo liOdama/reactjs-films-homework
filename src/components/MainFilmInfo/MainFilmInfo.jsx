@@ -1,21 +1,46 @@
 import React from 'react';
-import FilmButtons from '../FilmButtons';
+import PropTypes from 'prop-types';
+import FilmButtons from '../FilmButtons/index';
 import style from './MainFilmInfo.scss';
 
-const MainFilmInfo = () => (
-  <div>
-    <div className={style.mainFilmInfo__info}>
-      <p>
-  There are growing dangers in the wizarding world of 1926 New York.
-      Something mysterious is leaving a path of destruction in the streets,
-      threatening to expose the wizarding community to the Second Salemers,
-      a fanatical faction of No-Majs (American for Muggles) bent on eradicating them.
-        And the powerful, dark wizard Gellert Grindelwald, after wreaking havoc in Europe,
-              has slipped away…and is now nowhere to be found.
-      </p>
-    </div>
-    <FilmButtons className={style.mainFilmInfo__buttons} />
-  </div>
-);
+class MainFilmInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      typeOverwie: 'unfull',
+    };
+  }
+
+  setTypeOverwie = () => {
+    this.setState({ typeOverwie: 'full' });
+  };
+
+  render() {
+    const { overview } = this.props;
+    const { typeOverwie } = this.state;
+    const classNames = typeOverwie === 'unfull' ? style.hideInfo : style.showInfo;
+    // if (typeOverwie === 'unfull') {
+    //   classNames = style.hideInfo;
+    // } else {
+    //   classNames = style.showInfo;
+    // }
+    return (
+      <div className={classNames} id="mainFilmOverwie">
+        <div className={style.mainFilmInfo__info}>
+          <p>{overview}</p>
+        </div>
+        <FilmButtons className={style.mainFilmInfo__buttons} setTypeOverwie={this.setTypeOverwie} />
+      </div>
+    );
+  }
+}
+
+MainFilmInfo.defaultProps = {
+  overview: '',
+};
+
+MainFilmInfo.propTypes = {
+  overview: PropTypes.string,
+};
 
 export default MainFilmInfo;

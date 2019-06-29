@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders correctly 1`] = `
+exports[`HeaderComponent Header renders correctly 1`] = `
 <header
   className="header"
 >
@@ -14,9 +14,11 @@ exports[`Header renders correctly 1`] = `
     </h1>
     <form
       action=""
+      onSubmit={[Function]}
     >
       <input
         className="searchField"
+        tabIndex="0"
         type="search"
       />
       <button

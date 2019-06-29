@@ -1,22 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Signature renders correctly 1`] = `
-<div
-  className="btnContainer"
+exports[`FulmButtons renders correctly 1`] = `
+<Context.Provider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
 >
-  <button
-    className="watch"
-    id="watch"
-    type="button"
-  >
-    Watch Now
-  </button>
-  <button
-    className="viewInfo"
-    id="info"
-    type="button"
-  >
-    View Info
-  </button>
-</div>
+  <Memo(ConnectFunction)
+    className="name"
+  />
+</Context.Provider>
 `;
+
+exports[`FulmButtons renders correctly 2`] = `undefined`;

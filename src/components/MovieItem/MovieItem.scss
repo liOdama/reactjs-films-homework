@@ -1,0 +1,112 @@
+.movieContainer {
+  height: 31.9rem;
+  position: relative;
+  margin: 0.5rem;
+  border-radius: 5px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  figure {
+    height: 100%;
+  }
+
+  .movieGenres ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    color: #47c3f0;
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    li:hover,
+    li:focus {
+      color: #000;
+    }
+  }
+
+  figcaption {
+    background: #fff;
+    height: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: baseline;
+    align-items: inherit;
+    padding: 1rem 1rem 0 1rem;
+
+    .movieTitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-bottom: 0.5rem;
+
+      button {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-right: 0.3rem;
+        background: none;
+        border: none;
+        padding: 0;
+        outline: none;
+
+        &:hover,
+        &:focus {
+          color: #47c3f0;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    figure img {
+      height: 100%;
+    }
+  }
+}
+
+figure > div {
+  height: 80%;
+  overflow: hidden;
+}
+
+.cards {
+  width: 300px;
+}
+
+.lines {
+  width: 100%;
+
+  & > div {
+    width: 100%;
+  }
+}
+
+.figcaptionNone figcaption {
+  display: none !important;
+}
+
+.figcaptionNone > div {
+  height: 100%;
+}
+
+.figcaptionBlock figcaption {
+  display: block;
+}
+
+.figcaptionNone + div {
+  height: 100%;
+}

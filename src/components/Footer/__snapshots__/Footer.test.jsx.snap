@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Footer: renders correctly 1`] = `
+<footer>
+  <div
+    className="container"
+  >
+    <h2>
+      FILMS
+    </h2>
+    <p>
+      Copyright © 2019 FILMS. RAMAN BYCHKOU
+    </p>
+  </div>
+</footer>
+`;

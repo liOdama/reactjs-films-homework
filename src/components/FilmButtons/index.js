@@ -1,1 +1,1 @@
-export { default } from './FilmButtons';
+export { default } from './FilmButtonsContainer';

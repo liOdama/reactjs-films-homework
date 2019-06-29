@@ -31,7 +31,6 @@ module.exports = {
   // coveragePathIgnorePatterns: [
   //   "\\\\node_modules\\\\"
   // ],
-
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
   //   "json",
@@ -46,8 +45,8 @@ module.exports = {
       branches: 100,
       functions: 100,
       lines: 100,
-      statements: -10,
-    },
+      statements: -10
+    }
   },
 
   // A path to a custom dependency extractor
@@ -75,20 +74,14 @@ module.exports = {
   // ],
 
   // An array of file extensions your modules use
-  moduleFileExtensions: [
-    'js',
-    'json',
-    'jsx',
-    'ts',
-    'tsx',
-    'scss',
-  ],
+  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'scss'],
 
   // A map from regular expressions to module names that
   // allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': './fileMock.js',
-    '\\.(css|scss)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      './fileMock.js',
+    '\\.(css|scss)$': 'identity-obj-proxy'
   },
 
   // An array of regexp pattern strings, matched against
@@ -136,6 +129,9 @@ module.exports = {
   // The paths to modules that run some code to configure
   // or set up the testing environment before each test
   // setupFiles: [],
+  // setupFiles: [
+  //   './__mocks__/client.js',
+  // ],
 
   // A list of paths to modules that run some code to configure
   // or set up the testing framework before each test
@@ -145,7 +141,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -192,7 +188,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  verbose: true,
+  verbose: true
 
   // An array of regexp patterns that are matched against all source file paths
   // before re-running tests in watch mode

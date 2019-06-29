@@ -1,16 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainFilmInfo renders correctly 1`] = `
-<div>
+<div
+  className="hideInfo"
+  id="mainFilmOverwie"
+>
   <div
     className="mainFilmInfo__info"
   >
     <p>
-      There are growing dangers in the wizarding world of 1926 New York. Something mysterious is leaving a path of destruction in the streets, threatening to expose the wizarding community to the Second Salemers, a fanatical faction of No-Majs (American for Muggles) bent on eradicating them. And the powerful, dark wizard Gellert Grindelwald, after wreaking havoc in Europe, has slipped away…and is now nowhere to be found.
+      
     </p>
   </div>
-  <FilmButtons
+  <Memo(ConnectFunction)
     className="mainFilmInfo__buttons"
+    setTypeOverwie={[Function]}
   />
+</div>
+`;
+
+exports[`MainFilmInfo: check state 1`] = `
+<div
+  id="wrapper"
+>
+  <div
+    class="showInfo"
+    id="mainFilmOverwie"
+  >
+    <div
+      class="mainFilmInfo__info"
+    >
+      <p />
+    </div>
+    <div
+      class="btnContainer"
+    >
+      <button
+        class="watch"
+        id="test"
+        tabindex="0"
+        type="button"
+      >
+        Watch Now
+      </button>
+      <button
+        class="viewInfo"
+        id="info"
+        tabindex="0"
+        type="button"
+      >
+        View Info
+      </button>
+    </div>
+  </div>
 </div>
 `;

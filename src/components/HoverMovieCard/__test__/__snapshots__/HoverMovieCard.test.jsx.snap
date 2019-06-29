@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HoverMovieCard hover events render correctly 1`] = `
+<div
+  className="hoverMovie"
+>
+  <div
+    className="hoverControlNone"
+  >
+    <label
+      htmlFor="playTrailer"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      <input
+        className="playTrailer"
+        name="playTrailer"
+        type="button"
+      />
+      Watch Now
+    </label>
+    <button
+      className="showOverwie"
+      id="showOverwie"
+      type="button"
+    >
+      View Info
+    </button>
+  </div>
+  <div
+    className="hoverOverwie hoverOverwieBlock"
+  >
+    <button
+      className="hoverClose"
+      id="closeHover"
+      type="button"
+    >
+      ╳
+    </button>
+    <div
+      className="hoverOverwieTitle"
+    >
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <h3>
+          
+        </h3>
+        <ul />
+      </div>
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <p>
+          0
+        </p>
+      </div>
+    </div>
+    <p>
+      
+    </p>
+    <button
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      type="button"
+    >
+      Watch Now
+    </button>
+  </div>
+</div>
+`;
+
+exports[`HoverMovieCard renders correctly 1`] = `
+<div
+  className="hoverMovie"
+>
+  <div
+    className="hoverControlBlock"
+  >
+    <label
+      htmlFor="playTrailer"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      <input
+        className="playTrailer"
+        name="playTrailer"
+        type="button"
+      />
+      Watch Now
+    </label>
+    <button
+      className="showOverwie"
+      id="showOverwie"
+      type="button"
+    >
+      View Info
+    </button>
+  </div>
+  <div
+    className="hoverOverwie hoverOverwieNone"
+  >
+    <button
+      className="hoverClose"
+      id="closeHover"
+      type="button"
+    >
+      ╳
+    </button>
+    <div
+      className="hoverOverwieTitle"
+    >
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <h3>
+          
+        </h3>
+        <ul />
+      </div>
+      <div
+        className="hoverOverwieTitleItem"
+      >
+        <p>
+          0
+        </p>
+      </div>
+    </div>
+    <p>
+      
+    </p>
+    <button
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      type="button"
+    >
+      Watch Now
+    </button>
+  </div>
+</div>
+`;

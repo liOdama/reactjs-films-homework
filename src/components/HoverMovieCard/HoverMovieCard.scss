@@ -1,0 +1,137 @@
+.hoverMovie {
+  position: absolute;
+  top: 0;
+  display: none;
+  padding: 0 1rem;
+  width: 90%;
+  height: 80%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.64);
+
+  input,
+  button {
+    outline: none;
+  }
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    position: relative;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    .playTrailer {
+      border-radius: 20rem;
+      width: 7rem;
+      height: 7rem;
+      border: none;
+      background-color: #3bb3df;
+      margin-bottom: 1rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      border: 1.7rem solid transparent;
+      border-left: 2.5rem solid #fff;
+      top: 1.9rem;
+      left: 2.7rem;
+    }
+  }
+
+  .showOverwie {
+    background: none;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+  }
+
+  .hoverClose {
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .hoverOverwieTitleItem {
+    &:first-child {
+      margin-right: 0.5rem;
+      width: 15rem;
+    }
+
+    h3 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+
+      &:hover {
+        white-space: normal;
+        text-overflow: initial;
+        word-break: keep-all;
+      }
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-start;
+      flex-flow: row wrap;
+      color: #47c3f0;
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+article:hover .hoverMovie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.hoverOverwie {
+  display: none;
+  min-width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.hoverControlNone {
+  display: none;
+}
+
+.hoverOverwieBlock {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  justify-content: center;
+  height: 100%;
+  word-break: keep-all;
+
+  .hoverOverwieTitle {
+    padding: 1rem 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    word-wrap: break-word;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+.hoverControlBlock {
+  text-align: center;
+}

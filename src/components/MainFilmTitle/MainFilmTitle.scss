@@ -1,11 +1,24 @@
 .mainFilmTitle {
   color: #fff;
   margin: auto 0 0.7rem;
+  max-width: 50%;
 }
 
 @media screen and (max-width: 46.8rem) {
   .mainFilmTitle {
     margin: 0 0 2rem 0;
+  }
+
+  .filmTitle {
+    margin-top: 1rem;
+  }
+
+  .genres ul {
+    flex-flow: column nowrap;
+
+    li {
+      margin: 0.3rem;
+    }
   }
 }
 
@@ -21,13 +34,24 @@
 }
 
 .genres ul {
-  color: #fff;
   display: flex;
   justify-content: flex-start;
 
   li {
     margin-right: 1rem;
     position: relative;
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        color: #47c3f0;
+      }
+    }
   }
 
   li:last-child::before {

@@ -7,29 +7,15 @@ exports[`MainFilmTitle renders correctly 1`] = `
   <h2
     className="filmTitle"
   >
-    THE JUNGLE BOOK
+    Brightburn
   </h2>
   <div
     className="genres"
   >
-    <ul>
-      <li>
-        Adventure
-      </li>
-      <li>
-        Drama
-      </li>
-      <li>
-        Family
-      </li>
-      <li>
-        Fantasy
-      </li>
-      <li>
-        1h 46m
-      </li>
-    </ul>
+    <ul />
   </div>
-  <Star />
+  <Star
+    rate={7.5}
+  />
 </div>
 `;

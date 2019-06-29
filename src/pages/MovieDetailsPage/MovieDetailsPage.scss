@@ -1,13 +1,8 @@
 .movieDetailsPageContainer {
-  background: linear-gradient(to top, black 0%, transparent 33%);
-  background-image: url(./img/mainFilmBG.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   display: flex;
   flex-flow: row wrap;
-  align-content: space-between;
-  min-height: 34.2rem;
+  align-content: flex-end;
+  min-height: 100vh;
 }
 
 .mainfilmInfoBlock {
@@ -19,6 +14,7 @@
 .mainfilmInfo {
   padding: 2rem 0.8rem 1.4rem 4.2rem;
   width: 100%;
+  background: linear-gradient(to top, black 0%, transparent 65%);
 }
 
 .container {
@@ -41,11 +37,33 @@
 
 @media screen and (max-width: 46.8rem) {
   .mainfilmInfo {
-    padding: 0 0.8rem 1.4rem 0.8rem;
+    padding: 0 0 1.4rem 0;
     margin: 0 auto;
 
     .container {
       justify-content: center;
     }
+  }
+}
+
+.preloader {
+  width: 100%;
+  height: 100vh;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url('https://static.thenounproject.com/png/392126-200.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
   }
 }
