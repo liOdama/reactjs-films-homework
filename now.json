@@ -8,7 +8,6 @@
     { "src": "/search/(.*)", "dest": "/index.html" },
     { "src": "/films/(.*)", "dest": "/index.html" },
     { "src": "/list/(.*)", "dest": "/index.html" },
-    { "src": "/list/", "dest": "/index.html" },
     { "src": "/genre/(.*)", "dest": "/index.html" },
     { "src": "/", "dest": "/index.html" }
   ]
