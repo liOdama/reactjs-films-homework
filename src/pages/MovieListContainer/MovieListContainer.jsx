@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-
 import MovieItem from '../../components/MovieItem';
 import MovieSelectors from '../../components/MovieSelectors';
 import Header from '../../components/Header/index';
+import Footer from '../../components/Footer/index';
 import ModalPlayer from '../../components/ModalPlayer/index';
+import Preloader from '../../components/Preloader/index';
 
 import style from './MovieListContainer.scss';
 
-class MovieListContainer extends Component {
+class MovieListContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,29 +20,36 @@ class MovieListContainer extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, nextState) {
-    const { match } = nextProps;
+    const {
+      query, itemsIsLoading, error, clearError, history,
+    } = nextProps;
     const { path } = nextState;
-    if (match.url !== path) {
+    if (error !== '') {
+      clearError('');
+      history.replace({ pathname: '/404', state: { error: '404' } });
+      throw Error(error);
+    }
+    if (itemsIsLoading === true || query.url !== path) {
       return {
         loading: true,
-        path: match.url,
+        path: query.url,
       };
     }
     return {
       loading: false,
-      path: match.url,
+      path: query.url,
     };
   }
 
   componentDidMount() {
     const { loading, path } = this.state;
     const {
-      genres, match, fetchGenres, fetchListMovies, fetchSearchResults,
+      genres, query, fetchGenres, fetchListMovies, fetchSearchResults,
     } = this.props;
     switch (loading) {
-      case match.url.includes('search'):
+      case query.search:
         fetchGenres();
-        return fetchSearchResults(path.replace('/search/', ''));
+        return fetchSearchResults(path);
       case genres.length === 0:
         fetchGenres();
         return fetchListMovies(path);
@@ -51,28 +59,21 @@ class MovieListContainer extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (JSON.stringify(this.props) !== JSON.stringify(nextProps)) {
-      return true;
-    }
-    return false;
-  }
-
   componentDidUpdate(prevProps, prevState) {
     const { loading, path } = this.state;
     const {
-      genres, match, fetchGenres, fetchListMovies, fetchSearchResults,
+      genres, query, fetchGenres, fetchListMovies, fetchSearchResults,
     } = this.props;
-    if (match.url !== prevState.path) {
+    if (query.url !== prevState.path) {
       switch (loading) {
-        case match.url.includes('search'):
-          return fetchSearchResults(path.replace('/search/', ''));
+        case query.search:
+          return fetchSearchResults(path);
         case genres.length === 0:
           fetchGenres();
           return fetchListMovies(path);
 
         default:
-          return fetchListMovies(path, match.params.id);
+          return fetchListMovies(path, query.url);
       }
     }
     return false;
@@ -94,24 +95,14 @@ class MovieListContainer extends Component {
       typeView,
       setTypeView,
       fetchListMovies,
-      clearError,
-      match,
       history,
       fetchSearchResults,
-      error,
     } = this.props;
     const { loading } = this.state;
     let list;
 
-    const preloader = (
-      <main>
-        <div className={style.preloader}>
-          <p>App is loading</p>
-        </div>
-      </main>
-    );
     if (loading) {
-      return preloader;
+      return <Preloader />;
     }
     if (movies.results.length > 0) {
       list = movies.results.map(curr => (
@@ -124,8 +115,6 @@ class MovieListContainer extends Component {
           getMainMovieDetails={getMainMovieDetails}
           typeView={typeView}
           key={shortid()}
-          clearError={clearError}
-          match={match}
           history={history}
         />
       ));
@@ -133,17 +122,11 @@ class MovieListContainer extends Component {
 
     const html = (
       <div className={style.wrapper}>
-        <Header
-          fetchSearchResults={fetchSearchResults}
-          clearError={clearError}
-          match={match}
-          history={history}
-          error={error}
-        />
+        <Header fetchSearchResults={fetchSearchResults} history={history} />
         <main>
           <section className={style.movieList}>
             <div className={style.container}>
-              <MovieSelectors genres={genres} setTypeView={setTypeView} clearError={clearError} />
+              <MovieSelectors genres={genres} setTypeView={setTypeView} history={history} />
               <div className={style.moviesWrapper}>{list}</div>
             </div>
           </section>
@@ -151,6 +134,7 @@ class MovieListContainer extends Component {
             <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
           ) : null}
         </main>
+        <Footer />
       </div>
     );
     return html;
@@ -161,25 +145,22 @@ MovieListContainer.defaultProps = {
   movies: {},
   genres: [],
   typeView: 'cards',
-  match: {},
-  error: '',
   history: {},
+  query: {},
 };
 
 MovieListContainer.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any),
-  match: PropTypes.objectOf(PropTypes.any),
   history: PropTypes.objectOf(PropTypes.any),
+  query: PropTypes.objectOf(PropTypes.any),
   genres: PropTypes.arrayOf(PropTypes.object),
   typeView: PropTypes.string,
-  error: PropTypes.string,
   clearCurrentMovie: PropTypes.func.isRequired,
   fetchListMovies: PropTypes.func.isRequired,
   fetchVideo: PropTypes.func.isRequired,
   fetchGenres: PropTypes.func.isRequired,
   fetchSearchResults: PropTypes.func.isRequired,
   setTypeView: PropTypes.func.isRequired,
-  clearError: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
 };
 

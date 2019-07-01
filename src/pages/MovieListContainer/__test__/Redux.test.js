@@ -38,7 +38,6 @@ describe('Test for reducers', () => {
         ...initialState,
         page: 1,
         results: [{ id: 1 }, 2, 3],
-        mainMovie: 1,
       });
     });
 

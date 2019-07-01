@@ -21,15 +21,16 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
       >
         <input
           className="searchField"
+          id="searchField"
           tabIndex="0"
           type="search"
         />
-        <button
+        <input
           className="btnSearch"
-          type="submit"
-        >
-          ⚲
-        </button>
+          onClick={[Function]}
+          type="button"
+          value="⚲"
+        />
       </form>
     </div>
   </header>
@@ -47,12 +48,11 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
             <ul>
               <li>
                 <a
-                  href="/trending"
+                  href="/list/trending"
                   onClick={[Function]}
                 >
                   <button
                     href="#"
-                    onClick={[Function]}
                     type="button"
                   >
                     Trending
@@ -61,12 +61,11 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
               </li>
               <li>
                 <a
-                  href="/top_rated"
+                  href="/list/top_rated"
                   onClick={[Function]}
                 >
                   <button
                     href="#"
-                    onClick={[Function]}
                     type="button"
                   >
                     Top Rated
@@ -75,12 +74,11 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
               </li>
               <li>
                 <a
-                  href="/coming_soon"
+                  href="/list/coming_soon"
                   onClick={[Function]}
                 >
                   <button
                     href="#"
-                    onClick={[Function]}
                     type="button"
                   >
                     Coming Soon
@@ -130,5 +128,17 @@ exports[`MovieListContainer - test component MovieList: renders correctly with e
       </div>
     </section>
   </main>
+  <footer>
+    <div
+      className="container"
+    >
+      <h2>
+        FILMS
+      </h2>
+      <p>
+        Copyright © 2019 FILMS. RAMAN BYCHKOU
+      </p>
+    </div>
+  </footer>
 </div>
 `;

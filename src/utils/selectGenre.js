@@ -1,5 +1,5 @@
 const selectGenre = function selectGenre(props, e) {
-  const { genres, error, clearError } = props;
+  const { genres } = props;
   const genre = e.target.value || e.target.textContent.replace(/[^A-Za-z\s]/g, '');
   let genreId;
   genres.some((a) => {
@@ -9,9 +9,6 @@ const selectGenre = function selectGenre(props, e) {
     }
     return false;
   });
-  if (error !== undefined && error !== '') {
-    clearError(false);
-  }
   props.history.push(`/genre/${genreId}`);
 };
 

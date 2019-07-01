@@ -4,7 +4,6 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
 <button
   id="root"
 >
-  <div />
   <main>
     <div
       class="preloader"
@@ -17,7 +16,7 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
 </button>
 `;
 
-exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correctly MovieDetailsPage: render Modal with component 1`] = `
+exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correctly MovieDetailsPage: unmount 1`] = `
 <button
   id="root"
 >
@@ -40,22 +39,22 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
         >
           <input
             class="searchField"
+            id="searchField"
             tabindex="0"
             type="search"
           />
-          <button
+          <input
             class="btnSearch"
-            type="submit"
-          >
-            ⚲
-          </button>
+            type="button"
+            value="⚲"
+          />
         </form>
       </div>
     </header>
     <main>
       <section
         class="movieDetailsPageContainer"
-        style="background-repeat: no-repeat; background-size: cover; background-position: center;"
+        style="background-image: url(https://api.ballotpedia.org/v3/thumbnail/); background-repeat: no-repeat; background-size: cover; background-position: center;"
       >
         <div
           class="mainfilmInfo"
@@ -96,50 +95,48 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
               <div
                 class="btnContainer"
               >
-                <button
+                <input
                   class="watch"
                   tabindex="0"
                   type="button"
-                >
-                  Watch Now
-                </button>
-                <button
+                  value="Watch Now"
+                />
+                <input
                   class="viewInfo"
                   id="info"
                   tabindex="0"
                   type="button"
-                >
-                  View Info
-                </button>
+                  value="View Info"
+                />
               </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="modalWrapper"
+            role="button"
+            tabindex="0"
+          >
+            <button
+              class="modalClose"
+              id="closeModal"
+              tabindex="0"
+              type="button"
+            >
+              ╳
+            </button>
+            <div
+              class=""
+            >
+              <div
+                id="trailer"
+              />
             </div>
           </div>
         </div>
       </section>
     </main>
-  </div>
-  <div>
-    <div
-      class="modalWrapper"
-      role="button"
-      tabindex="0"
-    >
-      <button
-        class="modalClose"
-        id="closeModal"
-        tabindex="0"
-        type="button"
-      >
-        ╳
-      </button>
-      <div
-        class=""
-      >
-        <div
-          id="trailer"
-        />
-      </div>
-    </div>
   </div>
 </button>
 `;

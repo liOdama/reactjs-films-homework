@@ -35,22 +35,20 @@ exports[`MainFilmInfo: check state 1`] = `
     <div
       class="btnContainer"
     >
-      <button
+      <input
         class="watch"
         id="test"
         tabindex="0"
         type="button"
-      >
-        Watch Now
-      </button>
-      <button
+        value="Watch Now"
+      />
+      <input
         class="viewInfo"
         id="info"
         tabindex="0"
         type="button"
-      >
-        View Info
-      </button>
+        value="View Info"
+      />
     </div>
   </div>
 </div>

@@ -18,15 +18,16 @@ exports[`HeaderComponent Header renders correctly 1`] = `
     >
       <input
         className="searchField"
+        id="searchField"
         tabIndex="0"
         type="search"
       />
-      <button
+      <input
         className="btnSearch"
-        type="submit"
-      >
-        ⚲
-      </button>
+        onClick={[Function]}
+        type="button"
+        value="⚲"
+      />
     </form>
   </div>
 </header>

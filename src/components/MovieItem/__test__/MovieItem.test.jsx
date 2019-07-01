@@ -29,7 +29,7 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
-
+const getMainMovieDetails = jest.fn(() => ({}));
 test('MovieItem renders correctly without poster image', () => {
   const curr = {
     adult: false,
@@ -51,7 +51,14 @@ test('MovieItem renders correctly without poster image', () => {
   const movies = {};
 
   const renderer = new ShallowRenderer();
-  renderer.render(<MovieItem curr={curr} genres={genres} movies={movies} />);
+  renderer.render(
+    <MovieItem
+      curr={curr}
+      getMainMovieDetails={getMainMovieDetails}
+      genres={genres}
+      movies={movies}
+    />,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
@@ -61,15 +68,19 @@ test('MovieItem renders correctly with poster image', () => {
     original_title: 'Avengers: Endgame',
     overview:
       "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-
     poster_path: 'testImagePath',
-
     title: 'Avengers: Endgame',
   };
   const movies = {};
   const renderer = new ShallowRenderer();
   const result = renderer.render(
-    <MovieItem curr={curr} genres={genres} movies={movies} typeView="cards" />,
+    <MovieItem
+      curr={curr}
+      genres={genres}
+      getMainMovieDetails={getMainMovieDetails}
+      movies={movies}
+      typeView="cards"
+    />,
   );
   expect(result).toMatchSnapshot();
 });
@@ -86,9 +97,16 @@ test('MovieItem renders correctly with lines classes', () => {
     title: 'Avengers: Endgame',
   };
   const movies = {};
+
   const renderer = new ShallowRenderer();
   const result = renderer.render(
-    <MovieItem curr={curr} genres={genres} movies={movies} typeView="lines" />,
+    <MovieItem
+      curr={curr}
+      genres={genres}
+      movies={movies}
+      getMainMovieDetails={getMainMovieDetails}
+      typeView="lines"
+    />,
   );
   expect(result).toMatchSnapshot();
 });
@@ -179,7 +197,7 @@ describe('MovieItem: selectGenre', () => {
     expect(result).toEqual(props);
   });
 });
-describe('getMainMovieDetails', () => {
+describe('changeMainMovie - getMainMovieDetails would be called', () => {
   let container;
 
   beforeEach(() => {
@@ -188,7 +206,6 @@ describe('getMainMovieDetails', () => {
     document.body.appendChild(container);
   });
   it('getMainMovieDetails - test', () => {
-    const getMainMovieDetails = jest.fn();
     const props = {
       genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
       getMainMovieDetails,
@@ -269,6 +286,7 @@ describe('events', () => {
     },
     movies: {},
     genres,
+    getMainMovieDetails,
   };
   beforeEach(() => {
     document.body.appendChild(container);

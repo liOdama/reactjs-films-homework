@@ -10,23 +10,20 @@ const requestsFilms = {
     let url;
     // const id = query.replace(/\/[genre]/g);
     switch (query) {
-      case '/coming_soon':
+      case 'coming_soon':
         url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`;
         break;
-      case '/trending':
+      case 'trending':
         url = `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`;
         break;
       case '/':
         url = `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`;
         break;
-      case '/top_rated':
+      case 'top_rated':
         url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY}&language=en-US&page=1`;
         break;
       default:
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${query.replace(
-          '/genre/',
-          '',
-        )}`;
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${query}`;
     }
     dispatch(itemsIsLoadingAction(true));
     return fetch(url)
@@ -89,10 +86,6 @@ const requestsFilms = {
     )
       .then(resp => resp.json())
       .then((data) => {
-        if (data.ok === false) {
-          dispatch(clearResults());
-          throw new Error('Something wrong');
-        }
         if (data.results.length === 0) {
           dispatch(clearResults());
           throw new Error('Nothing found');

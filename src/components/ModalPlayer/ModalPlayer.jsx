@@ -15,7 +15,7 @@ export class ModalPlayer extends Component {
   }
 
   componentDidMount() {
-    const modalRoot = document.querySelector('#root');
+    const modalRoot = document.querySelector('section');
     modalRoot.appendChild(this.el);
   }
 
@@ -26,13 +26,6 @@ export class ModalPlayer extends Component {
     return newState;
   }
 
-  // unmount = (e) => {
-  //   if (e.type === 'click' || e.key === 'Escape') {
-  //     const { clearCurrentMovie } = this.props;
-  //     clearCurrentMovie();
-  //   }
-  // };
-
   render() {
     const { unmount } = this.props;
     document.body.addEventListener('keydown', unmount);
@@ -42,6 +35,7 @@ export class ModalPlayer extends Component {
       height: '80%',
       title: 'Trailer',
       origin: 'http://localhost:3000',
+      host: 'https://www.youtube.com',
     };
     const component = (
       <div
@@ -62,7 +56,7 @@ export class ModalPlayer extends Component {
 }
 
 ModalPlayer.propTypes = {
-  unmount: PropTypes.func,
+  unmount: PropTypes.func.isRequired,
 };
 
 export const showModal = (props, e) => {

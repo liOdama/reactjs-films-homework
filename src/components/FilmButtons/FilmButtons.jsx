@@ -8,7 +8,7 @@ class FilmButtons extends React.Component {
     const { mainMovie, setTypeOverwie } = this.props;
     return (
       <div className={style.btnContainer}>
-        <button
+        <input
           id={mainMovie.id}
           type="button"
           className={style.watch}
@@ -18,10 +18,9 @@ class FilmButtons extends React.Component {
             this.watch = watch;
             return this.viewInfo;
           }}
-        >
-          Watch Now
-        </button>
-        <button
+          value="Watch Now"
+        />
+        <input
           id="info"
           type="button"
           className={style.viewInfo}
@@ -31,9 +30,8 @@ class FilmButtons extends React.Component {
             this.viewInfo = viewInfo;
             return this.viewInfo;
           }}
-        >
-          View Info
-        </button>
+          value="View Info"
+        />
       </div>
     );
   }
@@ -45,6 +43,6 @@ FilmButtons.defaultProps = {
 
 FilmButtons.propTypes = {
   mainMovie: PropTypes.objectOf(PropTypes.any),
-  setTypeOverwie: PropTypes.func,
+  setTypeOverwie: PropTypes.func.isRequired,
 };
 export default FilmButtons;

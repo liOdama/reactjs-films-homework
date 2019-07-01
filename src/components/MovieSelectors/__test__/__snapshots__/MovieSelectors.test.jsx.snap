@@ -8,12 +8,11 @@ exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
     <ul>
       <li>
         <a
-          href="/trending"
+          href="/list/trending"
           onClick={[Function]}
         >
           <button
             href="#"
-            onClick={[Function]}
             type="button"
           >
             Trending
@@ -22,12 +21,11 @@ exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
       </li>
       <li>
         <a
-          href="/top_rated"
+          href="/list/top_rated"
           onClick={[Function]}
         >
           <button
             href="#"
-            onClick={[Function]}
             type="button"
           >
             Top Rated
@@ -36,12 +34,11 @@ exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
       </li>
       <li>
         <a
-          href="/coming_soon"
+          href="/list/coming_soon"
           onClick={[Function]}
         >
           <button
             href="#"
-            onClick={[Function]}
             type="button"
           >
             Coming Soon

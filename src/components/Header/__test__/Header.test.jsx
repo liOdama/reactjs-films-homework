@@ -24,7 +24,7 @@ describe('HeaderComponent', () => {
     });
 
     it('Header: search test - correctly', () => {
-      jest.spyOn(state, 'clearError');
+      jest.spyOn(state.history, 'push');
       act(() => {
         document.body.appendChild(container);
         ReactDOM.render(
@@ -36,23 +36,7 @@ describe('HeaderComponent', () => {
       });
       const node = container.querySelector('form');
       ReactTestUtils.Simulate.submit(node);
-      expect(clearError).toHaveBeenCalledTimes(0);
-    });
-
-    it('Header: search test - correctly', () => {
-      jest.spyOn(state, 'clearError');
-      act(() => {
-        document.body.appendChild(container);
-        ReactDOM.render(
-          <Router>
-            <Header {...state} error="testError" />
-          </Router>,
-          container,
-        );
-      });
-      const node = container.querySelector('form');
-      ReactTestUtils.Simulate.submit(node);
-      expect(clearError).toHaveBeenCalled();
+      expect(state.history.push).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -108,6 +108,7 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
     }
     hoverOverwieBlock={[Function]}
     hoverOverwieNone={[Function]}
+    id={0}
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
     rate={0}
@@ -224,6 +225,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
     }
     hoverOverwieBlock={[Function]}
     hoverOverwieNone={[Function]}
+    id={0}
     movies={Object {}}
     overview="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
     rate={0}
@@ -429,6 +431,7 @@ exports[`events hoverOverwieBlock 1`] = `
         >
           <input
             class="playTrailer"
+            id="299534"
             name="playTrailer"
             type="button"
           />
@@ -585,6 +588,7 @@ exports[`events hoverOverwieBlock 2`] = `
         >
           <input
             class="playTrailer"
+            id="299534"
             name="playTrailer"
             type="button"
           />

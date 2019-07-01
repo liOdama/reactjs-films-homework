@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import MainfilmTitle from '../../components/MainFilmTitle';
 import MainFilmInfo from '../../components/MainFilmInfo';
 import Header from '../../components/Header/index';
 import ModalPlayer from '../../components/ModalPlayer/index';
-
-import requestsFilms from '../../utils/requests';
-import fetchGenres from '../../modules/fetchGenres/fetchGenresAction';
-import checkTypeView from '../../modules/TypeView/TypeViewSelectors';
-import clearError from '../../modules/Error/errorAction';
-import clearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
+import Preloader from '../../components/Preloader/index';
 
 import style from './MovieDetailsPage.scss';
 
-class MovieDetailsPage extends Component {
+class MovieDetailsPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,17 +18,24 @@ class MovieDetailsPage extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, nextState) {
-    const { match } = nextProps;
+    const {
+      query, itemsIsLoading, error, clearError, history,
+    } = nextProps;
     const { path } = nextState;
-    if (match.url !== path) {
+    if (error !== '') {
+      clearError('');
+      history.replace({ pathname: '/404', state: { error: '404' } });
+      throw Error(error);
+    }
+    if (itemsIsLoading === true || query.url !== path) {
       return {
         loading: true,
-        path: match.url,
+        path: query.url,
       };
     }
     return {
       loading: false,
-      path: match.url,
+      path: query.url,
     };
   }
 
@@ -43,28 +45,16 @@ class MovieDetailsPage extends Component {
     if (genres.length === 0) {
       fetchGenres();
     }
-    getMainMovieDetails(path.replace('/films/', ''));
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { movies, mainMovie } = this.props;
-
-    if (
-      JSON.stringify(nextProps.movies) === JSON.stringify(movies)
-      && JSON.stringify(nextProps.mainMovie) === JSON.stringify(mainMovie)
-    ) {
-      return false;
-    }
-    return true;
+    getMainMovieDetails(path);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { getMainMovieDetails, match } = this.props;
+    const { getMainMovieDetails, query } = this.props;
     const { loading, path } = this.state;
 
-    if (match.url !== prevState.path) {
+    if (query.url !== prevState.path) {
       if (loading === true) {
-        return getMainMovieDetails(path.replace('/films/'), '');
+        return getMainMovieDetails(path);
       }
     }
     return false;
@@ -79,33 +69,21 @@ class MovieDetailsPage extends Component {
 
   render() {
     const {
-      genres,
-      fetchListMovies,
-      mainMovie,
-      history,
-      match,
-      clearError,
-      error,
-      fetchSearchResults,
-      movies,
+      genres, fetchListMovies, mainMovie, history, fetchSearchResults, movies,
     } = this.props;
     const { loading } = this.state;
+    const imageLink = mainMovie.backdrop_path !== null && mainMovie.backdrop_path !== undefined
+      ? `https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`
+      : 'https://api.ballotpedia.org/v3/thumbnail/';
     const styleBG = {
-      backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`,
+      backgroundImage: `url(${imageLink})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     };
     const component = (
       <div className={style.wrapper}>
-        <Header
-          fetchSearchResults={fetchSearchResults}
-          clearError={clearError}
-          match={match}
-          history={history}
-          error={error}
-          movies
-        />
+        <Header fetchSearchResults={fetchSearchResults} history={history} />
         <main>
           <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
             <div className={style.mainfilmInfo}>
@@ -115,7 +93,6 @@ class MovieDetailsPage extends Component {
                   genres={genres}
                   fetchListMovies={fetchListMovies}
                   history={history}
-                  match={match}
                 />
                 <MainFilmInfo overview={mainMovie.overview} />
               </div>
@@ -128,47 +105,31 @@ class MovieDetailsPage extends Component {
       </div>
     );
 
-    const preloader = (
-      <main>
-        <div className={style.preloader}>
-          <p>App is loading</p>
-        </div>
-      </main>
-    );
     // return component;
     if (loading === false) {
       return component;
     }
-    return preloader;
+    return <Preloader />;
   }
 }
 
 MovieDetailsPage.defaultProps = {
   genres: [],
   history: {},
-  match: {},
-  error: '',
-  clearCurrentMovie,
-  fetchListMovies: requestsFilms.fetchListMovies,
-  fetchGenres,
-  fetchSearchResults: requestsFilms.fetchSearchResults,
-  clearError,
-  getMainMovieDetails: requestsFilms.setTypeView,
+  query: {},
 };
 
 MovieDetailsPage.propTypes = {
   movies: PropTypes.objectOf(PropTypes.any).isRequired,
   mainMovie: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any),
-  match: PropTypes.objectOf(PropTypes.any),
+  query: PropTypes.objectOf(PropTypes.any),
   genres: PropTypes.arrayOf(PropTypes.object),
-  getMainMovieDetails: PropTypes.func,
-  fetchListMovies: PropTypes.func,
-  fetchGenres: PropTypes.func,
-  clearError: PropTypes.func,
-  fetchSearchResults: PropTypes.func,
-  clearCurrentMovie: PropTypes.func,
-  error: PropTypes.string,
+  getMainMovieDetails: PropTypes.func.isRequired,
+  fetchListMovies: PropTypes.func.isRequired,
+  fetchGenres: PropTypes.func.isRequired,
+  fetchSearchResults: PropTypes.func.isRequired,
+  clearCurrentMovie: PropTypes.func.isRequired,
 };
 
 export default MovieDetailsPage;

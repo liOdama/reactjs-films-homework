@@ -17,6 +17,7 @@ test('FulmButtons renders correctly', () => {
       mainMovie: {},
       currentVideo: null,
     },
+    setTypeOverwie: jest.fn(),
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);
@@ -38,6 +39,7 @@ test('FulmButtons renders correctly', () => {
       currentVideo: null,
     },
     mainMovie: { id: 'test' },
+    setTypeOverwie: jest.fn(),
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);

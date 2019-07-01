@@ -19,6 +19,7 @@
   background: none;
   font-weight: bolder;
   font-size: 1.5rem;
+  outline: none;
 }
 
 .moviesWrapper,
@@ -28,16 +29,18 @@
 
   li {
     padding-bottom: 0.6rem;
+    outline: none;
 
     &.active {
       border-bottom: 1px solid #0aaee4;
     }
 
     a button {
-      cursor: pointer;
-      border: none;
-      background: none;
       color: #0aaee4;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      background: none;
     }
   }
 }
@@ -84,27 +87,5 @@
   .moviesWrapper,
   .moviesSelector ul {
     justify-content: center;
-  }
-}
-
-.preloader {
-  width: 100%;
-  height: 100vh;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  &::before {
-    content: '';
-    background-image: url('https://static.thenounproject.com/png/392126-200.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
   }
 }

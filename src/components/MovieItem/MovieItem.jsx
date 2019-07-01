@@ -52,7 +52,7 @@ class MovieItem extends React.Component {
     } = this.props;
     const { typeView, fullOverwie } = this.state;
     let imageLink;
-    if (curr.poster_path === null) {
+    if (curr.poster_path === null || curr.backdrop_path === null) {
       imageLink = 'https://api.ballotpedia.org/v3/thumbnail/';
     } else if (typeView === 'cards') {
       imageLink = `https://image.tmdb.org/t/p/w300${curr.poster_path}`;
@@ -151,8 +151,7 @@ MovieItem.propTypes = {
   curr: PropTypes.objectOf(PropTypes.any).isRequired,
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchVideo: PropTypes.func,
-  getMainMovieDetails: PropTypes.func,
+  getMainMovieDetails: PropTypes.func.isRequired,
 };
 
-// export { changeMainFilm };
 export default MovieItem;

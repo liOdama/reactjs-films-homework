@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as FromSetTypeView from '../../modules/TypeView/TypeViewAction';
@@ -22,6 +23,8 @@ const makeMap = () => {
     },
     genres: genres(state),
     typeView: typeView(state),
+    itemsIsLoading: state.itemsIsLoading,
+    error: state.error,
   });
 
   return mapStateToProps;
@@ -38,7 +41,9 @@ export const mapStateToDispatch = dispatch => ({
   fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
 });
 
-export default connect(
-  makeMap,
-  mapStateToDispatch,
-)(MovieListContainer);
+export default withRouter(
+  connect(
+    makeMap,
+    mapStateToDispatch,
+  )(MovieListContainer),
+);

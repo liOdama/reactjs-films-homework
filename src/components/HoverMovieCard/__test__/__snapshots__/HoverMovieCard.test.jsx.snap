@@ -9,11 +9,13 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
   >
     <label
       htmlFor="playTrailer"
+      id={0}
       onClick={[Function]}
       onKeyDown={[Function]}
     >
       <input
         className="playTrailer"
+        id={0}
         name="playTrailer"
         type="button"
       />
@@ -22,6 +24,7 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
     <button
       className="showOverwie"
       id="showOverwie"
+      onClick={[MockFunction]}
       type="button"
     >
       View Info
@@ -33,6 +36,7 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
     <button
       className="hoverClose"
       id="closeHover"
+      onClick={[MockFunction]}
       type="button"
     >
       ╳
@@ -60,6 +64,7 @@ exports[`HoverMovieCard hover events render correctly 1`] = `
       
     </p>
     <button
+      id={0}
       onClick={[Function]}
       onKeyDown={[Function]}
       type="button"
@@ -79,11 +84,13 @@ exports[`HoverMovieCard renders correctly 1`] = `
   >
     <label
       htmlFor="playTrailer"
+      id={0}
       onClick={[Function]}
       onKeyDown={[Function]}
     >
       <input
         className="playTrailer"
+        id={0}
         name="playTrailer"
         type="button"
       />
@@ -92,6 +99,7 @@ exports[`HoverMovieCard renders correctly 1`] = `
     <button
       className="showOverwie"
       id="showOverwie"
+      onClick={[MockFunction]}
       type="button"
     >
       View Info
@@ -103,6 +111,7 @@ exports[`HoverMovieCard renders correctly 1`] = `
     <button
       className="hoverClose"
       id="closeHover"
+      onClick={[MockFunction]}
       type="button"
     >
       ╳
@@ -130,6 +139,7 @@ exports[`HoverMovieCard renders correctly 1`] = `
       
     </p>
     <button
+      id={0}
       onClick={[Function]}
       onKeyDown={[Function]}
       type="button"
