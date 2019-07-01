@@ -29,7 +29,7 @@ const AppRoutes = () => (
       <Route
         path="/films/:filmsName"
         render={props => (
-          <MovieDetailsPage query={{ url: props.match.params.filmsName, search: true }} />
+          <MovieDetailsPage query={{ url: props.match.params.filmsName, search: false }} />
         )}
       />
       <Route
@@ -38,9 +38,6 @@ const AppRoutes = () => (
           <MovieListContainer query={{ url: props.match.params.query, search: true }} />
         )}
       />
-      {/* <Route exact path="/404" render={() => <ErrorBoundary query={{ url: '404' }} />} /> */}
-      <Redirect from="/index.html" to="/" />
-      {/* <Redirect exact from="/search/404" to="/404" /> */}
     </ErrorBoundary>
   </Switch>
 );
