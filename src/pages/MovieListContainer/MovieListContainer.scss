@@ -85,7 +85,18 @@
 
 @media screen and (max-width: 42.5rem) {
   .moviesWrapper,
+  .moviesSelector,
   .moviesSelector ul {
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 31.25rem) {
+  .movieList {
+    padding-top: 7rem;
+  }
+
+  .typeView {
+    display: none;
   }
 }

@@ -63,6 +63,8 @@
 @media screen and (max-width: 31.25rem) {
   .header .container {
     justify-content: center;
+    flex-flow: column wrap;
+    align-items: center;
   }
 
   .h1 {
