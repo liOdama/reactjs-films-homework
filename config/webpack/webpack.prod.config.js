@@ -15,12 +15,10 @@ module.exports = {
     filename: './js/bundle.[hash].js',
     path: path.resolve('./', './build'),
     chunkFilename: '[id].bundle.[hash].js',
+    publicPath: '/',
   },
   optimization: {
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({}),
-      new TerserPlugin(),
-    ],
+    minimizer: [new OptimizeCSSAssetsPlugin({}), new TerserPlugin()],
   },
   module: {
     rules: [
@@ -54,7 +52,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      root: './', verbose: true, dry: false, exclude: [],
+      root: './',
+      verbose: true,
+      dry: false,
+      exclude: [],
     }),
     new HtmlWebpackPlugin({
       filename: './index.html',
