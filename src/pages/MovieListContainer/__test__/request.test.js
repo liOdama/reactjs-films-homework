@@ -27,7 +27,6 @@ describe('Requests tests', () => {
       body: { page: 1, results: [1, 2, 3], status: 'ok' },
     };
     const query = ['coming_soon', 'trending', 'top_rated', '35'];
-    const mockStore = configureMockStore([thunk]);
 
     it('all requests, except getmainMovie and fetchTrailer - fetch data successed', () => {
       fetchMock.getOnce(
@@ -58,17 +57,13 @@ describe('Requests tests', () => {
           response,
         )
         .catch(err => err);
-      try {
-        query.map(async (curr) => {
-          await requestFilms.fetchListMovies(dispatch, curr).then((value) => {
-            fetchMock.reset();
-            fetchMock.restore();
-            expect(value).toEqual(expectedActions);
-          });
+      query.map(async (curr) => {
+        await requestFilms.fetchListMovies(dispatch, curr).then((value) => {
+          fetchMock.reset();
+          fetchMock.restore();
+          expect(value).toEqual(expectedActions);
         });
-      } catch (err) {
-        return err;
-      }
+      });
     });
 
     it('initial request', () => {
@@ -80,7 +75,6 @@ describe('Requests tests', () => {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
         payload: { page: 1, results: [1, 2, 3] },
       };
-      const store = mockStore({});
       requestFilms.fetchListMovies(dispatch, '/').then((value) => {
         fetchMock.reset();
         fetchMock.restore();

@@ -219,7 +219,6 @@ describe('Test for reducers', () => {
     });
 
     it('mainMovie: request mainMovieDetails', () => {
-      const mockStore = configureMockStore([thunk]);
       const id = 458156;
       const action = {
         type: 'GET_MAIN_MOVIE_DETAILS',

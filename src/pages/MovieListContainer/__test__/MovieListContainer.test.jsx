@@ -2,14 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestRender from 'react-test-renderer';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import { MemoryRouter as Router, Route } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import MovieListContainer from '../MovieListContainer';
-
-import * as MovieListContainerWithRedux from '../index';
 
 import { mapStateToDispatch } from '../MovieListContainerContainer';
 

@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import FilmButtons from '../index';
 import style from '../FilmButtons.scss';
-import * as mapStateToDispatch from '../FilmButtonsContainer';
 
 test('FulmButtons renders correctly', () => {
   const renderer = new ShallowRenderer();
