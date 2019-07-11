@@ -5,6 +5,7 @@ import MainFilmInfo from '../../components/MainFilmInfo';
 import Header from '../../components/Header/index';
 import ModalPlayer from '../../components/ModalPlayer/index';
 import Preloader from '../../components/Preloader/index';
+import MovieListContainer from '../MovieListContainer/index';
 
 import style from './MovieDetailsPage.scss';
 
@@ -98,6 +99,7 @@ class MovieDetailsPage extends PureComponent {
               </div>
             </div>
           </section>
+          {/* <MovieListContainer query={{ url: history.location.pathname }} /> */}
           {movies.currentVideo !== null ? (
             <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
           ) : null}

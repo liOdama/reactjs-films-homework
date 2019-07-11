@@ -40,6 +40,7 @@ test('FulmButtons renders correctly', () => {
     },
     mainMovie: { id: 'test' },
     setTypeOverwie: jest.fn(),
+    showModal: jest.fn(),
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);
@@ -49,18 +50,7 @@ test('FulmButtons renders correctly', () => {
     </Provider>,
   );
   const node = result.root.findByProps({ id: 'info' });
+  const node2 = result.root.findByProps({ id: 'test' });
   expect(ReactTestUtils.Simulate.click(node)).toMatchSnapshot();
-});
-
-describe('test MapDispatchToProps', () => {
-  const state = {
-    fetchVideo: id => id,
-  };
-  const id = 35;
-
-  it('MapDispatchToProps: fetchVideo', () => {
-    const dispatch = jest.fn(() => state.fetchVideo);
-    const result = mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
-    expect(result(id)).toEqual(id);
-  });
+  expect(ReactTestUtils.Simulate.click(node2)).toMatchSnapshot();
 });

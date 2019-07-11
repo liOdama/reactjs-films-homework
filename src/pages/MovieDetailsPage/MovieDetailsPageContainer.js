@@ -9,13 +9,12 @@ import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieActi
 const mapStateToProps = state => state;
 
 export const mapStateToDispatch = dispatch => ({
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  clearError: query => dispatch(clearError(query)),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
-  fetchGenres: () => dispatch(fromFetchGenres.default()),
-  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default()),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
+  fetchVideo: requestsFilms.fetchVideo.bind(this, dispatch),
+  clearError: clearError.bind(dispatch),
+  getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
+  fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
+  fetchGenres: fromFetchGenres.default.bind(null, dispatch),
+  clearCurrentMovie: fromClearCurrentMovie.default.bind(null, dispatch),
 });
 export default withRouter(
   connect(

@@ -36,12 +36,22 @@
 }
 
 @media screen and (max-width: 46.8rem) {
+  main .movieDetailsPageContainer {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+
   .mainfilmInfo {
     padding: 0 0 1.4rem 0;
     margin: 0 auto;
 
     .container {
-      justify-content: center;
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      align-items: center;
+
+      & > div {
+        width: 90%;
+      }
     }
   }
 }

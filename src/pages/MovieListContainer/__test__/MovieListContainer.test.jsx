@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestRender from 'react-test-renderer';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router, Route } from 'react-router-dom';
 import MovieListContainer from '../MovieListContainer';
+
+import * as MovieListContainerWithRedux from '../index';
 
 import { mapStateToDispatch } from '../MovieListContainerContainer';
 
@@ -45,44 +50,6 @@ describe('MovieListContainer - test component', () => {
     );
     expect(container).toMatchSnapshot();
   });
-
-  // it('MovieList: renders correctly with results', () => {
-  //   const state = {
-  //     movies: {
-  //       page: 0,
-  //       results: [
-  //         {
-  //           backdrop_path: null,
-  //           genre_ids: [12, 878, 28],
-  //           id: 299534,
-  //           original_title: 'Avengers: Endgame',
-  //           overview:
-  //             "After the devastating events of Avengers",
-  //           title: 'Avengers: Endgame',
-  //         },
-  //       ],
-  //       mainMovie: null,
-  //       currentVideo: null,
-  //     },
-  //     fetchGenres: jest.fn(() => ({})),
-  //     fetchSearchResults: jest.fn(() => ({})),
-  //     genres: [{ id: 1, name: 'Drama' }],
-  //     query: { url: '', search:false },
-  //   };
-  //   fetchMock.getOnce(
-  //     `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=en-US&page=1`,
-  //     state,
-  //   );
-  //   const store = mockStore(state);
-  //   const container = ReactTestUtils.renderIntoDocument(
-  //     <Provider store={store}>
-  //       <Router initialEntries={['/']} initialIndex={0}>
-  //         <Route path="/" render={props => <MovieListContainerWithRedux.default {...props} />} />
-  //       </Router>
-  //     </Provider>,
-  //   );
-  //   expect(container).toMatchSnapshot();
-  // });
 
   it('Modal: close modal', () => {
     const container = document.createElement('div');
@@ -127,6 +94,10 @@ describe('MovieListContainer - test component', () => {
     const node3 = document.querySelector('#closeModal');
     ReactTestUtils.Simulate.keyDown(node3, { key: 'Enter' });
     expect(state.clearCurrentMovie).toHaveBeenCalledTimes(2);
+    const node4 = document.querySelector('label');
+    jest.spyOn(state, 'fetchVideo');
+    ReactTestUtils.Simulate.click(node4);
+    expect(state.fetchVideo).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -242,98 +213,11 @@ describe('getDerivedStateFromProps', () => {
   });
 });
 
-// describe('shouldComponentUpdate', () => {
-//   const initial = {
-//     movies: {
-//       currentVideo: null,
-//       results: [
-//         {
-//           adult: false,
-//           backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
-//           genre_ids: [12, 14, 10402, 10749, 35, 10751],
-//           id: 420817,
-//           original_language: 'en',
-//           original_title: 'Aladdin',
-//           overview:
-//             'A kindhearted street urchin named Aladdin.',
-//           popularity: 630.556,
-//           poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
-//           release_date: '2019-05-22',
-//           title: 'Aladdin',
-//           video: false,
-//           vote_average: 7.2,
-//           vote_count: 538,
-//         },
-//       ],
-//     },
-//     genres: [],
-//     mainMovie: { backdrop_path: 'test' },
-//     typeView: 'cards',
-//   };
-//   const initial2 = {
-//     movies: {
-//       mainMovie: { backdrop_path: 'test' },
-//       currentVideo: 'test',
-//       results: [
-//         {
-//           adult: false,
-//           backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
-//           genre_ids: [12, 14, 10402, 10749, 35, 10751],
-//           original_title: 'Aladdin',
-//           overview:
-//             'A kindhearted street urchin named Aladdin embarks on a ',
-//           popularity: 630.556,
-//           poster_path: '/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg',
-//           release_date: '2019-05-22',
-//           title: 'Aladdin',
-//           video: false,
-//           vote_average: 7.2,
-//           vote_count: 538,
-//         },
-//       ],
-//     },
-//     genres: [{ id: 35, name: 'Drama' }],
-//     mainMovie: { backdrop_path: 'test' },
-//     typeView: '',
-//   };
-//   it('MovieListContainer: check shouldComponentUpdate to BE TRUE', () => {
-//     jest.spyOn(MovieListContainer.prototype, 'shouldComponentUpdate');
-//     const action = MovieListContainer.prototype.shouldComponentUpdate.call(
-//       { props: { ...initial } },
-//       { ...initial2 },
-//     );
-//     expect(action).toBeTruthy();
-//   });
-
-//   it('MovieListContainer: check shouldComponentUpdate to BE FALSE', () => {
-//     jest.spyOn(MovieListContainer.prototype, 'shouldComponentUpdate');
-//     const action = MovieListContainer.prototype.shouldComponentUpdate.call(
-//       { props: { ...initial } },
-//       { ...initial },
-//     );
-//     expect(action).toBeFalsy();
-//   });
-// });
-
 describe('MapDispatchToProps', () => {
-  const state = {
-    fetchListMovies: id => id,
-    fetchVideo: id => id,
-    getMainMovieDetails: id => id,
-    setTypeView: id => id,
-    clearError: id => id,
-    fetchGenres: id => id,
-    clearCurrentMovie: id => id,
-    fetchSearchResults: id => id,
-  };
-
   it('test all descriptors', () => {
-    const keys = Object.keys(state);
-    const id = 'test';
-    keys.forEach((curr) => {
-      const dispatch = jest.fn(() => state[curr]);
-      const result = mapStateToDispatch(dispatch)[curr]();
-      expect(result(id)).toEqual(id);
-    });
+    const dispatch = jest.fn();
+    const temp = mapStateToDispatch(dispatch);
+    const result = typeof temp;
+    expect(result).toBe('object');
   });
 });

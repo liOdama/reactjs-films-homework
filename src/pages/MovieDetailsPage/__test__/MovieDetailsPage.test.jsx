@@ -250,25 +250,12 @@ describe('MovieDetailsPage - all tests', () => {
   //   });
   // });
 
-  describe('test MapDispatchToProps', () => {
-    const state = {
-      fetchListMovies: id => id,
-      fetchVideo: id => id,
-      getMainMovieDetails: id => id,
-      fetchSearchResults: query => query,
-      fetchGenres: query => query,
-      clearCurrentMovie: query => query,
-      clearError: query => query,
-    };
-
+  describe('MapDispatchToProps', () => {
     it('test all descriptors', () => {
-      const keys = Object.keys(state);
-      const id = 'test';
-      keys.forEach((curr) => {
-        const dispatch = jest.fn(() => state[curr]);
-        const result = mapStateToDispatch(dispatch)[curr]();
-        expect(result(id)).toEqual(id);
-      });
+      const dispatch = jest.fn();
+      const temp = mapStateToDispatch(dispatch);
+      const result = typeof temp;
+      expect(result).toBe('object');
     });
   });
 });

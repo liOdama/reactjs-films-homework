@@ -31,14 +31,14 @@ const makeMap = () => {
 };
 
 export const mapStateToDispatch = dispatch => ({
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  setTypeView: type => dispatch(FromSetTypeView.default(type)),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchListMovies: (query, id) => dispatch(requestsFilms.fetchListMovies(query, id)),
-  clearError: bool => dispatch(clearError(bool)),
-  fetchGenres: () => dispatch(fromFetchGenres.default()),
-  clearCurrentMovie: () => dispatch(fromClearCurrentMovie.default()),
-  fetchSearchResults: query => dispatch(requestsFilms.fetchSearchResults(query)),
+  fetchVideo: requestsFilms.fetchVideo.bind(this, dispatch),
+  setTypeView: FromSetTypeView.default.bind(this, dispatch),
+  getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
+  fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
+  clearError: clearError.bind(dispatch),
+  fetchGenres: fromFetchGenres.default.bind(null, dispatch),
+  clearCurrentMovie: fromClearCurrentMovie.default.bind(null, dispatch),
+  fetchSearchResults: requestsFilms.fetchSearchResults.bind(this, dispatch),
 });
 
 export default withRouter(

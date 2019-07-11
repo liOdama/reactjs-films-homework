@@ -27,10 +27,11 @@
 
 .hideInfo {
   overflow: hidden;
-  height: 11.3rem;
+  max-height: 11.3rem;
   width: 45%;
 
   .mainFilmInfo__info {
+    display: none;
     column-width: 6.8rem;
     max-height: 6.7rem;
     height: 57%;
@@ -48,8 +49,8 @@
 
 @media screen and (max-width: 46.8rem) {
   .mainFilmInfo__info {
-    width: 80%;
     margin: 0 auto;
+    width: 100%;
   }
 }
 

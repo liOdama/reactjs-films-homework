@@ -6,7 +6,7 @@ import itemsHasErrored from '../modules/Error/errorAction';
 const KEY = '75331f1a740385460b25b56203149aa8';
 
 const requestsFilms = {
-  fetchListMovies: query => (dispatch) => {
+  fetchListMovies: (dispatch, query) => {
     let url;
     // const id = query.replace(/\/[genre]/g);
     switch (query) {
@@ -42,19 +42,23 @@ const requestsFilms = {
       })
       .catch(err => dispatch(itemsHasErrored(err)));
   },
-  getMainMovieDetails: id => dispatch => fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`,
-  )
-    .then(resp => resp.json())
-    .then((data) => {
-      if (data.ok === false) {
-        throw new Error('Something wrong');
-      }
-      return dispatch(setMainMovieDetails(data));
-    })
-    .catch(err => dispatch(itemsHasErrored(err))),
+  getMainMovieDetails: (dispatch, id) => {
+    dispatch(itemsIsLoadingAction(true));
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=75331f1a740385460b25b56203149aa8&language=en-US`,
+    )
+      .then(resp => resp.json())
+      .then((data) => {
+        dispatch(itemsIsLoadingAction(false));
+        if (data.ok === false) {
+          throw new Error('Something wrong');
+        }
+        return dispatch(setMainMovieDetails(data));
+      })
+      .catch(err => dispatch(itemsHasErrored(err)));
+  },
 
-  fetchVideo: id => (dispatch) => {
+  fetchVideo: (dispatch, id) => {
     dispatch(itemsIsLoadingAction(true));
     return fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}&language=en-US`)
       .then(resp => resp.json())
@@ -76,7 +80,7 @@ const requestsFilms = {
       .catch(err => dispatch(itemsHasErrored(err)));
   },
 
-  fetchSearchResults: query => (dispatch) => {
+  fetchSearchResults: (dispatch, query) => {
     dispatch(itemsIsLoadingAction(true));
     return fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${query.replace(

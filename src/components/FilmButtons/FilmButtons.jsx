@@ -16,7 +16,7 @@ class FilmButtons extends React.Component {
           tabIndex="0"
           ref={(watch) => {
             this.watch = watch;
-            return this.viewInfo;
+            return this.watch;
           }}
           value="Watch Now"
         />

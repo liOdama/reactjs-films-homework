@@ -14,8 +14,6 @@
   }
 
   .genres ul {
-    flex-flow: column nowrap;
-
     li {
       margin: 0.3rem;
     }
@@ -36,6 +34,7 @@
 .genres ul {
   display: flex;
   justify-content: flex-start;
+  flex-flow: row wrap;
 
   li {
     margin-right: 1rem;

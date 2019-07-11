@@ -11,6 +11,7 @@ fetchMock.config.overwriteRoutes = true;
 // Tests for requests;
 // ##############################################
 describe('Requests tests', () => {
+  const dispatch = jest.fn(arg => arg);
   afterEach(() => {
     fetchMock.reset();
     fetchMock.restore();
@@ -57,15 +58,17 @@ describe('Requests tests', () => {
           response,
         )
         .catch(err => err);
-
-      const store = mockStore({});
-      query.map(async (curr) => {
-        store.dispatch(await requestFilms.fetchListMovies(curr)).then((value) => {
-          fetchMock.reset();
-          fetchMock.restore();
-          expect(value).toEqual(expectedActions);
+      try {
+        query.map(async (curr) => {
+          await requestFilms.fetchListMovies(dispatch, curr).then((value) => {
+            fetchMock.reset();
+            fetchMock.restore();
+            expect(value).toEqual(expectedActions);
+          });
         });
-      });
+      } catch (err) {
+        return err;
+      }
     });
 
     it('initial request', () => {
@@ -78,7 +81,7 @@ describe('Requests tests', () => {
         payload: { page: 1, results: [1, 2, 3] },
       };
       const store = mockStore({});
-      store.dispatch(requestFilms.fetchListMovies('/')).then((value) => {
+      requestFilms.fetchListMovies(dispatch, '/').then((value) => {
         fetchMock.reset();
         fetchMock.restore();
         expect(value).toEqual(expectedActions);
@@ -86,7 +89,6 @@ describe('Requests tests', () => {
     });
 
     it('Fetch Trailer - fetch data successed', () => {
-      const store = mockStore({});
       const id = 280960;
       const response2 = {
         headers: { 'content-type': 'application/json' },
@@ -127,13 +129,12 @@ describe('Requests tests', () => {
         type: 'FETCH_VIDEO_SUCCESS',
         payload: '6ZfuNTqbHE8',
       };
-      return store.dispatch(requestFilms.fetchVideo(id)).then((data) => {
+      requestFilms.fetchVideo(dispatch, id).then((data) => {
         expect(data).toEqual(expectedActions);
       });
     });
 
     it('Fetch Search - fetch data successed', () => {
-      const store = mockStore({});
       fetchMock
         .getOnce(
           `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${
@@ -146,7 +147,7 @@ describe('Requests tests', () => {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
         payload: { page: 1, results: [1, 2, 3] },
       };
-      return store.dispatch(requestFilms.fetchSearchResults(query[0])).then((data) => {
+      requestFilms.fetchSearchResults(dispatch, query[0]).then((data) => {
         expect(data).toEqual(expectedActions);
       });
     });
@@ -190,9 +191,9 @@ describe('Requests tests', () => {
       );
 
       const query = ['coming_soon', 'trending', 'top_rated', '35'];
-      const store = mockStore({});
-      query.map(async curr => store
-        .dispatch(await requestFilms.fetchListMovies(curr))
+
+      query.map(curr => requestFilms
+        .fetchListMovies(dispatch, curr)
         .then(value => expect(value).toEqual(expectedActions)));
     });
 
@@ -207,18 +208,20 @@ describe('Requests tests', () => {
         `https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=en-US`,
         response,
       );
-      const fetchVideo = requestFilms.fetchVideo(id);
-      const getMainMovieDetails = requestFilms.getMainMovieDetails(id);
+      const fetchVideo = requestFilms.fetchVideo(dispatch, id);
+      const getMainMovieDetails = requestFilms.getMainMovieDetails(dispatch, id);
       const store = mockStore({});
-      Promise.all([fetchVideo, getMainMovieDetails]).then((data) => {
-        data.forEach((curr) => {
-          const element = curr;
-          return store.dispatch(element).then(value => expect(value).toEqual(expectedActions));
-        });
-      });
+      Promise.all([fetchVideo, getMainMovieDetails])
+        .then((data) => {
+          data.forEach((curr) => {
+            const element = curr;
+            return store.dispatch(element).then(value => expect(value).toEqual(expectedActions));
+          });
+        })
+        .catch(err => err);
     });
     it('fail requests - fetch data unsuccessed search request - Nothing Found', () => {
-      const query = 'Test';
+      const query = '/';
       const failResponse = JSON.stringify({
         page: 1,
         results: [],
@@ -232,10 +235,9 @@ describe('Requests tests', () => {
         failResponse,
       );
 
-      const fetchSearchResults = requestFilms.fetchSearchResults(query);
-      const store = mockStore({});
+      const fetchSearchResults = requestFilms.fetchSearchResults(dispatch, query);
       Promise.all([fetchSearchResults]).then((data) => {
-        data.forEach(curr => store.dispatch(curr).then(value => expect(value).toEqual(actions)));
+        data.forEach(value => expect(value).toEqual(actions));
       });
     });
   });
