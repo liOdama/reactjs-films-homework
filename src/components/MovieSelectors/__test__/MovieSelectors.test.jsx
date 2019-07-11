@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
 import { MemoryRouter as Router } from 'react-router-dom';
 import ReactTestRender from 'react-test-renderer';
-import { createGenreList } from '../MovieSelectors';
 import MovieSelectors from '../index';
 
 describe('MovieSelectors', () => {
@@ -37,11 +36,6 @@ describe('MovieSelectors', () => {
       </Router>,
     );
     expect(result).toMatchSnapshot();
-  });
-
-  it('MovieSelectors: createGenreList renders correctly', () => {
-    const test = createGenreList(genres);
-    expect(test).toHaveLength(genres.length);
   });
 
   describe('MovieSelectors: events click ', () => {

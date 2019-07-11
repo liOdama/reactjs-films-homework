@@ -5,15 +5,6 @@ import { Link } from 'react-router-dom';
 import selectGenre from '../../utils/selectGenre';
 import style from '../../pages/MovieListContainer/MovieListContainer.scss';
 
-export const createGenreList = (genres) => {
-  const elements = genres.map((c) => {
-    const key = shortid.generate();
-    const { name } = c;
-    return <option key={key}>{name}</option>;
-  });
-  return elements;
-};
-
 class MovieSelectors extends React.Component {
   shooseTypeView = (e) => {
     const { setTypeView } = this.props;
@@ -54,7 +45,11 @@ class MovieSelectors extends React.Component {
             <li>
               <select name="genre" id="" onChange={selectGenre.bind(this, this.props)}>
                 <option value="">Genre</option>
-                {createGenreList(genres)}
+                {genres.map((c) => {
+                  const key = shortid.generate();
+                  const { name } = c;
+                  return <option key={key}>{name}</option>;
+                })}
               </select>
             </li>
           </ul>

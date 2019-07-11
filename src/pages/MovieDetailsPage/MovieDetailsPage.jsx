@@ -72,7 +72,7 @@ class MovieDetailsPage extends PureComponent {
       genres, fetchListMovies, mainMovie, history, fetchSearchResults, movies,
     } = this.props;
     const { loading } = this.state;
-    const imageLink = mainMovie.backdrop_path !== null && mainMovie.backdrop_path !== undefined
+    const imageLink = mainMovie.backdrop_path
       ? `https://image.tmdb.org/t/p/w1280${mainMovie.backdrop_path}`
       : 'https://api.ballotpedia.org/v3/thumbnail/';
     const styleBG = {
@@ -98,7 +98,6 @@ class MovieDetailsPage extends PureComponent {
               </div>
             </div>
           </section>
-          {/* <MovieListContainer query={{ url: history.location.pathname }} /> */}
           {movies.currentVideo !== null ? (
             <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
           ) : null}
