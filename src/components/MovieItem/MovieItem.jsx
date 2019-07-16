@@ -1,5 +1,4 @@
 import React from 'react';
-import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import HoverMovieCard from '../HoverMovieCard/HoverMovieCard';
@@ -76,7 +75,7 @@ class MovieItem extends React.Component {
       .join(', 1')
       .split(' 1')
       .map(cur => (
-        <li key={shortid.generate()}>
+        <li key={`key-${cur.replace(',', '')}`}>
           <button
             type="button"
             onClick={selectGenre.bind(null, this.props)}
@@ -90,7 +89,6 @@ class MovieItem extends React.Component {
     return (
       <article
         className={`${style.movieContainer} ${style[typeView]}`}
-        key={shortid.generate()}
         onMouseLeave={this.hoverOverwieNone}
       >
         <figure className={classNamefigcaption}>

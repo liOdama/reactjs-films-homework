@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import MovieItem from '../../components/MovieItem';
 import MovieSelectors from '../../components/MovieSelectors';
 import Header from '../../components/Header/index';
@@ -101,9 +100,9 @@ class MovieListContainer extends PureComponent {
     const { loading } = this.state;
     let list;
 
-    if (loading) {
-      return <Preloader />;
-    }
+    // if (loading) {
+    //   return <Preloader />;
+    // }
     if (movies.results.length > 0) {
       list = movies.results.map(curr => (
         <MovieItem
@@ -114,7 +113,7 @@ class MovieListContainer extends PureComponent {
           fetchVideo={fetchVideo}
           getMainMovieDetails={getMainMovieDetails}
           typeView={typeView}
-          key={shortid()}
+          key={curr.id}
           history={history}
         />
       ));
@@ -135,6 +134,7 @@ class MovieListContainer extends PureComponent {
           ) : null}
         </main>
         <Footer />
+        {loading ? <Preloader /> : null}
       </div>
     );
     return html;

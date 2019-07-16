@@ -1,5 +1,4 @@
 import React from 'react';
-import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import selectGenre from '../../utils/selectGenre';
@@ -46,9 +45,8 @@ class MovieSelectors extends React.Component {
               <select name="genre" id="" onChange={selectGenre.bind(this, this.props)}>
                 <option value="">Genre</option>
                 {genres.map((c) => {
-                  const key = shortid.generate();
                   const { name } = c;
-                  return <option key={key}>{name}</option>;
+                  return <option key={`key-${name}`}>{name}</option>;
                 })}
               </select>
             </li>

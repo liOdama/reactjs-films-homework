@@ -1,15 +1,346 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test routes Routes - base Routes 1`] = `
-<main>
-  <div
-    className="preloader"
+<div
+  className="wrapper"
+>
+  <header
+    className="header"
   >
-    <p>
-      App is loading
-    </p>
-  </div>
-</main>
+    <div
+      className="container"
+    >
+      <h1
+        className="h1"
+      >
+        FILMS
+      </h1>
+      <form
+        action=""
+        onSubmit={[Function]}
+      >
+        <input
+          className="searchField"
+          id="searchField"
+          tabIndex="0"
+          type="search"
+        />
+        <input
+          className="btnSearch"
+          onClick={[Function]}
+          type="button"
+          value="⚲"
+        />
+      </form>
+    </div>
+  </header>
+  <main>
+    <section
+      className="movieList"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="moviesSelector"
+        >
+          <nav>
+            <ul>
+              <li>
+                <a
+                  href="/list/trending"
+                  onClick={[Function]}
+                >
+                  <button
+                    href="#"
+                    type="button"
+                  >
+                    Trending
+                  </button>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/list/top_rated"
+                  onClick={[Function]}
+                >
+                  <button
+                    href="#"
+                    type="button"
+                  >
+                    Top Rated
+                  </button>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/list/coming_soon"
+                  onClick={[Function]}
+                >
+                  <button
+                    href="#"
+                    type="button"
+                  >
+                    Coming Soon
+                  </button>
+                </a>
+              </li>
+              <li>
+                <select
+                  id=""
+                  name="genre"
+                  onChange={[Function]}
+                >
+                  <option
+                    value=""
+                  >
+                    Genre
+                  </option>
+                  <option>
+                    Action
+                  </option>
+                  <option>
+                    Adventure
+                  </option>
+                  <option>
+                    Animation
+                  </option>
+                  <option>
+                    Comedy
+                  </option>
+                  <option>
+                    Crime
+                  </option>
+                  <option>
+                    Documentary
+                  </option>
+                  <option>
+                    Drama
+                  </option>
+                  <option>
+                    Family
+                  </option>
+                  <option>
+                    Fantasy
+                  </option>
+                  <option>
+                    History
+                  </option>
+                  <option>
+                    Horror
+                  </option>
+                  <option>
+                    Music
+                  </option>
+                  <option>
+                    Mystery
+                  </option>
+                  <option>
+                    Romance
+                  </option>
+                  <option>
+                    Science Fiction
+                  </option>
+                  <option>
+                    TV Movie
+                  </option>
+                  <option>
+                    Thriller
+                  </option>
+                  <option>
+                    War
+                  </option>
+                  <option>
+                    Western
+                  </option>
+                </select>
+              </li>
+            </ul>
+          </nav>
+          <div
+            className="typeView"
+          >
+            <button
+              id="cards"
+              onClick={[Function]}
+              type="button"
+            >
+              ⚏
+            </button>
+            <button
+              id="lines"
+              onClick={[Function]}
+              type="button"
+            >
+              ⚌
+            </button>
+          </div>
+        </div>
+        <div
+          className="moviesWrapper"
+        >
+          <article
+            className="movieContainer cards"
+            onMouseLeave={[Function]}
+          >
+            <figure
+              className="figcaptionBlock"
+            >
+              <div>
+                <img
+                  alt="Aladdin"
+                  src="https://image.tmdb.org/t/p/w300/3iYQTLGoy7QnjcUYRJy4YrAgGvp.jpg"
+                />
+              </div>
+              <figcaption>
+                <div
+                  className="movieTitle"
+                >
+                  <button
+                    href="#"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    tabIndex="0"
+                    type="button"
+                  >
+                    <a
+                      href="/films/333333"
+                      id={333333}
+                      onClick={[Function]}
+                    >
+                      Aladdin
+                    </a>
+                  </button>
+                  <span>
+                    7.2
+                  </span>
+                </div>
+                <div
+                  className="movieGenres"
+                >
+                  <ul>
+                    <li>
+                      <button
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        type="button"
+                      >
+                        Adventure
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </figcaption>
+            </figure>
+            <div
+              className="hoverMovie"
+            >
+              <div
+                className="hoverControlBlock"
+              >
+                <label
+                  htmlFor="playTrailer"
+                  id={333333}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                >
+                  <input
+                    className="playTrailer"
+                    id={333333}
+                    name="playTrailer"
+                    type="button"
+                  />
+                  Watch Now
+                </label>
+                <button
+                  className="showOverwie"
+                  id="showOverwie"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  View Info
+                </button>
+              </div>
+              <div
+                className="hoverOverwie hoverOverwieNone"
+              >
+                <button
+                  className="hoverClose"
+                  id="closeHover"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  ╳
+                </button>
+                <div
+                  className="hoverOverwieTitle"
+                >
+                  <div
+                    className="hoverOverwieTitleItem"
+                  >
+                    <h3>
+                      Aladdin
+                    </h3>
+                    <ul>
+                      <li>
+                        <button
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          type="button"
+                        >
+                          Adventure
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    className="hoverOverwieTitleItem"
+                  >
+                    <p>
+                      7.2
+                    </p>
+                  </div>
+                </div>
+                <p>
+                  A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.
+                </p>
+                <button
+                  id={333333}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  type="button"
+                >
+                  Watch Now
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div
+      className="container"
+    >
+      <h2>
+        FILMS
+      </h2>
+      <p>
+        Copyright © 2019 FILMS. RAMAN BYCHKOU
+      </p>
+    </div>
+  </footer>
+  <main>
+    <div
+      className="preloader"
+    >
+      <p>
+        App is loading
+      </p>
+    </div>
+  </main>
+</div>
 `;
 
 exports[`Test routes Routes - films Routes 1`] = `
@@ -111,7 +442,61 @@ Array [
                   Genre
                 </option>
                 <option>
+                  Action
+                </option>
+                <option>
+                  Adventure
+                </option>
+                <option>
+                  Animation
+                </option>
+                <option>
+                  Comedy
+                </option>
+                <option>
+                  Crime
+                </option>
+                <option>
+                  Documentary
+                </option>
+                <option>
                   Drama
+                </option>
+                <option>
+                  Family
+                </option>
+                <option>
+                  Fantasy
+                </option>
+                <option>
+                  History
+                </option>
+                <option>
+                  Horror
+                </option>
+                <option>
+                  Music
+                </option>
+                <option>
+                  Mystery
+                </option>
+                <option>
+                  Romance
+                </option>
+                <option>
+                  Science Fiction
+                </option>
+                <option>
+                  TV Movie
+                </option>
+                <option>
+                  Thriller
+                </option>
+                <option>
+                  War
+                </option>
+                <option>
+                  Western
                 </option>
               </select>
             </li>
@@ -245,7 +630,61 @@ Array [
                   Genre
                 </option>
                 <option>
+                  Action
+                </option>
+                <option>
+                  Adventure
+                </option>
+                <option>
+                  Animation
+                </option>
+                <option>
+                  Comedy
+                </option>
+                <option>
+                  Crime
+                </option>
+                <option>
+                  Documentary
+                </option>
+                <option>
                   Drama
+                </option>
+                <option>
+                  Family
+                </option>
+                <option>
+                  Fantasy
+                </option>
+                <option>
+                  History
+                </option>
+                <option>
+                  Horror
+                </option>
+                <option>
+                  Music
+                </option>
+                <option>
+                  Mystery
+                </option>
+                <option>
+                  Romance
+                </option>
+                <option>
+                  Science Fiction
+                </option>
+                <option>
+                  TV Movie
+                </option>
+                <option>
+                  Thriller
+                </option>
+                <option>
+                  War
+                </option>
+                <option>
+                  Western
                 </option>
               </select>
             </li>
@@ -381,7 +820,61 @@ Array [
                   Genre
                 </option>
                 <option>
+                  Action
+                </option>
+                <option>
+                  Adventure
+                </option>
+                <option>
+                  Animation
+                </option>
+                <option>
+                  Comedy
+                </option>
+                <option>
+                  Crime
+                </option>
+                <option>
+                  Documentary
+                </option>
+                <option>
                   Drama
+                </option>
+                <option>
+                  Family
+                </option>
+                <option>
+                  Fantasy
+                </option>
+                <option>
+                  History
+                </option>
+                <option>
+                  Horror
+                </option>
+                <option>
+                  Music
+                </option>
+                <option>
+                  Mystery
+                </option>
+                <option>
+                  Romance
+                </option>
+                <option>
+                  Science Fiction
+                </option>
+                <option>
+                  TV Movie
+                </option>
+                <option>
+                  Thriller
+                </option>
+                <option>
+                  War
+                </option>
+                <option>
+                  Western
                 </option>
               </select>
             </li>
@@ -515,7 +1008,61 @@ Array [
                   Genre
                 </option>
                 <option>
+                  Action
+                </option>
+                <option>
+                  Adventure
+                </option>
+                <option>
+                  Animation
+                </option>
+                <option>
+                  Comedy
+                </option>
+                <option>
+                  Crime
+                </option>
+                <option>
+                  Documentary
+                </option>
+                <option>
                   Drama
+                </option>
+                <option>
+                  Family
+                </option>
+                <option>
+                  Fantasy
+                </option>
+                <option>
+                  History
+                </option>
+                <option>
+                  Horror
+                </option>
+                <option>
+                  Music
+                </option>
+                <option>
+                  Mystery
+                </option>
+                <option>
+                  Romance
+                </option>
+                <option>
+                  Science Fiction
+                </option>
+                <option>
+                  TV Movie
+                </option>
+                <option>
+                  Thriller
+                </option>
+                <option>
+                  War
+                </option>
+                <option>
+                  Western
                 </option>
               </select>
             </li>

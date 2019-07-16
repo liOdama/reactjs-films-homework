@@ -102,6 +102,7 @@ class MovieDetailsPage extends PureComponent {
             <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
           ) : null}
         </main>
+        {loading ? <Preloader /> : null}
       </div>
     );
 

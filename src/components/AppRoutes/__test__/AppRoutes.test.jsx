@@ -12,6 +12,28 @@ fetchMock.config.overwriteRoutes = true;
 
 const KEY = '75331f1a740385460b25b56203149aa8';
 
+const genres = [
+  { id: 28, name: 'Action' },
+  { id: 12, name: 'Adventure' },
+  { id: 16, name: 'Animation' },
+  { id: 35, name: 'Comedy' },
+  { id: 80, name: 'Crime' },
+  { id: 99, name: 'Documentary' },
+  { id: 18, name: 'Drama' },
+  { id: 10751, name: 'Family' },
+  { id: 14, name: 'Fantasy' },
+  { id: 36, name: 'History' },
+  { id: 27, name: 'Horror' },
+  { id: 10402, name: 'Music' },
+  { id: 9648, name: 'Mystery' },
+  { id: 10749, name: 'Romance' },
+  { id: 878, name: 'Science Fiction' },
+  { id: 10770, name: 'TV Movie' },
+  { id: 53, name: 'Thriller' },
+  { id: 10752, name: 'War' },
+  { id: 37, name: 'Western' },
+];
+
 describe('Test routes', () => {
   const initial = {
     error: '',
@@ -22,7 +44,7 @@ describe('Test routes', () => {
         {
           adult: false,
           backdrop_path: '/v4yVTbbl8dE1UP2dWu5CLyaXOku.jpg',
-          genre_ids: [12, 14, 10402, 10749, 35, 10751],
+          genre_ids: [12],
           original_title: 'Aladdin',
           overview:
             'A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.',
@@ -33,10 +55,11 @@ describe('Test routes', () => {
           video: false,
           vote_average: 7.2,
           vote_count: 538,
+          id: 333333,
         },
       ],
     },
-    genres: [{ id: 35, name: 'Drama' }],
+    genres,
     mainMovie: { backdrop_path: 'test' },
     fetchGenres: jest.fn(() => ({})),
     fetchSearchResults: jest.fn(() => ({})),

@@ -207,7 +207,7 @@ describe('changeMainMovie - getMainMovieDetails would be called', () => {
   });
   it('getMainMovieDetails - test', () => {
     const props = {
-      genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
+      genres,
       getMainMovieDetails,
       curr: {
         backdrop_path: null,
