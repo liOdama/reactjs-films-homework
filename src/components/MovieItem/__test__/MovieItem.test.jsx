@@ -197,44 +197,6 @@ describe('MovieItem: selectGenre', () => {
     expect(result).toEqual(props);
   });
 });
-describe('changeMainMovie - getMainMovieDetails would be called', () => {
-  let container;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    container.id = 'modalRoot';
-    document.body.appendChild(container);
-  });
-  // it('getMainMovieDetails - test', () => {
-  //   const props = {
-  //     genres,
-  //     getMainMovieDetails,
-  //     curr: {
-  //       backdrop_path: null,
-  //       genre_ids: [12, 878, 28],
-  //       id: 299534,
-  //       original_title: 'Avengers: Endgame',
-  //       overview:
-  //         "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-  //       poster_path: null,
-  //       title: 'Avengers: Endgame',
-  //     },
-  //   };
-  //   act(() => {
-  //     ReactDOM.render(
-  //       <Router>
-  //         <MovieItem {...props} />
-  //       </Router>,
-  //       container,
-  //     );
-  //   });
-
-  //   jest.spyOn(props, 'getMainMovieDetails');
-  //   const node1 = container.querySelector('figcaption button');
-  //   ReactTestUtils.Simulate.click(node1);
-  //   expect(getMainMovieDetails).toHaveBeenCalled();
-  // });
-});
 
 describe('shouldComponentUpdate', () => {
   describe('shouldComponentUpdate', () => {

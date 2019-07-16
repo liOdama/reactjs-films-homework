@@ -141,7 +141,6 @@ MovieItem.propTypes = {
   curr: PropTypes.objectOf(PropTypes.any).isRequired,
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchVideo: PropTypes.func,
-  getMainMovieDetails: PropTypes.func.isRequired,
 };
 
 export default MovieItem;

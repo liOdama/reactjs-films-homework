@@ -1,14 +1,6 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListMovies from '../../components/ListMovies';
-import MovieItem from '../../components/MovieItem';
-import MovieSelectors from '../../components/MovieSelectors';
-import Header from '../../components/Header/index';
-import Footer from '../../components/Footer/index';
-import ModalPlayer from '../../components/ModalPlayer/index';
-import Preloader from '../../components/Preloader/index';
-
-// import style from './MovieListContainer.scss';
 
 class MovieListContainer extends Component {
   constructor(props) {

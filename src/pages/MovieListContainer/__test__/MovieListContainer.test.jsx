@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ShallowRender from 'react-test-renderer/shallow';
-import ReactTestUtils, { act } from 'react-dom/test-utils';
 import fetchMock from 'fetch-mock';
-import { MemoryRouter as Router } from 'react-router-dom';
 import MovieListContainer from '../MovieListContainer';
 
 import { mapStateToDispatch } from '../MovieListContainerContainer';
@@ -46,18 +43,6 @@ const genres = [
   { id: 37, name: 'Western' },
 ];
 describe('test trender', () => {
-  const mockMethods = {
-    fetchVideo: jest.fn(() => ({})),
-    clearError: jest.fn(() => ({})),
-    fetchGenres: jest.fn(() => ({})),
-    fetchListMovies: jest.fn(() => ({})),
-    fetchSearchResults: jest.fn(() => ({})),
-    getMainMovieDetails: jest.fn(() => ({})),
-    clearCurrentMovie: jest.fn(() => ({})),
-    genres: [{ id: 1, name: 'Drama' }],
-    setTypeView: jest.fn(),
-    history: { replace: jest.fn() },
-  };
   it('render correctly', () => {
     const state = {
       error: '',

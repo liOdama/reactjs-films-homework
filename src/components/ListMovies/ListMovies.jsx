@@ -22,7 +22,6 @@ class ListMovies extends Component {
       default:
         return true;
     }
-    // return loading !== nextProps.loading || typeView !== nextProps.typeView;
   }
 
   unmount = (e) => {
@@ -36,7 +35,6 @@ class ListMovies extends Component {
     const {
       movies,
       genres,
-      getMainMovieDetails,
       fetchVideo,
       typeView,
       setTypeView,
@@ -45,12 +43,7 @@ class ListMovies extends Component {
       fetchSearchResults,
       loading,
     } = this.props;
-    // const { loading } = this.state;
     let list;
-
-    // if (loading) {
-    //   return <Preloader />;
-    // }
     if (movies.results.length > 0) {
       list = movies.results.map(curr => (
         <MovieItem
@@ -59,7 +52,6 @@ class ListMovies extends Component {
           movies={movies}
           fetchListMovies={fetchListMovies}
           fetchVideo={fetchVideo}
-          getMainMovieDetails={getMainMovieDetails}
           typeView={typeView}
           key={curr.id}
           history={history}
@@ -108,7 +100,6 @@ ListMovies.propTypes = {
   fetchVideo: PropTypes.func.isRequired,
   fetchSearchResults: PropTypes.func.isRequired,
   setTypeView: PropTypes.func.isRequired,
-  getMainMovieDetails: PropTypes.func.isRequired,
 };
 
 export default ListMovies;
