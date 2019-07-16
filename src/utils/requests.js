@@ -29,7 +29,6 @@ const requestsFilms = {
     return fetch(url)
       .then(resp => resp.json())
       .then((data) => {
-        dispatch(itemsIsLoadingAction(false));
         if (data.ok === false) {
           throw new Error('Something wrong');
         }
@@ -40,6 +39,7 @@ const requestsFilms = {
           }),
         );
       })
+      .then(() => dispatch(itemsIsLoadingAction(false)))
       .catch(err => dispatch(itemsHasErrored(err)));
   },
   getMainMovieDetails: (dispatch, id) => {
@@ -49,12 +49,12 @@ const requestsFilms = {
     )
       .then(resp => resp.json())
       .then((data) => {
-        dispatch(itemsIsLoadingAction(false));
         if (data.ok === false) {
           throw new Error('Something wrong');
         }
         return dispatch(setMainMovieDetails(data));
       })
+      .then(() => dispatch(itemsIsLoadingAction(false)))
       .catch(err => dispatch(itemsHasErrored(err)));
   },
 
@@ -94,7 +94,6 @@ const requestsFilms = {
           dispatch(clearResults());
           throw new Error('Nothing found');
         }
-        dispatch(itemsIsLoadingAction(false));
         return dispatch(
           itemsFetchDataSuccess({
             page: data.page,
@@ -102,6 +101,7 @@ const requestsFilms = {
           }),
         );
       })
+      .then(() => dispatch(itemsIsLoadingAction(false)))
       .catch(err => dispatch(itemsHasErrored(err.message)));
   },
 };

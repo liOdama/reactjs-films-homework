@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestRender from 'react-test-renderer';
+import ShallowRender from 'react-test-renderer/shallow';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
 import fetchMock from 'fetch-mock';
 import { MemoryRouter as Router } from 'react-router-dom';
@@ -45,9 +45,20 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
-
-describe('MovieListContainer - test component', () => {
-  it('MovieList: renders correctly with empty results', () => {
+describe('test trender', () => {
+  const mockMethods = {
+    fetchVideo: jest.fn(() => ({})),
+    clearError: jest.fn(() => ({})),
+    fetchGenres: jest.fn(() => ({})),
+    fetchListMovies: jest.fn(() => ({})),
+    fetchSearchResults: jest.fn(() => ({})),
+    getMainMovieDetails: jest.fn(() => ({})),
+    clearCurrentMovie: jest.fn(() => ({})),
+    genres: [{ id: 1, name: 'Drama' }],
+    setTypeView: jest.fn(),
+    history: { replace: jest.fn() },
+  };
+  it('render correctly', () => {
     const state = {
       error: '',
       itemsIsLoading: false,
@@ -61,64 +72,65 @@ describe('MovieListContainer - test component', () => {
       ...mockMethods,
       genres,
     };
-    const container = ReactTestRender.create(
-      <Router>
-        <MovieListContainer {...state} />
-      </Router>,
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  it('Modal: close modal', () => {
-    const container = document.createElement('div');
-    container.id = 'root';
-    document.body.appendChild(container);
-    const state = {
-      error: '',
-      itemsIsLoading: false,
-      movies: {
-        page: 0,
-        results: [
-          {
-            backdrop_path: null,
-            genre_ids: [12],
-            id: 299534,
-            original_title: 'Avengers: Endgame',
-            overview:
-              "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-            title: 'Avengers: Endgame',
-          },
-        ],
-        mainMovie: null,
-        currentVideo: 'test',
-      },
-      genres,
-      query: { url: '', search: false },
-      ...mockMethods,
-    };
-    act(() => {
-      ReactDOM.render(
-        <Router>
-          <MovieListContainer {...state} />
-        </Router>,
-        document.querySelector('#root'),
-      );
-    });
-    const node = document.querySelector('#closeModal');
-    ReactTestUtils.Simulate.click(node);
-    jest.spyOn(state, 'clearCurrentMovie');
-    const node2 = document.querySelector('#closeModal');
-    ReactTestUtils.Simulate.keyDown(node2, { key: 'Escape' });
-    const node3 = document.querySelector('#closeModal');
-    ReactTestUtils.Simulate.keyDown(node3, { key: 'Enter' });
-    expect(state.clearCurrentMovie).toHaveBeenCalledTimes(2);
-    const node4 = document.querySelector('label');
-    jest.spyOn(state, 'fetchVideo');
-    ReactTestUtils.Simulate.click(node4);
-    expect(state.fetchVideo).toHaveBeenCalledTimes(1);
+    const render = new ShallowRender();
+    render.render(<MovieListContainer {...state} />);
+    expect(render.getRenderOutput()).toMatchSnapshot();
   });
 });
+describe('getDerivedStateFromProps', () => {
+  it('getDerivedStateFromProps: first render', () => {
+    const nextState = {
+      path: '/',
+    };
+    const nextProps = {
+      query: { url: '/' },
+      itemsIsLoading: false,
+      error: '',
+      ...mockMethods,
+    };
+    const test = {
+      loading: false,
+      path: '/',
+    };
+    const action = MovieListContainer.getDerivedStateFromProps.call(null, nextProps, nextState);
 
+    expect(action).toEqual(test);
+  });
+
+  it('getDerivedStateFromProps: with error', () => {
+    const errorMessage = 'Nothing found';
+    const nextProps = {
+      query: { url: '/trending' },
+      itemsIsLoading: true,
+      error: errorMessage,
+      ...mockMethods,
+    };
+    const nextState = {
+      path: '/',
+    };
+    const action = MovieListContainer.getDerivedStateFromProps.bind(null, nextProps, nextState);
+    expect(() => action()).toThrow();
+  });
+
+  it('getDerivedStateFromProps: other rendering', () => {
+    const nextProps = {
+      query: { url: '/trending' },
+      itemsIsLoading: true,
+      error: '',
+      ...mockMethods,
+    };
+    const nextState = {
+      path: '/',
+    };
+    const test = {
+      loading: true,
+      path: '/trending',
+    };
+    const action = MovieListContainer.getDerivedStateFromProps.call(null, nextProps, nextState);
+
+    expect(action).toEqual(test);
+  });
+});
 describe('componentDidMout an ComponentDidUpdate', () => {
   // const fetchSearchResults = jest.fn();
   // const fetchGenres = jest.fn();
@@ -176,58 +188,50 @@ describe('componentDidMout an ComponentDidUpdate', () => {
     expect(action).toBeFalsy();
   });
 });
-describe('getDerivedStateFromProps', () => {
-  it('getDerivedStateFromProps: first render', () => {
-    const nextState = {
-      path: '/',
-    };
-    const nextProps = {
-      query: { url: '/' },
-      itemsIsLoading: false,
-      error: '',
-      ...mockMethods,
-    };
-    const test = {
-      loading: false,
-      path: '/',
-    };
-    const action = MovieListContainer.getDerivedStateFromProps.call(null, nextProps, nextState);
 
-    expect(action).toEqual(test);
+describe('shouldComponentUpdate', () => {
+  const nextProps = {
+    movies: { currentVideo: 'null' },
+    typeView: 'cards',
+    query: { url: 'test' },
+  };
+
+  it('Show Modal (currentVideo !== null) - SHOULD BE true', () => {
+    const cont = {
+      props: { movies: { currentVideo: 'test' }, typeview: 'lines' },
+      state: { loading: false, path: 'test' },
+    };
+    const action = MovieListContainer.prototype.shouldComponentUpdate.call(cont, nextProps);
+
+    expect(action).toBeTruthy();
   });
 
-  it('getDerivedStateFromProps: with error', () => {
-    const errorMessage = 'Nothing found';
-    const nextProps = {
-      query: { url: '/trending' },
-      itemsIsLoading: true,
-      error: errorMessage,
-      ...mockMethods,
+  it('change typeView - SHOULD BE true', () => {
+    const cont = {
+      props: { movies: { currentVideo: 'null' }, typeView: 'lines' },
+      state: { loading: false, path: 'test' },
     };
-    const nextState = {
-      path: '/',
-    };
-    const action = MovieListContainer.getDerivedStateFromProps.bind(null, nextProps, nextState);
-    expect(() => action()).toThrow();
+    const action = MovieListContainer.prototype.shouldComponentUpdate.call(cont, nextProps);
+
+    expect(action).toBeTruthy();
   });
 
-  it('getDerivedStateFromProps: other rendering', () => {
-    const nextProps = {
-      query: { url: '/trending' },
-      itemsIsLoading: true,
-      error: '',
-      ...mockMethods,
+  it('As the same path- SHOULD BE true', () => {
+    const cont = {
+      props: { movies: { currentVideo: 'null' }, typeView: 'cards' },
+      state: { loading: false, path: 'test' },
     };
-    const nextState = {
-      path: '/',
-    };
-    const test = {
-      loading: true,
-      path: '/trending',
-    };
-    const action = MovieListContainer.getDerivedStateFromProps.call(null, nextProps, nextState);
+    const action = MovieListContainer.prototype.shouldComponentUpdate.call(cont, nextProps);
+    expect(action).toBeFalsy();
+  });
 
-    expect(action).toEqual(test);
+  it('default - SHOULD BE true', () => {
+    const cont = {
+      props: { movies: { currentVideo: 'null' }, typeView: 'cards' },
+      state: { loading: false, path: 'null' },
+    };
+    const action = MovieListContainer.prototype.shouldComponentUpdate.call(cont, nextProps);
+    expect(action).toBeTruthy();
   });
 });
 

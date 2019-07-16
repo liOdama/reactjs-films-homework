@@ -198,7 +198,6 @@ exports[`Test routes Routes - base Routes 1`] = `
                 >
                   <button
                     href="#"
-                    onClick={[Function]}
                     onKeyDown={[Function]}
                     tabIndex="0"
                     type="button"

@@ -38,13 +38,6 @@ class MovieItem extends React.Component {
     this.setState({ typeView, fullOverwie: false });
   };
 
-  changeMainFilm = (e) => {
-    e.preventDefault();
-    const { getMainMovieDetails } = this.props;
-    const element = e.target;
-    return getMainMovieDetails(element.id);
-  };
-
   render() {
     const {
       curr, genres, fetchVideo, movies,
@@ -100,7 +93,6 @@ class MovieItem extends React.Component {
               <button
                 type="button"
                 href="#"
-                onClick={this.changeMainFilm}
                 onKeyDown={keydonwGenres.bind(null, this.props)}
                 tabIndex="0"
               >

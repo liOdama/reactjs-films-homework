@@ -218,11 +218,11 @@ describe('Test for reducers', () => {
       expect(store.dispatch(setMainMovieDetails(data))).toEqual(action);
     });
 
-    it('mainMovie: request mainMovieDetails', () => {
+    it('mainMovie: request mainMovieDetails', async () => {
       const id = 458156;
       const action = {
-        type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data,
+        payload: false,
+        type: 'ITEMS_IS_LOADING',
       };
 
       fetchMock
@@ -236,7 +236,7 @@ describe('Test for reducers', () => {
         )
         .catch(err => itemsHasErrored(err));
 
-      requestFilms
+      await requestFilms
         .getMainMovieDetails(dispatch, id)
         .then(dataMovie => expect(dataMovie).toEqual(action));
     });

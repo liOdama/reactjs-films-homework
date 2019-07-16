@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import selectGenre from '../../utils/selectGenre';
-import style from '../../pages/MovieListContainer/MovieListContainer.scss';
+import style from '../ListMovies/ListMovies.scss';
 
 class MovieSelectors extends React.Component {
+  shouldComponentUpdate() {
+    const { genres } = this.props;
+    return genres.length === 0;
+  }
+
   shooseTypeView = (e) => {
     const { setTypeView } = this.props;
     const typeName = e.target.id;

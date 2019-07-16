@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ListMovies from '../../components/ListMovies';
 import MovieItem from '../../components/MovieItem';
 import MovieSelectors from '../../components/MovieSelectors';
 import Header from '../../components/Header/index';
@@ -7,9 +8,9 @@ import Footer from '../../components/Footer/index';
 import ModalPlayer from '../../components/ModalPlayer/index';
 import Preloader from '../../components/Preloader/index';
 
-import style from './MovieListContainer.scss';
+// import style from './MovieListContainer.scss';
 
-class MovieListContainer extends PureComponent {
+class MovieListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,6 +59,22 @@ class MovieListContainer extends PureComponent {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { query } = nextProps;
+    const { path, loading } = this.state;
+    const { typeView, movies } = this.props;
+    switch (true) {
+      case nextProps.movies.currentVideo !== movies.currentVideo:
+        return true;
+      case nextProps.typeView !== typeView:
+        return true;
+      case query.url === path && !loading:
+        return false;
+      default:
+        return true;
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { loading, path } = this.state;
     const {
@@ -78,66 +95,9 @@ class MovieListContainer extends PureComponent {
     return false;
   }
 
-  unmount = (e) => {
-    if (e.type === 'click' || e.key === 'Escape') {
-      const { clearCurrentMovie } = this.props;
-      clearCurrentMovie();
-    }
-  };
-
   render() {
-    const {
-      movies,
-      genres,
-      getMainMovieDetails,
-      fetchVideo,
-      typeView,
-      setTypeView,
-      fetchListMovies,
-      history,
-      fetchSearchResults,
-    } = this.props;
     const { loading } = this.state;
-    let list;
-
-    // if (loading) {
-    //   return <Preloader />;
-    // }
-    if (movies.results.length > 0) {
-      list = movies.results.map(curr => (
-        <MovieItem
-          curr={curr}
-          genres={genres}
-          movies={movies}
-          fetchListMovies={fetchListMovies}
-          fetchVideo={fetchVideo}
-          getMainMovieDetails={getMainMovieDetails}
-          typeView={typeView}
-          key={curr.id}
-          history={history}
-        />
-      ));
-    }
-
-    const html = (
-      <div className={style.wrapper}>
-        <Header fetchSearchResults={fetchSearchResults} history={history} />
-        <main>
-          <section className={style.movieList}>
-            <div className={style.container}>
-              <MovieSelectors genres={genres} setTypeView={setTypeView} history={history} />
-              <div className={style.moviesWrapper}>{list}</div>
-            </div>
-          </section>
-          {movies.currentVideo !== null ? (
-            <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
-          ) : null}
-        </main>
-        <Footer />
-        {loading ? <Preloader /> : null}
-      </div>
-    );
-    return html;
+    return <ListMovies {...this.props} loading={loading} />;
   }
 }
 

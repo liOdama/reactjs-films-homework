@@ -1,198 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieListContainer - test component MovieList: renders correctly with empty results 1`] = `
-<div
-  className="wrapper"
->
-  <header
-    className="header"
-  >
-    <div
-      className="container"
-    >
-      <h1
-        className="h1"
-      >
-        FILMS
-      </h1>
-      <form
-        action=""
-        onSubmit={[Function]}
-      >
-        <input
-          className="searchField"
-          id="searchField"
-          tabIndex="0"
-          type="search"
-        />
-        <input
-          className="btnSearch"
-          onClick={[Function]}
-          type="button"
-          value="⚲"
-        />
-      </form>
-    </div>
-  </header>
-  <main>
-    <section
-      className="movieList"
-    >
-      <div
-        className="container"
-      >
-        <div
-          className="moviesSelector"
-        >
-          <nav>
-            <ul>
-              <li>
-                <a
-                  href="/list/trending"
-                  onClick={[Function]}
-                >
-                  <button
-                    href="#"
-                    type="button"
-                  >
-                    Trending
-                  </button>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/list/top_rated"
-                  onClick={[Function]}
-                >
-                  <button
-                    href="#"
-                    type="button"
-                  >
-                    Top Rated
-                  </button>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/list/coming_soon"
-                  onClick={[Function]}
-                >
-                  <button
-                    href="#"
-                    type="button"
-                  >
-                    Coming Soon
-                  </button>
-                </a>
-              </li>
-              <li>
-                <select
-                  id=""
-                  name="genre"
-                  onChange={[Function]}
-                >
-                  <option
-                    value=""
-                  >
-                    Genre
-                  </option>
-                  <option>
-                    Action
-                  </option>
-                  <option>
-                    Adventure
-                  </option>
-                  <option>
-                    Animation
-                  </option>
-                  <option>
-                    Comedy
-                  </option>
-                  <option>
-                    Crime
-                  </option>
-                  <option>
-                    Documentary
-                  </option>
-                  <option>
-                    Drama
-                  </option>
-                  <option>
-                    Family
-                  </option>
-                  <option>
-                    Fantasy
-                  </option>
-                  <option>
-                    History
-                  </option>
-                  <option>
-                    Horror
-                  </option>
-                  <option>
-                    Music
-                  </option>
-                  <option>
-                    Mystery
-                  </option>
-                  <option>
-                    Romance
-                  </option>
-                  <option>
-                    Science Fiction
-                  </option>
-                  <option>
-                    TV Movie
-                  </option>
-                  <option>
-                    Thriller
-                  </option>
-                  <option>
-                    War
-                  </option>
-                  <option>
-                    Western
-                  </option>
-                </select>
-              </li>
-            </ul>
-          </nav>
-          <div
-            className="typeView"
-          >
-            <button
-              id="cards"
-              onClick={[Function]}
-              type="button"
-            >
-              ⚏
-            </button>
-            <button
-              id="lines"
-              onClick={[Function]}
-              type="button"
-            >
-              ⚌
-            </button>
-          </div>
-        </div>
-        <div
-          className="moviesWrapper"
-        />
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div
-      className="container"
-    >
-      <h2>
-        FILMS
-      </h2>
-      <p>
-        Copyright © 2019 FILMS. RAMAN BYCHKOU
-      </p>
-    </div>
-  </footer>
-</div>
+exports[`test trender render correctly 1`] = `
+<ListMovies
+  clearCurrentMovie={[MockFunction]}
+  clearError={[MockFunction]}
+  error=""
+  fetchGenres={[MockFunction]}
+  fetchListMovies={[MockFunction]}
+  fetchSearchResults={[MockFunction]}
+  fetchVideo={[MockFunction]}
+  genres={
+    Array [
+      Object {
+        "id": 28,
+        "name": "Action",
+      },
+      Object {
+        "id": 12,
+        "name": "Adventure",
+      },
+      Object {
+        "id": 16,
+        "name": "Animation",
+      },
+      Object {
+        "id": 35,
+        "name": "Comedy",
+      },
+      Object {
+        "id": 80,
+        "name": "Crime",
+      },
+      Object {
+        "id": 99,
+        "name": "Documentary",
+      },
+      Object {
+        "id": 18,
+        "name": "Drama",
+      },
+      Object {
+        "id": 10751,
+        "name": "Family",
+      },
+      Object {
+        "id": 14,
+        "name": "Fantasy",
+      },
+      Object {
+        "id": 36,
+        "name": "History",
+      },
+      Object {
+        "id": 27,
+        "name": "Horror",
+      },
+      Object {
+        "id": 10402,
+        "name": "Music",
+      },
+      Object {
+        "id": 9648,
+        "name": "Mystery",
+      },
+      Object {
+        "id": 10749,
+        "name": "Romance",
+      },
+      Object {
+        "id": 878,
+        "name": "Science Fiction",
+      },
+      Object {
+        "id": 10770,
+        "name": "TV Movie",
+      },
+      Object {
+        "id": 53,
+        "name": "Thriller",
+      },
+      Object {
+        "id": 10752,
+        "name": "War",
+      },
+      Object {
+        "id": 37,
+        "name": "Western",
+      },
+    ]
+  }
+  getMainMovieDetails={[MockFunction]}
+  history={
+    Object {
+      "replace": [MockFunction],
+    }
+  }
+  itemsIsLoading={false}
+  loading={false}
+  movies={
+    Object {
+      "currentVideo": null,
+      "mainMovie": null,
+      "page": 0,
+      "results": Array [],
+    }
+  }
+  query={
+    Object {
+      "search": false,
+      "url": "",
+    }
+  }
+  setTypeView={[MockFunction]}
+  typeView="cards"
+/>
 `;

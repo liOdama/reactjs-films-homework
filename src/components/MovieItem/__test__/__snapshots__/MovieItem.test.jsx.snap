@@ -20,7 +20,6 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
       >
         <button
           href="#"
-          onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
           type="button"
@@ -137,7 +136,6 @@ exports[`MovieItem renders correctly with poster image 1`] = `
       >
         <button
           href="#"
-          onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
           type="button"
@@ -254,7 +252,6 @@ exports[`MovieItem renders correctly without poster image 1`] = `
       >
         <button
           href="#"
-          onClick={[Function]}
           onKeyDown={[Function]}
           tabIndex="0"
           type="button"
@@ -362,7 +359,7 @@ exports[`events hoverOverwieBlock 1`] = `
     class="movieContainer undefined"
   >
     <figure
-      class="figcaptionBlock"
+      class="figcaptionNone"
     >
       <div>
         <img
@@ -423,7 +420,7 @@ exports[`events hoverOverwieBlock 1`] = `
       class="hoverMovie"
     >
       <div
-        class="hoverControlBlock"
+        class="hoverControlNone"
       >
         <label
           for="playTrailer"
@@ -446,7 +443,7 @@ exports[`events hoverOverwieBlock 1`] = `
         </button>
       </div>
       <div
-        class="hoverOverwie hoverOverwieNone"
+        class="hoverOverwie hoverOverwieBlock"
       >
         <button
           class="hoverClose"
