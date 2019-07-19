@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MovieItem from '../MovieItem';
-import MovieSelectors from '../MovieSelectors';
-import Header from '../Header/index';
-import Footer from '../Footer/index';
 import ModalPlayer from '../ModalPlayer/index';
 import Preloader from '../Preloader/index';
 
-import style from './ListMovies.scss';
-
 class ListMovies extends Component {
   shouldComponentUpdate(nextProps) {
-    const { loading, typeView, movies } = this.props;
+    const { typeView, movies, loading } = this.props;
     switch (true) {
       case nextProps.movies.currentVideo !== movies.currentVideo:
         return true;
-      case nextProps.typeView !== typeView:
+      // case nextProps.loading:
+      //   return false;
+      case typeView !== nextProps.typeView:
         return true;
       case loading === nextProps.loading:
         return false;
@@ -33,15 +30,7 @@ class ListMovies extends Component {
 
   render() {
     const {
-      movies,
-      genres,
-      fetchVideo,
-      typeView,
-      setTypeView,
-      fetchListMovies,
-      history,
-      fetchSearchResults,
-      loading,
+      movies, genres, fetchVideo, typeView, fetchListMovies, history, loading,
     } = this.props;
     let list;
     if (movies.results.length > 0) {
@@ -59,25 +48,16 @@ class ListMovies extends Component {
       ));
     }
 
-    const html = (
-      <div className={style.wrapper}>
-        <Header fetchSearchResults={fetchSearchResults} history={history} />
-        <main>
-          <section className={style.movieList}>
-            <div className={style.container}>
-              <MovieSelectors genres={genres} setTypeView={setTypeView} history={history} />
-              <div className={style.moviesWrapper}>{list}</div>
-            </div>
-          </section>
-          {movies.currentVideo !== null ? (
-            <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
-          ) : null}
-        </main>
-        <Footer />
-        {loading ? <Preloader /> : null}
-      </div>
+    const html = list;
+    return (
+      <Fragment>
+        {html}
+        {loading ? <Preloader /> : ''}
+        {movies.currentVideo !== null ? (
+          <ModalPlayer id={movies.currentVideo} unmount={this.unmount} />
+        ) : null}
+      </Fragment>
     );
-    return html;
   }
 }
 
@@ -98,8 +78,6 @@ ListMovies.propTypes = {
   clearCurrentMovie: PropTypes.func.isRequired,
   fetchListMovies: PropTypes.func.isRequired,
   fetchVideo: PropTypes.func.isRequired,
-  fetchSearchResults: PropTypes.func.isRequired,
-  setTypeView: PropTypes.func.isRequired,
 };
 
 export default ListMovies;

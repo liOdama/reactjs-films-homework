@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Header.scss';
 
-class Header extends React.PureComponent {
+class Header extends React.Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   search = (e) => {
     const { history } = this.props;
     e.preventDefault();

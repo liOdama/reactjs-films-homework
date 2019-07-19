@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ListMovies from '../../components/ListMovies';
+import Header from '../../components/Header';
+import MovieSelectors from '../../components/MovieSelectors';
+import Footer from '../../components/Footer';
+import style from '../../components/ListMovies/ListMovies.scss';
 
 class MovieListContainer extends Component {
   constructor(props) {
@@ -89,7 +93,27 @@ class MovieListContainer extends Component {
 
   render() {
     const { loading } = this.state;
-    return <ListMovies {...this.props} loading={loading} />;
+    const {
+      genres, setTypeView, fetchSearchResults, history,
+    } = this.props;
+    return (
+      <Fragment>
+        <div className={style.wrapper}>
+          <Header fetchSearchResults={fetchSearchResults} history={history} />
+          <main>
+            <section className={style.movieList}>
+              <div className={style.container}>
+                <MovieSelectors genres={genres} setTypeView={setTypeView} history={history} />
+                <div className={style.moviesWrapper}>
+                  <ListMovies {...this.props} loading={loading} />
+                </div>
+              </div>
+            </section>
+          </main>
+          <Footer />
+        </div>
+      </Fragment>
+    );
   }
 }
 

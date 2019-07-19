@@ -68,7 +68,7 @@ describe('ListMovies - test component', () => {
   });
 
   it('Modal: close modal', () => {
-    const container = document.createElement('div');
+    const container = document.createElement('section');
     container.id = 'root';
     document.body.appendChild(container);
     const state = {

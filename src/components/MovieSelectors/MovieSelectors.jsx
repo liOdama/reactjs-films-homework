@@ -5,9 +5,9 @@ import selectGenre from '../../utils/selectGenre';
 import style from '../ListMovies/ListMovies.scss';
 
 class MovieSelectors extends React.Component {
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProps) {
     const { genres } = this.props;
-    return genres.length === 0;
+    return genres.length !== nextProps.genres.length;
   }
 
   shooseTypeView = (e) => {
