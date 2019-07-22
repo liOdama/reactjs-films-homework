@@ -4,15 +4,14 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
 <button
   id="root"
 >
-  <main>
-    <div
-      class="preloader"
-    >
-      <p>
-        App is loading
-      </p>
-    </div>
-  </main>
+  <div
+    class="container"
+  >
+    <img
+      alt="loading"
+      src="test-file-stub"
+    />
+  </div>
 </button>
 `;
 

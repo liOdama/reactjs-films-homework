@@ -2,9 +2,7 @@
 
 exports[`test trender render correctly 1`] = `
 <React.Fragment>
-  <div
-    className="wrapper"
-  >
+  <div>
     <Header
       fetchSearchResults={[MockFunction]}
       history={

@@ -1,12 +1,11 @@
 import React from 'react';
 import style from './Preloader.scss';
+import preloder from './img/preloader.gif';
 
 const Preloader = () => (
-  <main>
-    <div className={style.preloader}>
-      <p>App is loading</p>
-    </div>
-  </main>
+  <div className={style.container}>
+    <img src={preloder} alt="loading" />
+  </div>
 );
 
 export default Preloader;

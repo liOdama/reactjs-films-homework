@@ -25,6 +25,12 @@
   flex-flow: row wrap;
 }
 
+@media screen and (max-width: 54rem) {
+  .mainfilmInfo {
+    background: linear-gradient(to top, black 0%, transparent 100%);
+  }
+}
+
 @media screen and (min-width: 82rem) {
   .mainfilmInfo {
     padding: 2rem 0 1.4rem 0;

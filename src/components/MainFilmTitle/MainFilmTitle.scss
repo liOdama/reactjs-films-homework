@@ -4,22 +4,6 @@
   max-width: 50%;
 }
 
-@media screen and (max-width: 46.8rem) {
-  .mainFilmTitle {
-    margin: 0 0 2rem 0;
-  }
-
-  .filmTitle {
-    margin-top: 1rem;
-  }
-
-  .genres ul {
-    li {
-      margin: 0.3rem;
-    }
-  }
-}
-
 .filmTitle {
   font-size: 1.86rem;
   letter-spacing: 0.09rem;
@@ -64,6 +48,26 @@
 
 .mainFilmRate {
   color: #fff;
+}
+
+@media screen and (max-width: 46.8rem) {
+  .mainFilmTitle {
+    margin: 0 0 2rem 0;
+    max-width: 90%;
+  }
+
+  .filmTitle {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .genres ul {
+    justify-content: space-around;
+
+    li {
+      margin: 0.3rem;
+    }
+  }
 }
 
 @media screen and (min-width: 82rem) {

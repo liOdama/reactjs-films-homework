@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import MovieSelectors from '../../components/MovieSelectors';
 import Footer from '../../components/Footer';
 import style from '../../components/ListMovies/ListMovies.scss';
+import * as commonStyles from '../../common.scss';
 
 class MovieListContainer extends Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class MovieListContainer extends Component {
     } = this.props;
     return (
       <Fragment>
-        <div className={style.wrapper}>
+        <div className={commonStyles.wrapper}>
           <Header fetchSearchResults={fetchSearchResults} history={history} />
           <main>
             <section className={style.movieList}>

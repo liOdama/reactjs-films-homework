@@ -145,3 +145,18 @@ body,
 body > div {
   height: 100%;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1 0 auto;
+}
+
+section {
+  width: 100%;
+}
+
+footer {
+  flex: 0 0 auto;
+}
