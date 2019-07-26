@@ -25,6 +25,12 @@
   flex-flow: row wrap;
 }
 
+@media screen and (max-width: 54rem) {
+  .mainfilmInfo {
+    background: linear-gradient(to top, black 0%, transparent 100%);
+  }
+}
+
 @media screen and (min-width: 82rem) {
   .mainfilmInfo {
     padding: 2rem 0 1.4rem 0;
@@ -36,34 +42,22 @@
 }
 
 @media screen and (max-width: 46.8rem) {
+  main .movieDetailsPageContainer {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+
   .mainfilmInfo {
     padding: 0 0 1.4rem 0;
     margin: 0 auto;
 
     .container {
-      justify-content: center;
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      align-items: center;
+
+      & > div {
+        width: 90%;
+      }
     }
-  }
-}
-
-.preloader {
-  width: 100%;
-  height: 100vh;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  &::before {
-    content: '';
-    background-image: url('https://static.thenounproject.com/png/392126-200.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
   }
 }

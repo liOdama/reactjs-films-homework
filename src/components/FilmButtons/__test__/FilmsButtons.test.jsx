@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import FilmButtons from '../index';
 import style from '../FilmButtons.scss';
-import * as mapStateToDispatch from '../FilmButtonsContainer';
 
 test('FulmButtons renders correctly', () => {
   const renderer = new ShallowRenderer();
@@ -17,6 +16,7 @@ test('FulmButtons renders correctly', () => {
       mainMovie: {},
       currentVideo: null,
     },
+    setTypeOverwie: jest.fn(),
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);
@@ -38,6 +38,8 @@ test('FulmButtons renders correctly', () => {
       currentVideo: null,
     },
     mainMovie: { id: 'test' },
+    setTypeOverwie: jest.fn(),
+    showModal: jest.fn(),
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);
@@ -47,18 +49,7 @@ test('FulmButtons renders correctly', () => {
     </Provider>,
   );
   const node = result.root.findByProps({ id: 'info' });
+  const node2 = result.root.findByProps({ id: 'test' });
   expect(ReactTestUtils.Simulate.click(node)).toMatchSnapshot();
-});
-
-describe('test MapDispatchToProps', () => {
-  const state = {
-    fetchVideo: id => id,
-  };
-  const id = 35;
-
-  it('MapDispatchToProps: fetchVideo', async () => {
-    const dispatch = jest.fn(() => state.fetchVideo);
-    const result = await mapStateToDispatch.mapStateToDispatch(dispatch).fetchVideo(id);
-    expect(result(id)).toEqual(id);
-  });
+  expect(ReactTestUtils.Simulate.click(node2)).toMatchSnapshot();
 });

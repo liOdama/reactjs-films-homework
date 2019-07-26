@@ -27,6 +27,7 @@ import typeViewReducer from '../../../modules/TypeView/TypeViewReducer';
 import requestFilms from '../../../utils/requests';
 
 describe('Test for reducers', () => {
+  const dispatch = jest.fn(arg => arg);
   describe('Reducer tests, Root Reducer', () => {
     it('Root Reducer: ITEMS_FETCH_DATA_SUCCESS', () => {
       const action = {
@@ -38,7 +39,6 @@ describe('Test for reducers', () => {
         ...initialState,
         page: 1,
         results: [{ id: 1 }, 2, 3],
-        mainMovie: 1,
       });
     });
 
@@ -104,7 +104,7 @@ describe('Test for reducers', () => {
       const store = mockStore({
         currentVideo: 'testId',
       });
-      const data = store.dispatch(clearCurrentMovie());
+      const data = store.dispatch(clearCurrentMovie(dispatch));
       expect(data).toEqual(expectedActions);
     });
 
@@ -218,12 +218,11 @@ describe('Test for reducers', () => {
       expect(store.dispatch(setMainMovieDetails(data))).toEqual(action);
     });
 
-    it('mainMovie: request mainMovieDetails', () => {
-      const mockStore = configureMockStore([thunk]);
+    it('mainMovie: request mainMovieDetails', async () => {
       const id = 458156;
       const action = {
-        type: 'GET_MAIN_MOVIE_DETAILS',
-        payload: data,
+        payload: false,
+        type: 'ITEMS_IS_LOADING',
       };
 
       fetchMock
@@ -237,9 +236,8 @@ describe('Test for reducers', () => {
         )
         .catch(err => itemsHasErrored(err));
 
-      const store = mockStore({});
-      store
-        .dispatch(requestFilms.getMainMovieDetails(id))
+      await requestFilms
+        .getMainMovieDetails(dispatch, id)
         .then(dataMovie => expect(dataMovie).toEqual(action));
     });
   });
@@ -310,7 +308,7 @@ describe('Test for reducers', () => {
         type: 'SET_TYPE_VIEW',
         payload: testValue,
       };
-      expect(setTypeView(testValue)).toEqual(expectedActions);
+      expect(setTypeView(dispatch, testValue)).toEqual(expectedActions);
     });
   });
 
@@ -318,6 +316,7 @@ describe('Test for reducers', () => {
     afterEach(() => {
       jest.clearAllMocks();
     });
+
     const initial = [];
     const action = {
       type: 'FETCH_ID_GENRES',
@@ -349,23 +348,21 @@ describe('Test for reducers', () => {
     });
 
     it('fetchGenres: Action', () => {
-      const mockStore = configureMockStore([thunk]);
-      fetchMock.getOnce(
-        'https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
-        {
-          headers: { 'content-type': 'application/json' },
-          body: { genres: { id: 35, name: 'Drama' }, status: 'ok' },
-        },
-      );
-      const expectedActions = [
-        {
-          type: 'FETCH_ID_GENRES',
-          payload: { genres: { id: 35, name: 'Drama' } },
-        },
-      ];
-      const store = mockStore({});
-      return store.dispatch(fetchGenres()).then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
+      fetchMock
+        .getOnce(
+          'https://api.themoviedb.org/3/genre/movie/list?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
+          {
+            headers: { 'content-type': 'application/json' },
+            body: { genres: { id: 35, name: 'Drama' }, status: 'ok' },
+          },
+        )
+        .catch(err => err);
+      const expectedActions = {
+        type: 'FETCH_ID_GENRES',
+        payload: { genres: { id: 35, name: 'Drama' } },
+      };
+      fetchGenres(dispatch).then((data) => {
+        expect(data).toEqual(expectedActions);
       });
     });
   });

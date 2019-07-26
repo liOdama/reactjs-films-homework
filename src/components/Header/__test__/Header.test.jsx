@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestRender from 'react-test-renderer';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { MemoryRouter as Router } from 'react-router-dom';
 import Header from '../index';
 
 describe('HeaderComponent', () => {
-  const fetchSearchResults = jest.fn(value1 => value1);
   const clearError = jest.fn();
   const state = {
-    fetchSearchResults,
     clearError,
+    history: { push: jest.fn(), location: { path: '' } },
   };
   test('Header renders correctly', () => {
     const result = ReactTestRender.create(<Header {...state} />);
@@ -24,31 +24,19 @@ describe('HeaderComponent', () => {
     });
 
     it('Header: search test - correctly', () => {
-      jest.spyOn(Header.propTypes, 'fetchSearchResults');
+      jest.spyOn(state.history, 'push');
       act(() => {
         document.body.appendChild(container);
         ReactDOM.render(
-          <Header fetchSearchResults={fetchSearchResults} clearError={clearError} />,
+          <Router>
+            <Header {...state} />
+          </Router>,
           container,
         );
       });
       const node = container.querySelector('form');
       ReactTestUtils.Simulate.submit(node);
-      expect(fetchSearchResults).toHaveBeenCalled();
-    });
-
-    it('Header: search test - correctly', () => {
-      jest.spyOn(Header.propTypes, 'clearError');
-      act(() => {
-        document.body.appendChild(container);
-        ReactDOM.render(
-          <Header fetchSearchResults={fetchSearchResults} error clearError={clearError} />,
-          container,
-        );
-      });
-      const node = container.querySelector('form');
-      ReactTestUtils.Simulate.submit(node);
-      expect(clearError).toHaveBeenCalled();
+      expect(state.history.push).toHaveBeenCalledTimes(1);
     });
   });
 });

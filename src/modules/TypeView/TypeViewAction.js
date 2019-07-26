@@ -1,4 +1,4 @@
-const setTypeView = type => ({
+const setTypeView = (dispatch, type) => dispatch({
   type: 'SET_TYPE_VIEW',
   payload: type,
 });

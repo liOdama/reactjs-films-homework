@@ -1,13 +1,12 @@
 import React from 'react';
-import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import style from './Star.scss';
 
 class Star extends React.Component {
   static starQuantity(quantity) {
     let temp = new Array(Math.ceil(quantity)).fill(quantity);
-    temp = temp.map(() => {
-      const tempEl = (<i className={style.star} key={shortid.generate()} />);
+    temp = temp.map((c, ind) => {
+      const tempEl = <i className={style.star} key={`key-${ind + 0}`} />;
       return tempEl;
     });
     return temp;

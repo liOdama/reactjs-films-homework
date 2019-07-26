@@ -7,31 +7,43 @@ exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
   <nav>
     <ul>
       <li>
-        <button
-          href="#"
+        <a
+          href="/list/trending"
           onClick={[Function]}
-          type="button"
         >
-          Trending
-        </button>
+          <button
+            href="#"
+            type="button"
+          >
+            Trending
+          </button>
+        </a>
       </li>
       <li>
-        <button
-          href="#"
+        <a
+          href="/list/top_rated"
           onClick={[Function]}
-          type="button"
         >
-          Top Rated
-        </button>
+          <button
+            href="#"
+            type="button"
+          >
+            Top Rated
+          </button>
+        </a>
       </li>
       <li>
-        <button
-          href="#"
+        <a
+          href="/list/coming_soon"
           onClick={[Function]}
-          type="button"
         >
-          Coming Soon
-        </button>
+          <button
+            href="#"
+            type="button"
+          >
+            Coming Soon
+          </button>
+        </a>
       </li>
       <li>
         <select

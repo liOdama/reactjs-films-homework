@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils, { act } from 'react-dom/test-utils';
+import { MemoryRouter as Router } from 'react-router-dom';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import fetchMock from 'fetch-mock';
 import MovieItem from '../index';
@@ -28,7 +29,7 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
-
+const getMainMovieDetails = jest.fn(() => ({}));
 test('MovieItem renders correctly without poster image', () => {
   const curr = {
     adult: false,
@@ -50,7 +51,14 @@ test('MovieItem renders correctly without poster image', () => {
   const movies = {};
 
   const renderer = new ShallowRenderer();
-  renderer.render(<MovieItem curr={curr} genres={genres} movies={movies} />);
+  renderer.render(
+    <MovieItem
+      curr={curr}
+      getMainMovieDetails={getMainMovieDetails}
+      genres={genres}
+      movies={movies}
+    />,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
@@ -60,15 +68,19 @@ test('MovieItem renders correctly with poster image', () => {
     original_title: 'Avengers: Endgame',
     overview:
       "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-
     poster_path: 'testImagePath',
-
     title: 'Avengers: Endgame',
   };
   const movies = {};
   const renderer = new ShallowRenderer();
   const result = renderer.render(
-    <MovieItem curr={curr} genres={genres} movies={movies} typeView="cards" />,
+    <MovieItem
+      curr={curr}
+      genres={genres}
+      getMainMovieDetails={getMainMovieDetails}
+      movies={movies}
+      typeView="cards"
+    />,
   );
   expect(result).toMatchSnapshot();
 });
@@ -85,9 +97,16 @@ test('MovieItem renders correctly with lines classes', () => {
     title: 'Avengers: Endgame',
   };
   const movies = {};
+
   const renderer = new ShallowRenderer();
   const result = renderer.render(
-    <MovieItem curr={curr} genres={genres} movies={movies} typeView="lines" />,
+    <MovieItem
+      curr={curr}
+      genres={genres}
+      movies={movies}
+      getMainMovieDetails={getMainMovieDetails}
+      typeView="lines"
+    />,
   );
   expect(result).toMatchSnapshot();
 });
@@ -112,6 +131,7 @@ describe('MovieItem: selectGenre', () => {
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchMoviesOnGenre: requestsFilms.fetchMoviesOnGenre,
+      history: { push: jest.fn() },
     };
     const e = {
       key: 'a',
@@ -138,6 +158,7 @@ describe('MovieItem: selectGenre', () => {
     const props = {
       genres: [{ id: 31, name: 'Action' }, { id: 35, name: 'Drama' }],
       fetchListMovies: requestsFilms.fetchListMovies,
+      history: { push: jest.fn() },
     };
     const e = {
       key: 'Enter',
@@ -174,40 +195,6 @@ describe('MovieItem: selectGenre', () => {
     };
     const result = keydonwGenres(props, e);
     expect(result).toEqual(props);
-  });
-});
-describe('getMainMovieDetails', () => {
-  let container;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    container.id = 'modalRoot';
-    document.body.appendChild(container);
-  });
-  it('getMainMovieDetails - test', () => {
-    const getMainMovieDetails = jest.fn();
-    const props = {
-      genres: [{ id: 12, name: 'Drama' }, { id: 12, name: 'Action' }],
-      getMainMovieDetails,
-      curr: {
-        backdrop_path: null,
-        genre_ids: [12, 878, 28],
-        id: 299534,
-        original_title: 'Avengers: Endgame',
-        overview:
-          "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
-        poster_path: null,
-        title: 'Avengers: Endgame',
-      },
-    };
-    act(() => {
-      ReactDOM.render(<MovieItem {...props} />, container);
-    });
-
-    jest.spyOn(props, 'getMainMovieDetails');
-    const node1 = container.querySelector('figcaption button');
-    ReactTestUtils.Simulate.click(node1);
-    expect(getMainMovieDetails).toHaveBeenCalled();
   });
 });
 
@@ -261,11 +248,17 @@ describe('events', () => {
     },
     movies: {},
     genres,
+    getMainMovieDetails,
   };
   beforeEach(() => {
     document.body.appendChild(container);
     act(() => {
-      ReactDOM.render(<MovieItem {...props} />, container);
+      ReactDOM.render(
+        <Router>
+          <MovieItem {...props} />
+        </Router>,
+        container,
+      );
     });
   });
 

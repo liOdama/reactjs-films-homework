@@ -20,13 +20,6 @@ const hoverMovieCard = (props) => {
   const classNamesHover = fullOverwie === true ? style.hoverOverwieBlock : style.hoverOverwieNone;
   const classNameControl = fullOverwie === true ? style.hoverControlNone : style.hoverControlBlock;
 
-  // if (fullOverwie === true) {
-  //   classNamesHover = style.hoverOverwieBlock;
-  //   classNameControl = style.hoverControlNone;
-  // } else {
-  //   classNamesHover = style.hoverOverwieNone;
-  //   classNameControl = style.hoverControlBlock;
-  // }
   return (
     <div className={style.hoverMovie}>
       <div className={classNameControl}>
@@ -36,7 +29,7 @@ const hoverMovieCard = (props) => {
           onClick={showModal.bind(null, props)}
           onKeyDown={showModal.bind(null, props)}
         >
-          <input type="button" className={style.playTrailer} name="playTrailer" />
+          <input type="button" className={style.playTrailer} name="playTrailer" id={id} />
           Watch Now
         </label>
         <button
@@ -87,6 +80,7 @@ hoverMovieCard.defaultProps = {
   overview: '',
   rate: 0,
   fullOverwie: false,
+  id: 0,
 };
 
 hoverMovieCard.propTypes = {
@@ -94,7 +88,7 @@ hoverMovieCard.propTypes = {
   title: PropTypes.string,
   overview: PropTypes.string,
   rate: PropTypes.number,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   hoverOverwieBlock: PropTypes.func.isRequired,
   fullOverwie: PropTypes.bool,
   hoverOverwieNone: PropTypes.func.isRequired,

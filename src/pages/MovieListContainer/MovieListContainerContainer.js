@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { checkPage, checkResults } from '../../modules/root/rootSelectors';
 import checkGenres from '../../modules/fetchGenres/fetchGenresSelectors';
 import * as FromSetTypeView from '../../modules/TypeView/TypeViewAction';
@@ -6,6 +7,8 @@ import checkTypeView from '../../modules/TypeView/TypeViewSelectors';
 import requestsFilms from '../../utils/requests';
 import clearError from '../../modules/Error/errorAction';
 import MovieListContainer from './MovieListContainer';
+import * as fromFetchGenres from '../../modules/fetchGenres/fetchGenresAction';
+import * as fromClearCurrentMovie from '../../modules/root/clearCurrentMovieAction';
 
 const makeMap = () => {
   const page = checkPage;
@@ -20,20 +23,27 @@ const makeMap = () => {
     },
     genres: genres(state),
     typeView: typeView(state),
+    itemsIsLoading: state.itemsIsLoading,
+    error: state.error,
   });
 
   return mapStateToProps;
 };
 
 export const mapStateToDispatch = dispatch => ({
-  fetchVideo: id => dispatch(requestsFilms.fetchVideo(id)),
-  setTypeView: type => dispatch(FromSetTypeView.default(type)),
-  getMainMovieDetails: id => dispatch(requestsFilms.getMainMovieDetails(id)),
-  fetchListMovies: query => dispatch(requestsFilms.fetchListMovies(query)),
-  clearError: bool => dispatch(clearError(bool)),
+  fetchVideo: requestsFilms.fetchVideo.bind(this, dispatch),
+  setTypeView: FromSetTypeView.default.bind(this, dispatch),
+  getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
+  fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
+  clearError: clearError.bind(dispatch),
+  fetchGenres: fromFetchGenres.default.bind(null, dispatch),
+  clearCurrentMovie: fromClearCurrentMovie.default.bind(null, dispatch),
+  fetchSearchResults: requestsFilms.fetchSearchResults.bind(this, dispatch),
 });
 
-export default connect(
-  makeMap,
-  mapStateToDispatch,
-)(MovieListContainer);
+export default withRouter(
+  connect(
+    makeMap,
+    mapStateToDispatch,
+  )(MovieListContainer),
+);

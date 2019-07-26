@@ -1,124 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render render correctly: Nothing Found error 1`] = `
-<div>
-  <header
-    className="header"
-  >
-    <div
-      className="container"
-    >
-      <h1
-        className="h1"
-      >
-        FILMS
-      </h1>
-      <form
-        action=""
-        onSubmit={[Function]}
-      >
-        <input
-          className="searchField"
-          tabIndex="0"
-          type="search"
-        />
-        <button
-          className="btnSearch"
-          type="submit"
-        >
-          ⚲
-        </button>
-      </form>
-    </div>
-  </header>
-  <div
-    className="container"
-  >
-    <div
-      className="title"
-    >
-      <h1>
-        Nothing found
-      </h1>
-    </div>
-    <div
-      className="moviesSelector"
-    >
-      <nav>
-        <ul>
-          <li>
-            <button
-              href="#"
-              onClick={[Function]}
-              type="button"
-            >
-              Trending
-            </button>
-          </li>
-          <li>
-            <button
-              href="#"
-              onClick={[Function]}
-              type="button"
-            >
-              Top Rated
-            </button>
-          </li>
-          <li>
-            <button
-              href="#"
-              onClick={[Function]}
-              type="button"
-            >
-              Coming Soon
-            </button>
-          </li>
-          <li>
-            <select
-              id=""
-              name="genre"
-              onChange={[Function]}
-            >
-              <option
-                value=""
-              >
-                Genre
-              </option>
-            </select>
-          </li>
-        </ul>
-      </nav>
-      <div
-        className="typeView"
-      >
-        <button
-          id="cards"
-          onClick={[Function]}
-          type="button"
-        >
-          ⚏
-        </button>
-        <button
-          id="lines"
-          onClick={[Function]}
-          type="button"
-        >
-          ⚌
-        </button>
-      </div>
-    </div>
-    <img
-      alt="404 Not Found"
-      src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-    />
-  </div>
-</div>
-`;
-
-exports[`render render correctly: Something Wrong error 1`] = `
-<h1>
-  Something Wrong
-</h1>
+<Context.Provider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <MemoryRouter>
+    <withRouter(Connect(ErrorBoundary)) />
+  </MemoryRouter>
+</Context.Provider>
 `;
 
 exports[`render render correctly: error = "" 1`] = `null`;
+
+exports[`render render correctly: error 1`] = `null`;

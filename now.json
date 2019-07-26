@@ -2,6 +2,13 @@
   "version": 2,
   "name": "reactjs-films-homework",
   "builds": [
-      { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
+    { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
+  ],
+  "routes": [
+    { "src": "/search/(.*)", "dest": "/index.html" },
+    { "src": "/films/(.*)", "dest": "/index.html" },
+    { "src": "/list/(.*)", "dest": "/index.html" },
+    { "src": "/genre/(.*)", "dest": "/index.html" },
+    { "src": "/", "dest": "/index.html" }
   ]
 }

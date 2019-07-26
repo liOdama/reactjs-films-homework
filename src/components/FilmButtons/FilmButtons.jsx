@@ -8,7 +8,7 @@ class FilmButtons extends React.Component {
     const { mainMovie, setTypeOverwie } = this.props;
     return (
       <div className={style.btnContainer}>
-        <button
+        <input
           id={mainMovie.id}
           type="button"
           className={style.watch}
@@ -16,12 +16,11 @@ class FilmButtons extends React.Component {
           tabIndex="0"
           ref={(watch) => {
             this.watch = watch;
-            return this.viewInfo;
+            return this.watch;
           }}
-        >
-          Watch Now
-        </button>
-        <button
+          value="Watch Now"
+        />
+        <input
           id="info"
           type="button"
           className={style.viewInfo}
@@ -31,9 +30,8 @@ class FilmButtons extends React.Component {
             this.viewInfo = viewInfo;
             return this.viewInfo;
           }}
-        >
-          View Info
-        </button>
+          value="View Info"
+        />
       </div>
     );
   }

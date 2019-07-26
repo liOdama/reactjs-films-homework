@@ -4,23 +4,25 @@ import ReactTestUtils, { act } from 'react-dom/test-utils';
 import { ModalPlayer, showModal } from '../ModalPlayer';
 
 describe('Modal Renders correctly', () => {
-  ReactDOM.render(<div id="modalRoot" />, document.body);
+  // ReactDOM.render(<div id="modalRoot" />, document.body);
 
   describe('show and close', () => {
     let container;
     const fetchVideo = jest.fn();
+    const clearCurrentMovie = jest.fn();
+    const unmount = jest.fn();
     beforeEach(() => {
-      container = document.createElement('div');
-      container.id = 'root';
+      container = document.createElement('section');
+      container.id = 'modalRoot';
       document.body.appendChild(container);
     });
 
     it('Modal: has a error', () => {
-      const clearCurrentMovie = jest.fn();
       const props = {
         movies: { currentVideo: 'test' },
         error: true,
         clearCurrentMovie,
+        unmount,
       };
 
       jest.spyOn(props, 'clearCurrentMovie');
@@ -34,7 +36,7 @@ describe('Modal Renders correctly', () => {
     });
 
     it('show with id watch', () => {
-      const props = { fetchVideo };
+      const props = { fetchVideo, unmount };
       jest.spyOn(props, 'fetchVideo');
       const button = React.createElement('button', {
         onClick: showModal.bind(null, props),
@@ -52,7 +54,7 @@ describe('Modal Renders correctly', () => {
     });
 
     it('show with id playTrailer', () => {
-      const props = { fetchVideo };
+      const props = { fetchVideo, unmount };
       jest.spyOn(props, 'fetchVideo');
       const button = React.createElement('button', {
         onClick: showModal.bind(null, props),

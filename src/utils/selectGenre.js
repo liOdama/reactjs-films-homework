@@ -1,7 +1,5 @@
 const selectGenre = function selectGenre(props, e) {
-  const {
-    genres, fetchListMovies, error, clearError,
-  } = props;
+  const { genres } = props;
   const genre = e.target.value || e.target.textContent.replace(/[^A-Za-z\s]/g, '');
   let genreId;
   genres.some((a) => {
@@ -11,10 +9,7 @@ const selectGenre = function selectGenre(props, e) {
     }
     return false;
   });
-  if (error !== undefined && error !== '') {
-    clearError(false);
-  }
-  return fetchListMovies(genreId);
+  props.history.push(`/genre/${genreId}`);
 };
 
 export const keydonwGenres = (props, e) => {

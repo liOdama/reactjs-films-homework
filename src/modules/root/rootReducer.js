@@ -1,7 +1,6 @@
 const initialState = {
   page: 0,
   results: [],
-  mainMovie: null,
   currentVideo: null,
 };
 
@@ -12,7 +11,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         page: action.payload.page,
         results: action.payload.results,
-        mainMovie: action.payload.results[0].id,
       };
     case 'FETCH_VIDEO_SUCCESS':
       return {

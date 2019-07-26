@@ -82,7 +82,12 @@
       display: flex;
       justify-content: flex-start;
       flex-flow: row wrap;
-      color: #47c3f0;
+
+      button {
+        border: none;
+        background: none;
+        color: #47c3f0;
+      }
 
       span {
         cursor: pointer;
