@@ -29,16 +29,17 @@ class ErrorBoundary extends Component {
       children,
       genres,
       error,
-      clearError,
       fetchListMovies,
       fetchSearchResults,
       setTypeView,
       history,
+      clearError,
     } = this.props;
     if (hasError === true) {
+      clearError('');
       return (
         <div>
-          <Header fetchSearchResults={fetchSearchResults} error={error} clearError={clearError} />
+          <Header fetchSearchResults={fetchSearchResults} error={error} />
           <div className={style.container}>
             <div className="title">
               <h1>Nothing found</h1>

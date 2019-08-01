@@ -35,7 +35,7 @@ export const mapStateToDispatch = dispatch => ({
   setTypeView: FromSetTypeView.default.bind(this, dispatch),
   getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
   fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
-  clearError: clearError.bind(dispatch),
+  clearError: clearError.bind(this, dispatch),
   fetchGenres: fromFetchGenres.default.bind(null, dispatch),
   clearCurrentMovie: fromClearCurrentMovie.default.bind(null, dispatch),
   fetchSearchResults: requestsFilms.fetchSearchResults.bind(this, dispatch),
