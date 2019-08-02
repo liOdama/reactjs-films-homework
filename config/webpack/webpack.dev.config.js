@@ -5,7 +5,10 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true', './src/index.jsx'],
+  entry: [
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+    './src/index.jsx',
+  ],
   devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
@@ -23,7 +26,16 @@ module.exports = {
         test: /\.scss$/,
         use: [
           'style-loader',
+
           'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve(__dirname, './postcss.config.js'),
+              },
+            },
+          },
           'sass-loader',
         ],
       },
@@ -37,7 +49,6 @@ module.exports = {
             },
           },
         ],
-
       },
     ],
   },

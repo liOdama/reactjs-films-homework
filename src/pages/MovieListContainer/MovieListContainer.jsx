@@ -94,12 +94,12 @@ class MovieListContainer extends Component {
   render() {
     const { loading } = this.state;
     const {
-      genres, setTypeView, fetchSearchResults, history, clearError,
+      genres, setTypeView, fetchSearchResults, history, clearError, query,
     } = this.props;
     return (
       <Fragment>
         <div className={commonStyles.wrapper}>
-          <Header fetchSearchResults={fetchSearchResults} history={history} />
+          <Header fetchSearchResults={fetchSearchResults} history={history} query={query} />
           <main>
             <section className={style.movieList}>
               <div className={style.container}>

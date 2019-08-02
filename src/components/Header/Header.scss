@@ -30,6 +30,14 @@
 
   input {
     outline: none;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+
+  [type="search"] {
+    padding-right: 2rem;
   }
 }
 

@@ -1,5 +1,251 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test routes Routes - 404 Routes 1`] = `
+Array [
+  <div
+    className="wrapper"
+  >
+    <header
+      className="header"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="h1"
+        >
+          FILMS
+        </h1>
+        <form
+          action=""
+          onSubmit={[Function]}
+        >
+          <input
+            autoComplete="false"
+            className="searchField"
+            id="searchField"
+            placeholder="search"
+            tabIndex="0"
+            type="search"
+          />
+          <input
+            className="btnSearch"
+            onClick={[Function]}
+            type="button"
+            value="⚲"
+          />
+        </form>
+      </div>
+    </header>
+    <div
+      className="container"
+    >
+      <div
+        className="title"
+      >
+        <h1>
+          Nothing found
+        </h1>
+      </div>
+      <div
+        className="moviesSelector"
+      >
+        <nav>
+          <ul>
+            <li>
+              <a
+                href="/list/trending"
+                onClick={[Function]}
+              >
+                <button
+                  href="#"
+                  type="button"
+                >
+                  Trending
+                </button>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/list/top_rated"
+                onClick={[Function]}
+              >
+                <button
+                  href="#"
+                  type="button"
+                >
+                  Top Rated
+                </button>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/list/coming_soon"
+                onClick={[Function]}
+              >
+                <button
+                  href="#"
+                  type="button"
+                >
+                  Coming Soon
+                </button>
+              </a>
+            </li>
+            <li>
+              <select
+                id=""
+                name="genre"
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Select Genre
+                </option>
+                <option
+                  value={28}
+                >
+                  Action
+                </option>
+                <option
+                  value={12}
+                >
+                  Adventure
+                </option>
+                <option
+                  value={16}
+                >
+                  Animation
+                </option>
+                <option
+                  value={35}
+                >
+                  Comedy
+                </option>
+                <option
+                  value={80}
+                >
+                  Crime
+                </option>
+                <option
+                  value={99}
+                >
+                  Documentary
+                </option>
+                <option
+                  value={18}
+                >
+                  Drama
+                </option>
+                <option
+                  value={10751}
+                >
+                  Family
+                </option>
+                <option
+                  value={14}
+                >
+                  Fantasy
+                </option>
+                <option
+                  value={36}
+                >
+                  History
+                </option>
+                <option
+                  value={27}
+                >
+                  Horror
+                </option>
+                <option
+                  value={10402}
+                >
+                  Music
+                </option>
+                <option
+                  value={9648}
+                >
+                  Mystery
+                </option>
+                <option
+                  value={10749}
+                >
+                  Romance
+                </option>
+                <option
+                  value={878}
+                >
+                  Science Fiction
+                </option>
+                <option
+                  value={10770}
+                >
+                  TV Movie
+                </option>
+                <option
+                  value={53}
+                >
+                  Thriller
+                </option>
+                <option
+                  value={10752}
+                >
+                  War
+                </option>
+                <option
+                  value={37}
+                >
+                  Western
+                </option>
+              </select>
+            </li>
+          </ul>
+        </nav>
+        <div
+          className="typeView"
+        >
+          <button
+            id="cards"
+            onClick={[Function]}
+            type="button"
+          >
+            ⚏
+          </button>
+          <button
+            id="lines"
+            onClick={[Function]}
+            type="button"
+          >
+            ⚌
+          </button>
+        </div>
+      </div>
+      <div
+        className="imgWrapper"
+      >
+        <img
+          alt="404 Not Found"
+          src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+        />
+      </div>
+    </div>
+    <footer>
+      <div
+        className="container"
+      >
+        <h2>
+          FILMS
+        </h2>
+        <p>
+          Copyright © 2019 FILMS. RAMAN BYCHKOU
+        </p>
+      </div>
+    </footer>
+  </div>,
+  ",",
+]
+`;
+
 exports[`Test routes Routes - base Routes 1`] = `
 <div>
   <header
@@ -18,8 +264,10 @@ exports[`Test routes Routes - base Routes 1`] = `
         onSubmit={[Function]}
       >
         <input
+          autoComplete="false"
           className="searchField"
           id="searchField"
+          placeholder="search"
           tabIndex="0"
           type="search"
         />
@@ -92,63 +340,101 @@ exports[`Test routes Routes - base Routes 1`] = `
                   <option
                     value=""
                   >
-                    Genre
+                    Select Genre
                   </option>
-                  <option>
+                  <option
+                    value={28}
+                  >
                     Action
                   </option>
-                  <option>
+                  <option
+                    value={12}
+                  >
                     Adventure
                   </option>
-                  <option>
+                  <option
+                    value={16}
+                  >
                     Animation
                   </option>
-                  <option>
+                  <option
+                    value={35}
+                  >
                     Comedy
                   </option>
-                  <option>
+                  <option
+                    value={80}
+                  >
                     Crime
                   </option>
-                  <option>
+                  <option
+                    value={99}
+                  >
                     Documentary
                   </option>
-                  <option>
+                  <option
+                    value={18}
+                  >
                     Drama
                   </option>
-                  <option>
+                  <option
+                    value={10751}
+                  >
                     Family
                   </option>
-                  <option>
+                  <option
+                    value={14}
+                  >
                     Fantasy
                   </option>
-                  <option>
+                  <option
+                    value={36}
+                  >
                     History
                   </option>
-                  <option>
+                  <option
+                    value={27}
+                  >
                     Horror
                   </option>
-                  <option>
+                  <option
+                    value={10402}
+                  >
                     Music
                   </option>
-                  <option>
+                  <option
+                    value={9648}
+                  >
                     Mystery
                   </option>
-                  <option>
+                  <option
+                    value={10749}
+                  >
                     Romance
                   </option>
-                  <option>
+                  <option
+                    value={878}
+                  >
                     Science Fiction
                   </option>
-                  <option>
+                  <option
+                    value={10770}
+                  >
                     TV Movie
                   </option>
-                  <option>
+                  <option
+                    value={53}
+                  >
                     Thriller
                   </option>
-                  <option>
+                  <option
+                    value={10752}
+                  >
                     War
                   </option>
-                  <option>
+                  <option
+                    value={37}
+                  >
                     Western
                   </option>
                 </select>
@@ -221,6 +507,7 @@ exports[`Test routes Routes - base Routes 1`] = `
                         onClick={[Function]}
                         onKeyDown={[Function]}
                         type="button"
+                        value={12}
                       >
                         Adventure
                       </button>
@@ -284,6 +571,7 @@ exports[`Test routes Routes - base Routes 1`] = `
                           onClick={[Function]}
                           onKeyDown={[Function]}
                           type="button"
+                          value={12}
                         >
                           Adventure
                         </button>
@@ -341,7 +629,9 @@ exports[`Test routes Routes - base Routes 1`] = `
 
 exports[`Test routes Routes - films Routes 1`] = `
 Array [
-  <div>
+  <div
+    className="wrapper"
+  >
     <header
       className="header"
     >
@@ -358,8 +648,10 @@ Array [
           onSubmit={[Function]}
         >
           <input
+            autoComplete="false"
             className="searchField"
             id="searchField"
+            placeholder="search"
             tabIndex="0"
             type="search"
           />
@@ -435,63 +727,101 @@ Array [
                 <option
                   value=""
                 >
-                  Genre
+                  Select Genre
                 </option>
-                <option>
+                <option
+                  value={28}
+                >
                   Action
                 </option>
-                <option>
+                <option
+                  value={12}
+                >
                   Adventure
                 </option>
-                <option>
+                <option
+                  value={16}
+                >
                   Animation
                 </option>
-                <option>
+                <option
+                  value={35}
+                >
                   Comedy
                 </option>
-                <option>
+                <option
+                  value={80}
+                >
                   Crime
                 </option>
-                <option>
+                <option
+                  value={99}
+                >
                   Documentary
                 </option>
-                <option>
+                <option
+                  value={18}
+                >
                   Drama
                 </option>
-                <option>
+                <option
+                  value={10751}
+                >
                   Family
                 </option>
-                <option>
+                <option
+                  value={14}
+                >
                   Fantasy
                 </option>
-                <option>
+                <option
+                  value={36}
+                >
                   History
                 </option>
-                <option>
+                <option
+                  value={27}
+                >
                   Horror
                 </option>
-                <option>
+                <option
+                  value={10402}
+                >
                   Music
                 </option>
-                <option>
+                <option
+                  value={9648}
+                >
                   Mystery
                 </option>
-                <option>
+                <option
+                  value={10749}
+                >
                   Romance
                 </option>
-                <option>
+                <option
+                  value={878}
+                >
                   Science Fiction
                 </option>
-                <option>
+                <option
+                  value={10770}
+                >
                   TV Movie
                 </option>
-                <option>
+                <option
+                  value={53}
+                >
                   Thriller
                 </option>
-                <option>
+                <option
+                  value={10752}
+                >
                   War
                 </option>
-                <option>
+                <option
+                  value={37}
+                >
                   Western
                 </option>
               </select>
@@ -517,11 +847,27 @@ Array [
           </button>
         </div>
       </div>
-      <img
-        alt="404 Not Found"
-        src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-      />
+      <div
+        className="imgWrapper"
+      >
+        <img
+          alt="404 Not Found"
+          src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+        />
+      </div>
     </div>
+    <footer>
+      <div
+        className="container"
+      >
+        <h2>
+          FILMS
+        </h2>
+        <p>
+          Copyright © 2019 FILMS. RAMAN BYCHKOU
+        </p>
+      </div>
+    </footer>
   </div>,
   ",",
 ]
@@ -529,7 +875,9 @@ Array [
 
 exports[`Test routes Routes - genre Routes 1`] = `
 Array [
-  <div>
+  <div
+    className="wrapper"
+  >
     <header
       className="header"
     >
@@ -546,8 +894,10 @@ Array [
           onSubmit={[Function]}
         >
           <input
+            autoComplete="false"
             className="searchField"
             id="searchField"
+            placeholder="search"
             tabIndex="0"
             type="search"
           />
@@ -623,63 +973,101 @@ Array [
                 <option
                   value=""
                 >
-                  Genre
+                  Select Genre
                 </option>
-                <option>
+                <option
+                  value={28}
+                >
                   Action
                 </option>
-                <option>
+                <option
+                  value={12}
+                >
                   Adventure
                 </option>
-                <option>
+                <option
+                  value={16}
+                >
                   Animation
                 </option>
-                <option>
+                <option
+                  value={35}
+                >
                   Comedy
                 </option>
-                <option>
+                <option
+                  value={80}
+                >
                   Crime
                 </option>
-                <option>
+                <option
+                  value={99}
+                >
                   Documentary
                 </option>
-                <option>
+                <option
+                  value={18}
+                >
                   Drama
                 </option>
-                <option>
+                <option
+                  value={10751}
+                >
                   Family
                 </option>
-                <option>
+                <option
+                  value={14}
+                >
                   Fantasy
                 </option>
-                <option>
+                <option
+                  value={36}
+                >
                   History
                 </option>
-                <option>
+                <option
+                  value={27}
+                >
                   Horror
                 </option>
-                <option>
+                <option
+                  value={10402}
+                >
                   Music
                 </option>
-                <option>
+                <option
+                  value={9648}
+                >
                   Mystery
                 </option>
-                <option>
+                <option
+                  value={10749}
+                >
                   Romance
                 </option>
-                <option>
+                <option
+                  value={878}
+                >
                   Science Fiction
                 </option>
-                <option>
+                <option
+                  value={10770}
+                >
                   TV Movie
                 </option>
-                <option>
+                <option
+                  value={53}
+                >
                   Thriller
                 </option>
-                <option>
+                <option
+                  value={10752}
+                >
                   War
                 </option>
-                <option>
+                <option
+                  value={37}
+                >
                   Western
                 </option>
               </select>
@@ -705,11 +1093,27 @@ Array [
           </button>
         </div>
       </div>
-      <img
-        alt="404 Not Found"
-        src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-      />
+      <div
+        className="imgWrapper"
+      >
+        <img
+          alt="404 Not Found"
+          src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+        />
+      </div>
     </div>
+    <footer>
+      <div
+        className="container"
+      >
+        <h2>
+          FILMS
+        </h2>
+        <p>
+          Copyright © 2019 FILMS. RAMAN BYCHKOU
+        </p>
+      </div>
+    </footer>
   </div>,
   ",",
 ]
@@ -719,7 +1123,9 @@ exports[`Test routes Routes - index.html Routes 1`] = `","`;
 
 exports[`Test routes Routes - list Routes 1`] = `
 Array [
-  <div>
+  <div
+    className="wrapper"
+  >
     <header
       className="header"
     >
@@ -736,8 +1142,10 @@ Array [
           onSubmit={[Function]}
         >
           <input
+            autoComplete="false"
             className="searchField"
             id="searchField"
+            placeholder="search"
             tabIndex="0"
             type="search"
           />
@@ -813,63 +1221,101 @@ Array [
                 <option
                   value=""
                 >
-                  Genre
+                  Select Genre
                 </option>
-                <option>
+                <option
+                  value={28}
+                >
                   Action
                 </option>
-                <option>
+                <option
+                  value={12}
+                >
                   Adventure
                 </option>
-                <option>
+                <option
+                  value={16}
+                >
                   Animation
                 </option>
-                <option>
+                <option
+                  value={35}
+                >
                   Comedy
                 </option>
-                <option>
+                <option
+                  value={80}
+                >
                   Crime
                 </option>
-                <option>
+                <option
+                  value={99}
+                >
                   Documentary
                 </option>
-                <option>
+                <option
+                  value={18}
+                >
                   Drama
                 </option>
-                <option>
+                <option
+                  value={10751}
+                >
                   Family
                 </option>
-                <option>
+                <option
+                  value={14}
+                >
                   Fantasy
                 </option>
-                <option>
+                <option
+                  value={36}
+                >
                   History
                 </option>
-                <option>
+                <option
+                  value={27}
+                >
                   Horror
                 </option>
-                <option>
+                <option
+                  value={10402}
+                >
                   Music
                 </option>
-                <option>
+                <option
+                  value={9648}
+                >
                   Mystery
                 </option>
-                <option>
+                <option
+                  value={10749}
+                >
                   Romance
                 </option>
-                <option>
+                <option
+                  value={878}
+                >
                   Science Fiction
                 </option>
-                <option>
+                <option
+                  value={10770}
+                >
                   TV Movie
                 </option>
-                <option>
+                <option
+                  value={53}
+                >
                   Thriller
                 </option>
-                <option>
+                <option
+                  value={10752}
+                >
                   War
                 </option>
-                <option>
+                <option
+                  value={37}
+                >
                   Western
                 </option>
               </select>
@@ -895,11 +1341,27 @@ Array [
           </button>
         </div>
       </div>
-      <img
-        alt="404 Not Found"
-        src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-      />
+      <div
+        className="imgWrapper"
+      >
+        <img
+          alt="404 Not Found"
+          src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+        />
+      </div>
     </div>
+    <footer>
+      <div
+        className="container"
+      >
+        <h2>
+          FILMS
+        </h2>
+        <p>
+          Copyright © 2019 FILMS. RAMAN BYCHKOU
+        </p>
+      </div>
+    </footer>
   </div>,
   ",",
 ]
@@ -907,7 +1369,9 @@ Array [
 
 exports[`Test routes Routes - search Routes 1`] = `
 Array [
-  <div>
+  <div
+    className="wrapper"
+  >
     <header
       className="header"
     >
@@ -924,8 +1388,10 @@ Array [
           onSubmit={[Function]}
         >
           <input
+            autoComplete="false"
             className="searchField"
             id="searchField"
+            placeholder="search"
             tabIndex="0"
             type="search"
           />
@@ -1001,63 +1467,101 @@ Array [
                 <option
                   value=""
                 >
-                  Genre
+                  Select Genre
                 </option>
-                <option>
+                <option
+                  value={28}
+                >
                   Action
                 </option>
-                <option>
+                <option
+                  value={12}
+                >
                   Adventure
                 </option>
-                <option>
+                <option
+                  value={16}
+                >
                   Animation
                 </option>
-                <option>
+                <option
+                  value={35}
+                >
                   Comedy
                 </option>
-                <option>
+                <option
+                  value={80}
+                >
                   Crime
                 </option>
-                <option>
+                <option
+                  value={99}
+                >
                   Documentary
                 </option>
-                <option>
+                <option
+                  value={18}
+                >
                   Drama
                 </option>
-                <option>
+                <option
+                  value={10751}
+                >
                   Family
                 </option>
-                <option>
+                <option
+                  value={14}
+                >
                   Fantasy
                 </option>
-                <option>
+                <option
+                  value={36}
+                >
                   History
                 </option>
-                <option>
+                <option
+                  value={27}
+                >
                   Horror
                 </option>
-                <option>
+                <option
+                  value={10402}
+                >
                   Music
                 </option>
-                <option>
+                <option
+                  value={9648}
+                >
                   Mystery
                 </option>
-                <option>
+                <option
+                  value={10749}
+                >
                   Romance
                 </option>
-                <option>
+                <option
+                  value={878}
+                >
                   Science Fiction
                 </option>
-                <option>
+                <option
+                  value={10770}
+                >
                   TV Movie
                 </option>
-                <option>
+                <option
+                  value={53}
+                >
                   Thriller
                 </option>
-                <option>
+                <option
+                  value={10752}
+                >
                   War
                 </option>
-                <option>
+                <option
+                  value={37}
+                >
                   Western
                 </option>
               </select>
@@ -1083,11 +1587,27 @@ Array [
           </button>
         </div>
       </div>
-      <img
-        alt="404 Not Found"
-        src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-      />
+      <div
+        className="imgWrapper"
+      >
+        <img
+          alt="404 Not Found"
+          src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+        />
+      </div>
     </div>
+    <footer>
+      <div
+        className="container"
+      >
+        <h2>
+          FILMS
+        </h2>
+        <p>
+          Copyright © 2019 FILMS. RAMAN BYCHKOU
+        </p>
+      </div>
+    </footer>
   </div>,
   ",",
 ]

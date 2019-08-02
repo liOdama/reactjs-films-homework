@@ -161,17 +161,17 @@ describe('Test routes', () => {
     expect(container).toMatchSnapshot();
   });
 
-  // it('Routes - 404 Routes', () => {
-  //   const container = TestRenderer.create(
-  //     <Provider store={store}>
-  //       <Router initialEntries={['/404']} initialIndex={0}>
-  //         <AppRoutes />
-  //       </Router>
-  //       ,
-  //     </Provider>,
-  //   );
-  //   expect(container).toMatchSnapshot();
-  // });
+  it('Routes - 404 Routes', () => {
+    const container = TestRenderer.create(
+      <Provider store={store}>
+        <Router initialEntries={['/404']} initialIndex={0}>
+          <AppRoutes />
+        </Router>
+        ,
+      </Provider>,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
   it('Routes - index.html Routes', () => {
     const container = TestRenderer.create(

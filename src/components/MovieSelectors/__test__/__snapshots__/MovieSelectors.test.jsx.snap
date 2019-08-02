@@ -54,63 +54,101 @@ exports[`MovieSelectors MovieSelectors: renders correctly 1`] = `
           <option
             value=""
           >
-            Genre
+            Select Genre
           </option>
-          <option>
+          <option
+            value={28}
+          >
             Action
           </option>
-          <option>
+          <option
+            value={12}
+          >
             Adventure
           </option>
-          <option>
+          <option
+            value={16}
+          >
             Animation
           </option>
-          <option>
+          <option
+            value={35}
+          >
             Comedy
           </option>
-          <option>
+          <option
+            value={80}
+          >
             Crime
           </option>
-          <option>
+          <option
+            value={99}
+          >
             Documentary
           </option>
-          <option>
+          <option
+            value={18}
+          >
             Drama
           </option>
-          <option>
+          <option
+            value={10751}
+          >
             Family
           </option>
-          <option>
+          <option
+            value={14}
+          >
             Fantasy
           </option>
-          <option>
+          <option
+            value={36}
+          >
             History
           </option>
-          <option>
+          <option
+            value={27}
+          >
             Horror
           </option>
-          <option>
+          <option
+            value={10402}
+          >
             Music
           </option>
-          <option>
+          <option
+            value={9648}
+          >
             Mystery
           </option>
-          <option>
+          <option
+            value={10749}
+          >
             Romance
           </option>
-          <option>
+          <option
+            value={878}
+          >
             Science Fiction
           </option>
-          <option>
+          <option
+            value={10770}
+          >
             TV Movie
           </option>
-          <option>
+          <option
+            value={53}
+          >
             Thriller
           </option>
-          <option>
+          <option
+            value={10752}
+          >
             War
           </option>
-          <option>
+          <option
+            value={37}
+          >
             Western
           </option>
         </select>

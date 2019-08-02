@@ -10,6 +10,12 @@ exports[`test trender render correctly 1`] = `
           "replace": [MockFunction],
         }
       }
+      query={
+        Object {
+          "search": false,
+          "url": "",
+        }
+      }
     />
     <main>
       <section

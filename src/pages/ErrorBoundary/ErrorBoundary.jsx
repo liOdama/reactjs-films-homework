@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MovieSelectors from '../../components/MovieSelectors/index';
 import Header from '../../components/Header/index';
+import Footer from '../../components/Footer/index';
 import style from './ErrorBoundary.scss';
+import defaultStyle from '../../common.scss';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -34,12 +36,18 @@ class ErrorBoundary extends Component {
       setTypeView,
       history,
       clearError,
+      query,
     } = this.props;
     if (hasError === true) {
       clearError('');
       return (
-        <div>
-          <Header fetchSearchResults={fetchSearchResults} error={error} />
+        <div className={defaultStyle.wrapper}>
+          <Header
+            fetchSearchResults={fetchSearchResults}
+            error={error}
+            query={query}
+            history={history}
+          />
           <div className={style.container}>
             <div className="title">
               <h1>Nothing found</h1>
@@ -52,11 +60,14 @@ class ErrorBoundary extends Component {
               setTypeView={setTypeView}
               history={history}
             />
-            <img
-              src="https://cdn.shopify.com/s/files/1/1164/8172/products/funny-insomnia-mug-error-404-am-sleep-not-found-11oz-black-coffee-mugs_175_1024x1024.jpg?v=1537210909"
-              alt="404 Not Found"
-            />
+            <div className={style.imgWrapper}>
+              <img
+                src="https://www.ge.com/digital/sites/default/files/styles/featured_desktop_2432w_x_1368h/public/2018-09/404.png?itok=hZD2E0Up"
+                alt="404 Not Found"
+              />
+            </div>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -68,10 +79,12 @@ ErrorBoundary.defaultProps = {
   genres: [],
   children: [],
   history: {},
+  query: { url: '' },
 };
 
 ErrorBoundary.propTypes = {
   history: PropTypes.objectOf(PropTypes.any),
+  query: PropTypes.objectOf(PropTypes.any),
   error: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.any),
   fetchListMovies: PropTypes.func.isRequired,

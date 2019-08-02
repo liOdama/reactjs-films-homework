@@ -65,14 +65,15 @@ class MovieItem extends React.Component {
         });
         return currentGenre;
       })
-      .join(', 1')
-      .split(' 1')
-      .map(cur => (
+      .join(', ')
+      .split(' ')
+      .map((cur, ind) => (
         <li key={`key-${cur.replace(',', '')}`}>
           <button
             type="button"
             onClick={selectGenre.bind(null, this.props)}
             onKeyDown={keydonwGenres.bind(null, this.props)}
+            value={curr.genre_ids[ind]}
           >
             {cur}
           </button>

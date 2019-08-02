@@ -29,7 +29,7 @@ const requestsFilms = {
     return fetch(url)
       .then(resp => resp.json())
       .then((data) => {
-        if (data.ok === false) {
+        if (data.ok === false || data.results.length === 0) {
           throw new Error('Something wrong');
         }
         return dispatch(

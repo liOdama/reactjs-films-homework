@@ -17,8 +17,10 @@ exports[`HeaderComponent Header renders correctly 1`] = `
       onSubmit={[Function]}
     >
       <input
+        autoComplete="false"
         className="searchField"
         id="searchField"
+        placeholder="search"
         tabIndex="0"
         type="search"
       />

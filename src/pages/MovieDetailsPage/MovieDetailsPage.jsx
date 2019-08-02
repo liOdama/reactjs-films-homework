@@ -69,7 +69,13 @@ class MovieDetailsPage extends PureComponent {
 
   render() {
     const {
-      genres, fetchListMovies, mainMovie, history, fetchSearchResults, movies,
+      genres,
+      fetchListMovies,
+      mainMovie,
+      history,
+      fetchSearchResults,
+      movies,
+      query,
     } = this.props;
     const { loading } = this.state;
     const imageLink = mainMovie.backdrop_path
@@ -83,7 +89,7 @@ class MovieDetailsPage extends PureComponent {
     };
     const component = (
       <div className={style.wrapper}>
-        <Header fetchSearchResults={fetchSearchResults} history={history} />
+        <Header fetchSearchResults={fetchSearchResults} history={history} query={query} />
         <main>
           <section className={style.movieDetailsPageContainer} style={styleBG} id={mainMovie.id}>
             <div className={style.mainfilmInfo}>

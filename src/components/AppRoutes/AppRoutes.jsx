@@ -7,7 +7,7 @@ import ErrorBoundary from '../../pages/ErrorBoundary/index';
 
 const AppRoutes = () => (
   <Switch>
-    <ErrorBoundary>
+    <ErrorBoundary query={{ url: '404', search: false }}>
       <Route
         exact
         path="/"
@@ -36,6 +36,13 @@ const AppRoutes = () => (
         path="/search/:query"
         render={props => (
           <MovieListContainer query={{ url: props.match.params.query, search: true }} />
+        )}
+      />
+      <Route
+        exact
+        path="/404"
+        render={() => (
+          <MovieListContainer query={{ url: '/404', search: false }} error="Nothing Found" />
         )}
       />
     </ErrorBoundary>

@@ -22,7 +22,8 @@ const dataGenres = [
   { id: 10770, name: 'TV Movie' },
   { id: 53, name: 'Thriller' },
   { id: 10752, name: 'War' },
-  { id: 37, name: 'Western' }];
+  { id: 37, name: 'Western' },
+];
 
 test('MainFilmTitle renders correctly', () => {
   const renderer = new ShallowRenderer();
@@ -33,7 +34,8 @@ test('MainFilmTitle renders correctly', () => {
     id: 531309,
     original_language: 'en',
     original_title: 'Brightburn',
-    overview: 'What if a child from another world crash-landed on Earth, but instead of becoming a hero to mankind, he proved to be something far more sinister?',
+    overview:
+      'What if a child from another world crash-landed on Earth, but instead of becoming a hero to mankind, he proved to be something far more sinister?',
     popularity: 137.601,
     poster_path: '/roslEbKdY0WSgYaB5KXvPKY0bXS.jpg',
     release_date: '2019-05-10',
@@ -53,8 +55,9 @@ test('createMoviesGenreList works correctly', () => {
       runtime: 131,
     },
   };
-  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie))
-    .toHaveLength(testGenresMovies.length + 1);
+  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie)).toHaveLength(
+    testGenresMovies.length + 1,
+  );
 });
 
 test('createMoviesGenreList works correctly with integer runtime', () => {
@@ -64,13 +67,14 @@ test('createMoviesGenreList works correctly with integer runtime', () => {
       runtime: 120,
     },
   };
-  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie))
-    .toHaveLength(testGenresMovies.length + 1);
+  expect(createMoviesGenreList(testGenresMovies, dataGenres, movie)).toHaveLength(
+    testGenresMovies.length + 1,
+  );
 });
 
 test('shooseGenre works correctly', () => {
   const elementID = { id: 27 };
-  const movie = 'Horror';
+  const movie = { name: 'Horror', id: elementID.id };
   const result = shooseGenre(dataGenres, elementID);
-  expect(result).toBe(movie);
+  expect(result).toEqual(movie);
 });

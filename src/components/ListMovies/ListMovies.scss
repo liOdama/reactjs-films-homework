@@ -72,13 +72,18 @@
   }
 
   select {
-    background: #f2f2f2;
     border: none;
-    width: 3.7rem;
     outline: none;
+    background-color: #f2f2f2;
+    appearance: none;
 
     option {
       border: none;
+
+      &::after {
+        content: '>';
+        color: red;
+      }
     }
   }
 }
