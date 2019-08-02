@@ -45,6 +45,7 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={12}
             >
               Adventure,
             </button>
@@ -54,8 +55,19 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={878}
             >
-              Science Fiction,
+              Science
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+              value={28}
+            >
+              Fiction,
             </button>
           </li>
           <li>
@@ -81,6 +93,7 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={12}
           >
             Adventure,
           </button>
@@ -90,8 +103,19 @@ exports[`MovieItem renders correctly with lines classes 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={878}
           >
-            Science Fiction,
+            Science
+          </button>
+        </li>,
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+            value={28}
+          >
+            Fiction,
           </button>
         </li>,
         <li>
@@ -161,6 +185,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={12}
             >
               Adventure,
             </button>
@@ -170,8 +195,19 @@ exports[`MovieItem renders correctly with poster image 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={878}
             >
-              Science Fiction,
+              Science
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+              value={28}
+            >
+              Fiction,
             </button>
           </li>
           <li>
@@ -197,6 +233,7 @@ exports[`MovieItem renders correctly with poster image 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={12}
           >
             Adventure,
           </button>
@@ -206,8 +243,19 @@ exports[`MovieItem renders correctly with poster image 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={878}
           >
-            Science Fiction,
+            Science
+          </button>
+        </li>,
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+            value={28}
+          >
+            Fiction,
           </button>
         </li>,
         <li>
@@ -280,6 +328,7 @@ exports[`MovieItem renders correctly without poster image 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={12}
             >
               Adventure,
             </button>
@@ -289,8 +338,19 @@ exports[`MovieItem renders correctly without poster image 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               type="button"
+              value={878}
             >
-              Science Fiction,
+              Science
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+              value={28}
+            >
+              Fiction,
             </button>
           </li>
           <li>
@@ -316,6 +376,7 @@ exports[`MovieItem renders correctly without poster image 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={12}
           >
             Adventure,
           </button>
@@ -325,8 +386,19 @@ exports[`MovieItem renders correctly without poster image 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             type="button"
+            value={878}
           >
-            Science Fiction,
+            Science
+          </button>
+        </li>,
+        <li>
+          <button
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            type="button"
+            value={28}
+          >
+            Fiction,
           </button>
         </li>,
         <li>
@@ -394,6 +466,7 @@ exports[`events hoverOverwieBlock 1`] = `
             <li>
               <button
                 type="button"
+                value="12"
               >
                 Adventure,
               </button>
@@ -401,8 +474,17 @@ exports[`events hoverOverwieBlock 1`] = `
             <li>
               <button
                 type="button"
+                value="878"
               >
-                Science Fiction,
+                Science
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                value="28"
+              >
+                Fiction,
               </button>
             </li>
             <li>
@@ -465,6 +547,7 @@ exports[`events hoverOverwieBlock 1`] = `
               <li>
                 <button
                   type="button"
+                  value="12"
                 >
                   Adventure,
                 </button>
@@ -472,8 +555,17 @@ exports[`events hoverOverwieBlock 1`] = `
               <li>
                 <button
                   type="button"
+                  value="878"
                 >
-                  Science Fiction,
+                  Science
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  value="28"
+                >
+                  Fiction,
                 </button>
               </li>
               <li>
@@ -551,6 +643,7 @@ exports[`events hoverOverwieBlock 2`] = `
             <li>
               <button
                 type="button"
+                value="12"
               >
                 Adventure,
               </button>
@@ -558,8 +651,17 @@ exports[`events hoverOverwieBlock 2`] = `
             <li>
               <button
                 type="button"
+                value="878"
               >
-                Science Fiction,
+                Science
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                value="28"
+              >
+                Fiction,
               </button>
             </li>
             <li>
@@ -622,6 +724,7 @@ exports[`events hoverOverwieBlock 2`] = `
               <li>
                 <button
                   type="button"
+                  value="12"
                 >
                   Adventure,
                 </button>
@@ -629,8 +732,17 @@ exports[`events hoverOverwieBlock 2`] = `
               <li>
                 <button
                   type="button"
+                  value="878"
                 >
-                  Science Fiction,
+                  Science
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  value="28"
+                >
+                  Fiction,
                 </button>
               </li>
               <li>

@@ -12,7 +12,7 @@ export const mapStateToDispatch = dispatch => ({
   setTypeView: setTypeView.bind(this, dispatch),
   getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
   fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
-  clearError: clearError.bind(dispatch),
+  clearError: clearError.bind(this, dispatch),
   fetchSearchResults: requestsFilms.fetchSearchResults.bind(this, dispatch),
 });
 export default withRouter(

@@ -30,6 +30,14 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve(__dirname, './postcss.config.js'),
+              },
+            },
+          },
           'sass-loader',
         ],
       },

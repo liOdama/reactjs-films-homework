@@ -29,7 +29,7 @@ const requestsFilms = {
     return fetch(url)
       .then(resp => resp.json())
       .then((data) => {
-        if (data.ok === false) {
+        if (data.ok === false || data.results.length === 0) {
           throw new Error('Something wrong');
         }
         return dispatch(
@@ -40,7 +40,7 @@ const requestsFilms = {
         );
       })
       .then(() => dispatch(itemsIsLoadingAction(false)))
-      .catch(err => dispatch(itemsHasErrored(err)));
+      .catch(err => itemsHasErrored(dispatch, err.message));
   },
   getMainMovieDetails: (dispatch, id) => {
     dispatch(itemsIsLoadingAction(true));
@@ -55,7 +55,7 @@ const requestsFilms = {
         return dispatch(setMainMovieDetails(data));
       })
       .then(() => dispatch(itemsIsLoadingAction(false)))
-      .catch(err => dispatch(itemsHasErrored(err)));
+      .catch(err => itemsHasErrored(dispatch, err.message));
   },
 
   fetchVideo: (dispatch, id) => {
@@ -77,7 +77,7 @@ const requestsFilms = {
         });
         return dispatch(fetchVideoSuccess(videoId));
       })
-      .catch(err => dispatch(itemsHasErrored(err)));
+      .catch(err => itemsHasErrored(dispatch, err.message));
   },
 
   fetchSearchResults: (dispatch, query) => {
@@ -102,7 +102,7 @@ const requestsFilms = {
         );
       })
       .then(() => dispatch(itemsIsLoadingAction(false)))
-      .catch(err => dispatch(itemsHasErrored(err.message)));
+      .catch(err => itemsHasErrored(dispatch, err.message));
   },
 };
 

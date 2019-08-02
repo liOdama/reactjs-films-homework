@@ -3,6 +3,16 @@
   margin: 0 auto;
   padding-top: 5rem;
   text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+
+  .imgWrapper {
+    min-height: 92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   img {
     width: 45%;

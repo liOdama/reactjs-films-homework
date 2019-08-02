@@ -37,10 +37,13 @@ exports[`MovieDetailsPage - all tests MovieDetailsPage, render component correct
           action=""
         >
           <input
+            autocomplete="false"
             class="searchField"
             id="searchField"
+            placeholder="search"
             tabindex="0"
             type="search"
+            value=""
           />
           <input
             class="btnSearch"

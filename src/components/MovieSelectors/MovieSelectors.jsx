@@ -48,10 +48,14 @@ class MovieSelectors extends React.Component {
             </li>
             <li>
               <select name="genre" id="" onChange={selectGenre.bind(this, this.props)}>
-                <option value="">Genre</option>
+                <option value="">Select Genre</option>
                 {genres.map((c) => {
-                  const { name } = c;
-                  return <option key={`key-${name}`}>{name}</option>;
+                  const { name, id } = c;
+                  return (
+                    <option key={`key-${name}`} value={id}>
+                      {name}
+                    </option>
+                  );
                 })}
               </select>
             </li>

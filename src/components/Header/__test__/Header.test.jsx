@@ -10,6 +10,7 @@ describe('HeaderComponent', () => {
   const state = {
     clearError,
     history: { push: jest.fn(), location: { path: '' } },
+    query: { url: '', search: false },
   };
   test('Header renders correctly', () => {
     const result = ReactTestRender.create(<Header {...state} />);
@@ -29,7 +30,7 @@ describe('HeaderComponent', () => {
         document.body.appendChild(container);
         ReactDOM.render(
           <Router>
-            <Header {...state} />
+            <Header {...state} query={{ url: 'test', search: true }} />
           </Router>,
           container,
         );

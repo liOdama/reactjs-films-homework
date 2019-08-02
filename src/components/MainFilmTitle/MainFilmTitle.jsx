@@ -13,7 +13,7 @@ export const shooseGenre = (genres, element) => {
     }
     return false;
   });
-  return current;
+  return { name: current, id: element.id };
 };
 
 export const createMoviesGenreList = (arr, genres, props) => {
@@ -38,8 +38,9 @@ export const createMoviesGenreList = (arr, genres, props) => {
           type="button"
           onClick={selectGenre.bind(null, props)}
           onKeyDown={keydonwGenres.bind(null, props)}
+          value={currentGenre.id}
         >
-          {currentGenre}
+          {currentGenre.name}
         </button>
       </li>
     );

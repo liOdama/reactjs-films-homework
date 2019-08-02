@@ -18,11 +18,10 @@ class MovieListContainer extends Component {
 
   static getDerivedStateFromProps(nextProps, nextState) {
     const {
-      query, itemsIsLoading, error, clearError, history,
+      query, itemsIsLoading, error, history,
     } = nextProps;
     const { path } = nextState;
     if (error !== '') {
-      clearError('');
       history.replace({ pathname: '/404', state: { error: '404' } });
       throw Error(error);
     }
@@ -95,16 +94,21 @@ class MovieListContainer extends Component {
   render() {
     const { loading } = this.state;
     const {
-      genres, setTypeView, fetchSearchResults, history,
+      genres, setTypeView, fetchSearchResults, history, clearError, query,
     } = this.props;
     return (
       <Fragment>
         <div className={commonStyles.wrapper}>
-          <Header fetchSearchResults={fetchSearchResults} history={history} />
+          <Header fetchSearchResults={fetchSearchResults} history={history} query={query} />
           <main>
             <section className={style.movieList}>
               <div className={style.container}>
-                <MovieSelectors genres={genres} setTypeView={setTypeView} history={history} />
+                <MovieSelectors
+                  genres={genres}
+                  setTypeView={setTypeView}
+                  history={history}
+                  clearError={clearError}
+                />
                 <div className={style.moviesWrapper}>
                   <ListMovies {...this.props} loading={loading} />
                 </div>
@@ -139,6 +143,7 @@ MovieListContainer.propTypes = {
   fetchSearchResults: PropTypes.func.isRequired,
   setTypeView: PropTypes.func.isRequired,
   getMainMovieDetails: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
 };
 
 export default MovieListContainer;

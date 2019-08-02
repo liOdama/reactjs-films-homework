@@ -84,7 +84,7 @@ describe('Test routes', () => {
     );
 
     fetchMock.getOnce(
-      'https://api.themoviedb.org/3/movie/123?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
+      'https://api.themoviedb.org/3/movie/420818?api_key=75331f1a740385460b25b56203149aa8&language=en-US',
       initial,
     );
 
@@ -140,7 +140,7 @@ describe('Test routes', () => {
   it('Routes - films Routes', () => {
     const container = TestRenderer.create(
       <Provider store={store}>
-        <Router initialEntries={['/films/123']} initialIndex={0}>
+        <Router initialEntries={['/films/420818']} initialIndex={0}>
           <AppRoutes />
         </Router>
         ,
@@ -161,17 +161,17 @@ describe('Test routes', () => {
     expect(container).toMatchSnapshot();
   });
 
-  // it('Routes - 404 Routes', () => {
-  //   const container = TestRenderer.create(
-  //     <Provider store={store}>
-  //       <Router initialEntries={['/404']} initialIndex={0}>
-  //         <AppRoutes />
-  //       </Router>
-  //       ,
-  //     </Provider>,
-  //   );
-  //   expect(container).toMatchSnapshot();
-  // });
+  it('Routes - 404 Routes', () => {
+    const container = TestRenderer.create(
+      <Provider store={store}>
+        <Router initialEntries={['/404']} initialIndex={0}>
+          <AppRoutes />
+        </Router>
+        ,
+      </Provider>,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
   it('Routes - index.html Routes', () => {
     const container = TestRenderer.create(

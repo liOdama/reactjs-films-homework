@@ -10,6 +10,12 @@ exports[`test trender render correctly 1`] = `
           "replace": [MockFunction],
         }
       }
+      query={
+        Object {
+          "search": false,
+          "url": "",
+        }
+      }
     />
     <main>
       <section
@@ -19,6 +25,7 @@ exports[`test trender render correctly 1`] = `
           className="container"
         >
           <MovieSelectors
+            clearError={[MockFunction]}
             genres={
               Array [
                 Object {

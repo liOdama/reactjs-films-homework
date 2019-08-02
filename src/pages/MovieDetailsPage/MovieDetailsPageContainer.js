@@ -10,7 +10,7 @@ const mapStateToProps = state => state;
 
 export const mapStateToDispatch = dispatch => ({
   fetchVideo: requestsFilms.fetchVideo.bind(this, dispatch),
-  clearError: clearError.bind(dispatch),
+  clearError: clearError.bind(this, dispatch),
   getMainMovieDetails: requestsFilms.getMainMovieDetails.bind(this, dispatch),
   fetchSearchResults: requestsFilms.fetchSearchResults.bind(this, dispatch),
   fetchListMovies: requestsFilms.fetchListMovies.bind(this, dispatch),
